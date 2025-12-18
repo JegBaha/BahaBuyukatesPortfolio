@@ -1,0 +1,69 @@
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Node / JS
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.eslintcache
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+web-build/
+.expo/
+.expo-shared/
+
+# =========================
+# React Native
+# =========================
+android/app/build/
+android/.gradle/
+android/local.properties
+android/captures/
+android/.idea/
+
+ios/build/
+ios/Pods/
+ios/*.xcworkspace
+ios/*.xcuserdata
+ios/.idea/
+
+# =========================
+# Environment
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# IDE / Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Visual Studio / Windows
+# =========================
+.vs/
+*.vsidx
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Logs
+# =========================
+*.log

@@ -1,0 +1,231 @@
+*** Begin Patch
+*** Update File: src/App.tsx
+@@
+-import { useState } from 'react'
+-import reactLogo from './assets/react.svg'
+-import viteLogo from '/vite.svg'
+-import './App.css'
+-
+-function App() {
+-  const [count, setCount] = useState(0)
+-
+-  return (
+-    <>
+-      <div>
+-        <a href="https://vite.dev" target="_blank">
+-          <img src={viteLogo} className="logo" alt="Vite logo" />
+-        </a>
+-        <a href="https://react.dev" target="_blank">
+-          <img src={reactLogo} className="logo react" alt="React logo" />
+-        </a>
+-      </div>
+-      <h1>Vite + React</h1>
+-      <div className="card">
+-        <button onClick={() => setCount((count) => count + 1)}>
+-          count is {count}
+-        </button>
+-        <p>
+-          Edit <code>src/App.tsx</code> and save to test HMR
+-        </p>
+-      </div>
+-      <p className="read-the-docs">
+-        Click on the Vite and React logos to learn more
+-      </p>
+-    </>
+-  )
+-}
+-
+-export default App
++import './App.css'
++
++const skills = [
++  {
++    title: 'Ön Uç',
++    items: ['React', 'TypeScript', 'Vite', 'Tailwind', 'Framer Motion'],
++    detail: 'Tasarýmý canlý prototiplere ve üretim hazýr arayüzlere taþýyorum.',
++  },
++  {
++    title: 'Ürün ve UX',
++    items: ['Kullanýcý akýþý', 'Wireframe', 'Design system', 'Eriþilebilirlik'],
++    detail: 'Metal enerjisini, net ve profesyonel kullanýcý deneyimine harmanlýyorum.',
++  },
++  {
++    title: 'Altyapý',
++    items: ['Node.js', 'REST', 'CI/CD', 'Testing'],
++    detail: 'Performans ve güvenlik odaklý, sürdürülebilir kod tabanlarý kuruyorum.',
++  },
++]
++
++const projects = [
++  {
++    title: 'StageGuard',
++    description:
++      'Gerçek zamanlý güvenlik ve uyarý paneli. Kritik verileri karanlýk temada berrak grafiklerle sunar.',
++    stack: 'React, TypeScript, Zustand, WebSocket',
++    link: '#',
++  },
++  {
++    title: 'TourForge',
++    description:
++      'Turne yönetimi için dashboard: rota, ekip ve bütçe takibi. Mobilde de pürüzsüz.',
++    stack: 'React, Tailwind, Supabase',
++    link: '#',
++  },
++  {
++    title: 'RiffNotes',
++    description:
++      'Metal riff arþivi ve pratik planlayýcý. Ses ön dinleme ve klavye kýsayollarý ile hýzlý kayýt.',
++    stack: 'Vite, TypeScript, PWA',
++    link: '#',
++  },
++]
++
++function App() {
++  return (
++    <div className="page">
++      <header className="top-nav">
++        <div className="brand">
++          <span className="brand-mark">//</span>
++          <div>
++            <p className="eyebrow">frontend & riffs</p>
++            <p className="brand-name">Portfolio</p>
++          </div>
++        </div>
++        <nav className="nav-links">
++          <a href="#projects">Projeler</a>
++          <a href="#skills">Yetenekler</a>
++          <a href="#contact">Ýletiþim</a>
++        </nav>
++      </header>
++
++      <main>
++        <section className="hero" id="hero">
++          <div className="hero-text">
++            <p className="eyebrow">Metal ruhlu yazýlým geliþtirici</p>
++            <h1>
++              Profesyonel arayüzler,
++              <span className="accent"> sahne ýþýklarý gibi parlak.</span>
++            </h1>
++            <p className="lede">
++              Modern web teknolojileriyle temiz, ölçülebilir ve hýzlý ürünler üretiyorum. Metal
++              müzik enerjisini, disiplinli teslimat ve güçlü görsellik ile birleþtiriyorum.
++            </p>
++            <div className="cta-row">
++              <a className="btn primary" href="#projects">
++                Projelere göz at
++              </a>
++              <a className="btn ghost" href="#contact">
++                Birlikte üretelim
++              </a>
++            </div>
++            <div className="hero-meta">
++              <span className="pill">Uzak / Ýstanbul</span>
++              <span className="pill">TypeScript & React</span>
++              <span className="pill">Metalcore & Prog</span>
++            </div>
++          </div>
++          <div className="hero-panel">
++            <div className="panel-head">
++              <p>Canlý durum</p>
++              <span className="pulse" aria-label="online" />
++            </div>
++            <div className="meter">
++              <p>Temiz kod</p>
++              <div className="bars">
++                <span className="bar b1" />
++                <span className="bar b2" />
++                <span className="bar b3" />
++                <span className="bar b4" />
++              </div>
++            </div>
++            <div className="panel-body">
++              <p className="eyebrow">Son iþler</p>
++              <ul>
++                <li>UI kit › Design system › Ship</li>
++                <li>Gerçek zamanlý izleme dashboard</li>
++                <li>Performans optimizasyonu (Lighthouse 95+)</li>
++              </ul>
++            </div>
++          </div>
++        </section>
++
++        <section className="section" id="skills">
++          <div className="section-header">
++            <p className="eyebrow">Ne sunuyorum</p>
++            <h2>Yetenek seti</h2>
++            <p className="section-text">
++              Ürün hedefleriyle uyumlu arayüzler, güvenilir teslim süreçleri ve metal tonunda görsel
++              dokunuþlar.
++            </p>
++          </div>
++          <div className="grid">
++            {skills.map((skill) => (
++              <div className="card" key={skill.title}>
++                <div className="card-head">
++                  <h3>{skill.title}</h3>
++                  <span className="spark" aria-hidden="true" />
++                </div>
++                <p className="card-text">{skill.detail}</p>
++                <div className="tags">
++                  {skill.items.map((item) => (
++                    <span className="pill" key={item}>
++                      {item}
++                    </span>
++                  ))}
++                </div>
++              </div>
++            ))}
++          </div>
++        </section>
++
++        <section className="section" id="projects">
++          <div className="section-header">
++            <p className="eyebrow">Seçili projeler</p>
++            <h2>Metal enerjisiyle güçlenen ürünler</h2>
++            <p className="section-text">
++              Kararlý, parlak ve karanlýk tonlu paneller. Performans ve kullanýcý deneyimi birlikte.
++            </p>
++          </div>
++          <div className="grid projects">
++            {projects.map((project) => (
++              <article className="card project-card" key={project.title}>
++                <div className="card-head">
++                  <h3>{project.title}</h3>
++                  <span className="mini-dot" />
++                </div>
++                <p className="card-text">{project.description}</p>
++                <p className="stack">{project.stack}</p>
++                <div className="card-footer">
++                  <a className="link" href={project.link}>
++                    Detaylar ›
++                  </a>
++                </div>
++              </article>
++            ))}
++          </div>
++        </section>
++
++        <section className="section contact" id="contact">
++          <div>
++            <p className="eyebrow">Ýletiþim</p>
++            <h2>Yeni bir proje için hazýrým.</h2>
++            <p className="section-text">
++              Bir ürün fikri, yeniden tasarým ya da metal temalý yaratýcý bir deneyim varsa, konuþalým.
++            </p>
++          </div>
++          <div className="contact-actions">
++            <a className="btn primary" href="mailto:you@example.com">
++              Mail gönder
++            </a>
++            <a className="btn ghost" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
++              LinkedIn
++            </a>
++          </div>
++        </section>
++      </main>
++    </div>
++  )
++}
++
++export default App
+*** End Patch

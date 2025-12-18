@@ -1,0 +1,1743 @@
+import { useEffect, useRef, useState } from 'react'
+import type { FormEvent, MouseEvent as ReactMouseEvent } from 'react'
+import './App.css'
+
+type Locale = 'TR' | 'DE' | 'EN'
+
+const localeOptions: { code: Locale; flag: string }[] = [
+  { code: 'TR', flag: '🇹🇷' },
+  { code: 'DE', flag: '🇩🇪' },
+  { code: 'EN', flag: '🇬🇧' },
+]
+
+const content: Record<
+  Locale,
+  {
+    nav: { about: string; experience: string; projects: string; skills: string; contact: string }
+    brandEyebrow: string
+    welcome: string
+    hero: {
+      eyebrow: string
+      titleMain: string
+      titleAccent: string
+      lede: string
+      ctas: { browse: string; collaborate: string }
+    }
+    heroMeta: string[]
+    heroPanel: {
+      status: string
+      focus: string
+      profileEyebrow: string
+      profileItems: string[]
+      labels: string[]
+    }
+    sections: {
+      experience: { eyebrow: string; title: string; text: string }
+      skills: { eyebrow: string; title: string; text: string }
+      projects: { eyebrow: string; title: string; text: string }
+      education: { eyebrow: string; title: string; text: string }
+      certifications: { eyebrow: string; title: string; text: string }
+      contact: { eyebrow: string; title: string; text: string }
+      hobby: { eyebrow: string; title: string; text: string; benefit: string; cta: string }
+    }
+    experience: {
+      company: string
+      role: string
+      location: string
+      period: string
+      bullets: string[]
+      impact?: string
+    }[]
+    skills: { title: string; items: string[]; detail: string }[]
+    projects: {
+      title: string
+      description: string
+      summary: string
+      stack: string
+      link: string
+      github: string
+      live: string
+      tags: string[]
+      image: string
+      impact?: string
+    }[]
+    education: { school: string; degree: string; location: string; period: string }[]
+    certifications: string[]
+    languages: { name: string; level: string }[]
+    about: { eyebrow: string; title: string; bio: string; strengths: string[]; openTo: string[]; highlight: string }
+    skillMatrix: { name: string; level: string; tools: string[] }[]
+    toolbelt: string[]
+    cv: { link: string; updated: string; label: string }
+  }
+> = {
+  TR: {
+    nav: {
+      about: 'Hakkimda',
+      experience: 'Deneyim',
+      projects: 'Projeler',
+      skills: 'Yetenekler',
+      contact: 'Iletisim',
+    },
+    brandEyebrow: 'Computer Engineer | Data/Software/IT/Endustriyel',
+    welcome: 'Hosgeldin!',
+    hero: {
+      eyebrow: 'Bilgisayar Muhendisi',
+      titleMain: 'Bilgisayar Muhendisi,',
+      titleAccent: ' veri, yazilim, IT ve endustriyel sistemlere odakli',
+      lede:
+        'Data Analysis, Software Development, IT destek ve endustriyel entegrasyon alanlarinda calisiyor ve kendimi gelistiriyorum; KPI dashboardlari (Power BI, SQL, DAX), Python/ML egitimi, backend ve otomasyon deneyimim var.',
+      ctas: { browse: 'Projelere goz at', collaborate: 'Birlikte uretelim' },
+    },
+    heroMeta: ['AB vatandasi', 'Vize sponsorlugu gerekmez', 'Hemen baslayabilirim'],
+    heroPanel: {
+      status: 'Canli durum',
+      focus: 'Odak alanlari',
+      profileEyebrow: 'Profil',
+      profileItems: [
+        'Data Analysis & BI: Power BI, Excel, SQL, DAX, KPI (MTTR, MTBF, OEE)',
+        'AI & ML: PyTorch, TensorFlow, CNNs, LLM training',
+        'DevOps: AWS, Docker, Kubernetes, Jenkins, CI/CD',
+        'Data + Software + IT + Endustriyel entegrasyon projeleri (aktif ogrenme ve uygulama)',
+      ],
+      labels: ['Data', 'Endustriyel', 'Yazilim&IT', 'BI'],
+    },
+    sections: {
+      experience: {
+        eyebrow: 'Profesyonel Deneyim',
+        title: 'Sahada neler yaptim',
+        text: 'AI egitimi, veri analizi ve kurumsal IT arasinda kopru kuran tecrubeler.',
+      },
+      skills: {
+        eyebrow: 'Ne sunuyorum',
+        title: 'Yetenek seti',
+        text: 'Veri, yapay zeka, otomasyon ve kurumsal surecleri birlestiren beceriler.',
+      },
+      projects: {
+        eyebrow: 'Secili projeler',
+        title: 'Hayal gucum ve meslegim ile birlestirilen projeler',
+        text: 'Performans ve kullanici deneyimi birlikte.',
+      },
+      education: {
+        eyebrow: 'Egitim',
+        title: 'Temel ve ileri duzey',
+        text: 'Muhur: Bilgisayar Muhendisligi + AI odakli bootcamp.',
+      },
+      certifications: {
+        eyebrow: 'Sertifikalar & Diller',
+        title: 'Surekli ogrenme ve global iletisim',
+        text: 'Bulut, veri, AI ve endustriyel otomasyon alanlarinda guncel sertifikalar; cok dilli iletisim.',
+      },
+      hobby: {
+        eyebrow: 'Hobim',
+        title: 'Muzik prodüksiyonu:',
+        text: 'Djent ve progressive metal odaklı parçalar üretmek ve mevcut eserleri coverlamak üzerine çalışıyorum. Müzik benim için ayrı bir tutku; projelerimde bu tutkuyu teknik üretimle birleştirerek özgün ve ikonik işler ortaya koymayı seviyorum.',
+        benefit:
+          'Disiplinli çalışma alışkanlığım, ritim ve detay odaklı yaklaşımım hem müzikal üretimlerime hem de profesyonel projelerime doğrudan yansıyor.',
+        cta: 'Dinlemek ister misin?',
+      },
+      contact: {
+        eyebrow: 'Iletisim',
+        title: 'Yeni bir proje icin hazirim.',
+        text: 'Veri analizi, dashboard gelistirme, AI egitimi veya otomasyon ihtiyaciniz varsa iletisime gecebiliriz.',
+      },
+    },
+    experience: [
+      {
+        company: 'Outlier',
+        role: 'AI Trainer',
+        location: 'Remote',
+        period: 'Oct 2025 - Present',
+        bullets: [
+          'LLM egitim ve degerlendirme ile kod uretimi/akil yurutme kabiliyetlerini iyilestirme.',
+          'Veri anotasyonu, prompt muhendisligi ve QA surecinde kaliteyi saglama.',
+        ],
+        impact: 'LLM kalite puanlarinda artis; hatali cevaplar dustu.',
+      },
+      {
+        company: 'Prestij Bilgi Sistemleri Arge A.S.',
+        role: 'C#.NET Developer Intern',
+        location: 'Bursa, Turkiye (Hybrid)',
+        period: 'Aug 2024 - Sep 2024',
+        bullets: [
+          'Capstone seviyesinde HIS modulleri gelistirdim; .NET ve SQL ile olceklenebilir, guvenli moduller teslim ettim.',
+          'Git uzerinden ekip icinde kod inceleme ve versiyonlama deneyimi kazandim.',
+          'HIS mimarisinde veri guvenligi, performans optimizasyonu ve regulatory uyum hakkinda derinlesmis bilgi.',
+          'Operasyonel surekirlilik icin sorun giderme ve onleyici bakim adimlarini dokumante ettim.',
+        ],
+        impact: 'Rapor ve HIS sorgularinda performans artisi saglandi.',
+      },
+      {
+        company: 'Sanofi',
+        role: 'IT Intern',
+        location: 'Luleburgaz, Turkiye',
+        period: 'Jul 2024',
+        bullets: [
+          'Donanim onarimi, ag bakimi ve temel IT operasyonlarinda pratik yaparak SAP ve veritabani tarafinda deneyim kazandim.',
+          'ERP baglaminda SAP S/4HANA ve SAP Fiori temel modullerini inceledim.',
+          'SAP entegrasyonlarini finans, tedarik zinciri, IK gibi sureclere nasil uyarlayacagimizi ogrendim; is akisi ozellestirmeleri yaptim.',
+        ],
+        impact: "SLA'yi koruyup destek kapanis suresini kisalttim.",
+      },
+      {
+        company: 'Kirklareli State Hospital',
+        role: 'IT Intern',
+        location: 'Kirklareli, Turkiye',
+        period: 'Aug 2023 - Sep 2023',
+        bullets: [
+          'Donanim ve ag tarafinda teknik destek sagladim; workstation/agirlikli sistem kesintilerini minimuma indirdim.',
+          'IT operasyonlari icin temel bakim ve hata giderme prosedurlerini uyguladim.',
+        ],
+        impact: 'Kesinti surelerini azalttim; cozum hizlandi.',
+      },
+    ],
+    skills: [
+      {
+        title: 'Data Analysis & BI',
+        items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        detail: 'Veriyi karar destek panellerine ve olculebilir KPI takibine donusturuyorum.',
+      },
+      {
+        title: 'Programming',
+        items: ['Python', 'C', 'C#', 'JavaScript', 'SQL'],
+        detail: 'Farkli yiginlarda temiz, bakimi kolay ve test edilebilir kod yaziyorum.',
+      },
+      {
+        title: 'AI & Machine Learning',
+        items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
+        detail: 'Model egitimi, degerlendirme ve son kullanici icin anlamli ciktilar uretme.',
+      },
+      {
+        title: 'Industry 4.0 & IoT',
+        items: ['PLC', 'SCADA', 'OPC UA', 'MQTT', 'Edge Devices', 'Digitalization', 'IoT Protokolleri'],
+        detail:
+          'Saha verisini bulut ve dashboard katmanlarina guvenli sekilde tasiyorum; PLC, SCADA, OPC UA, MQTT, bus/protokol entegrasyonlari ve edge cihazlarinda tecrubeliyim.',
+      },
+      {
+        title: 'DevOps & Cloud',
+        items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
+        detail: 'Teslimati hizlandiran otomasyon boru hatlari ve container stratejileri.',
+      },
+      {
+        title: 'Enterprise Solutions',
+        items: ['SAP S/4HANA', 'SAP Fiori'],
+        detail: 'Kurumsal is sureclerine uyumlu entegrasyon ve gelistirme.',
+      },
+    ],
+    projects: [
+      {
+        title: 'Heart Disease Prediction ML Projesi',
+        description:
+          'Heart Failure Prediction verisinde eksik/katagorik/numerik alanlari temizleyip normalize ederek KNN, Lojistik Regresyon ve Karar Agaci modellerini karsilastirdim. Performansi accuracy/precision/recall/F1 ile olctum.',
+        summary:
+          'Veri on-isleme, coklu model denemesi ve saglik verisinde kalp hastaligi olasiligi tahmini.',
+        stack: 'Scikit-Learn, Python, ML',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['ML', 'Data Analysis', 'Healthcare'],
+        image: '',
+        impact: 'Erken uyarida hassasiyet artisi hedeflendi.',
+      },
+      {
+        title: 'NeuraVeil - MRI Tümör Siniflandirma',
+        description:
+          'EfficientNet, DenseNet, ResNet gibi modelleri transfer learning ve Optuna ile ayarlayarak MRI üzerinde çoklu tümör tipini yuksek doğrulukla sınıflandıran sistem. OpenCV preprocessing, veri dengesi, L2 regülasyonu ve dropout ile üretim seviyesinde model.',
+        summary:
+          'Çok veri kaynakli MRI pipeline, model ensemble ve REST API ile saglik icin uca-uca AI.',
+        stack: 'PyTorch, TensorFlow, CNN',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['AI', 'Computer Vision', 'Healthcare'],
+        image: '',
+        impact: 'Yanlis pozitif/negatif oraninda belirgin iyilesme.',
+      },
+      {
+        title: 'Drumveil Ritual - Metal Davul Transkripsiyon',
+        description:
+          'PyTorch + Demucs ile metal parçalarda davulları ayırıp “Onsets and Frames” mimarisiyle notaları MIDI çıktısına çeviren pipeline. Slakh dataset’i ve gerçek kayıtlarla eğitilip spektrum tabanlı yaklaşım kullanıyor.',
+        summary:
+          'Kaynak ayristirma, nota cikarma ve metal ritimlerine odaklanan derin ogrenme projesi.',
+        stack: 'PyTorch, Demucs, Audio DSP',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Audio', 'AI', 'Python'],
+        image: '',
+        impact: 'Manuel transkripsiyon sureleri saatlerden dakikalara iniyor.',
+      },
+      {
+        title: 'Employee Management System (.NET)',
+        description:
+          '.NET ile geliştirilen basit calisan yönetim sistemi; CRUD, roller, izin/rapor işlemleri ve SQL veri tabanı katmanı. Staj sürecinde gerçek senaryolarla test edildi.',
+        summary: 'C#.NET tabanlı HR/employee yönetim uygulaması; temel CRUD ve raporlama.',
+        stack: 'C#.NET, SQL, Entity Framework',
+        link: 'https://github.com/JegBaha/StajEmployeeManagement',
+        github: 'https://github.com/JegBaha/StajEmployeeManagement',
+        live: '#',
+        tags: ['.NET', 'C#', 'SQL'],
+        image: '',
+        impact: 'Izin ve takip sureclerinde belirgin zaman kazanci.',
+      },
+      {
+        title: '3D Runner Game',
+        description: 'Unity ve C# ile gelistirilen tek kisilik 3D kosu oyunu; level tasarimi ve fizik odakli.',
+        summary: 'Unity’de pipeline ve asset yönetimi deneyimi kazandiran hobi projesi.',
+        stack: 'Unity, C#',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Game', 'C#', 'Unity'],
+        image: '',
+        impact: 'Tek kisilik pipeline ve iterasyon hizinda artis.',
+      },
+      {
+        title: 'Galaxy Survivor 2D Game',
+        description: 'Unity 2D shooter; tek kisilik gelistirme, level’lar ve düşman dalgaları ile kısa sürede tamamlandi.',
+        summary: '2D oyun döngüsü, basit AI ve asset entegrasyonu.',
+        stack: 'Unity, C#',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Game', 'C#', 'Unity'],
+        image: '',
+        impact: 'Hizli prototipleme ve asset entegrasyonu pratigi.',
+      },
+      {
+        title: '3D First Person Shooter Game',
+        description:
+          'Okul projesi olarak 3 kisilik ekipte 2.5 haftada tamamlanan FPS/puzzle oyunu; seviye tasarimi, basit AI ve etkileşimli ortamlar içeriyor.',
+        summary: 'Ekip içi görev dağılımı ve hızlı prototipleme ile teslim edilen FPS proje.',
+        stack: 'Unity, C#',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Game', 'C#', 'Unity'],
+        image: '',
+        impact: '2.5 haftada ekipce MVP; koordinasyon deneyimi.',
+      },
+    ],
+    education: [
+      {
+        school: 'Trakya University',
+        degree: 'Bachelor of Engineering, Computer Engineering',
+        location: 'Edirne, Turkiye',
+        period: 'Sep 2021 - Sep 2025',
+      },
+      {
+        school: 'GEN Academy',
+        degree: 'AI Software Development & Artificial Intelligence',
+        location: 'Remote',
+        period: 'Sep 2024 - Jun 2025',
+      },
+    ],
+    certifications: [
+      'AWS for DevOps: Continuous Delivery and Automation',
+      'Jenkins, Kubernetes, Docker',
+      'Microsoft Azure AI Essentials',
+      'Apache Spark Essentials',
+      'LLM Foundations & RAG',
+      'Endustriyel otomasyon ve IoT sertifikalari (PLC, SCADA, OPC UA, MQTT)',
+      'Daha fazlasi LinkedIn: https://www.linkedin.com/in/baha-buyukates',
+    ],
+    languages: [
+      { name: 'Turkish', level: 'Native' },
+      { name: 'English', level: 'C1' },
+      { name: 'German', level: 'A2' },
+    ],
+    about: {
+      eyebrow: 'Hakkimda',
+      title: 'Veri, yazilim, IT ve endustriyel sistemlerde uretiyor ve ogreniyorum.',
+      bio: 'Kendimi bircok alanda  gelistiriyor ve yeniliklere acik kaliyorum; teknoloji hiz kesmiyor, bu yuzden yazilim, endustriyel ve mikroservis tarafinda da bilgi ediniyorum. Ancak asil odağim Data: KPI dashboard, backend/API, otomasyon ve ML egitimi uzerinde calisip ogrenmeye devam ediyorum.',
+      strengths: ['Data storytelling & dashboarding', 'ML/CNN egitimi ve degerlendirme', 'Backend/API ve otomasyon', 'IT/ERP entegrasyon farkindaligi', 'Ekip ici Git akislari ve QA'],
+      openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
+      highlight: 'Manuel isleri otomasyonla azalttim; MRI siniflandirmada yuksek dogruluk.',
+    },
+    skillMatrix: [
+      { name: 'Power BI / DAX', level: 'Uzman', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Python / PyTorch', level: 'Ileri', tools: ['CNN', 'Data Pipelines', 'Evaluation'] },
+      { name: 'SQL', level: 'Ileri', tools: ['Query Optimize', 'Joins', 'CTE'] },
+      { name: 'Automation', level: 'Ileri', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { name: 'Cloud & DevOps', level: 'Temel', tools: ['AWS', 'Docker', 'CI/CD'] },
+    ],
+    toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
+    cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'CV indir (Aralik 2025)' },
+  },
+  DE: {
+    nav: {
+      about: 'Über mich',
+      experience: 'Erfahrung',
+      projects: 'Projekte',
+      skills: 'Skills',
+      contact: 'Kontakt',
+    },
+    brandEyebrow: 'Computer Engineer | Data/Software/IT/Industrie',
+    welcome: 'Willkommen!',
+    hero: {
+      eyebrow: 'Informatikingenieur',
+      titleMain: 'Informatikingenieur,',
+      titleAccent: ' mit Fokus auf Daten, Software, IT und industrielle Systeme',
+      lede:
+        'Ich arbeite und lerne an der Schnittstelle von Data Analysis, Softwareentwicklung, IT-Support und Industrie-Integration; KPI-Dashboards (Power BI, SQL, DAX), Python/ML-Training, Backend und Automatisierungen.',
+      ctas: { browse: 'Projekte ansehen', collaborate: 'Lass uns zusammenarbeiten' },
+    },
+    heroMeta: ['EU-Buerger', 'Kein Visasponsoring noetig', 'Sofort startklar'],
+    heroPanel: {
+      status: 'Live-Status',
+      focus: 'Fokusbereiche',
+      profileEyebrow: 'Profil',
+      profileItems: [
+        'Data Analysis & BI: Power BI, Excel, SQL, DAX, KPI (MTTR, MTBF, OEE)',
+        'AI & ML: PyTorch, TensorFlow, CNNs, LLM-Training',
+        'DevOps: AWS, Docker, Kubernetes, Jenkins, CI/CD',
+      ],
+      labels: ['Data', 'Industrie 4.0', 'Software&IT', 'BI'],
+    },
+    sections: {
+      experience: {
+        eyebrow: 'Berufserfahrung',
+        title: 'Was ich umgesetzt habe',
+        text: 'Erfahrungen an der Schnittstelle von AI-Training, Datenanalyse und Enterprise IT.',
+      },
+      skills: {
+        eyebrow: 'Was ich biete',
+        title: 'Skill-Stack',
+        text: 'Faehigkeiten, die Daten, KI, Automatisierung und Unternehmensprozesse verbinden.',
+      },
+      projects: {
+        eyebrow: 'Ausgewaehlte Projekte',
+        title: 'Projekte, in denen Vorstellungskraft und Beruf zusammenkommen',
+        text: 'Performance und Nutzererlebnis zusammen.',
+      },
+      education: {
+        eyebrow: 'Ausbildung',
+        title: 'Fundament & Vertiefung',
+        text: 'Siegel: Informatikstudium + AI-Bootcamp.',
+      },
+      certifications: {
+        eyebrow: 'Zertifikate & Sprachen',
+        title: 'Lebenslanges Lernen',
+        text: 'Aktuelle Zertifikate in Cloud, Daten, AI und Industrie-Automatisierung; mehrsprachige Kommunikation.',
+      },
+      hobby: {
+        eyebrow: 'Hobby',
+        title: 'Musikproduktion',
+        text: ' Djent- und Progressive-Metal-Tracks erstellen oder covern. Die Leidenschaft verbinde ich mit Technik, um eigenständige und markante Stücke zu bauen.',
+        benefit:
+          'Disziplin beim Üben, Rhythmus- und Detailfokus fließen direkt in meine musikalischen Arbeiten und beruflichen Projekte ein.',
+        cta: 'Willst du reinhoeren?',
+      },
+      contact: {
+        eyebrow: 'Kontakt',
+        title: 'Bereit fuer das naechste Projekt.',
+        text: 'Fuer Datenanalyse, Dashboarding, AI-Training oder Automatisierung: Melde dich gern.',
+      },
+    },
+    experience: [
+      {
+        company: 'Outlier',
+        role: 'AI Trainer',
+        location: 'Remote',
+        period: 'Okt 2025 - Heute',
+        bullets: [
+          'LLM-Training und Evaluation zur Verbesserung von Code-Generierung und Reasoning.',
+          'Daten-Annotation, Prompt-Engineering und QA mit Qualitaetsfokus.',
+        ],
+        impact: 'LLM-Qualitaet erhoeht, Fehlantworten gesunken.',
+      },
+      {
+        company: 'Prestij Bilgi Sistemleri Arge A.S.',
+        role: 'C#.NET Developer Praktikant',
+        location: 'Bursa, Tuerkei (Hybrid)',
+        period: 'Aug 2024 - Sep 2024',
+        bullets: [
+          'Capstone-aehnliche HIS-Module mit .NET und SQL gebaut; skalierbare und sichere Komponenten geliefert.',
+          'Code-Reviews und Versionierung im Team via Git umgesetzt.',
+          'Vertieftes Verstaendnis zu Datensicherheit, Performance-Optimierung und Compliance in Krankenhausinformationssystemen.',
+          'Troubleshooting und praeventive Wartung dokumentiert, um Betriebszeit zu sichern.',
+        ],
+        impact: 'Report-Queries wurden schneller und stabiler.',
+      },
+      {
+        company: 'Sanofi',
+        role: 'IT Praktikant',
+        location: 'Lueleburgaz, Tuerkei',
+        period: 'Jul 2024',
+        bullets: [
+          'Hardware-Reparatur, Netzwerkpflege und IT-Operations unterstuetzt; SAP- und Datenbankkenntnisse vertieft.',
+          'ERP-Kontext: Kernmodule von SAP S/4HANA und SAP Fiori kennengelernt.',
+          'SAP-Integration in Prozesse wie Finance, Supply Chain, HR verstanden und Workflows angepasst.',
+        ],
+        impact: 'SLA gehalten, Ticket-Abschlusszeiten verkuerzt.',
+      },
+      {
+        company: 'Kirklareli State Hospital',
+        role: 'IT Praktikant',
+        location: 'Kirklareli, Tuerkei',
+        period: 'Aug 2023 - Sep 2023',
+        bullets: [
+          'Technischen Support fuer Hardware und Netzwerk geleistet; Ausfallzeiten minimiert.',
+          'Basis-Wartung und Fehlersuche fuer IT-Operations umgesetzt.',
+        ],
+        impact: 'Downtime reduziert; schnellere Behebung vor Ort.',
+      },
+    ],
+    skills: [
+      {
+        title: 'Data Analysis & BI',
+        items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        detail: 'Ich uebersetze Daten in Entscheidungs-Dashboards und messbare KPIs.',
+      },
+      {
+        title: 'Programmierung',
+        items: ['Python', 'C', 'C#', 'JavaScript', 'SQL'],
+        detail: 'Schreibe sauberen, wartbaren und testbaren Code in verschiedenen Stacks.',
+      },
+      {
+        title: 'AI & Machine Learning',
+        items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
+        detail: 'Training, Bewertung und nutzernahe Modelle mit verwertbaren Outputs.',
+      },
+      {
+        title: 'Industrie 4.0 & IoT',
+        items: ['PLC', 'SCADA', 'OPC UA', 'MQTT', 'Edge Devices', 'Digitalisierung', 'IoT-Protokolle'],
+        detail:
+          'Fuehre Felddaten sicher in Cloud- und Dashboard-Ebenen; Erfahrung mit PLC, SCADA, OPC UA, MQTT, Bus-/Protokollintegration und Edge-Geraeten.',
+      },
+      {
+        title: 'DevOps & Cloud',
+        items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
+        detail: 'Automatisierungspipelines und Container-Strategien fuer schnelle Lieferung.',
+      },
+      {
+        title: 'Enterprise Solutions',
+        items: ['SAP S/4HANA', 'SAP Fiori'],
+        detail: 'Integrationen und Entwicklungen passend zu Unternehmensprozessen.',
+      },
+    ],
+    projects: [
+      {
+        title: 'Heart Disease Prediction ML Projekt',
+        description:
+          'Heart Failure Prediction Dataset bereinigt (Missing Values, Encoding, Normalisierung) und KNN, Logistische Regression, Decision Trees verglichen. Bewertet mit Accuracy/Precision/Recall/F1 fuer Outcome-Prediction.',
+        summary: 'Datenaufbereitung, Modellvergleich und Healthcare-Use-Case fuer Herzrisiko-Prognose.',
+        stack: 'Scikit-Learn, Python, ML',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['ML', 'Data Analysis', 'Healthcare'],
+        image: '',
+        impact: 'Fruehwarnung mit erhoehten Sensitivitaetswerten.',
+      },
+      {
+        title: 'NeuraVeil - MRI Tumor Klassifikation',
+        description:
+          'EfficientNet, DenseNet, ResNet u.a. per Transfer Learning + Optuna getuned; OpenCV-Preprocessing, Class-Balance, L2/Dropout. Liefert hohe Genauigkeit fuer mehrere Tumortypen und REST-API-Integration.',
+        summary:
+          'End-to-End MRI-Pipeline mit Ensemble und generalisierbaren Modellen fuer den Klinik-Einsatz.',
+        stack: 'PyTorch, TensorFlow, CNN',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['AI', 'Computer Vision', 'Healthcare'],
+        image: '',
+        impact: 'Falsch-Positiv/Negativ Quote merklich verbessert.',
+      },
+      {
+        title: 'Drumveil Ritual - Metal Drum Transkription',
+        description:
+          'PyTorch + Demucs trennen Metal-Tracks, “Onsets and Frames” extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik.',
+        summary: 'Quelltrennung, Noten-Extraktion und Metal-Rhythmik im Fokus.',
+        stack: 'PyTorch, Demucs, Audio DSP',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Audio', 'AI', 'Python'],
+        image: '',
+        impact: 'Manuelle Transkription von Stunden auf Minuten reduziert.',
+      },
+      {
+        title: 'Employee Management System (.NET)',
+        description:
+          'Einfaches Mitarbeiter-Management mit .NET: CRUD, Rollen, Abwesenheiten, SQL-Backend; im Praktikum an realen Szenarien getestet.',
+        summary: 'C#.NET HR/Employee App mit CRUD und Reporting.',
+        stack: 'C#.NET, SQL, Entity Framework',
+        link: 'https://github.com/JegBaha/StajEmployeeManagement',
+        github: 'https://github.com/JegBaha/StajEmployeeManagement',
+        live: '#',
+        tags: ['.NET', 'C#', 'SQL'],
+        image: '',
+        impact: 'Genehmigungs- und Tracking-Workflows spuerbar schneller.',
+      },
+      {
+        title: '3D Runner Game',
+        description: 'Unity/C# Einzelprojekt; 3D Runner mit Level-Design und Physik.',
+        summary: 'Hobbyprojekt, Fokus auf Asset-Handling und Gameplay-Loop.',
+        stack: 'Unity, C#',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Game', 'C#', 'Unity'],
+        image: '',
+        impact: 'Solo-Projekt; Pipeline und Iterationstempo gesteigert.',
+      },
+      {
+        title: 'Galaxy Survivor 2D Game',
+        description: 'Unity 2D Shooter, allein entwickelt; Level-Wellen und kurze Entwicklungszeit.',
+        summary: '2D Gameplay-Loop, einfache Gegner-Logik und Assets.',
+        stack: 'Unity, C#',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Game', 'C#', 'Unity'],
+        image: '',
+        impact: 'Schnelles Prototyping und Asset-Integration geuebt.',
+      },
+      {
+        title: '3D First Person Shooter Game',
+        description:
+          'Schulprojekt mit 3 Personen in 2,5 Wochen; FPS/Puzzle mit Level-Design, einfacher AI und Interaktionen.',
+        summary: 'Schnelles Prototyping und Team-Arbeit fuer ein kleines FPS.',
+        stack: 'Unity, C#',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Game', 'C#', 'Unity'],
+        image: '',
+        impact: 'Team-MVP in ~2.5 Wochen; Koordination gestaerkt.',
+      },
+    ],
+    education: [
+      {
+        school: 'Trakya University',
+        degree: 'Bachelor of Engineering, Computer Engineering',
+        location: 'Edirne, Tuerkei',
+        period: 'Sep 2021 - Sep 2025',
+      },
+      {
+        school: 'GEN Academy',
+        degree: 'AI Software Development & Artificial Intelligence',
+        location: 'Remote',
+        period: 'Sep 2024 - Jun 2025',
+      },
+    ],
+    certifications: [
+      'AWS for DevOps: Continuous Delivery and Automation',
+      'Jenkins, Kubernetes, Docker',
+      'Microsoft Azure AI Essentials',
+      'Apache Spark Essentials',
+      'LLM Foundations & RAG',
+      'Zertifikate in Industrie-Automatisierung & IoT (PLC, SCADA, OPC UA, MQTT)',
+      'Mehr auf LinkedIn: https://www.linkedin.com/in/baha-buyukates',
+    ],
+    languages: [
+      { name: 'Tuerkisch', level: 'Muttersprache' },
+      { name: 'Englisch', level: 'C1' },
+      { name: 'Deutsch', level: 'A2' },
+    ],
+    about: {
+      eyebrow: 'Über mich',
+      title: 'Ich arbeite und lerne in Daten, Software, IT und Industrie-Kontexten.',
+      bio: 'Wie man sieht, halte ich mich in vielen Bereichen fit und offen fuer Neues – Software, Industrie, Microservices – weil Technologie schnell voranschreitet. Mein Hauptfokus bleibt Data: KPI-Dashboards, Backend/API, Automationen und ML-Training, uebend und lernend.',
+      strengths: ['Data Storytelling & BI', 'ML/CNN Training & Bewertung', 'Backend/API & Automatisierung', 'IT/ERP Verstaendnis', 'Git-basierte Kollaboration'],
+      openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrie-Ingenieur'],
+      highlight: 'Weniger manuelle HR-Arbeit durch Automatisierung + hohe MRI-Klassifikationsgenauigkeit',
+    },
+    skillMatrix: [
+      { name: 'Power BI / DAX', level: 'Experte', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Python / PyTorch', level: 'Fortgeschritten', tools: ['CNN', 'Pipelines', 'Eval'] },
+      { name: 'SQL', level: 'Fortgeschritten', tools: ['Query Optimize', 'Joins', 'CTE'] },
+      { name: 'Automation', level: 'Fortgeschritten', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { name: 'Cloud & DevOps', level: 'Grundlage', tools: ['AWS', 'Docker', 'CI/CD'] },
+    ],
+    toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
+    cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'CV herunterladen' },
+  },
+  EN: {
+    nav: {
+      about: 'About',
+      experience: 'Experience',
+      projects: 'Projects',
+      skills: 'Skills',
+      contact: 'Contact',
+    },
+    brandEyebrow: 'Computer Engineer | Data/Software/IT/Industrial',
+    welcome: 'Welcome!',
+    hero: {
+      eyebrow: 'Computer Engineer',
+      titleMain: 'Computer Engineer,',
+      titleAccent: ' focused on data, software, IT, and industrial systems',
+      lede:
+        'I work and keep learning across Data Analysis, Software Development, IT support, and industrial integration; KPI dashboards (Power BI, SQL, DAX), Python/ML training, backend, and automation.',
+      ctas: { browse: 'Browse projects', collaborate: "Let's build together" },
+    },
+    heroMeta: ['EU citizen', 'No visa sponsorship required', 'Immediate availability'],
+    heroPanel: {
+      status: 'Live status',
+      focus: 'Focus areas',
+      profileEyebrow: 'Profile',
+      profileItems: [
+        'Data Analysis & BI: Power BI, Excel, SQL, DAX, KPI (MTTR, MTBF, OEE)',
+        'AI & ML: PyTorch, TensorFlow, CNNs, LLM training',
+        'DevOps: AWS, Docker, Kubernetes, Jenkins, CI/CD',
+      ],
+      labels: ['Data', 'Industrial 4.0', 'Software&IT', 'BI'],
+    },
+    sections: {
+      experience: {
+        eyebrow: 'Professional Experience',
+        title: 'What I delivered',
+        text: 'Hands-on work bridging AI training, data analytics, and enterprise IT.',
+      },
+      skills: {
+        eyebrow: 'What I offer',
+        title: 'Skill set',
+        text: 'Capabilities that connect data, AI, automation, and enterprise processes.',
+      },
+      projects: {
+        eyebrow: 'Featured projects',
+        title: 'Projects blending imagination and craft',
+        text: 'Performance and UX together.',
+      },
+      education: {
+        eyebrow: 'Education',
+        title: 'Foundation and depth',
+        text: 'Seal: Computer Engineering degree + AI-focused bootcamp.',
+      },
+      certifications: {
+        eyebrow: 'Certifications & Languages',
+        title: 'Continuous learning',
+        text: 'Current credentials in cloud, data, AI, and industrial automation; multilingual communication.',
+      },
+      hobby: {
+        eyebrow: 'Hobby',
+        title: 'Music production: ',
+        text: 'writing djent and progressive metal pieces and covering existing songs. It’s a core passion; I blend it with technical execution to craft distinct, recognizable work.',
+        benefit:
+          'Discipline, rhythmic focus, and detail orientation from music directly translate to my professional projects.',
+        cta: 'Want to listen?',
+      },
+      contact: {
+        eyebrow: 'Contact',
+        title: 'Ready for a new project.',
+        text: 'For data analysis, dashboards, AI training, or automation, feel free to reach out.',
+      },
+    },
+    experience: [
+      {
+        company: 'Outlier',
+        role: 'AI Trainer',
+        location: 'Remote',
+        period: 'Oct 2025 - Present',
+        bullets: [
+          'Train and evaluate LLMs to improve code generation and reasoning.',
+          'Ensure quality across data annotation, prompt engineering, and QA.',
+        ],
+        impact: 'Raised LLM quality scores; fewer wrong answers.',
+      },
+      {
+        company: 'Prestij Bilgi Sistemleri Arge A.S.',
+        role: 'C#.NET Developer Intern',
+        location: 'Bursa, Turkiye (Hybrid)',
+        period: 'Aug 2024 - Sep 2024',
+        bullets: [
+          'Built capstone-level HIS modules with .NET and SQL, delivering scalable and secure components.',
+          'Collaborated via Git for code reviews and versioning within virtual teams.',
+          'Deepened understanding of data security, performance tuning, and compliance for hospital information systems.',
+          'Documented troubleshooting and preventive maintenance to keep systems reliable.',
+        ],
+        impact: 'Sped up HIS/report queries and kept them stable.',
+      },
+      {
+        company: 'Sanofi',
+        role: 'IT Intern',
+        location: 'Luleburgaz, Turkiye',
+        period: 'Jul 2024',
+        bullets: [
+          'Hands-on in hardware repair, network maintenance, and core IT operations while growing SAP/database skills.',
+          'Explored SAP S/4HANA and SAP Fiori core modules in an ERP context.',
+          'Learned how SAP ties into finance, supply chain, and HR processes; practiced workflow customization.',
+        ],
+        impact: 'Met SLA while shortening ticket closure time.',
+      },
+      {
+        company: 'Kirklareli State Hospital',
+        role: 'IT Intern',
+        location: 'Kirklareli, Turkiye',
+        period: 'Aug 2023 - Sep 2023',
+        bullets: [
+          'Provided hardware and networking support, reducing workstation downtime.',
+          'Executed baseline maintenance and troubleshooting for IT operations.',
+        ],
+        impact: 'Cut downtime and sped up onsite fixes.',
+      },
+    ],
+    skills: [
+      {
+        title: 'Data Analysis & BI',
+        items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        detail: 'I turn data into decision-ready dashboards and measurable KPIs.',
+      },
+      {
+        title: 'Programming',
+        items: ['Python', 'C', 'C#', 'JavaScript', 'SQL'],
+        detail: 'Writing clean, maintainable, and testable code across stacks.',
+      },
+      {
+        title: 'AI & Machine Learning',
+        items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
+        detail: 'Training, evaluation, and user-facing AI that delivers meaningful outputs.',
+      },
+      {
+        title: 'Industry 4.0 & IoT',
+        items: ['PLC', 'SCADA', 'OPC UA', 'MQTT', 'Edge Devices', 'Digitalization', 'IoT Protocols'],
+        detail:
+          'Move field data securely into cloud and dashboard layers; experienced with PLC, SCADA, OPC UA, MQTT, bus/protocol integrations, and edge devices.',
+      },
+      {
+        title: 'DevOps & Cloud',
+        items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
+        detail: 'Automation pipelines and container strategies that speed delivery.',
+      },
+      {
+        title: 'Enterprise Solutions',
+        items: ['SAP S/4HANA', 'SAP Fiori'],
+        detail: 'Integrations and developments aligned with enterprise processes.',
+      },
+    ],
+    projects: [
+      {
+        title: 'Heart Disease Prediction with ML',
+        description:
+          'Cleaned/encoded/normalized the Heart Failure Prediction dataset, compared KNN, Logistic Regression, and Decision Trees; evaluated via accuracy, precision, recall, and F1 to predict heart-disease likelihood.',
+        summary: 'Data preprocessing, multi-model testing, healthcare-focused risk prediction.',
+        stack: 'Scikit-Learn, Python, ML',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['ML', 'Data Analysis', 'Healthcare'],
+        image: '',
+        impact: 'Targeted better sensitivity for early warning.',
+      },
+      {
+        title: 'NeuraVeil - MRI Tumor Classification',
+        description:
+          'Trained EfficientNet, DenseNet, ResNet, etc., with transfer learning + Optuna; OpenCV preprocessing, class balancing, L2/dropout. Achieved high accuracy across tumor types with REST API for integration.',
+        summary:
+          'End-to-end MRI pipeline with ensemble models and production-ready APIs for healthcare.',
+        stack: 'PyTorch, TensorFlow, CNN',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['AI', 'Computer Vision', 'Healthcare'],
+        image: '',
+        impact: 'Improved false positive/negative balance.',
+      },
+      {
+        title: 'Drumveil Ritual - Metal Drum Transcription',
+        description:
+          'PyTorch + Demucs for source separation on metal tracks; “Onsets and Frames” extracts drum notes to MIDI. Uses Slakh dataset + real recordings with a spectrogram-driven approach for heavy rhythms.',
+        summary: 'Source separation and note extraction tailored to metal drum patterns.',
+        stack: 'PyTorch, Demucs, Audio DSP',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Audio', 'AI', 'Python'],
+        image: '',
+        impact: 'Cuts manual transcription from hours to minutes.',
+      },
+      {
+        title: 'Employee Management System (.NET)',
+        description:
+          'Simple .NET employee management: CRUD, roles, leave/attendance, SQL backend; tested during internship with real scenarios.',
+        summary: 'C#.NET HR/employee app with CRUD and reporting.',
+        stack: 'C#.NET, SQL, Entity Framework',
+        link: 'https://github.com/JegBaha/StajEmployeeManagement',
+        github: 'https://github.com/JegBaha/StajEmployeeManagement',
+        live: '#',
+        tags: ['.NET', 'C#', 'SQL'],
+        image: '',
+        impact: 'Approvals and leave tracking noticeably faster.',
+      },
+      {
+        title: '3D Runner Game',
+        description: 'Solo Unity/C# project; 3D runner with level design and physics focus.',
+        summary: 'Hobby build emphasizing asset handling and gameplay loop.',
+        stack: 'Unity, C#',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Game', 'C#', 'Unity'],
+        image: '',
+        impact: 'Solo build; better pipeline and iteration speed.',
+      },
+      {
+        title: 'Galaxy Survivor 2D Game',
+        description: 'Unity 2D shooter built solo; enemy waves, levels, and quick turnaround.',
+        summary: '2D loop, simple enemy logic, and asset integration.',
+        stack: 'Unity, C#',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Game', 'C#', 'Unity'],
+        image: '',
+        impact: 'Practiced fast prototyping and asset integration.',
+      },
+      {
+        title: '3D First Person Shooter Game',
+        description:
+          'School project with a 3-person team, delivered in ~2.5 weeks; FPS/puzzle with level design, simple AI, and interactive environments.',
+        summary: 'Rapid prototyping and team delivery of a small FPS.',
+        stack: 'Unity, C#',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Game', 'C#', 'Unity'],
+        image: '',
+        impact: 'Delivered a team MVP in ~2.5 weeks; coordination boost.',
+      },
+    ],
+    education: [
+      {
+        school: 'Trakya University',
+        degree: 'Bachelor of Engineering, Computer Engineering',
+        location: 'Edirne, Turkiye',
+        period: 'Sep 2021 - Sep 2025',
+      },
+      {
+        school: 'GEN Academy',
+        degree: 'AI Software Development & Artificial Intelligence',
+        location: 'Remote',
+        period: 'Sep 2024 - Jun 2025',
+      },
+    ],
+    certifications: [
+      'AWS for DevOps: Continuous Delivery and Automation',
+      'Jenkins, Kubernetes, Docker',
+      'Microsoft Azure AI Essentials',
+      'Apache Spark Essentials',
+      'LLM Foundations & RAG',
+      'Industrial automation & IoT certs (PLC, SCADA, OPC UA, MQTT)',
+      'See more on LinkedIn: https://www.linkedin.com/in/baha-buyukates',
+    ],
+    languages: [
+      { name: 'Turkish', level: 'Native' },
+      { name: 'English', level: 'C1' },
+      { name: 'German', level: 'A2' },
+    ],
+    about: {
+      eyebrow: 'About',
+      title: 'Working and learning across data, software, IT, and industrial contexts.',
+      bio: 'As you can see, I stay open and keep learning across software, industrial, and microservices because tech moves fast. My primary focus is Data: KPI dashboards, backend/API, automation, and ML training with a keep-improving mindset.',
+      strengths: ['Data storytelling & BI', 'ML/CNN training and evaluation', 'Backend/API and automation', 'IT/ERP awareness', 'Git-first collaboration'],
+      openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
+      highlight: 'Manual-work reduction via automation + high MRI classification accuracy',
+    },
+    skillMatrix: [
+      { name: 'Power BI / DAX', level: 'Expert', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Python / PyTorch', level: 'Advanced', tools: ['CNN', 'Pipelines', 'Evaluation'] },
+      { name: 'SQL', level: 'Advanced', tools: ['Query Optimize', 'Joins', 'CTE'] },
+      { name: 'Automation', level: 'Advanced', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { name: 'Cloud & DevOps', level: 'Foundational', tools: ['AWS', 'Docker', 'CI/CD'] },
+    ],
+    toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
+    cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'Download CV (updated Dec 2025)' },
+  },
+}
+
+function App() {
+  const [activeLocale, setActiveLocale] = useState<Locale>('TR')
+  const [showWelcome, setShowWelcome] = useState(true)
+  const [selectedTag, setSelectedTag] = useState<string>(() =>
+    activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All',
+  )
+  const [audioActive, setAudioActive] = useState(false)
+  const [audioStarted, setAudioStarted] = useState(false)
+  const [volume, setVolume] = useState(0.15)
+  const [duration, setDuration] = useState(0)
+  const [currentTime, setCurrentTime] = useState(0)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const analyserRef = useRef<AnalyserNode | null>(null)
+  const rafRef = useRef<number | null>(null)
+  const flashRef = useRef(0)
+  const sideRef = useRef(1)
+  const c = content[activeLocale]
+  const tagAllLabel = activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All'
+  const allTags = [tagAllLabel, ...new Set(c.projects.flatMap((p) => p.tags))]
+  const filteredProjects =
+    selectedTag === tagAllLabel ? c.projects : c.projects.filter((p) => p.tags.includes(selectedTag))
+
+  const learningList =
+    activeLocale === 'TR'
+      ? ['Kafka & event-driven pipelines', 'MLOps (model versioning/monitoring)', 'Power BI performance tuning', 'German B1 roadmap']
+      : activeLocale === 'DE'
+      ? ['Kafka & Event-Driven', 'MLOps (Versionierung/Monitoring)', 'Power BI Performance-Tuning', 'Deutsch B1 Roadmap']
+      : ['Kafka & event-driven', 'MLOps (versioning/monitoring)', 'Power BI performance tuning', 'German B1 roadmap']
+
+  const roleCtaList =
+    activeLocale === 'TR'
+      ? [
+          'Junior Data / BI Engineer ariyorsaniz konusalim.',
+          'Industry 4.0 + Data entegrasyonu gerekiyorsa destek olabilirim.',
+          'Backend + otomasyon geliştirici ariyorsaniz ulasin.',
+        ]
+      : activeLocale === 'DE'
+      ? [
+          'Wenn Sie einen Junior Data / BI Engineer suchen, sprechen wir.',
+          'Industry 4.0 + Data Integration? Ich kann helfen.',
+          'Backend + Automatisierung Entwickler gesucht? Melde dich.',
+        ]
+      : [
+          'If you need a Junior Data / BI Engineer, let’s talk.',
+          'If you need Industry 4.0 + Data integration, I can help.',
+          'If you want a backend + automation engineer, reach out.',
+        ]
+
+  const defaultExperienceImpact =
+    activeLocale === 'DE'
+      ? 'Business Impact: Prozessgeschwindigkeit und Qualitaet verbessert.'
+      : activeLocale === 'EN'
+      ? 'Business impact: improved delivery speed/quality.'
+      : 'Is etkisi: teslim hizi ve kalitesi iyilesti.'
+
+  const defaultProjectImpact =
+    activeLocale === 'DE'
+      ? 'Business Impact: Effizienz/Genauigkeit gesteigert, manuelle Arbeit reduziert.'
+      : activeLocale === 'EN'
+      ? 'Business impact: improved efficiency/accuracy, reduced manual work.'
+      : 'Is etkisi: verim ve dogruluk artisi, manuel is azalmasi.'
+
+  const playerCopy =
+    activeLocale === 'DE'
+      ? { nowPlaying: 'Laeuft', remaining: 'Rest', stop: 'Stop', volume: 'Laut' }
+      : activeLocale === 'EN'
+      ? { nowPlaying: 'Now playing', remaining: 'Remaining', stop: 'Stop', volume: 'Vol' }
+      : { nowPlaying: 'Calan parca', remaining: 'Kalan', stop: 'Durdur', volume: 'Ses' }
+
+  const trackMeta = { title: 'Take Me Back To Arcadia', artist: 'JegBaa' }
+  const remainingTime = Math.max(duration - currentTime, 0)
+  const progressMax = Math.max(duration, currentTime, 0.1)
+
+  useEffect(() => {
+    const title = `Baha Buyukates | ${c.hero.eyebrow}`
+    document.title = title
+    const metaPairs: { name?: string; property?: string; content: string }[] = [
+      { name: 'description', content: c.hero.lede },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: c.hero.lede },
+      {
+        property: 'og:image',
+        content: 'https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=1200&q=80',
+      },
+    ]
+    metaPairs.forEach(({ name, property, content }) => {
+      if (!name && !property) return
+      const selector = name ? `meta[name=\"${name}\"]` : `meta[property=\"${property}\"]`
+      let tag = document.head.querySelector(selector) as HTMLMetaElement | null
+      if (!tag) {
+        tag = document.createElement('meta')
+        if (name) tag.setAttribute('name', name)
+        if (property) tag.setAttribute('property', property)
+        document.head.appendChild(tag)
+      }
+      tag.setAttribute('content', content)
+    })
+    if ('sendBeacon' in navigator) {
+      navigator.sendBeacon(
+        '/analytics',
+        JSON.stringify({ event: 'page_view', locale: activeLocale, ts: Date.now() }),
+      )
+    }
+  }, [activeLocale, c.hero.eyebrow, c.hero.lede])
+
+  const scrollToSection = (id: string, event?: ReactMouseEvent<HTMLAnchorElement>) => {
+    if (event) event.preventDefault()
+    const el = document.getElementById(id)
+    if (!el) return
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const behavior: ScrollBehavior = prefersReducedMotion ? 'auto' : 'smooth'
+
+    el.classList.remove('section-glow')
+    void el.offsetWidth
+    if (!prefersReducedMotion) {
+      el.classList.add('section-glow')
+      setTimeout(() => el.classList.remove('section-glow'), 1600)
+    }
+
+    el.scrollIntoView({ behavior, block: 'start' })
+  }
+
+  const startAudioReactive = async () => {
+    try {
+      if (audioActive) return
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current.currentTime = 0
+      }
+      const audioEl = new Audio('/track.mp3')
+      audioEl.crossOrigin = 'anonymous'
+      audioEl.preload = 'auto'
+      audioEl.loop = false
+      audioEl.volume = volume
+      audioEl.onloadedmetadata = () => {
+        if (Number.isFinite(audioEl.duration)) {
+          setDuration(audioEl.duration)
+        }
+      }
+      audioEl.ondurationchange = audioEl.onloadedmetadata
+      audioEl.ontimeupdate = () => setCurrentTime(audioEl.currentTime)
+      audioEl.onended = () => {
+        setAudioActive(false)
+        analyserRef.current = null
+        flashRef.current = 0
+        document.documentElement.style.setProperty('--flash-strength', '0')
+        setCurrentTime(0)
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current)
+          rafRef.current = null
+        }
+      }
+      const AudioCtx = (window as any).AudioContext || (window as any).webkitAudioContext
+      const ctx = new AudioCtx()
+      const source = ctx.createMediaElementSource(audioEl)
+      const analyser = ctx.createAnalyser()
+      analyser.fftSize = 1024
+      analyser.smoothingTimeConstant = 0.7
+      source.connect(analyser)
+      analyser.connect(ctx.destination)
+      analyserRef.current = analyser
+      audioRef.current = audioEl
+      const data = new Uint8Array(analyser.frequencyBinCount)
+
+      const tick = () => {
+        if (!analyserRef.current) return
+        analyserRef.current.getByteFrequencyData(data)
+        const lowBins = data.slice(1, 30)
+        const midBins = data.slice(30, 90)
+        const lowAvg = lowBins.reduce((a, b) => a + b, 0) / lowBins.length / 255
+        const midAvg = midBins.reduce((a, b) => a + b, 0) / midBins.length / 255
+        const boosted = Math.pow(Math.min(1, lowAvg * 2.5), 1.2)
+        const eased = Math.min(1, Math.max(0, boosted))
+        document.documentElement.style.setProperty('--breath-intensity', eased.toString())
+
+        const kickHit = lowAvg > 0.22
+        const snareHit = midAvg > 0.18
+        if (kickHit || snareHit) {
+          flashRef.current = Math.min(1, flashRef.current + (kickHit ? 0.6 : 0.4))
+          sideRef.current = sideRef.current === 1 ? -1 : 1
+          const xPos = sideRef.current === 1 ? '78%' : '22%'
+          const yPos = `${30 + Math.random() * 40}%`
+          document.documentElement.style.setProperty('--flash-x', xPos)
+          document.documentElement.style.setProperty('--flash-y', yPos)
+        } else {
+          flashRef.current *= 0.9
+        }
+        document.documentElement.style.setProperty('--flash-strength', flashRef.current.toString())
+        rafRef.current = requestAnimationFrame(tick)
+      }
+
+      setDuration(Number.isFinite(audioEl.duration) ? audioEl.duration : 0)
+      audioRef.current = audioEl
+      audioEl.currentTime = 0
+      await audioEl.play()
+      setAudioStarted(true)
+      setAudioActive(true)
+      tick()
+    } catch (err) {
+      console.error('Audio start failed', err)
+      setAudioActive(false)
+    }
+  }
+
+  const stopAudioReactive = () => {
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
+      audioRef.current = null
+    }
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current)
+      rafRef.current = null
+    }
+    analyserRef.current = null
+    setAudioActive(false)
+    flashRef.current = 0
+    document.documentElement.style.setProperty('--flash-strength', '0')
+    setCurrentTime(0)
+  }
+
+  const handleVolumeChange = (value: number) => {
+    const clamped = Math.max(0, Math.min(1, value))
+    setVolume(clamped)
+    if (audioRef.current) {
+      audioRef.current.volume = clamped
+    }
+  }
+
+  const handleSeekChange = (value: number) => {
+    if (!audioRef.current || !Number.isFinite(duration) || duration === 0) return
+    const clamped = Math.max(0, Math.min(duration, value))
+    audioRef.current.currentTime = clamped
+    setCurrentTime(clamped)
+  }
+
+  const formatTime = (value: number) => {
+    if (!Number.isFinite(value) || value < 0) return '0:00'
+    const minutes = Math.floor(value / 60)
+    const seconds = Math.floor(value % 60)
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`
+  }
+
+
+  const handleContactSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const name = formData.get('name')?.toString() ?? ''
+    const email = formData.get('email')?.toString() ?? ''
+    const message = formData.get('message')?.toString() ?? ''
+    const subject = encodeURIComponent('Project inquiry')
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
+    window.location.href = `mailto:bahabuyukates@gmail.com?subject=${subject}&body=${body}`
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowWelcome(false), 2200)
+    const root = document.documentElement
+    const handleMove = (e: MouseEvent) => {
+      root.style.setProperty('--cursor-x', `${e.clientX}px`)
+      root.style.setProperty('--cursor-y', `${e.clientY}px`)
+    }
+    const handleClick = () => {
+      root.style.setProperty('--click-opacity', '0.65')
+      setTimeout(() => root.style.setProperty('--click-opacity', '0'), 320)
+    }
+    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('click', handleClick)
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('click', handleClick)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    document.body.classList.toggle('sport-mode', audioActive)
+    return () => {
+      document.body.classList.remove('sport-mode')
+    }
+  }, [audioActive])
+
+  useEffect(() => {
+    setSelectedTag(tagAllLabel)
+  }, [tagAllLabel])
+
+  return (
+    <div className={`page ${audioActive ? 'sport-mode' : ''}`}>
+      {showWelcome && (
+        <div className="welcome-overlay" aria-live="polite">
+          <div className="welcome-card">
+            <span>Welcome</span>
+          </div>
+        </div>
+      )}
+      <div className="ambient-lights" aria-hidden="true">
+        <span className="orb o1" />
+        <span className="orb o2" />
+        <span className="orb o3" />
+      </div>
+      <div className={`content-shell ${showWelcome ? 'is-blurred' : ''}`}>
+      <header className="top-nav">
+        <div className="brand">
+          <span className="brand-mark">//</span>
+          <div>
+            <p className="eyebrow">{c.brandEyebrow}</p>
+            <p className="brand-name">Baha Buyukates</p>
+          </div>
+        </div>
+        <div className="nav-right">
+          <nav className="nav-links">
+            <a href="#about" onClick={(e) => scrollToSection('about', e)}>
+              {c.nav.about}
+            </a>
+            <a href="#experience" onClick={(e) => scrollToSection('experience', e)}>
+              {c.nav.experience}
+            </a>
+            <a href="#projects" onClick={(e) => scrollToSection('projects', e)}>
+              {c.nav.projects}
+            </a>
+            <a href="#skills" onClick={(e) => scrollToSection('skills', e)}>
+              {c.nav.skills}
+            </a>
+            <a href="#contact" onClick={(e) => scrollToSection('contact', e)}>
+              {c.nav.contact}
+            </a>
+            <button
+              className="link-button guitar-link"
+              type="button"
+              aria-label="Hobby"
+              onClick={(e) => scrollToSection('hobby', e)}
+            >
+              🎸
+            </button>
+          </nav>
+          <div className="lang-switch" role="group" aria-label="Dil secimi">
+            {localeOptions.map((option) => (
+              <button
+                key={option.code}
+                type="button"
+                className={`lang-btn ${activeLocale === option.code ? 'active' : ''}`}
+                onClick={() => setActiveLocale(option.code)}
+                aria-pressed={activeLocale === option.code}
+              >
+                <span className="flag" aria-hidden="true">
+                  {option.flag}
+                </span>
+                <span className="code">{option.code}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section className="hero" id="hero">
+          <div className="hero-text">
+            <div className="welcome-banner" aria-label={c.welcome}>
+              {c.welcome}
+            </div>
+            <p className="eyebrow">{c.hero.eyebrow}</p>
+            <h1>
+              {c.hero.titleMain}
+              <span className="accent">{c.hero.titleAccent}</span>
+            </h1>
+            <p className="lede">{c.hero.lede}</p>
+            <div className="cta-row">
+            <a className="btn ghost" href="mailto:bahabuyukates@gmail.com">
+              bahabuyukates@gmail.com
+            </a>
+            <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)}>
+              {c.hero.ctas.browse}
+            </a>
+            <a className="btn ghost" href="#contact" onClick={(e) => scrollToSection('contact', e)}>
+              {c.hero.ctas.collaborate}
+            </a>
+          </div>
+            <div className="hero-meta">
+              {c.heroMeta.map((pill) => (
+                <span className="pill" key={pill}>
+                  {pill}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="hero-panel">
+            <div className="panel-head">
+              <p>{c.heroPanel.status}</p>
+              <span className="pulse" aria-label="online" />
+            </div>
+            <div className="meter">
+              <p>{c.heroPanel.focus}</p>
+              <div className="bars">
+                {c.heroPanel.labels.map((label, idx) => (
+                  <span className={`bar b${idx + 1}`} key={label}>
+                    <span className="bar-label">{label}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="panel-body">
+              <p className="eyebrow">{c.heroPanel.profileEyebrow}</p>
+              <ul>
+                {c.heroPanel.profileItems.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="section about" id="about">
+          <div className="section-header">
+            <p className="eyebrow">{c.about.eyebrow}</p>
+            <h2>{c.about.title}</h2>
+            <p className="section-text">{c.about.bio}</p>
+          </div>
+          <div className="about-grid">
+            <div className="card">
+              <h3>{activeLocale === 'DE' ? 'Staerken' : activeLocale === 'EN' ? 'Strengths' : 'Guc alanlarim'}</h3>
+              <ul className="list compact">
+                {c.about.strengths.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="card">
+              <h3>{activeLocale === 'DE' ? 'Offen fuer' : activeLocale === 'EN' ? 'Open roles' : 'Acik oldugum roller'}</h3>
+              <div className="tags">
+                {c.about.openTo.map((item) => (
+                  <span className="pill" key={item}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <div className="metric">
+                <span className="spark" />
+                <p>{c.about.highlight}</p>
+              </div>
+              <div className="cv-row">
+                <a className="btn ghost" href={c.cv.link} target="_blank" rel="noreferrer">
+                  {c.cv.label}
+                </a>
+                <span className="eyebrow">
+                  {activeLocale === 'DE'
+                    ? `Aktualisiert: ${c.cv.updated}`
+                    : activeLocale === 'EN'
+                    ? `Updated: ${c.cv.updated}`
+                    : `Guncelleme: ${c.cv.updated}`}
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="experience">
+          <div className="section-header">
+            <p className="eyebrow">{c.sections.experience.eyebrow}</p>
+            <h2>{c.sections.experience.title}</h2>
+            <p className="section-text">{c.sections.experience.text}</p>
+          </div>
+          <div className="timeline">
+            {c.experience.map((job) => (
+              <article className="card job-card timeline-item" key={job.company + job.role}>
+                <span className="timeline-dot" aria-hidden="true" />
+                <div className="card-head">
+                  <div>
+                    <h3>{job.role}</h3>
+                    <p className="stack">
+                      {job.company} / {job.location}
+                    </p>
+                  </div>
+                  <span className="pill ghost">{job.period}</span>
+                </div>
+                <ul className="list">
+                  {job.bullets.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+                <p className="impact-line">
+                  {job.impact ?? defaultExperienceImpact}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section" id="skills">
+          <div className="section-header">
+            <p className="eyebrow">{c.sections.skills.eyebrow}</p>
+            <h2>{c.sections.skills.title}</h2>
+            <p className="section-text">{c.sections.skills.text}</p>
+          </div>
+          <div className="grid">
+            {c.skills.map((skill) => (
+              <div className="card" key={skill.title}>
+                <div className="card-head">
+                  <h3>{skill.title}</h3>
+                  <span className="spark" aria-hidden="true" />
+                </div>
+                <p className="card-text">{skill.detail}</p>
+                <div className="tags">
+                  {skill.items.map((item) => (
+                    <span className="pill" key={item}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="matrix-grid">
+            {c.skillMatrix.map((skill) => (
+              <div className="card matrix-card" key={skill.name}>
+                <div className="card-head">
+                  <h3>{skill.name}</h3>
+                  <span className={`badge level-${skill.level.toLowerCase()}`}>{skill.level}</span>
+                </div>
+                <div className="tags">
+                  {skill.tools.map((tool) => (
+                    <span className="pill small" key={tool}>
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="toolbelt">
+            <p className="eyebrow">
+              {activeLocale === 'DE'
+                ? 'Toolbelt & zuletzt genutzt'
+                : activeLocale === 'EN'
+                ? 'Toolbelt & recent stack'
+                : 'Toolbelt & son kullanilanlar'}
+            </p>
+            <div className="tags">
+              {c.toolbelt.map((tool) => (
+                <span className="pill" key={tool}>
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="projects">
+          <div className="section-header">
+            <p className="eyebrow">{c.sections.projects.eyebrow}</p>
+            <h2>{c.sections.projects.title}</h2>
+            <p className="section-text">{c.sections.projects.text}</p>
+          </div>
+          <div className="project-filter">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                className={`pill filter-pill ${selectedTag === tag ? 'active' : ''}`}
+                onClick={() => setSelectedTag(tag)}
+                type="button"
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+          <div className="grid projects">
+            {filteredProjects.map((project) => (
+              <article className="card project-card" key={project.title}>
+                <div className="card-head">
+                  <div>
+                    <h3>{project.title}</h3>
+                    <p className="stack">{project.stack}</p>
+                  </div>
+                  <span className="mini-dot" />
+                </div>
+                <p className="card-text">{project.description}</p>
+                <p className="card-text subtle">{project.summary}</p>
+                <div className="tags">
+                  {project.tags.map((tag) => (
+                    <span className="pill small" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="card-footer links">
+                  <a className="link" href={project.github} target="_blank" rel="noreferrer">
+                    GitHub
+                  </a>
+                </div>
+                <p className="impact-line">
+                  {project.impact ?? defaultProjectImpact}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section" id="education">
+          <div className="section-header">
+            <p className="eyebrow">{c.sections.education.eyebrow}</p>
+            <h2>{c.sections.education.title}</h2>
+            <p className="section-text">{c.sections.education.text}</p>
+          </div>
+          <div className="grid">
+            {c.education.map((edu) => (
+              <article className="card" key={edu.school}>
+                <div className="card-head">
+                  <h3>{edu.school}</h3>
+                  <span className="spark" />
+                </div>
+                <p className="card-text">{edu.degree}</p>
+                <p className="stack">
+                  {edu.location} / {edu.period}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section" id="certifications">
+          <div className="section-header">
+            <p className="eyebrow">{c.sections.certifications.eyebrow}</p>
+            <h2>{c.sections.certifications.title}</h2>
+            <p className="section-text">{c.sections.certifications.text}</p>
+          </div>
+          <div className="grid">
+            <article className="card">
+              <div className="card-head">
+                <h3>
+                  {activeLocale === 'DE'
+                    ? 'Zertifikate'
+                    : activeLocale === 'EN'
+                    ? 'Certifications'
+                    : 'Sertifikalar'}
+                </h3>
+                <span className="mini-dot" />
+              </div>
+              <ul className="list">
+                {c.certifications.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+            <article className="card">
+              <div className="card-head">
+                <h3>
+                  {activeLocale === 'DE'
+                    ? 'Sprachen'
+                    : activeLocale === 'EN'
+                    ? 'Languages'
+                    : 'Diller'}
+                </h3>
+                <span className="mini-dot" />
+              </div>
+              <div className="tags">
+                {c.languages.map((lang) => (
+                  <span className="pill" key={lang.name}>
+                    {lang.name} ({lang.level})
+                  </span>
+                ))}
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section className="section hobby" id="hobby">
+          <div className="section-header">
+            <p className="eyebrow">{c.sections.hobby.eyebrow}</p>
+            <h2>{c.sections.hobby.title}</h2>
+            <p className="section-text">{c.sections.hobby.text}</p>
+            <p className="section-text subtle">{c.sections.hobby.benefit}</p>
+          </div>
+          <div className="cta-row hobby-controls">
+            <button
+              className={`btn primary audio-btn ${audioActive ? 'active' : ''}`}
+              type="button"
+              onClick={startAudioReactive}
+            >
+              {c.sections.hobby.cta}
+            </button>
+            {audioStarted && (
+              <>
+                <div className="player-meta">
+                  <div className="song-label">
+                    <span className="eyebrow">{trackMeta.title}</span>
+                    <span className="pill">{playerCopy.nowPlaying}</span>
+                    <span className="pill ghost">by {trackMeta.artist}</span>
+                  </div>
+                  <div className={`wave-bars ${audioActive ? 'live' : ''}`} aria-hidden="true">
+                    <span className="wave" />
+                    <span className="wave" />
+                    <span className="wave" />
+                    <span className="wave" />
+                  </div>
+                </div>
+                <div className="player-progress">
+                  <input
+                    className="timeline-slider"
+                    type="range"
+                    min={0}
+                    max={progressMax}
+                    step={0.1}
+                    value={Math.min(currentTime, progressMax)}
+                    onChange={(e) => handleSeekChange(parseFloat(e.target.value))}
+                    aria-label="Seek"
+                  />
+                  <div className="time-row">
+                    <span className="eyebrow">
+                      {formatTime(currentTime)} / {formatTime(duration)}
+                    </span>
+                    <span className="pill ghost">
+                      {playerCopy.remaining}: {formatTime(remainingTime)}
+                    </span>
+                  </div>
+                </div>
+                <div className="player-actions">
+                  <button className="btn ghost" type="button" onClick={stopAudioReactive}>
+                    {playerCopy.stop}
+                  </button>
+                  <label className="volume-control">
+                    <span>{playerCopy.volume}</span>
+                    <input
+                      type="range"
+                      min={0}
+                      max={1}
+                      step={0.05}
+                      value={volume}
+                      onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
+                      aria-label="Volume"
+                    />
+                  </label>
+                </div>
+              </>
+            )}
+          </div>
+        </section>
+
+        <section className="section contact" id="contact">
+          <div>
+            <p className="eyebrow">{c.sections.contact.eyebrow}</p>
+            <h2>{c.sections.contact.title}</h2>
+            <p className="section-text">{c.sections.contact.text}</p>
+          </div>
+          <div className="contact-photo">
+            <div className="photo-frame">
+              <img src="/photo.jpg" alt="Profil fotografi" loading="lazy" />
+            </div>
+           
+          </div>
+          <div className="contact-actions">
+            <a className="btn primary" href="mailto:bahabuyukates@gmail.com">
+              bahabuyukates@gmail.com
+            </a>
+            <a
+              className="btn ghost"
+              href="https://www.linkedin.com/in/baha-buyukates"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a
+              className="btn ghost"
+              href="https://github.com/JegBaha"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+          
+            <a className="btn ghost" href="tel:+905421559766">
+              +90 542 155 9766
+            </a>
+          </div>
+          <form className="contact-form" onSubmit={handleContactSubmit}>
+            <div className="form-row">
+              <input type="text" name="name" placeholder="Ad / Name" required />
+              <input type="email" name="email" placeholder="E-posta / Email" required />
+            </div>
+            <textarea name="message" rows={3} placeholder="Kisa mesaj / Short message" required />
+            <button type="submit" className="btn primary">Gonder / Send</button>
+          </form>
+        </section>
+
+        <footer className="footer-note">
+          <span>Created by Baha Büyükateş · Portfolio 2025</span>
+        </footer>
+      </main>
+      </div>
+    </div>
+  )
+}
+
+export default App
+
