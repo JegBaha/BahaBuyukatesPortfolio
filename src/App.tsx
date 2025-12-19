@@ -72,73 +72,73 @@ const content: Record<
 > = {
   TR: {
     nav: {
-      about: 'Hakkimda',
+      about: 'Hakkımda',
       experience: 'Deneyim',
       projects: 'Projeler',
       skills: 'Yetenekler',
-      contact: 'Iletisim',
+      contact: 'İletişim',
     },
-    brandEyebrow: 'Computer Engineer | Data/Software/IT/Endustriyel',
-    welcome: 'Hosgeldin!',
+    brandEyebrow: 'Computer Engineer | Data/Software/IT/Endüstriyel',
+    welcome: 'Hoş geldin!',
     hero: {
-      eyebrow: 'Bilgisayar Muhendisi',
-      titleMain: 'Bilgisayar Muhendisi,',
-      titleAccent: ' veri, yazilim, IT ve endustriyel sistemlere odakli',
+      eyebrow: 'Bilgisayar Mühendisi',
+      titleMain: 'Bilgisayar Mühendisi,',
+      titleAccent: ' veri, yazılım, IT ve endüstriyel sistemlere odaklı',
       lede:
-        'Data Analysis, Software Development, IT destek ve endustriyel entegrasyon alanlarinda calisiyor ve kendimi gelistiriyorum; KPI dashboardlari (Power BI, SQL, DAX), Python/ML egitimi, backend ve otomasyon deneyimim var.',
-      ctas: { browse: 'Projelere goz at', collaborate: 'Birlikte uretelim' },
+        'Data Analysis, Software Development, IT destek ve endüstriyel entegrasyon alanlarında çalışıyor ve kendimi geliştiriyorum; KPI dashboardları (Power BI, SQL, DAX), Python/ML eğitimi, backend ve otomasyon deneyimim var.',
+      ctas: { browse: 'Projelerime göz at', collaborate: 'Birlikte üretelim' },
     },
-    heroMeta: ['AB vatandasi', 'Vize sponsorlugu gerekmez', 'Hemen baslayabilirim'],
+    heroMeta: ['AB vatandaşı', 'Vize sponsorluğu gerekmez', 'Hemen başlayabilirim'],
     heroPanel: {
-      status: 'Canli durum',
-      focus: 'Odak alanlari',
+      status: 'Canlı durum',
+      focus: 'Odak alanları',
       profileEyebrow: 'Profil',
       profileItems: [
         'Data Analysis & BI: Power BI, Excel, SQL, DAX, KPI (MTTR, MTBF, OEE)',
         'AI & ML: PyTorch, TensorFlow, CNNs, LLM training',
         'DevOps: AWS, Docker, Kubernetes, Jenkins, CI/CD',
-        'Data + Software + IT + Endustriyel entegrasyon projeleri (aktif ogrenme ve uygulama)',
+        'Data + Software + IT + Endüstriyel entegrasyon projeleri (aktif öğrenme ve uygulama)',
       ],
-      labels: ['Data', 'Endustriyel', 'Yazilim&IT', 'BI'],
+      labels: ['Data', 'Endüstriyel', 'Yazılım & IT', 'BI'],
     },
     sections: {
       experience: {
         eyebrow: 'Profesyonel Deneyim',
-        title: 'Sahada neler yaptim',
-        text: 'AI egitimi, veri analizi ve kurumsal IT arasinda kopru kuran tecrubeler.',
+        title: 'Sahada neler yaptım',
+        text: 'AI eğitimi, veri analizi ve kurumsal IT arasında köprü kuran tecrübeler.',
       },
       skills: {
         eyebrow: 'Ne sunuyorum',
         title: 'Yetenek seti',
-        text: 'Veri, yapay zeka, otomasyon ve kurumsal surecleri birlestiren beceriler.',
+        text: 'Veri, yapay zeka, otomasyon ve kurumsal süreçleri birleştiren beceriler.',
       },
       projects: {
-        eyebrow: 'Secili projeler',
-        title: 'Hayal gucum ve meslegim ile birlestirilen projeler',
-        text: 'Performans ve kullanici deneyimi birlikte.',
+        eyebrow: 'Seçili projeler',
+        title: 'Hayal gücüm ve mesleğim ile birleşen projeler',
+        text: 'Performans ve kullanıcı deneyimi birlikte.',
       },
       education: {
-        eyebrow: 'Egitim',
-        title: 'Temel ve ileri duzey',
-        text: 'Muhur: Bilgisayar Muhendisligi + AI odakli bootcamp.',
+        eyebrow: 'Eğitim',
+        title: 'Temel ve ileri düzey',
+        text: 'Mühür: Bilgisayar Mühendisliği + AI odaklı bootcamp.',
       },
       certifications: {
         eyebrow: 'Sertifikalar & Diller',
-        title: 'Surekli ogrenme ve global iletisim',
-        text: 'Bulut, veri, AI ve endustriyel otomasyon alanlarinda guncel sertifikalar; cok dilli iletisim.',
+        title: 'Sürekli öğrenme ve global iletişim',
+        text: 'Bulut, veri, AI ve endüstriyel otomasyon alanlarında güncel sertifikalar; çok dilli iletişim.',
       },
       hobby: {
         eyebrow: 'Hobim',
-        title: 'Muzik prodüksiyonu:',
+        title: 'Müzik prodüksiyonu',
         text: 'Djent ve progressive metal odaklı parçalar üretmek ve mevcut eserleri coverlamak üzerine çalışıyorum. Müzik benim için ayrı bir tutku; projelerimde bu tutkuyu teknik üretimle birleştirerek özgün ve ikonik işler ortaya koymayı seviyorum.',
         benefit:
           'Disiplinli çalışma alışkanlığım, ritim ve detay odaklı yaklaşımım hem müzikal üretimlerime hem de profesyonel projelerime doğrudan yansıyor.',
         cta: 'Dinlemek ister misin?',
       },
       contact: {
-        eyebrow: 'Iletisim',
-        title: 'Yeni bir proje icin hazirim.',
-        text: 'Veri analizi, dashboard gelistirme, AI egitimi veya otomasyon ihtiyaciniz varsa iletisime gecebiliriz.',
+        eyebrow: 'İletişim',
+        title: 'Yeni bir proje için hazırım.',
+        text: 'Veri analizi, dashboard geliştirme, AI eğitimi veya otomasyon ihtiyacınız varsa iletişime geçebiliriz.',
       },
     },
     experience: [
@@ -146,130 +146,130 @@ const content: Record<
         company: 'Outlier',
         role: 'AI Trainer',
         location: 'Remote',
-        period: 'Oct 2025 - Present',
+        period: 'Eki 2025 - Güncel',
         bullets: [
-          'LLM egitim ve degerlendirme ile kod uretimi/akil yurutme kabiliyetlerini iyilestirme.',
-          'Veri anotasyonu, prompt muhendisligi ve QA surecinde kaliteyi saglama.',
+          'LLM eğitim ve değerlendirme ile kod üretimi/akıl yürütme kabiliyetlerini iyileştirme.',
+          'Veri anotasyonu, prompt mühendisliği ve QA sürecinde kaliteyi sağlama.',
         ],
-        impact: 'LLM kalite puanlarinda artis; hatali cevaplar dustu.',
+        impact: 'LLM kalite puanlarında artış; hatalı cevaplar düştü.',
       },
       {
-        company: 'Prestij Bilgi Sistemleri Arge A.S.',
+        company: 'Prestij Bilgi Sistemleri Arge A.Ş.',
         role: 'C#.NET Developer Intern',
-        location: 'Bursa, Turkiye (Hybrid)',
-        period: 'Aug 2024 - Sep 2024',
+        location: 'Bursa, Türkiye (Hibrit)',
+        period: 'Ağu 2024 - Eyl 2024',
         bullets: [
-          'Capstone seviyesinde HIS modulleri gelistirdim; .NET ve SQL ile olceklenebilir, guvenli moduller teslim ettim.',
-          'Git uzerinden ekip icinde kod inceleme ve versiyonlama deneyimi kazandim.',
-          'HIS mimarisinde veri guvenligi, performans optimizasyonu ve regulatory uyum hakkinda derinlesmis bilgi.',
-          'Operasyonel surekirlilik icin sorun giderme ve onleyici bakim adimlarini dokumante ettim.',
+          'Capstone seviyesinde HIS modülleri geliştirdim; .NET ve SQL ile ölçeklenebilir, güvenli modüller teslim ettim.',
+          'Git üzerinden ekip içinde kod inceleme ve versiyonlama deneyimi kazandım.',
+          'HIS mimarisinde veri güvenliği, performans optimizasyonu ve regülasyon uyumu hakkında derinleşmiş bilgi.',
+          'Operasyonel süreklilik için sorun giderme ve önleyici bakım adımlarını dokümante ettim.',
         ],
-        impact: 'Rapor ve HIS sorgularinda performans artisi saglandi.',
+        impact: 'Rapor ve HIS sorgularında performans artışı sağlandı.',
       },
       {
         company: 'Sanofi',
         role: 'IT Intern',
-        location: 'Luleburgaz, Turkiye',
-        period: 'Jul 2024',
+        location: 'Lüleburgaz, Türkiye',
+        period: 'Tem 2024',
         bullets: [
-          'Donanim onarimi, ag bakimi ve temel IT operasyonlarinda pratik yaparak SAP ve veritabani tarafinda deneyim kazandim.',
-          'ERP baglaminda SAP S/4HANA ve SAP Fiori temel modullerini inceledim.',
-          'SAP entegrasyonlarini finans, tedarik zinciri, IK gibi sureclere nasil uyarlayacagimizi ogrendim; is akisi ozellestirmeleri yaptim.',
+          'Donanım onarımı, ağ bakımı ve temel IT operasyonlarında pratik yaparak SAP ve veritabanı tarafında deneyim kazandım.',
+          'ERP bağlamında SAP S/4HANA ve SAP Fiori temel modüllerini inceledim.',
+          'SAP entegrasyonlarını finans, tedarik zinciri, İK gibi süreçlere nasıl uyarlayacağımızı öğrendim; iş akışı özelleştirmeleri yaptım.',
         ],
-        impact: "SLA'yi koruyup destek kapanis suresini kisalttim.",
+        impact: "SLA'yi koruyup destek kapanış süresini kısalttım.",
       },
       {
-        company: 'Kirklareli State Hospital',
+        company: 'Kırklareli State Hospital',
         role: 'IT Intern',
-        location: 'Kirklareli, Turkiye',
-        period: 'Aug 2023 - Sep 2023',
+        location: 'Kırklareli, Türkiye',
+        period: 'Ağu 2023 - Eyl 2023',
         bullets: [
-          'Donanim ve ag tarafinda teknik destek sagladim; workstation/agirlikli sistem kesintilerini minimuma indirdim.',
-          'IT operasyonlari icin temel bakim ve hata giderme prosedurlerini uyguladim.',
+          'Donanım ve ağ tarafında teknik destek sağladım; workstation/ağırlıklı sistem kesintilerini minimuma indirdim.',
+          'IT operasyonları için temel bakım ve hata giderme prosedürlerini uyguladım.',
         ],
-        impact: 'Kesinti surelerini azalttim; cozum hizlandi.',
+        impact: 'Kesinti sürelerini azalttım; çözüm hızlandı.',
       },
     ],
     skills: [
       {
         title: 'Data Analysis & BI',
         items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
-        detail: 'Veriyi karar destek panellerine ve olculebilir KPI takibine donusturuyorum.',
+        detail: 'Veriyi karar destek panellerine ve ölçülebilir KPI takibine dönüştürüyorum.',
       },
       {
         title: 'Programming',
         items: ['Python', 'C', 'C#', 'JavaScript', 'SQL'],
-        detail: 'Farkli yiginlarda temiz, bakimi kolay ve test edilebilir kod yaziyorum.',
+        detail: 'Farklı yığınlarda temiz, bakımı kolay ve test edilebilir kod yazıyorum.',
       },
       {
         title: 'AI & Machine Learning',
         items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
-        detail: 'Model egitimi, degerlendirme ve son kullanici icin anlamli ciktilar uretme.',
+        detail: 'Model eğitimi, değerlendirme ve son kullanıcı için anlamlı çıktılar üretme.',
       },
       {
         title: 'Industry 4.0 & IoT',
         items: ['PLC', 'SCADA', 'OPC UA', 'MQTT', 'Edge Devices', 'Digitalization', 'IoT Protokolleri'],
         detail:
-          'Saha verisini bulut ve dashboard katmanlarina guvenli sekilde tasiyorum; PLC, SCADA, OPC UA, MQTT, bus/protokol entegrasyonlari ve edge cihazlarinda tecrubeliyim.',
+          'Saha verisini bulut ve dashboard katmanlarına güvenli şekilde taşıyorum; PLC, SCADA, OPC UA, MQTT, bus/protokol entegrasyonları ve edge cihazlarında tecrübeliyim.',
       },
       {
         title: 'DevOps & Cloud',
         items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
-        detail: 'Teslimati hizlandiran otomasyon boru hatlari ve container stratejileri.',
+        detail: 'Teslimatı hızlandıran otomasyon boru hatları ve container stratejileri.',
       },
       {
         title: 'Enterprise Solutions',
         items: ['SAP S/4HANA', 'SAP Fiori'],
-        detail: 'Kurumsal is sureclerine uyumlu entegrasyon ve gelistirme.',
+        detail: 'Kurumsal iş süreçlerine uyumlu entegrasyon ve geliştirme.',
       },
     ],
     projects: [
       {
         title: 'Heart Disease Prediction ML Projesi',
         description:
-          'Heart Failure Prediction verisinde eksik/katagorik/numerik alanlari temizleyip normalize ederek KNN, Lojistik Regresyon ve Karar Agaci modellerini karsilastirdim. Performansi accuracy/precision/recall/F1 ile olctum.',
+          'Heart Failure Prediction verisinde eksik/kategorik/numerik alanları temizleyip normalize ederek KNN, Lojistik Regresyon ve Karar Ağacı modellerini karşılaştırdım. Performansı accuracy/precision/recall/F1 ile ölçtüm.',
         summary:
-          'Veri on-isleme, coklu model denemesi ve saglik verisinde kalp hastaligi olasiligi tahmini.',
+          'Veri ön-işleme, çoklu model denemesi ve sağlık verisinde kalp hastalığı olasılığı tahmini.',
         stack: 'Scikit-Learn, Python, ML',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '',
-        impact: 'Erken uyarida hassasiyet artisi hedeflendi.',
+        impact: 'Erken uyarıda hassasiyet artışı hedeflendi.',
       },
       {
-        title: 'NeuraVeil - MRI Tümör Siniflandirma',
+        title: 'NeuraVeil - MRI Tümör Sınıflandırma',
         description:
-          'EfficientNet, DenseNet, ResNet gibi modelleri transfer learning ve Optuna ile ayarlayarak MRI üzerinde çoklu tümör tipini yuksek doğrulukla sınıflandıran sistem. OpenCV preprocessing, veri dengesi, L2 regülasyonu ve dropout ile üretim seviyesinde model.',
+          'EfficientNet, DenseNet, ResNet gibi modelleri transfer learning ve Optuna ile ayarlayarak MRI üzerinde çoklu tümör tipini yüksek doğrulukla sınıflandıran sistem. OpenCV preprocessing, veri dengesi, L2 regülasyonu ve dropout ile üretim seviyesinde model.',
         summary:
-          'Çok veri kaynakli MRI pipeline, model ensemble ve REST API ile saglik icin uca-uca AI.',
+          'Çok veri kaynaklı MRI pipeline, model ensemble ve REST API ile sağlık için uca-uca AI.',
         stack: 'PyTorch, TensorFlow, CNN',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '',
-        impact: 'Yanlis pozitif/negatif oraninda belirgin iyilesme.',
+        impact: 'Yanlış pozitif/negatif oranında belirgin iyileşme.',
       },
       {
         title: 'Drumveil Ritual - Metal Davul Transkripsiyon',
         description:
-          'PyTorch + Demucs ile metal parçalarda davulları ayırıp “Onsets and Frames” mimarisiyle notaları MIDI çıktısına çeviren pipeline. Slakh dataset’i ve gerçek kayıtlarla eğitilip spektrum tabanlı yaklaşım kullanıyor.',
+          'PyTorch + Demucs ile metal parçalarda davulları ayırıp "Onsets and Frames" mimarisiyle notaları MIDI çıktısına çeviren pipeline. Slakh dataseti ve gerçek kayıtlarla eğitilip spektrum tabanlı yaklaşım kullanıyor.',
         summary:
-          'Kaynak ayristirma, nota cikarma ve metal ritimlerine odaklanan derin ogrenme projesi.',
+          'Kaynak ayrıştırma, nota çıkarma ve metal ritimlerine odaklanan derin öğrenme projesi.',
         stack: 'PyTorch, Demucs, Audio DSP',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['Audio', 'AI', 'Python'],
         image: '',
-        impact: 'Manuel transkripsiyon sureleri saatlerden dakikalara iniyor.',
+        impact: 'Manuel transkripsiyon süreleri saatlerden dakikalara iniyor.',
       },
       {
         title: 'Employee Management System (.NET)',
         description:
-          '.NET ile geliştirilen basit calisan yönetim sistemi; CRUD, roller, izin/rapor işlemleri ve SQL veri tabanı katmanı. Staj sürecinde gerçek senaryolarla test edildi.',
+          '.NET ile geliştirilen basit çalışan yönetim sistemi; CRUD, roller, izin/rapor işlemleri ve SQL veri tabanı katmanı. Staj sürecinde gerçek senaryolarla test edildi.',
         summary: 'C#.NET tabanlı HR/employee yönetim uygulaması; temel CRUD ve raporlama.',
         stack: 'C#.NET, SQL, Entity Framework',
         link: 'https://github.com/JegBaha/StajEmployeeManagement',
@@ -277,23 +277,23 @@ const content: Record<
         live: '#',
         tags: ['.NET', 'C#', 'SQL'],
         image: '',
-        impact: 'Izin ve takip sureclerinde belirgin zaman kazanci.',
+        impact: 'İzin ve takip süreçlerinde belirgin zaman kazancı.',
       },
       {
         title: '3D Runner Game',
-        description: 'Unity ve C# ile gelistirilen tek kisilik 3D kosu oyunu; level tasarimi ve fizik odakli.',
-        summary: 'Unity’de pipeline ve asset yönetimi deneyimi kazandiran hobi projesi.',
+        description: 'Unity ve C# ile geliştirilen tek kişilik 3D koşu oyunu; level tasarımı ve fizik odaklı.',
+        summary: "Unity'de pipeline ve asset yönetimi deneyimi kazandıran hobi projesi.",
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['Game', 'C#', 'Unity'],
         image: '',
-        impact: 'Tek kisilik pipeline ve iterasyon hizinda artis.',
+        impact: 'Tek kişilik pipeline ve iterasyon hızında artış.',
       },
       {
         title: 'Galaxy Survivor 2D Game',
-        description: 'Unity 2D shooter; tek kisilik gelistirme, level’lar ve düşman dalgaları ile kısa sürede tamamlandi.',
+        description: 'Unity 2D shooter; tek kişilik geliştirme, levellar ve düşman dalgaları ile kısa sürede tamamlandı.',
         summary: '2D oyun döngüsü, basit AI ve asset entegrasyonu.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
@@ -301,12 +301,12 @@ const content: Record<
         live: '#',
         tags: ['Game', 'C#', 'Unity'],
         image: '',
-        impact: 'Hizli prototipleme ve asset entegrasyonu pratigi.',
+        impact: 'Hızlı prototipleme ve asset entegrasyonu pratiği.',
       },
       {
         title: '3D First Person Shooter Game',
         description:
-          'Okul projesi olarak 3 kisilik ekipte 2.5 haftada tamamlanan FPS/puzzle oyunu; seviye tasarimi, basit AI ve etkileşimli ortamlar içeriyor.',
+          'Okul projesi olarak 3 kişilik ekipte 2.5 haftada tamamlanan FPS/puzzle oyunu; seviye tasarımı, basit AI ve etkileşimli ortamlar içeriyor.',
         summary: 'Ekip içi görev dağılımı ve hızlı prototipleme ile teslim edilen FPS proje.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
@@ -314,14 +314,14 @@ const content: Record<
         live: '#',
         tags: ['Game', 'C#', 'Unity'],
         image: '',
-        impact: '2.5 haftada ekipce MVP; koordinasyon deneyimi.',
+        impact: '2.5 haftada ekipçe MVP; koordinasyon deneyimi.',
       },
     ],
     education: [
       {
         school: 'Trakya University',
         degree: 'Bachelor of Engineering, Computer Engineering',
-        location: 'Edirne, Turkiye',
+        location: 'Edirne, Türkiye',
         period: 'Sep 2021 - Sep 2025',
       },
       {
@@ -337,31 +337,37 @@ const content: Record<
       'Microsoft Azure AI Essentials',
       'Apache Spark Essentials',
       'LLM Foundations & RAG',
-      'Endustriyel otomasyon ve IoT sertifikalari (PLC, SCADA, OPC UA, MQTT)',
-      'Daha fazlasi LinkedIn: https://www.linkedin.com/in/baha-buyukates',
+      'Endüstriyel otomasyon ve IoT sertifikaları (PLC, SCADA, OPC UA, MQTT)',
+      'Daha fazlası LinkedIn: https://www.linkedin.com/in/baha-buyukates',
     ],
     languages: [
-      { name: 'Turkish', level: 'Native' },
-      { name: 'English', level: 'C1' },
-      { name: 'German', level: 'A2' },
+      { name: 'Türkçe', level: 'Ana dil' },
+      { name: 'İngilizce', level: 'C1' },
+      { name: 'Almanca', level: 'A2' },
     ],
     about: {
-      eyebrow: 'Hakkimda',
-      title: 'Veri, yazilim, IT ve endustriyel sistemlerde uretiyor ve ogreniyorum.',
-      bio: 'Kendimi bircok alanda  gelistiriyor ve yeniliklere acik kaliyorum; teknoloji hiz kesmiyor, bu yuzden yazilim, endustriyel ve mikroservis tarafinda da bilgi ediniyorum. Ancak asil odağim Data: KPI dashboard, backend/API, otomasyon ve ML egitimi uzerinde calisip ogrenmeye devam ediyorum.',
-      strengths: ['Data storytelling & dashboarding', 'ML/CNN egitimi ve degerlendirme', 'Backend/API ve otomasyon', 'IT/ERP entegrasyon farkindaligi', 'Ekip ici Git akislari ve QA'],
+      eyebrow: 'Hakkımda',
+      title: 'Veri, yazılım, IT ve endüstriyel sistemlerde üretiyor ve öğreniyorum.',
+      bio: 'Kendimi birçok alanda geliştiriyor ve yeniliklere açık kalıyorum; teknoloji hız kesmiyor, bu yüzden yazılım, endüstriyel ve mikroservis tarafında da bilgi ediniyorum. Asıl odağım Data: KPI dashboard, backend/API, otomasyon ve ML eğitimi üzerinde çalışıp öğrenmeye devam ediyorum.',
+      strengths: [
+        'Data storytelling & dashboarding',
+        'ML/CNN eğitimi ve değerlendirme',
+        'Backend/API ve otomasyon',
+        'IT/ERP entegrasyon farkındalığı',
+        'Ekip içi Git akışları ve QA',
+      ],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
-      highlight: 'Manuel isleri otomasyonla azalttim; MRI siniflandirmada yuksek dogruluk.',
+      highlight: 'Manuel işleri otomasyonla azalttım; MRI sınıflandırmada yüksek doğruluk.',
     },
     skillMatrix: [
       { name: 'Power BI / DAX', level: 'Uzman', tools: ['Star Schema', 'KPI', 'Gateway'] },
-      { name: 'Python / PyTorch', level: 'Ileri', tools: ['CNN', 'Data Pipelines', 'Evaluation'] },
-      { name: 'SQL', level: 'Ileri', tools: ['Query Optimize', 'Joins', 'CTE'] },
-      { name: 'Automation', level: 'Ileri', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { name: 'Python / PyTorch', level: 'İleri', tools: ['CNN', 'Data Pipelines', 'Evaluation'] },
+      { name: 'SQL', level: 'İleri', tools: ['Query Optimize', 'Joins', 'CTE'] },
+      { name: 'Automation', level: 'İleri', tools: ['Zapier', 'Airtable', 'Slack'] },
       { name: 'Cloud & DevOps', level: 'Temel', tools: ['AWS', 'Docker', 'CI/CD'] },
     ],
     toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
-    cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'CV indir (Aralik 2025)' },
+    cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Aralık 2025', label: 'CV indir (Aralık 2025)' },
   },
   DE: {
     nav: {
@@ -948,6 +954,7 @@ const content: Record<
 function App() {
   const [activeLocale, setActiveLocale] = useState<Locale>('TR')
   const [showWelcome, setShowWelcome] = useState(true)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [selectedTag, setSelectedTag] = useState<string>(() =>
     activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All',
   )
@@ -964,6 +971,7 @@ function App() {
   const c = content[activeLocale]
   const tagAllLabel = activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All'
   const allTags = [tagAllLabel, ...new Set(c.projects.flatMap((p) => p.tags))]
+  const hobbyNavLabel = activeLocale === 'TR' ? 'Hobim' : 'Hobby'
   const filteredProjects =
     selectedTag === tagAllLabel ? c.projects : c.projects.filter((p) => p.tags.includes(selectedTag))
 
@@ -1019,7 +1027,7 @@ function App() {
   const progressMax = Math.max(duration, currentTime, 0.1)
 
   useEffect(() => {
-    const title = `Baha Buyukates | ${c.hero.eyebrow}`
+  const title = `Baha Büyükateş | ${c.hero.eyebrow}`
     document.title = title
     const metaPairs: { name?: string; property?: string; content: string }[] = [
       { name: 'description', content: c.hero.lede },
@@ -1050,7 +1058,7 @@ function App() {
     }
   }, [activeLocale, c.hero.eyebrow, c.hero.lede])
 
-  const scrollToSection = (id: string, event?: ReactMouseEvent<HTMLAnchorElement>) => {
+  const scrollToSection = (id: string, event?: ReactMouseEvent<HTMLElement>) => {
     if (event) event.preventDefault()
     const el = document.getElementById(id)
     if (!el) return
@@ -1067,6 +1075,13 @@ function App() {
 
     el.scrollIntoView({ behavior, block: 'start' })
   }
+
+  const handleNavClick = (id: string, event?: ReactMouseEvent<HTMLElement>) => {
+    scrollToSection(id, event)
+    setIsDrawerOpen(false)
+  }
+
+  const toggleDrawer = () => setIsDrawerOpen((open) => !open)
 
   const startAudioReactive = async () => {
     try {
@@ -1230,6 +1245,13 @@ function App() {
   }, [audioActive])
 
   useEffect(() => {
+    document.body.classList.toggle('drawer-open', isDrawerOpen)
+    return () => {
+      document.body.classList.remove('drawer-open')
+    }
+  }, [isDrawerOpen])
+
+  useEffect(() => {
     setSelectedTag(tagAllLabel)
   }, [tagAllLabel])
 
@@ -1249,40 +1271,27 @@ function App() {
       </div>
       <div className={`content-shell ${showWelcome ? 'is-blurred' : ''}`}>
       <header className="top-nav">
-        <div className="brand">
-          <span className="brand-mark">//</span>
-          <div>
-            <p className="eyebrow">{c.brandEyebrow}</p>
-            <p className="brand-name">Baha Buyukates</p>
+        <button
+          className={`menu-toggle ${isDrawerOpen ? 'open' : ''}`}
+          type="button"
+          aria-label="Menu"
+          aria-expanded={isDrawerOpen}
+          aria-controls="mobile-drawer"
+          onClick={toggleDrawer}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <div className="brand-cluster">
+          <div className="brand">
+            <span className="brand-mark">//</span>
+            <div>
+              <p className="eyebrow">{c.brandEyebrow}</p>
+              <p className="brand-name">Baha Büyükateş</p>
+            </div>
           </div>
-        </div>
-        <div className="nav-right">
-          <nav className="nav-links">
-            <a href="#about" onClick={(e) => scrollToSection('about', e)}>
-              {c.nav.about}
-            </a>
-            <a href="#experience" onClick={(e) => scrollToSection('experience', e)}>
-              {c.nav.experience}
-            </a>
-            <a href="#projects" onClick={(e) => scrollToSection('projects', e)}>
-              {c.nav.projects}
-            </a>
-            <a href="#skills" onClick={(e) => scrollToSection('skills', e)}>
-              {c.nav.skills}
-            </a>
-            <a href="#contact" onClick={(e) => scrollToSection('contact', e)}>
-              {c.nav.contact}
-            </a>
-            <button
-              className="link-button guitar-link"
-              type="button"
-              aria-label="Hobby"
-              onClick={(e) => scrollToSection('hobby', e)}
-            >
-              🎸
-            </button>
-          </nav>
-          <div className="lang-switch" role="group" aria-label="Dil secimi">
+          <div className="lang-switch" role="group" aria-label="Dil seçimi">
             {localeOptions.map((option) => (
               <button
                 key={option.code}
@@ -1299,7 +1308,75 @@ function App() {
             ))}
           </div>
         </div>
+        <div className="nav-right">
+          <nav className="nav-links">
+            <a href="#about" onClick={(e) => handleNavClick('about', e)}>
+              {c.nav.about}
+            </a>
+            <a href="#experience" onClick={(e) => handleNavClick('experience', e)}>
+              {c.nav.experience}
+            </a>
+            <a href="#projects" onClick={(e) => handleNavClick('projects', e)}>
+              {c.nav.projects}
+            </a>
+            <a href="#skills" onClick={(e) => handleNavClick('skills', e)}>
+              {c.nav.skills}
+            </a>
+            <a href="#contact" onClick={(e) => handleNavClick('contact', e)}>
+              {c.nav.contact}
+            </a>
+            <button
+              className="link-button guitar-link"
+              type="button"
+              aria-label="Hobby"
+              onClick={(e) => handleNavClick('hobby', e)}
+            >
+              {hobbyNavLabel}
+            </button>
+          </nav>
+        </div>
       </header>
+
+      <aside
+        className={`mobile-drawer ${isDrawerOpen ? 'open' : ''}`}
+        id="mobile-drawer"
+        aria-hidden={!isDrawerOpen}
+      >
+        <div className="drawer-head">
+          <div>
+            <p className="eyebrow">{c.brandEyebrow}</p>
+            <p className="brand-name">Baha Büyükateş</p>
+          </div>
+          <button className="close-drawer" type="button" aria-label="Menüyü kapat" onClick={() => setIsDrawerOpen(false)}>
+            X
+          </button>
+        </div>
+        <nav className="drawer-links">
+          <button type="button" onClick={(e) => handleNavClick('about', e)}>
+            {c.nav.about}
+          </button>
+          <button type="button" onClick={(e) => handleNavClick('experience', e)}>
+            {c.nav.experience}
+          </button>
+          <button type="button" onClick={(e) => handleNavClick('projects', e)}>
+            {c.nav.projects}
+          </button>
+          <button type="button" onClick={(e) => handleNavClick('skills', e)}>
+            {c.nav.skills}
+          </button>
+          <button type="button" onClick={(e) => handleNavClick('hobby', e)}>
+            {hobbyNavLabel}
+          </button>
+          <button type="button" onClick={(e) => handleNavClick('contact', e)}>
+            {c.nav.contact}
+          </button>
+        </nav>
+        <div className="drawer-meta">
+          <span className="pill small">{c.hero.eyebrow}</span>
+          <p className="section-text">{c.hero.lede}</p>
+        </div>
+      </aside>
+      {isDrawerOpen && <div className="drawer-overlay" onClick={() => setIsDrawerOpen(false)} aria-hidden="true" />}
 
       <main>
         <section className="hero" id="hero">
@@ -1366,7 +1443,7 @@ function App() {
           </div>
           <div className="about-grid">
             <div className="card">
-              <h3>{activeLocale === 'DE' ? 'Staerken' : activeLocale === 'EN' ? 'Strengths' : 'Guc alanlarim'}</h3>
+              <h3>{activeLocale === 'DE' ? 'Staerken' : activeLocale === 'EN' ? 'Strengths' : 'Güç alanlarım'}</h3>
               <ul className="list compact">
                 {c.about.strengths.map((item) => (
                   <li key={item}>{item}</li>
@@ -1374,7 +1451,7 @@ function App() {
               </ul>
             </div>
             <div className="card">
-              <h3>{activeLocale === 'DE' ? 'Offen fuer' : activeLocale === 'EN' ? 'Open roles' : 'Acik oldugum roller'}</h3>
+              <h3>{activeLocale === 'DE' ? 'Offen fuer' : activeLocale === 'EN' ? 'Open roles' : 'Açık olduğum roller'}</h3>
               <div className="tags">
                 {c.about.openTo.map((item) => (
                   <span className="pill" key={item}>
@@ -1395,7 +1472,7 @@ function App() {
                     ? `Aktualisiert: ${c.cv.updated}`
                     : activeLocale === 'EN'
                     ? `Updated: ${c.cv.updated}`
-                    : `Guncelleme: ${c.cv.updated}`}
+                    : `Güncelleme: ${c.cv.updated}`}
                 </span>
               </div>
             </div>
@@ -1481,7 +1558,7 @@ function App() {
                 ? 'Toolbelt & zuletzt genutzt'
                 : activeLocale === 'EN'
                 ? 'Toolbelt & recent stack'
-                : 'Toolbelt & son kullanilanlar'}
+                : 'Toolbelt & son kullanılanlar'}
             </p>
             <div className="tags">
               {c.toolbelt.map((tool) => (
@@ -1691,7 +1768,7 @@ function App() {
           </div>
           <div className="contact-photo">
             <div className="photo-frame">
-              <img src="/photo.jpg" alt="Profil fotografi" loading="lazy" />
+              <img src="/photo.jpg" alt="Profil fotoğrafı" loading="lazy" />
             </div>
            
           </div>
@@ -1726,7 +1803,7 @@ function App() {
               <input type="email" name="email" placeholder="E-posta / Email" required />
             </div>
             <textarea name="message" rows={3} placeholder="Kisa mesaj / Short message" required />
-            <button type="submit" className="btn primary">Gonder / Send</button>
+            <button type="submit" className="btn primary">Gönder / Send</button>
           </form>
         </section>
 
