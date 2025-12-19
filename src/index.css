@@ -69,6 +69,37 @@ body::before {
   transition: box-shadow 0.25s ease;
 }
 
+.edge-lights {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.edge-lights::before,
+.edge-lights::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  background:
+    linear-gradient(90deg, rgba(245, 101, 101, 0), rgba(245, 101, 101, 0.16), rgba(245, 101, 101, 0)),
+    linear-gradient(0deg, rgba(109, 127, 161, 0), rgba(109, 127, 161, 0.14), rgba(109, 127, 161, 0));
+  filter: blur(28px);
+  opacity: 0.32;
+  animation: edgeBreath 16s ease-in-out infinite;
+}
+
+.edge-lights::after {
+  inset: 12px;
+  background:
+    linear-gradient(90deg, rgba(255, 159, 67, 0), rgba(255, 159, 67, 0.12), rgba(255, 159, 67, 0)),
+    linear-gradient(180deg, rgba(109, 127, 161, 0), rgba(109, 127, 161, 0.12), rgba(109, 127, 161, 0));
+  filter: blur(34px);
+  opacity: 0.24;
+  animation-duration: 20s;
+}
+
 main,
 .page,
 section,
@@ -133,6 +164,24 @@ a:hover {
   }
   100% {
     transform: translate3d(-8px, -6px, 0);
+  }
+}
+
+@keyframes edgeBreath {
+  0% {
+    opacity: 0.24;
+    transform: scale(0.995);
+    filter: blur(26px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.01);
+    filter: blur(30px);
+  }
+  100% {
+    opacity: 0.24;
+    transform: scale(0.995);
+    filter: blur(26px);
   }
 }
 

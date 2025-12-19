@@ -4,6 +4,17 @@ import './App.css'
 
 type Locale = 'TR' | 'DE' | 'EN'
 
+type FeedbackMood = 'like' | 'dislike' | null
+
+type FeedbackEntry = {
+  id: string
+  rating: number
+  mood: FeedbackMood
+  comment: string
+  locale: Locale
+  createdAt: number
+}
+
 const localeOptions: { code: Locale; flag: string }[] = [
   { code: 'TR', flag: '🇹🇷' },
   { code: 'DE', flag: '🇩🇪' },
@@ -39,6 +50,25 @@ const content: Record<
       certifications: { eyebrow: string; title: string; text: string }
       contact: { eyebrow: string; title: string; text: string }
       hobby: { eyebrow: string; title: string; text: string; benefit: string; cta: string }
+    }
+    feedback: {
+      cta: string
+      reminder: string
+      title: string
+      subtitle: string
+      ratingLabel: string
+      moodQuestion: string
+      like: string
+      dislike: string
+      commentPlaceholder: string
+      storageNote: string
+      submit: string
+      thanks: string
+      averageLabel: string
+      recentTitle: string
+      empty: string
+      copy: string
+      copied: string
     }
     experience: {
       company: string
@@ -140,6 +170,25 @@ const content: Record<
         title: 'Yeni bir proje için hazırım.',
         text: 'Veri analizi, dashboard geliştirme, AI eğitimi veya otomasyon ihtiyacınız varsa iletişime geçebiliriz.',
       },
+    },
+    feedback: {
+      cta: 'Değerlendir',
+      reminder: '30 saniyedir buradasın, bir değerlendirme bırakır mısın?',
+      title: 'Beğendiniz mi?',
+      subtitle: '1-5 yıldız ver, istersen kısa yorum ekle.',
+      ratingLabel: 'Yıldız',
+      moodQuestion: 'Hızlı seçim',
+      like: 'Beğendim',
+      dislike: 'Beğenmedim',
+      commentPlaceholder: 'Neyi sevdiniz / geliştirilebilir?',
+      storageNote: 'Veriler tarayıcında tutulur, istediğinde kopyalayabilirsin.',
+      submit: 'Gönder',
+      thanks: 'Teşekkürler, kaydedildi!',
+      averageLabel: 'Ortalama',
+      recentTitle: 'Kayıtlı geri bildirimler (tarayıcıda)',
+      empty: 'Henüz kayıt yok.',
+      copy: 'Panoya kopyala',
+      copied: 'Kopyalandı!',
     },
     experience: [
       {
@@ -342,7 +391,7 @@ const content: Record<
     ],
     languages: [
       { name: 'Türkçe', level: 'Ana dil' },
-      { name: 'İngilizce', level: 'C1' },
+      { name: 'İngilizce', level: 'B2' },
       { name: 'Almanca', level: 'A2' },
     ],
     about: {
@@ -360,11 +409,11 @@ const content: Record<
       highlight: 'Manuel işleri otomasyonla azalttım; MRI sınıflandırmada yüksek doğruluk.',
     },
     skillMatrix: [
-      { name: 'Power BI / DAX', level: 'Uzman', tools: ['Star Schema', 'KPI', 'Gateway'] },
-      { name: 'Python / PyTorch', level: 'İleri', tools: ['CNN', 'Data Pipelines', 'Evaluation'] },
-      { name: 'SQL', level: 'İleri', tools: ['Query Optimize', 'Joins', 'CTE'] },
-      { name: 'Automation', level: 'İleri', tools: ['Zapier', 'Airtable', 'Slack'] },
-      { name: 'Cloud & DevOps', level: 'Temel', tools: ['AWS', 'Docker', 'CI/CD'] },
+      { name: 'Power BI / DAX', level: 'İleri', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Python / PyTorch', level: 'Orta', tools: ['CNN', 'Data Pipelines', 'Evaluation'] },
+      { name: 'SQL', level: 'Orta', tools: ['Query Optimize', 'Joins', 'CTE'] },
+      { name: 'Automation', level: 'Orta', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { name: 'Cloud & DevOps', level: 'Baslangic', tools: ['AWS', 'Docker', 'CI/CD'] },
     ],
     toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Aralık 2025', label: 'CV indir (Aralık 2025)' },
@@ -438,6 +487,25 @@ const content: Record<
         title: 'Bereit fuer das naechste Projekt.',
         text: 'Fuer Datenanalyse, Dashboarding, AI-Training oder Automatisierung: Melde dich gern.',
       },
+    },
+    feedback: {
+      cta: 'Feedback geben',
+      reminder: 'Schon 30s hier? Ein kurzes Feedback hilft mir.',
+      title: 'Hat es dir gefallen?',
+      subtitle: '1-5 Sterne, Kommentar optional.',
+      ratingLabel: 'Sterne',
+      moodQuestion: 'Schnellauswahl',
+      like: 'Gefällt mir',
+      dislike: 'Gefällt mir nicht',
+      commentPlaceholder: 'Was war gut / was fehlt?',
+      storageNote: 'Alles bleibt im Browser; du kannst es kopieren.',
+      submit: 'Senden',
+      thanks: 'Danke, gespeichert!',
+      averageLabel: 'Durchschnitt',
+      recentTitle: 'Gespeichertes Feedback (lokal)',
+      empty: 'Noch keine Einträge.',
+      copy: 'In Zwischenablage',
+      copied: 'Kopiert!',
     },
     experience: [
       {
@@ -638,7 +706,7 @@ const content: Record<
     ],
     languages: [
       { name: 'Tuerkisch', level: 'Muttersprache' },
-      { name: 'Englisch', level: 'C1' },
+      { name: 'Englisch', level: 'B2' },
       { name: 'Deutsch', level: 'A2' },
     ],
     about: {
@@ -650,11 +718,11 @@ const content: Record<
       highlight: 'Weniger manuelle HR-Arbeit durch Automatisierung + hohe MRI-Klassifikationsgenauigkeit',
     },
     skillMatrix: [
-      { name: 'Power BI / DAX', level: 'Experte', tools: ['Star Schema', 'KPI', 'Gateway'] },
-      { name: 'Python / PyTorch', level: 'Fortgeschritten', tools: ['CNN', 'Pipelines', 'Eval'] },
-      { name: 'SQL', level: 'Fortgeschritten', tools: ['Query Optimize', 'Joins', 'CTE'] },
-      { name: 'Automation', level: 'Fortgeschritten', tools: ['Zapier', 'Airtable', 'Slack'] },
-      { name: 'Cloud & DevOps', level: 'Grundlage', tools: ['AWS', 'Docker', 'CI/CD'] },
+      { name: 'Power BI / DAX', level: 'Fortgeschritten', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Python / PyTorch', level: 'Mittel', tools: ['CNN', 'Pipelines', 'Eval'] },
+      { name: 'SQL', level: 'Mittel', tools: ['Query Optimize', 'Joins', 'CTE'] },
+      { name: 'Automation', level: 'Mittel', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { name: 'Cloud & DevOps', level: 'Basis', tools: ['AWS', 'Docker', 'CI/CD'] },
     ],
     toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'CV herunterladen' },
@@ -674,7 +742,7 @@ const content: Record<
       titleMain: 'Computer Engineer,',
       titleAccent: ' focused on data, software, IT, and industrial systems',
       lede:
-        'I work and keep learning across Data Analysis, Software Development, IT support, and industrial integration; KPI dashboards (Power BI, SQL, DAX), Python/ML training, backend, and automation.',
+        'I work across data analysis, software, IT support, and industrial integration. I build KPI dashboards (Power BI, SQL, DAX) and keep learning Python/ML, backend, and automation.',
       ctas: { browse: 'Browse projects', collaborate: "Let's build together" },
     },
     heroMeta: ['EU citizen', 'No visa sponsorship required', 'Immediate availability'],
@@ -703,22 +771,22 @@ const content: Record<
       projects: {
         eyebrow: 'Featured projects',
         title: 'Projects blending imagination and craft',
-        text: 'Performance and UX together.',
+        text: 'Performance and UX together, with clear outcomes.',
       },
       education: {
         eyebrow: 'Education',
         title: 'Foundation and depth',
-        text: 'Seal: Computer Engineering degree + AI-focused bootcamp.',
+        text: 'Computer Engineering degree and an AI-focused bootcamp.',
       },
       certifications: {
         eyebrow: 'Certifications & Languages',
         title: 'Continuous learning',
-        text: 'Current credentials in cloud, data, AI, and industrial automation; multilingual communication.',
+        text: 'Recent credentials in cloud, data, AI, and industrial automation; multilingual communication.',
       },
       hobby: {
         eyebrow: 'Hobby',
         title: 'Music production: ',
-        text: 'writing djent and progressive metal pieces and covering existing songs. It’s a core passion; I blend it with technical execution to craft distinct, recognizable work.',
+        text: "writing djent and progressive metal pieces and covering existing songs. It's a core passion; I blend it with technical execution to make distinct, recognizable work.",
         benefit:
           'Discipline, rhythmic focus, and detail orientation from music directly translate to my professional projects.',
         cta: 'Want to listen?',
@@ -728,6 +796,25 @@ const content: Record<
         title: 'Ready for a new project.',
         text: 'For data analysis, dashboards, AI training, or automation, feel free to reach out.',
       },
+    },
+    feedback: {
+      cta: 'Leave feedback',
+      reminder: 'You have been here about 30s — want to rate the page?',
+      title: 'Did you like it?',
+      subtitle: 'Rate 1-5 stars; add a note if you want.',
+      ratingLabel: 'Star',
+      moodQuestion: 'Quick pick',
+      like: 'Liked it',
+      dislike: "Didn't like",
+      commentPlaceholder: 'What worked / what can improve?',
+      storageNote: 'Saved locally in your browser; you can copy it anytime.',
+      submit: 'Send',
+      thanks: 'Thanks, saved!',
+      averageLabel: 'Average',
+      recentTitle: 'Stored feedback (local)',
+      empty: 'Nothing yet.',
+      copy: 'Copy to clipboard',
+      copied: 'Copied!',
     },
     experience: [
       {
@@ -842,7 +929,7 @@ const content: Record<
       {
         title: 'Drumveil Ritual - Metal Drum Transcription',
         description:
-          'PyTorch + Demucs for source separation on metal tracks; “Onsets and Frames” extracts drum notes to MIDI. Uses Slakh dataset + real recordings with a spectrogram-driven approach for heavy rhythms.',
+          "PyTorch + Demucs for source separation on metal tracks; 'Onsets and Frames' extracts drum notes to MIDI. Uses Slakh data and real recordings with a spectrogram approach for heavy rhythms.",
         summary: 'Source separation and note extraction tailored to metal drum patterns.',
         stack: 'PyTorch, Demucs, Audio DSP',
         link: 'https://github.com/JegBaha',
@@ -928,23 +1015,23 @@ const content: Record<
     ],
     languages: [
       { name: 'Turkish', level: 'Native' },
-      { name: 'English', level: 'C1' },
+      { name: 'English', level: 'B2' },
       { name: 'German', level: 'A2' },
     ],
     about: {
       eyebrow: 'About',
       title: 'Working and learning across data, software, IT, and industrial contexts.',
-      bio: 'As you can see, I stay open and keep learning across software, industrial, and microservices because tech moves fast. My primary focus is Data: KPI dashboards, backend/API, automation, and ML training with a keep-improving mindset.',
-      strengths: ['Data storytelling & BI', 'ML/CNN training and evaluation', 'Backend/API and automation', 'IT/ERP awareness', 'Git-first collaboration'],
+      bio: 'I keep learning in software, industrial work, and microservices because tech moves fast. I focus on data: KPI dashboards, backend/API, automation, and ML training with a keep-improving mindset.',
+      strengths: ['Data storytelling & BI', 'ML/CNN training and evaluation', 'Backend/API and automation', 'IT/ERP awareness', 'Git-first teamwork'],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
       highlight: 'Manual-work reduction via automation + high MRI classification accuracy',
     },
     skillMatrix: [
-      { name: 'Power BI / DAX', level: 'Expert', tools: ['Star Schema', 'KPI', 'Gateway'] },
-      { name: 'Python / PyTorch', level: 'Advanced', tools: ['CNN', 'Pipelines', 'Evaluation'] },
-      { name: 'SQL', level: 'Advanced', tools: ['Query Optimize', 'Joins', 'CTE'] },
-      { name: 'Automation', level: 'Advanced', tools: ['Zapier', 'Airtable', 'Slack'] },
-      { name: 'Cloud & DevOps', level: 'Foundational', tools: ['AWS', 'Docker', 'CI/CD'] },
+      { name: 'Power BI / DAX', level: 'Advanced', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Python / PyTorch', level: 'Intermediate', tools: ['CNN', 'Pipelines', 'Evaluation'] },
+      { name: 'SQL', level: 'Intermediate', tools: ['Query Optimize', 'Joins', 'CTE'] },
+      { name: 'Automation', level: 'Intermediate', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { name: 'Cloud & DevOps', level: 'Basic', tools: ['AWS', 'Docker', 'CI/CD'] },
     ],
     toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'Download CV (updated Dec 2025)' },
@@ -968,6 +1055,15 @@ function App() {
   const rafRef = useRef<number | null>(null)
   const flashRef = useRef(0)
   const sideRef = useRef(1)
+  const [feedbackOpen, setFeedbackOpen] = useState(false)
+  const [feedbackReminder, setFeedbackReminder] = useState(false)
+  const [feedbackRating, setFeedbackRating] = useState<number | null>(null)
+  const [feedbackMood, setFeedbackMood] = useState<FeedbackMood>(null)
+  const [feedbackNote, setFeedbackNote] = useState('')
+  const [feedbackEntries, setFeedbackEntries] = useState<FeedbackEntry[]>([])
+  const [feedbackSaved, setFeedbackSaved] = useState(false)
+  const [feedbackError, setFeedbackError] = useState('')
+  const [copyToast, setCopyToast] = useState(false)
   const c = content[activeLocale]
   const tagAllLabel = activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All'
   const allTags = [tagAllLabel, ...new Set(c.projects.flatMap((p) => p.tags))]
@@ -1015,6 +1111,8 @@ function App() {
       ? 'Business impact: improved efficiency/accuracy, reduced manual work.'
       : 'Is etkisi: verim ve dogruluk artisi, manuel is azalmasi.'
 
+  const welcomeOverlayCopy = { title: 'Hoş geldin / Welcome / Willkommen', subtitle: 'Hope your day is going well.' }
+
   const playerCopy =
     activeLocale === 'DE'
       ? { nowPlaying: 'Laeuft', remaining: 'Rest', stop: 'Stop', volume: 'Laut' }
@@ -1025,6 +1123,27 @@ function App() {
   const trackMeta = { title: 'Take Me Back To Arcadia', artist: 'JegBaa' }
   const remainingTime = Math.max(duration - currentTime, 0)
   const progressMax = Math.max(duration, currentTime, 0.1)
+  const feedbackCopy = c.feedback
+  const feedbackAverage =
+    feedbackEntries.length === 0
+      ? '-'
+      : (
+          feedbackEntries.reduce((sum, entry) => sum + entry.rating, 0) / Math.max(1, feedbackEntries.length)
+        ).toFixed(1)
+  const feedbackCountLabel =
+    activeLocale === 'DE'
+      ? `${feedbackEntries.length} gespeichert`
+      : activeLocale === 'EN'
+      ? `${feedbackEntries.length} saved`
+      : `${feedbackEntries.length} kayıt`
+  const recentFeedback = feedbackEntries.slice(0, 3)
+  const ratingRequiredCopy =
+    activeLocale === 'DE'
+      ? 'Bitte Sterne wählen.'
+      : activeLocale === 'EN'
+      ? 'Please pick a star rating.'
+      : 'Lütfen bir yıldız seçin.'
+  const laterLabel = activeLocale === 'DE' ? 'Später' : activeLocale === 'EN' ? 'Later' : 'Sonra'
 
   useEffect(() => {
   const title = `Baha Büyükateş | ${c.hero.eyebrow}`
@@ -1204,7 +1323,6 @@ function App() {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
   }
 
-
   const handleContactSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -1215,6 +1333,112 @@ function App() {
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
     window.location.href = `mailto:bahabuyukates@gmail.com?subject=${subject}&body=${body}`
   }
+
+  const handleFeedbackSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (feedbackRating === null) {
+      setFeedbackError(ratingRequiredCopy)
+      return
+    }
+    const entry: FeedbackEntry = {
+      id: `fb-${Date.now().toString(36)}`,
+      rating: feedbackRating,
+      mood: feedbackMood,
+      comment: feedbackNote.trim(),
+      locale: activeLocale,
+      createdAt: Date.now(),
+    }
+    setFeedbackEntries((prev) => [entry, ...prev].slice(0, 50))
+    setFeedbackSaved(true)
+    setFeedbackError('')
+    setFeedbackReminder(false)
+    setFeedbackRating(null)
+    setFeedbackMood(null)
+    setFeedbackNote('')
+    setTimeout(() => setFeedbackSaved(false), 1800)
+  }
+
+  const openFeedback = () => {
+    setFeedbackOpen(true)
+    setFeedbackReminder(false)
+    try {
+      localStorage.setItem('feedback_prompt_seen', '1')
+    } catch (err) {
+      console.error('Feedback prompt cache failed', err)
+    }
+  }
+
+  const closeFeedback = () => {
+    setFeedbackOpen(false)
+    setFeedbackReminder(false)
+  }
+
+  const handleCopyFeedback = async () => {
+    const payload = JSON.stringify(feedbackEntries, null, 2)
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(payload)
+      } else {
+        const helper = document.createElement('textarea')
+        helper.value = payload
+        helper.setAttribute('readonly', 'true')
+        helper.style.position = 'absolute'
+        helper.style.left = '-9999px'
+        document.body.appendChild(helper)
+        helper.select()
+        document.execCommand('copy')
+        document.body.removeChild(helper)
+      }
+      setCopyToast(true)
+      setTimeout(() => setCopyToast(false), 1600)
+    } catch (err) {
+      console.error('Copy failed', err)
+    }
+  }
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('portfolio_feedback_v1')
+      if (!raw) return
+      const parsed = JSON.parse(raw)
+      if (Array.isArray(parsed)) {
+        setFeedbackEntries(parsed)
+      }
+    } catch (err) {
+      console.error('Feedback load failed', err)
+    }
+  }, [])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('portfolio_feedback_v1', JSON.stringify(feedbackEntries.slice(0, 50)))
+    } catch (err) {
+      console.error('Feedback save failed', err)
+    }
+  }, [feedbackEntries])
+
+  useEffect(() => {
+    const seen =
+      (() => {
+        try {
+          return localStorage.getItem('feedback_prompt_seen') === '1'
+        } catch (err) {
+          console.error('Feedback prompt read failed', err)
+          return false
+        }
+      })()
+    if (seen || feedbackEntries.length > 0) return
+    const timer = window.setTimeout(() => {
+      setFeedbackReminder(true)
+      setFeedbackOpen(true)
+      try {
+        localStorage.setItem('feedback_prompt_seen', '1')
+      } catch (err) {
+        console.error('Feedback prompt cache failed', err)
+      }
+    }, 30000)
+    return () => clearTimeout(timer)
+  }, [feedbackEntries.length])
 
   useEffect(() => {
     const timer = setTimeout(() => setShowWelcome(false), 2200)
@@ -1260,7 +1484,11 @@ function App() {
       {showWelcome && (
         <div className="welcome-overlay" aria-live="polite">
           <div className="welcome-card">
-            <span>Welcome</span>
+            <span className="welcome-ring" aria-hidden="true" />
+            <div className="welcome-text">
+              <h3>{welcomeOverlayCopy.title}</h3>
+              <p className="welcome-sub">{welcomeOverlayCopy.subtitle}</p>
+            </div>
           </div>
         </div>
       )}
@@ -1268,7 +1496,9 @@ function App() {
         <span className="orb o1" />
         <span className="orb o2" />
         <span className="orb o3" />
+        <span className="orb o4" />
       </div>
+      <div className="edge-lights" aria-hidden="true" />
       <div className={`content-shell ${showWelcome ? 'is-blurred' : ''}`}>
       <header className="top-nav">
         <button
@@ -1792,6 +2022,14 @@ function App() {
             >
               GitHub
             </a>
+            <a
+              className="btn ghost"
+              href="https://www.instagram.com/jegbaa?igsh=MXQ1aHRybnByOHU5bQ=="
+              target="_blank"
+              rel="noreferrer"
+            >
+              Instagram
+            </a>
           
             <a className="btn ghost" href="tel:+905421559766">
               +90 542 155 9766
@@ -1811,10 +2049,120 @@ function App() {
           <span>Created by Baha Büyükateş · Portfolio 2025</span>
         </footer>
       </main>
+      <div className="feedback-launcher">
+        {feedbackReminder && !feedbackOpen && (
+          <div className="feedback-reminder" role="status">
+            <p>{feedbackCopy.reminder}</p>
+            <div className="reminder-actions">
+              <button type="button" className="btn primary mini" onClick={openFeedback}>
+                {feedbackCopy.cta}
+              </button>
+              <button type="button" className="link-button" onClick={() => setFeedbackReminder(false)}>
+                {laterLabel}
+              </button>
+            </div>
+          </div>
+        )}
+        <button
+          type="button"
+          className="feedback-trigger"
+          aria-controls="feedback-drawer"
+          aria-expanded={feedbackOpen}
+          onClick={openFeedback}
+        >
+          <div className="trigger-text">
+            <span>⭐ {feedbackCopy.cta}</span>
+            <span className="subtext">{feedbackCopy.title}</span>
+          </div>
+          <span className="pill small">
+            {feedbackEntries.length > 0 ? `${feedbackCopy.averageLabel}: ${feedbackAverage}` : '1-5'}
+          </span>
+        </button>
+      </div>
+      <div
+        className={`feedback-overlay ${feedbackOpen ? 'show' : ''}`}
+        onClick={closeFeedback}
+        aria-hidden={!feedbackOpen}
+      />
+      <aside
+        className={`feedback-drawer ${feedbackOpen ? 'open' : ''}`}
+        id="feedback-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-label={feedbackCopy.title}
+      >
+        <div className="feedback-head">
+          <div>
+            <p className="eyebrow">{feedbackCopy.title}</p>
+            <h3>{feedbackCopy.subtitle}</h3>
+            <p className="section-text subtle">{feedbackCopy.storageNote}</p>
+          </div>
+          <button className="close-btn" type="button" aria-label="Kapat" onClick={closeFeedback}>
+            ×
+          </button>
+        </div>
+        <form className="feedback-form" onSubmit={handleFeedbackSubmit}>
+          <div className="star-row" role="radiogroup" aria-label={feedbackCopy.ratingLabel}>
+            {[1, 2, 3, 4, 5].map((score) => (
+              <button
+                key={score}
+                type="button"
+                className={`star ${feedbackRating !== null && feedbackRating >= score ? 'filled' : ''}`}
+                onClick={() => {
+                  setFeedbackRating(score)
+                  setFeedbackError('')
+                }}
+                aria-pressed={feedbackRating === score}
+              >
+                ★
+              </button>
+            ))}
+          </div>
+          <div className="mood-row" aria-label={feedbackCopy.moodQuestion}>
+            <button
+              type="button"
+              className={`pill small mood ${feedbackMood === 'like' ? 'active' : ''}`}
+              onClick={() => setFeedbackMood('like')}
+            >
+              {feedbackCopy.like}
+            </button>
+            <button
+              type="button"
+              className={`pill small mood ${feedbackMood === 'dislike' ? 'active' : ''}`}
+              onClick={() => setFeedbackMood('dislike')}
+            >
+              {feedbackCopy.dislike}
+            </button>
+          </div>
+          <textarea
+            name="feedback-note"
+            rows={3}
+            placeholder={feedbackCopy.commentPlaceholder}
+            value={feedbackNote}
+            onChange={(e) => setFeedbackNote(e.target.value)}
+          />
+          {feedbackError && <p className="error-text">{feedbackError}</p>}
+          <button type="submit" className="btn primary full">
+            {feedbackCopy.submit}
+          </button>
+          {feedbackSaved && <p className="success-text">{feedbackCopy.thanks}</p>}
+        </form>
+        <div className="feedback-log">
+          <p className="section-text subtle">
+            {activeLocale === 'DE'
+              ? 'Veriler sadece mir zu Lernzwecken; nur Score wird gespeichert.'
+              : activeLocale === 'EN'
+              ? 'Data stays local for my own improvement; only score is stored.'
+              : 'Veriler sadece kendimi geliştirme amaçlı; sadece puanlama tutulur.'}
+          </p>
+        </div>
+      </aside>
       </div>
     </div>
   )
 }
 
 export default App
+
+
 
