@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import type { FormEvent, MouseEvent as ReactMouseEvent } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import type { CSSProperties, FormEvent, MouseEvent as ReactMouseEvent } from 'react'
 import './App.css'
 
 type Locale = 'TR' | 'DE' | 'EN'
@@ -1041,6 +1041,7 @@ const content: Record<
 function App() {
   const [activeLocale, setActiveLocale] = useState<Locale>('TR')
   const [showWelcome, setShowWelcome] = useState(true)
+  const [welcomePhase, setWelcomePhase] = useState<'enter' | 'dusting'>('enter')
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [selectedTag, setSelectedTag] = useState<string>(() =>
     activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All',
@@ -1064,6 +1065,86 @@ function App() {
   const [feedbackSaved, setFeedbackSaved] = useState(false)
   const [feedbackError, setFeedbackError] = useState('')
   const [copyToast, setCopyToast] = useState(false)
+  const [bgPlaying, setBgPlaying] = useState(false)
+  const [bgControlsOpen, setBgControlsOpen] = useState(false)
+  const [bgVolume, setBgVolume] = useState(0.2)
+  const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
+  const [showScrollTop, setShowScrollTop] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const sparkleField = useMemo(
+    () =>
+      Array.from({ length: 16 }, (_, id) => ({
+        id,
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 6}s`,
+        duration: `${6 + Math.random() * 6}s`,
+        scale: 0.6 + Math.random() * 0.6,
+      })),
+    [],
+  )
+  const cosmicDust = useMemo(
+    () =>
+      Array.from({ length: 90 }, (_, id) => ({
+        id,
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 8}s`,
+        duration: `${12 + Math.random() * 10}s`,
+        scale: 0.26 + Math.random() * 0.35,
+        driftX: `${(Math.random() * 12 - 6).toFixed(1)}px`,
+        driftY: `${(Math.random() * 16 - 8).toFixed(1)}px`,
+      })),
+    [],
+  )
+  const shootingStars = useMemo(
+    () =>
+      Array.from({ length: 5 }, (_, id) => ({
+        id,
+        top: `${Math.random() * 80 + 5}%`,
+        delay: `${Math.random() * 30}s`,
+        duration: `${55 + Math.random() * 10}s`,
+        skew: `${(Math.random() * 12 - 6).toFixed(1)}deg`,
+      })),
+    [],
+  )
+  const comets = useMemo(
+    () =>
+      Array.from({ length: 3 }, (_, id) => ({
+        id,
+        top: `${Math.random() * 70 + 10}%`,
+        delay: `${Math.random() * 18 + id * 8}s`,
+        duration: `${18 + Math.random() * 8}s`,
+        rotation: `${(Math.random() * 8 - 4).toFixed(1)}deg`,
+      })),
+    [],
+  )
+  const cosmicPlanets = useMemo(
+    () =>
+      Array.from({ length: 2 }, (_, id) => ({
+        id,
+        size: 120 + Math.random() * 80,
+        top: `${Math.random() * 50 + 15}%`,
+        left: `${Math.random() * 70 + 8}%`,
+        hue: `${Math.random() * 28 - 12}deg`,
+        delay: `${Math.random() * 3}s`,
+        duration: `${24 + Math.random() * 10}s`,
+      })),
+    [],
+  )
+  const bgAudioRef = useRef<HTMLAudioElement | null>(null)
+  const autoBgAttempted = useRef(false)
+  const dustPieces = useMemo(
+    () =>
+      Array.from({ length: 36 }, (_, id) => ({
+        id,
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 0.6}s`,
+        scale: 0.5 + Math.random() * 0.9,
+      })),
+    [],
+  )
   const c = content[activeLocale]
   const tagAllLabel = activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All'
   const allTags = [tagAllLabel, ...new Set(c.projects.flatMap((p) => p.tags))]
@@ -1120,7 +1201,8 @@ function App() {
       ? { nowPlaying: 'Now playing', remaining: 'Remaining', stop: 'Stop', volume: 'Vol' }
       : { nowPlaying: 'Calan parca', remaining: 'Kalan', stop: 'Durdur', volume: 'Ses' }
 
-  const trackMeta = { title: 'Take Me Back To Arcadia', artist: 'JegBaa' }
+  const trackMeta = { title: 'Nocturne', artist: 'JegBaa' }
+  const trackSrc = '/track.mp3?v=1'
   const remainingTime = Math.max(duration - currentTime, 0)
   const progressMax = Math.max(duration, currentTime, 0.1)
   const feedbackCopy = c.feedback
@@ -1204,12 +1286,16 @@ function App() {
 
   const startAudioReactive = async () => {
     try {
+      if (bgAudioRef.current) {
+        bgAudioRef.current.pause()
+        setBgPlaying(false)
+      }
       if (audioActive) return
       if (audioRef.current) {
         audioRef.current.pause()
         audioRef.current.currentTime = 0
       }
-      const audioEl = new Audio('/track.mp3')
+      const audioEl = new Audio(trackSrc)
       audioEl.crossOrigin = 'anonymous'
       audioEl.preload = 'auto'
       audioEl.loop = false
@@ -1299,6 +1385,9 @@ function App() {
     flashRef.current = 0
     document.documentElement.style.setProperty('--flash-strength', '0')
     setCurrentTime(0)
+    if (bgVolume > 0) {
+      startBgAudio().catch((err) => console.error('BG resume failed', err))
+    }
   }
 
   const handleVolumeChange = (value: number) => {
@@ -1314,6 +1403,79 @@ function App() {
     const clamped = Math.max(0, Math.min(duration, value))
     audioRef.current.currentTime = clamped
     setCurrentTime(clamped)
+  }
+
+  const startBgAudio = async () => {
+    try {
+      if (bgVolume <= 0) {
+        stopBgAudio()
+        return
+      }
+      if (bgPlaying) return
+      if (!bgAudioRef.current) {
+        const audio = new Audio('/bg-music.mp3')
+        audio.loop = true
+        audio.preload = 'auto'
+        audio.autoplay = true
+        audio.playsInline = true
+        audio.volume = bgVolume
+        bgAudioRef.current = audio
+      } else {
+        bgAudioRef.current.currentTime = 0
+        bgAudioRef.current.volume = bgVolume
+      }
+      const audio = bgAudioRef.current
+      const tryPlay = async () => {
+        if (!audio) throw new Error('no audio element')
+        audio.muted = false
+        audio.volume = bgVolume
+        await audio.play()
+      }
+      try {
+        await tryPlay()
+        setBgPlaying(true)
+      } catch (err) {
+        console.warn('BG play blocked, retry muted', err)
+        if (!audio) throw err
+        audio.muted = true
+        audio.volume = 0
+        await audio.play()
+        audio.muted = false
+        audio.volume = bgVolume
+        setBgPlaying(true)
+      }
+    } catch (err) {
+      console.error('BG audio failed', err)
+      setBgPlaying(false)
+    }
+  }
+
+  const stopBgAudio = () => {
+    if (bgAudioRef.current) {
+      bgAudioRef.current.pause()
+      bgAudioRef.current.currentTime = 0
+    }
+    setBgPlaying(false)
+  }
+
+  const toggleBgControls = async () => {
+    setBgControlsOpen((open) => !open)
+    if (!bgPlaying && bgVolume > 0) {
+      await startBgAudio()
+    }
+  }
+
+  const handleBgVolume = async (value: number) => {
+    const clamped = Math.max(0, Math.min(1, value))
+    setBgVolume(clamped)
+    if (bgAudioRef.current) {
+      bgAudioRef.current.volume = clamped
+    }
+    if (clamped === 0) {
+      stopBgAudio()
+    } else if (!bgPlaying) {
+      await startBgAudio()
+    }
   }
 
   const formatTime = (value: number) => {
@@ -1427,7 +1589,7 @@ function App() {
           return false
         }
       })()
-    if (seen || feedbackEntries.length > 0) return
+    if (seen || feedbackEntries.length > 0 || isMobile) return
     const timer = window.setTimeout(() => {
       setFeedbackReminder(true)
       setFeedbackOpen(true)
@@ -1438,10 +1600,11 @@ function App() {
       }
     }, 30000)
     return () => clearTimeout(timer)
-  }, [feedbackEntries.length])
+  }, [feedbackEntries.length, isMobile])
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowWelcome(false), 2200)
+    const dustTimer = setTimeout(() => setWelcomePhase('dusting'), 1400)
+    const hideTimer = setTimeout(() => setShowWelcome(false), 2800)
     const root = document.documentElement
     const handleMove = (e: MouseEvent) => {
       root.style.setProperty('--cursor-x', `${e.clientX}px`)
@@ -1454,7 +1617,8 @@ function App() {
     window.addEventListener('mousemove', handleMove)
     window.addEventListener('click', handleClick)
     return () => {
-      clearTimeout(timer)
+      clearTimeout(dustTimer)
+      clearTimeout(hideTimer)
       window.removeEventListener('mousemove', handleMove)
       window.removeEventListener('click', handleClick)
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
@@ -1479,12 +1643,230 @@ function App() {
     setSelectedTag(tagAllLabel)
   }, [tagAllLabel])
 
+  useEffect(() => {
+    const updateMobile = () => {
+      const mobile = window.matchMedia('(max-width: 720px)').matches
+      setIsMobile(mobile)
+      if (mobile) {
+        setFeedbackReminder(false)
+      }
+    }
+    updateMobile()
+    window.addEventListener('resize', updateMobile, { passive: true })
+    return () => window.removeEventListener('resize', updateMobile)
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (bgAudioRef.current) {
+        bgAudioRef.current.pause()
+        bgAudioRef.current = null
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (autoBgAttempted.current) return
+    autoBgAttempted.current = true
+    let cleanup = () => {}
+    const resume = () => {
+      if (bgPlaying) return
+      startBgAudio().catch((err) => console.warn('BG resume blocked', err))
+    }
+    startBgAudio().catch((err) => {
+      console.warn('BG autoplay blocked', err)
+      window.addEventListener('pointerdown', resume, { once: true, passive: true } as AddEventListenerOptions)
+      window.addEventListener('keydown', resume, { once: true })
+      window.addEventListener('visibilitychange', resume, { once: true })
+      cleanup = () => {
+        window.removeEventListener('pointerdown', resume)
+        window.removeEventListener('keydown', resume)
+        window.removeEventListener('visibilitychange', resume)
+      }
+    })
+    return cleanup
+  }, [bgPlaying, bgVolume])
+
+  useEffect(() => {
+    const root = document.documentElement
+    const handleScroll = () => {
+      const max = Math.max(1, document.body.scrollHeight - window.innerHeight)
+      const progress = Math.min(1, window.scrollY / max)
+      root.style.setProperty('--scroll-progress', progress.toString())
+      setShowScrollTop(window.scrollY > 400)
+    }
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const handleKey = () => {
+      const id = Date.now()
+      const duration = 1200 + Math.random() * 600
+      const left = `${10 + Math.random() * 80}%`
+      setFallingStars((prev) => [...prev.slice(-3), { id, left, duration }])
+      window.setTimeout(() => {
+        setFallingStars((prev) => prev.filter((item) => item.id !== id))
+      }, duration + 200)
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [])
+
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
+        })
+      },
+      { threshold: 0.16 },
+    )
+    const sections = Array.from(document.querySelectorAll('.section'))
+    sections.forEach((node) => observer.observe(node))
+    return () => {
+      sections.forEach((node) => observer.unobserve(node))
+    }
+  }, [])
+
+  const scrollToTop = () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+  }
+
   return (
     <div className={`page ${audioActive ? 'sport-mode' : ''}`}>
+      <div className="scroll-progress" aria-hidden="true">
+        <span />
+      </div>
+      <div className="cursor-glow" aria-hidden="true" />
+      <div className="background-dust" aria-hidden="true">
+        <div className="space-haze">
+          <span className="haze h1" />
+          <span className="haze h2" />
+          <span className="haze h3" />
+        </div>
+        {cosmicPlanets.map((planet) => (
+          <span
+            key={planet.id}
+            className="planet"
+            style={
+              {
+                width: `${planet.size}px`,
+                height: `${planet.size}px`,
+                top: planet.top,
+                left: planet.left,
+                '--planet-hue': planet.hue,
+                '--planet-duration': planet.duration,
+                animationDelay: planet.delay,
+                animationDuration: planet.duration,
+              } as CSSProperties
+            }
+          />
+        ))}
+        {cosmicDust.map((piece) => (
+          <span
+            key={piece.id}
+            className="dust mote"
+            style={
+              {
+                top: piece.top,
+                left: piece.left,
+                animationDelay: piece.delay,
+                animationDuration: piece.duration,
+                '--mote-duration': piece.duration,
+                '--dust-scale': piece.scale,
+                '--drift-x': piece.driftX,
+                '--drift-y': piece.driftY,
+              } as CSSProperties
+            }
+          />
+        ))}
+        {shootingStars.map((star) => (
+          <span
+            key={star.id}
+            className="shooting-star"
+            style={
+              {
+                top: star.top,
+                '--star-delay': star.delay,
+                '--star-duration': star.duration,
+                '--star-rotation': star.skew,
+              } as CSSProperties
+            }
+          />
+        ))}
+        {fallingStars.map((star) => (
+          <span
+            key={star.id}
+            className="falling-star"
+            style={
+              {
+                left: star.left,
+                '--fall-duration': `${star.duration}ms`,
+              } as CSSProperties
+            }
+          />
+        ))}
+        <div className="comet-field">
+          {comets.map((comet) => (
+            <span
+              key={comet.id}
+              className="comet"
+              style={
+                {
+                  top: comet.top,
+                  '--comet-delay': comet.delay,
+                  '--comet-duration': comet.duration,
+                  transform: `rotate(${comet.rotation})`,
+                } as CSSProperties
+              }
+            />
+          ))}
+        </div>
+        <div className="sparkle-field">
+          {sparkleField.map((spark) => (
+            <span
+              key={spark.id}
+              className="sparkle"
+              style={
+                {
+                  top: spark.top,
+                  left: spark.left,
+                  '--spark-scale': spark.scale,
+                  '--spark-duration': spark.duration,
+                  '--spark-delay': spark.delay,
+                } as CSSProperties
+              }
+            />
+          ))}
+        </div>
+      </div>
       {showWelcome && (
-        <div className="welcome-overlay" aria-live="polite">
+        <div className={`welcome-overlay ${welcomePhase === 'dusting' ? 'dusting' : ''}`} aria-live="polite">
           <div className="welcome-card">
             <span className="welcome-ring" aria-hidden="true" />
+            <div className="dust-field" aria-hidden="true">
+              {dustPieces.map((piece) => (
+                <span
+                  key={piece.id}
+                  className="dust"
+                  style={
+                    {
+                      top: piece.top,
+                      left: piece.left,
+                      animationDelay: piece.delay,
+                      '--dust-scale': piece.scale,
+                      '--dust-delay': piece.delay,
+                    } as CSSProperties
+                  }
+                />
+              ))}
+            </div>
             <div className="welcome-text">
               <h3>{welcomeOverlayCopy.title}</h3>
               <p className="welcome-sub">{welcomeOverlayCopy.subtitle}</p>
@@ -1497,6 +1879,12 @@ function App() {
         <span className="orb o2" />
         <span className="orb o3" />
         <span className="orb o4" />
+        <span className="orb o5" />
+        <span className="orb o6" />
+        <div className="aurora">
+          <span className="ribbon r1" />
+          <span className="ribbon r2" />
+        </div>
       </div>
       <div className="edge-lights" aria-hidden="true" />
       <div className={`content-shell ${showWelcome ? 'is-blurred' : ''}`}>
@@ -1620,7 +2008,7 @@ function App() {
               <span className="accent">{c.hero.titleAccent}</span>
             </h1>
             <p className="lede">{c.hero.lede}</p>
-            <div className="cta-row">
+            <div className="cta-row hero-cta">
             <a className="btn ghost" href="mailto:bahabuyukates@gmail.com">
               bahabuyukates@gmail.com
             </a>
@@ -2049,41 +2437,75 @@ function App() {
           <span>Created by Baha Büyükateş · Portfolio 2025</span>
         </footer>
       </main>
-      <div className="feedback-launcher">
-        {feedbackReminder && !feedbackOpen && (
-          <div className="feedback-reminder" role="status">
-            <p>{feedbackCopy.reminder}</p>
-            <div className="reminder-actions">
-              <button type="button" className="btn primary mini" onClick={openFeedback}>
-                {feedbackCopy.cta}
-              </button>
-              <button type="button" className="link-button" onClick={() => setFeedbackReminder(false)}>
-                {laterLabel}
-              </button>
-            </div>
+      {!isMobile && (
+        <>
+          <div className="feedback-launcher">
+            {feedbackReminder && !feedbackOpen && (
+              <div className="feedback-reminder" role="status">
+                <p>{feedbackCopy.reminder}</p>
+                <div className="reminder-actions">
+                  <button type="button" className="btn primary mini" onClick={openFeedback}>
+                    {feedbackCopy.cta}
+                  </button>
+                  <button type="button" className="link-button" onClick={() => setFeedbackReminder(false)}>
+                    {laterLabel}
+                  </button>
+                </div>
+              </div>
+            )}
+            <button
+              type="button"
+              className="feedback-trigger"
+              aria-controls="feedback-drawer"
+              aria-expanded={feedbackOpen}
+              onClick={openFeedback}
+            >
+              <div className="trigger-text">
+                <span>⭐ {feedbackCopy.cta}</span>
+                <span className="subtext">{feedbackCopy.title}</span>
+              </div>
+              <span className="pill small">
+                {feedbackEntries.length > 0 ? `${feedbackCopy.averageLabel}: ${feedbackAverage}` : '1-5'}
+              </span>
+            </button>
           </div>
-        )}
-        <button
-          type="button"
-          className="feedback-trigger"
-          aria-controls="feedback-drawer"
-          aria-expanded={feedbackOpen}
-          onClick={openFeedback}
-        >
-          <div className="trigger-text">
-            <span>⭐ {feedbackCopy.cta}</span>
-            <span className="subtext">{feedbackCopy.title}</span>
+          <div
+            className={`feedback-overlay ${feedbackOpen ? 'show' : ''}`}
+            onClick={closeFeedback}
+            aria-hidden={!feedbackOpen}
+          />
+        </>
+      )}
+      <div className="audio-controls music-only">
+        <div className={`music-fab ${bgControlsOpen ? 'open' : ''}`} aria-label="Arka plan muzik kontrol">
+          <button
+            type="button"
+            className="chip-btn icon"
+            onClick={toggleBgControls}
+            aria-expanded={bgControlsOpen}
+            title={bgPlaying ? 'Mute / Stop' : 'Play background music'}
+          >
+            {bgVolume === 0 || !bgPlaying ? '🔈' : '🔊'}
+          </button>
+          <div className="music-slider">
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.05}
+              value={bgVolume}
+              onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
+              aria-label="Müzik ses"
+            />
+            <span className="volume-readout">{Math.round(bgVolume * 100)}%</span>
           </div>
-          <span className="pill small">
-            {feedbackEntries.length > 0 ? `${feedbackCopy.averageLabel}: ${feedbackAverage}` : '1-5'}
-          </span>
-        </button>
+        </div>
       </div>
-      <div
-        className={`feedback-overlay ${feedbackOpen ? 'show' : ''}`}
-        onClick={closeFeedback}
-        aria-hidden={!feedbackOpen}
-      />
+      {showScrollTop && (
+        <button className="scroll-top" type="button" onClick={scrollToTop} aria-label="Başa dön">
+          ↑
+        </button>
+      )}
       <aside
         className={`feedback-drawer ${feedbackOpen ? 'open' : ''}`}
         id="feedback-drawer"
