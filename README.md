@@ -1,4 +1,7 @@
 https://www.bahabuyukates.com/
+
+
+
 TR:
 Kişisel portföyümü ve profesyonel deneyimlerimi tek bir platformda sunmak için React Native ile geliştirdiğim interaktif bir projedir.
 Data, Software, IT ve Endüstriyel Sistemler odağında projelerimi, yeteneklerimi ve deneyimlerimi modern ve kullanıcı odaklı bir arayüzle ve çok dilli yapı sergiler.
