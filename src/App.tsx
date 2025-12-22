@@ -42,6 +42,8 @@ const content: Record<
       profileItems: string[]
       labels: string[]
     }
+    projectsNote: string
+    projectsNoteCta: string
     sections: {
       experience: { eyebrow: string; title: string; text: string }
       skills: { eyebrow: string; title: string; text: string }
@@ -131,6 +133,8 @@ const content: Record<
       ],
       labels: ['Data', 'Endüstriyel', 'Yazılım & IT', 'BI'],
     },
+    projectsNote: 'Kucuk/canli projelerimi GitHubimdan takip edebilirsin; yeni bir fikir varsa iletisime gecelim.',
+    projectsNoteCta: 'İletişim',
     sections: {
       experience: {
         eyebrow: 'Profesyonel Deneyim',
@@ -284,7 +288,7 @@ const content: Record<
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
-        image: '',
+        image: '/projects/heart-disease-prediction-ml.webp',
         impact: 'Erken uyarıda hassasiyet artışı hedeflendi.',
       },
       {
@@ -298,7 +302,7 @@ const content: Record<
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
-        image: '',
+        image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Yanlış pozitif/negatif oranında belirgin iyileşme.',
       },
       {
@@ -312,7 +316,7 @@ const content: Record<
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['Audio', 'AI', 'Python'],
-        image: '',
+        image: '/projects/drumveil-ritual-metal-drums.webp',
         impact: 'Manuel transkripsiyon süreleri saatlerden dakikalara iniyor.',
       },
       {
@@ -448,6 +452,8 @@ const content: Record<
       ],
       labels: ['Data', 'Industrie 4.0', 'Software&IT', 'BI'],
     },
+    projectsNote: 'Laufende kleine/Lern-Projekte findest du live auf meinem GitHub; bei einer Idee lass uns sprechen.',
+    projectsNoteCta: 'Kontakt aufnehmen',
     sections: {
       experience: {
         eyebrow: 'Berufserfahrung',
@@ -600,7 +606,7 @@ const content: Record<
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
-        image: '',
+        image: '/projects/heart-disease-prediction-ml.webp',
         impact: 'Fruehwarnung mit erhoehten Sensitivitaetswerten.',
       },
       {
@@ -614,7 +620,7 @@ const content: Record<
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
-        image: '',
+        image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Falsch-Positiv/Negativ Quote merklich verbessert.',
       },
       {
@@ -627,7 +633,7 @@ const content: Record<
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['Audio', 'AI', 'Python'],
-        image: '',
+        image: '/projects/drumveil-ritual-metal-drums.webp',
         impact: 'Manuelle Transkription von Stunden auf Minuten reduziert.',
       },
       {
@@ -757,6 +763,8 @@ const content: Record<
       ],
       labels: ['Data', 'Industrial 4.0', 'Software&IT', 'BI'],
     },
+    projectsNote: 'You can follow my smaller/learning projects live on my GitHub; lets talk if you have an idea.',
+    projectsNoteCta: 'Contact me',
     sections: {
       experience: {
         eyebrow: 'Professional Experience',
@@ -909,7 +917,7 @@ const content: Record<
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
-        image: '',
+        image: '/projects/heart-disease-prediction-ml.webp',
         impact: 'Targeted better sensitivity for early warning.',
       },
       {
@@ -923,7 +931,7 @@ const content: Record<
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
-        image: '',
+        image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Improved false positive/negative balance.',
       },
       {
@@ -936,7 +944,7 @@ const content: Record<
         github: 'https://github.com/JegBaha',
         live: '#',
         tags: ['Audio', 'AI', 'Python'],
-        image: '',
+        image: '/projects/drumveil-ritual-metal-drums.webp',
         impact: 'Cuts manual transcription from hours to minutes.',
       },
       {
@@ -1202,7 +1210,7 @@ function App() {
       : { nowPlaying: 'Calan parca', remaining: 'Kalan', stop: 'Durdur', volume: 'Ses' }
 
   const trackMeta = { title: 'Nocturne', artist: 'JegBaa' }
-  const trackSrc = '/track.mp3?v=1'
+  const trackSrc = '/track-new.mp3?v=1' // cache-bust to force new audio
   const remainingTime = Math.max(duration - currentTime, 0)
   const progressMax = Math.max(duration, currentTime, 0.1)
   const feedbackCopy = c.feedback
@@ -2207,34 +2215,48 @@ function App() {
             ))}
           </div>
           <div className="grid projects">
-            {filteredProjects.map((project) => (
-              <article className="card project-card" key={project.title}>
-                <div className="card-head">
-                  <div>
-                    <h3>{project.title}</h3>
-                    <p className="stack">{project.stack}</p>
+            {filteredProjects.map((project) => {
+              const isUnityProject = project.stack.toLowerCase().includes('unity')
+              return (
+                <article className="card project-card" key={project.title}>
+                  {project.image && !isUnityProject && (
+                    <div className="project-media">
+                      <img src={project.image} alt={project.title} loading="lazy" />
+                    </div>
+                  )}
+                  <div className="card-head">
+                    <div>
+                      <h3>{project.title}</h3>
+                      <p className="stack">{project.stack}</p>
+                    </div>
+                    <span className="mini-dot" />
                   </div>
-                  <span className="mini-dot" />
-                </div>
-                <p className="card-text">{project.description}</p>
-                <p className="card-text subtle">{project.summary}</p>
-                <div className="tags">
-                  {project.tags.map((tag) => (
-                    <span className="pill small" key={tag}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="card-footer links">
-                  <a className="link" href={project.github} target="_blank" rel="noreferrer">
-                    GitHub
-                  </a>
-                </div>
-                <p className="impact-line">
-                  {project.impact ?? defaultProjectImpact}
-                </p>
-              </article>
-            ))}
+                  <p className="card-text">{project.description}</p>
+                  <p className="card-text subtle">{project.summary}</p>
+                  <div className="tags">
+                    {project.tags.map((tag) => (
+                      <span className="pill small" key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="card-footer links">
+                    <a className="link" href={project.github} target="_blank" rel="noreferrer">
+                      GitHub
+                    </a>
+                  </div>
+                  <p className="impact-line">
+                    {project.impact ?? defaultProjectImpact}
+                  </p>
+                </article>
+              )
+            })}
+          </div>
+          <div className="projects-note">
+            <p className="section-text subtle">{c.projectsNote}</p>
+            <a className="btn primary projects-note-cta" href="#contact">
+              {c.projectsNoteCta}
+            </a>
           </div>
         </section>
 

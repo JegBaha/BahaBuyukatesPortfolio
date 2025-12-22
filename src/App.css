@@ -1506,6 +1506,23 @@ main {
   font-size: 0.85rem;
 }
 
+.projects-note {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.projects-note .btn {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.95rem;
+}
+
+.projects-note-cta {
+  box-shadow: 0 10px 30px rgba(88, 160, 255, 0.22);
+}
+
 .card-text.subtle {
   color: #9bb0d4;
   font-size: 0.95rem;
