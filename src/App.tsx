@@ -16,9 +16,9 @@ type FeedbackEntry = {
 }
 
 const localeOptions: { code: Locale; flag: string }[] = [
-  { code: 'TR', flag: '🇹🇷' },
-  { code: 'DE', flag: '🇩🇪' },
-  { code: 'EN', flag: '🇬🇧' },
+  { code: 'TR', flag: 'TR' },
+  { code: 'DE', flag: 'DE' },
+  { code: 'EN', flag: 'EN' },
 ]
 
 const content: Record<
@@ -1073,9 +1073,12 @@ function App() {
   const [feedbackSaved, setFeedbackSaved] = useState(false)
   const [feedbackError, setFeedbackError] = useState('')
   const [copyToast, setCopyToast] = useState(false)
+  const [moonPhase, setMoonPhase] = useState<'hidden' | 'enter' | 'leave'>('hidden')
+  const moonTimerRef = useRef<number | null>(null)
+  const moonVisible = moonPhase !== 'hidden'
   const [bgPlaying, setBgPlaying] = useState(false)
   const [bgControlsOpen, setBgControlsOpen] = useState(false)
-  const [bgVolume, setBgVolume] = useState(0.2)
+  const [bgVolume, setBgVolume] = useState(0)
   const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -1368,13 +1371,18 @@ function App() {
       setDuration(Number.isFinite(audioEl.duration) ? audioEl.duration : 0)
       audioRef.current = audioEl
       audioEl.currentTime = 0
+      audioEl.onended = () => {
+        stopAudioReactive()
+      }
       await audioEl.play()
       setAudioStarted(true)
       setAudioActive(true)
+      triggerMoonEnter()
       tick()
     } catch (err) {
       console.error('Audio start failed', err)
       setAudioActive(false)
+      triggerMoonLeave()
     }
   }
 
@@ -1390,6 +1398,7 @@ function App() {
     }
     analyserRef.current = null
     setAudioActive(false)
+    triggerMoonLeave()
     flashRef.current = 0
     document.documentElement.style.setProperty('--flash-strength', '0')
     setCurrentTime(0)
@@ -1411,6 +1420,26 @@ function App() {
     const clamped = Math.max(0, Math.min(duration, value))
     audioRef.current.currentTime = clamped
     setCurrentTime(clamped)
+  }
+
+  const triggerMoonEnter = () => {
+    if (moonTimerRef.current) {
+      window.clearTimeout(moonTimerRef.current)
+      moonTimerRef.current = null
+    }
+    setMoonPhase('enter')
+  }
+
+  const triggerMoonLeave = () => {
+    if (moonTimerRef.current) {
+      window.clearTimeout(moonTimerRef.current)
+      moonTimerRef.current = null
+    }
+    setMoonPhase('leave')
+    moonTimerRef.current = window.setTimeout(() => {
+      setMoonPhase('hidden')
+      moonTimerRef.current = null
+    }, 620)
   }
 
   const startBgAudio = async () => {
@@ -1529,8 +1558,7 @@ function App() {
   }
 
   const openFeedback = () => {
-    setFeedbackOpen(true)
-    setFeedbackReminder(false)
+        setFeedbackReminder(false)
     try {
       localStorage.setItem('feedback_prompt_seen', '1')
     } catch (err) {
@@ -1600,13 +1628,12 @@ function App() {
     if (seen || feedbackEntries.length > 0 || isMobile) return
     const timer = window.setTimeout(() => {
       setFeedbackReminder(true)
-      setFeedbackOpen(true)
       try {
         localStorage.setItem('feedback_prompt_seen', '1')
       } catch (err) {
         console.error('Feedback prompt cache failed', err)
       }
-    }, 30000)
+    }, 45000)
     return () => clearTimeout(timer)
   }, [feedbackEntries.length, isMobile])
 
@@ -1663,6 +1690,14 @@ function App() {
     window.addEventListener('resize', updateMobile, { passive: true })
     return () => window.removeEventListener('resize', updateMobile)
   }, [])
+
+  useEffect(() => {
+    if (!audioActive) {
+      triggerMoonLeave()
+    } else {
+      triggerMoonEnter()
+    }
+  }, [audioActive])
 
   useEffect(() => {
     return () => {
@@ -1895,7 +1930,64 @@ function App() {
         </div>
       </div>
       <div className="edge-lights" aria-hidden="true" />
-      <div className={`content-shell ${showWelcome ? 'is-blurred' : ''}`}>
+      {moonVisible && (
+        <div className={`moon-overlay ${moonPhase}`}>
+          <div className="moon-glow" aria-hidden="true">
+            <span className="moon-core" />
+            <span className="moon-halo" />
+            <span className="moon-ring" />
+            <span className="moon-sparkle" />
+          </div>
+          {audioStarted && (
+            <div className="moon-player">
+              <div className="song-label">
+                <span className="eyebrow">{trackMeta.title}</span>
+                <span className="pill ghost">{playerCopy.nowPlaying}</span>
+                <span className="pill ghost">by {trackMeta.artist}</span>
+              </div>
+              <div className={`wave-bars ${audioActive ? 'live' : ''}`} aria-hidden="true">
+                <span className="wave" />
+                <span className="wave" />
+                <span className="wave" />
+                <span className="wave" />
+              </div>
+              <div className="moon-controls">
+                <input
+                  className="timeline-slider"
+                  type="range"
+                  min={0}
+                  max={progressMax}
+                  step={0.1}
+                  value={Math.min(currentTime, progressMax)}
+                  onChange={(e) => handleSeekChange(parseFloat(e.target.value))}
+                  aria-label="Seek"
+                />
+                <div className="time-row">
+                  <span className="eyebrow">
+                    {formatTime(currentTime)} / {formatTime(duration)}
+                  </span>
+                  <button className="btn ghost" type="button" onClick={stopAudioReactive}>
+                    {playerCopy.stop}
+                  </button>
+                </div>
+                <label className="volume-control moon-volume">
+                  <span>{playerCopy.volume}</span>
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.05}
+                    value={volume}
+                    onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
+                    aria-label={playerCopy.volume}
+                  />
+                </label>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+      <div className={`content-shell ${showWelcome ? 'is-blurred' : ''} ${moonVisible ? 'is-hidden' : ''}`}>
       <header className="top-nav">
         <button
           className={`menu-toggle ${isDrawerOpen ? 'open' : ''}`}
@@ -2451,12 +2543,37 @@ function App() {
               <input type="email" name="email" placeholder="E-posta / Email" required />
             </div>
             <textarea name="message" rows={3} placeholder="Kisa mesaj / Short message" required />
-            <button type="submit" className="btn primary">Gönder / Send</button>
+            <button type="submit" className="btn primary">Gonder / Send</button>
           </form>
         </section>
 
         <footer className="footer-note">
-          <span>Created by Baha Büyükateş · Portfolio 2025</span>
+          <span>Created by Baha Buyukates - Portfolio 2025</span>
+          <div className="audio-controls footer-music">
+            <div className={`music-fab ${bgControlsOpen ? 'open' : ''}`} aria-label="Arka plan muzik kontrol">
+              <button
+                type="button"
+                className="chip-btn icon"
+                onClick={toggleBgControls}
+                aria-expanded={bgControlsOpen}
+                title="Opsiyonel arka plan muzik (varsayilan kapali)"
+              >
+                {bgVolume === 0 || !bgPlaying ? '🔈' : '🔊'}
+              </button>
+              <div className="music-slider">
+                <input
+                  type="range"
+                  min={0}
+                  max={1}
+                  step={0.05}
+                  value={bgVolume}
+                  onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
+                  aria-label="Muzik ses"
+                />
+                <span className="volume-readout">{Math.round(bgVolume * 100)}%</span>
+              </div>
+            </div>
+          </div>
         </footer>
       </main>
       {!isMobile && (
@@ -2481,9 +2598,10 @@ function App() {
               aria-controls="feedback-drawer"
               aria-expanded={feedbackOpen}
               onClick={openFeedback}
+              title="Opsiyonel geri bildirim"
             >
               <div className="trigger-text">
-                <span>⭐ {feedbackCopy.cta}</span>
+                <span>💬 {feedbackCopy.cta}</span>
                 <span className="subtext">{feedbackCopy.title}</span>
               </div>
               <span className="pill small">
@@ -2498,31 +2616,6 @@ function App() {
           />
         </>
       )}
-      <div className="audio-controls music-only">
-        <div className={`music-fab ${bgControlsOpen ? 'open' : ''}`} aria-label="Arka plan muzik kontrol">
-          <button
-            type="button"
-            className="chip-btn icon"
-            onClick={toggleBgControls}
-            aria-expanded={bgControlsOpen}
-            title={bgPlaying ? 'Mute / Stop' : 'Play background music'}
-          >
-            {bgVolume === 0 || !bgPlaying ? '🔈' : '🔊'}
-          </button>
-          <div className="music-slider">
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.05}
-              value={bgVolume}
-              onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
-              aria-label="Müzik ses"
-            />
-            <span className="volume-readout">{Math.round(bgVolume * 100)}%</span>
-          </div>
-        </div>
-      </div>
       {showScrollTop && (
         <button className="scroll-top" type="button" onClick={scrollToTop} aria-label="Başa dön">
           ↑
