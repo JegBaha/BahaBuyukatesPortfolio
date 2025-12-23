@@ -246,7 +246,7 @@ const content: Record<
     skills: [
       {
         title: 'Data Analysis & BI',
-        items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
         detail: 'Veriyi karar destek panellerine ve ölçülebilir KPI takibine dönüştürüyorum.',
       },
       {
@@ -580,7 +580,7 @@ const content: Record<
     skills: [
       {
         title: 'Data Analysis & BI',
-        items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
         detail: 'Ich uebersetze Daten in Entscheidungs-Dashboards und messbare KPIs.',
       },
       {
@@ -907,7 +907,7 @@ const content: Record<
     skills: [
       {
         title: 'Data Analysis & BI',
-        items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
         detail: 'I turn data into decision-ready dashboards and measurable KPIs.',
       },
       {
