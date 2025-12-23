@@ -1125,7 +1125,7 @@ function App() {
   const moonVisible = moonPhase !== 'hidden'
   const [bgPlaying, setBgPlaying] = useState(false)
   const [bgControlsOpen, setBgControlsOpen] = useState(false)
-  const [bgVolume, setBgVolume] = useState(0.15)
+  const [bgVolume, setBgVolume] = useState(0.10)
   const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
