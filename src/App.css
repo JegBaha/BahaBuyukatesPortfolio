@@ -1417,6 +1417,16 @@ main {
   box-shadow: 0 0 0 8px rgba(245, 101, 101, 0.08);
 }
 
+.mini-dot-industry {
+  background: radial-gradient(circle at 30% 30%, #38a169, #0f5132);
+  box-shadow: 0 0 0 8px rgba(56, 161, 105, 0.14);
+}
+
+.mini-dot-drumveil {
+  background: radial-gradient(circle at 30% 30%, #eab308, #a16207);
+  box-shadow: 0 0 0 8px rgba(234, 179, 8, 0.16);
+}
+
 .badge {
   padding: 0.35rem 0.65rem;
   border-radius: 999px;

@@ -278,6 +278,20 @@ const content: Record<
     ],
     projects: [
       {
+        title: 'Endustri 4.0 IoT Predictive Maintenance Platformu',
+        description:
+          'Node-RED OPC UA simulasyonu -> MQTT -> Python ETL ile Postgres yildiz sema; PyTorch LSTM ile ariza olasiligi; Power BI dashboard ve cok dilli web UI. Docker Compose ile konumlandirildi, TLS/MQTT ve veri dogrulama ile uca-uca prototip.',
+        summary:
+          'Simule saha verisi, veri ambari ve ariza tahmini pipeline; KPI (OEE/MTTR/MTTF) dashboardlari. Halen uretim asamasinda/WIP.',
+        stack: 'Node-RED, MQTT, Postgres, Python, PyTorch, Power BI, Docker',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['IoT', 'Data', 'ML', 'Ops'],
+        image: '/projects/industry-40-iot-predictive-maintenance.webp',
+        impact: 'Saha verisini AWS free-tier uzerinde toplayip ariza tahminlerini dashboardda sunar.',
+      },
+      {
         title: 'Heart Disease Prediction ML Projesi',
         description:
           'Heart Failure Prediction verisinde eksik/kategorik/numerik alanları temizleyip normalize ederek KNN, Lojistik Regresyon ve Karar Ağacı modellerini karşılaştırdım. Performansı accuracy/precision/recall/F1 ile ölçtüm.',
@@ -308,16 +322,17 @@ const content: Record<
       {
         title: 'Drumveil Ritual - Metal Davul Transkripsiyon',
         description:
-          'PyTorch + Demucs ile metal parçalarda davulları ayırıp "Onsets and Frames" mimarisiyle notaları MIDI çıktısına çeviren pipeline. Slakh dataseti ve gerçek kayıtlarla eğitilip spektrum tabanlı yaklaşım kullanıyor.',
+          'PyTorch + Demucs ile metal parçalarda davulları ayırıp "Onsets and Frames" mimarisiyle notaları MIDI çıktısına çeviren pipeline. Slakh dataseti ve gerçek kayıtlarla eğitilip spektrum tabanlı yaklaşım kullanıyor. Donanım kısıtı nedeniyle bakımda/WIP; şimdilik birkaç saniyelik davul kesitlerini başarıyla çevirdi.',
         summary:
-          'Kaynak ayrıştırma, nota çıkarma ve metal ritimlerine odaklanan derin öğrenme projesi.',
+          'Kaynak ayrıştırma, nota çıkarma ve metal ritimlerine odaklanan derin öğrenme projesi; donanım kısıtı nedeniyle bakımda/WIP, birkaç saniyelik kesitlerde doğrulandı.',
         stack: 'PyTorch, Demucs, Audio DSP',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Audio', 'AI', 'Python'],
+        tags: ['Audio', 'AI', 'Python', 'WIP'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
-        impact: 'Manuel transkripsiyon süreleri saatlerden dakikalara iniyor.',
+        impact:
+          'Manuel transkripsiyon süreleri saatlerden dakikalara iniyor; birkaç saniyelik parçalarda doğrulandı, tam ölçek için donanım güncellemesi bekleniyor.',
       },
       {
         title: 'Employee Management System (.NET)',
@@ -597,6 +612,20 @@ const content: Record<
     ],
     projects: [
       {
+        title: 'Industrie 4.0 IoT Predictive Maintenance Plattform',
+        description:
+          'Node-RED OPC UA Simulation -> MQTT -> Python ETL nach Postgres Sternschema; PyTorch LSTM fuer Ausfallwahrscheinlichkeit; Power BI Dashboards und mehrsprachiges Web-UI. Docker-Compose Deployment, TLS/MQTT moeglich, Datenvalidierung fuer End-to-End Prototyp.',
+        summary:
+          'Simulierter Shopfloor-Datenstrom, Data Warehouse und Failure Prediction Pipeline; KPI (OEE/MTTR/MTTF) Dashboards. Noch in Produktion/WIP.',
+        stack: 'Node-RED, MQTT, Postgres, Python, PyTorch, Power BI, Docker',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['IoT', 'Data', 'ML', 'Ops'],
+        image: '/projects/industry-40-iot-predictive-maintenance.webp',
+        impact: 'Sammelt Felddaten auf AWS Free Tier, liefert Prognosen und KPIs im Dashboard.',
+      },
+      {
         title: 'Heart Disease Prediction ML Projekt',
         description:
           'Heart Failure Prediction Dataset bereinigt (Missing Values, Encoding, Normalisierung) und KNN, Logistische Regression, Decision Trees verglichen. Bewertet mit Accuracy/Precision/Recall/F1 fuer Outcome-Prediction.',
@@ -626,15 +655,17 @@ const content: Record<
       {
         title: 'Drumveil Ritual - Metal Drum Transkription',
         description:
-          'PyTorch + Demucs trennen Metal-Tracks, “Onsets and Frames” extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik.',
-        summary: 'Quelltrennung, Noten-Extraktion und Metal-Rhythmik im Fokus.',
+          'PyTorch + Demucs trennen Metal-Tracks, “Onsets and Frames” extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik. Hardware-Limit -> in Wartung/WIP; aktuell nur wenige Sekunden Drums erfolgreich transkribiert.',
+        summary:
+          'Quelltrennung, Noten-Extraktion und Metal-Rhythmik im Fokus; Wartung/WIP wegen Hardware-Limit, kurze Snippets verifiziert.',
         stack: 'PyTorch, Demucs, Audio DSP',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Audio', 'AI', 'Python'],
+        tags: ['Audio', 'AI', 'Python', 'WIP'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
-        impact: 'Manuelle Transkription von Stunden auf Minuten reduziert.',
+        impact:
+          'Manuelle Transkription von Stunden auf Minuten reduziert; kurze Ausschnitte bestaetigt, volle Laenge nach Hardware-Upgrade.',
       },
       {
         title: 'Employee Management System (.NET)',
@@ -908,6 +939,20 @@ const content: Record<
     ],
     projects: [
       {
+        title: 'Industry 4.0 IoT Predictive Maintenance Platform',
+        description:
+          'Node-RED OPC UA simulation -> MQTT -> Python ETL into Postgres star schema; PyTorch LSTM for failure likelihood; Power BI dashboards plus multilingual web UI. Docker Compose deploy, TLS/MQTT optional, data validation for an end-to-end prototype.',
+        summary:
+          'Simulated shopfloor stream, data warehouse, and failure-prediction pipeline; KPI dashboards for OEE/MTTR/MTTF. Still in production/WIP.',
+        stack: 'Node-RED, MQTT, Postgres, Python, PyTorch, Power BI, Docker',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['IoT', 'Data', 'ML', 'Ops'],
+        image: '/projects/industry-40-iot-predictive-maintenance.webp',
+        impact: 'Collects field data on AWS free tier and surfaces predictions + KPIs in the dashboard.',
+      },
+      {
         title: 'Heart Disease Prediction with ML',
         description:
           'Cleaned/encoded/normalized the Heart Failure Prediction dataset, compared KNN, Logistic Regression, and Decision Trees; evaluated via accuracy, precision, recall, and F1 to predict heart-disease likelihood.',
@@ -937,15 +982,17 @@ const content: Record<
       {
         title: 'Drumveil Ritual - Metal Drum Transcription',
         description:
-          "PyTorch + Demucs for source separation on metal tracks; 'Onsets and Frames' extracts drum notes to MIDI. Uses Slakh data and real recordings with a spectrogram approach for heavy rhythms.",
-        summary: 'Source separation and note extraction tailored to metal drum patterns.',
+          "PyTorch + Demucs for source separation on metal tracks; 'Onsets and Frames' extracts drum notes to MIDI. Uses Slakh data and real recordings with a spectrogram approach for heavy rhythms. Hardware constraints keep it in maintenance/WIP; currently only a few-second drum snippets transcribed successfully.",
+        summary:
+          'Source separation and note extraction tailored to metal drum patterns; WIP/maintenance due to hardware limits, short snippets validated.',
         stack: 'PyTorch, Demucs, Audio DSP',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Audio', 'AI', 'Python'],
+        tags: ['Audio', 'AI', 'Python', 'WIP'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
-        impact: 'Cuts manual transcription from hours to minutes.',
+        impact:
+          'Cuts manual transcription from hours to minutes; a few-second clips confirmed, full-length pending hardware upgrade.',
       },
       {
         title: 'Employee Management System (.NET)',
@@ -1056,7 +1103,7 @@ function App() {
   )
   const [audioActive, setAudioActive] = useState(false)
   const [audioStarted, setAudioStarted] = useState(false)
-  const [volume, setVolume] = useState(0.15)
+  const [volume, setVolume] = useState(0.1)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -1078,7 +1125,7 @@ function App() {
   const moonVisible = moonPhase !== 'hidden'
   const [bgPlaying, setBgPlaying] = useState(false)
   const [bgControlsOpen, setBgControlsOpen] = useState(false)
-  const [bgVolume, setBgVolume] = useState(0)
+  const [bgVolume, setBgVolume] = useState(0.15)
   const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -1202,6 +1249,28 @@ function App() {
       : activeLocale === 'EN'
       ? 'Business impact: improved efficiency/accuracy, reduced manual work.'
       : 'Is etkisi: verim ve dogruluk artisi, manuel is azalmasi.'
+
+  const getProjectMediaStyle = (title: string): CSSProperties | undefined => {
+    const t = title.toLowerCase()
+    if (t.includes('industry 4.0') || t.includes('industrie 4.0') || t.includes('endustri 4.0')) {
+      return { background: 'linear-gradient(135deg, rgba(56, 161, 105, 0.28), rgba(17, 94, 89, 0.24))' }
+    }
+    if (t.includes('drumveil')) {
+      return { background: 'linear-gradient(135deg, rgba(234, 179, 8, 0.32), rgba(202, 138, 4, 0.22))' }
+    }
+    return undefined
+  }
+
+  const getProjectAccentClass = (title: string): string => {
+    const t = title.toLowerCase()
+    if (t.includes('industry 4.0') || t.includes('industrie 4.0') || t.includes('endustri 4.0')) {
+      return 'mini-dot mini-dot-industry'
+    }
+    if (t.includes('drumveil')) {
+      return 'mini-dot mini-dot-drumveil'
+    }
+    return 'mini-dot'
+  }
 
   const welcomeOverlayCopy = { title: 'Hoş geldin / Welcome / Willkommen', subtitle: 'Hope your day is going well.' }
 
@@ -1450,7 +1519,7 @@ function App() {
       }
       if (bgPlaying) return
       if (!bgAudioRef.current) {
-        const audio = new Audio('/bg-music.mp3')
+        const audio = new Audio('/bg-music.mp3?v=2')
         audio.loop = true
         audio.preload = 'auto'
         audio.autoplay = true
@@ -2312,7 +2381,7 @@ function App() {
               return (
                 <article className="card project-card" key={project.title}>
                   {project.image && !isUnityProject && (
-                    <div className="project-media">
+                    <div className="project-media" style={getProjectMediaStyle(project.title)}>
                       <img src={project.image} alt={project.title} loading="lazy" />
                     </div>
                   )}
@@ -2321,7 +2390,7 @@ function App() {
                       <h3>{project.title}</h3>
                       <p className="stack">{project.stack}</p>
                     </div>
-                    <span className="mini-dot" />
+                    <span className={getProjectAccentClass(project.title)} />
                   </div>
                   <p className="card-text">{project.description}</p>
                   <p className="card-text subtle">{project.summary}</p>
