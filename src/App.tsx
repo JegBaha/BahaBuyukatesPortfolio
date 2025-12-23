@@ -133,7 +133,7 @@ const content: Record<
       ],
       labels: ['Data', 'Endüstriyel', 'Yazılım & IT', 'BI'],
     },
-    projectsNote: 'Kucuk/canli projelerimi GitHubimdan takip edebilirsin; yeni bir fikir varsa iletisime gecelim.',
+    projectsNote: 'Kucuk/canli projelerimi GitHubimdan takip edebilirsin.',
     projectsNoteCta: 'İletişim',
     sections: {
       experience: {
@@ -467,7 +467,7 @@ const content: Record<
       ],
       labels: ['Data', 'Industrie 4.0', 'Software&IT', 'BI'],
     },
-    projectsNote: 'Laufende kleine/Lern-Projekte findest du live auf meinem GitHub; bei einer Idee lass uns sprechen.',
+    projectsNote: 'Laufende kleine/Lern-Projekte findest du live auf meinem GitHub.',
     projectsNoteCta: 'Kontakt aufnehmen',
     sections: {
       experience: {
@@ -794,7 +794,7 @@ const content: Record<
       ],
       labels: ['Data', 'Industrial 4.0', 'Software&IT', 'BI'],
     },
-    projectsNote: 'You can follow my smaller/learning projects live on my GitHub; lets talk if you have an idea.',
+    projectsNote: 'You can follow my smaller/learning projects live on my GitHub.',
     projectsNoteCta: 'Contact me',
     sections: {
       experience: {
