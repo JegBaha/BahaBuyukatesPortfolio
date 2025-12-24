@@ -1180,10 +1180,13 @@ function App() {
   const moonVisible = moonPhase !== 'hidden'
   const [bgPlaying, setBgPlaying] = useState(false)
   const [bgControlsOpen, setBgControlsOpen] = useState(false)
-  const [bgVolume, setBgVolume] = useState(0.10)
+  const [bgVolume, setBgVolume] = useState(0.1)
   const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [reduceMotion, setReduceMotion] = useState(false)
+  const [bgLoading, setBgLoading] = useState(false)
+  const [audioLoading, setAudioLoading] = useState(false)
   const sparkleField = useMemo(
     () =>
       Array.from({ length: 16 }, (_, id) => ({
@@ -1196,9 +1199,11 @@ function App() {
       })),
     [],
   )
+  const motionScale = reduceMotion ? 0.25 : isMobile ? 0.7 : 1
+
   const cosmicDust = useMemo(
     () =>
-      Array.from({ length: 90 }, (_, id) => ({
+      Array.from({ length: Math.max(12, Math.round(90 * motionScale)) }, (_, id) => ({
         id,
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
@@ -1208,33 +1213,33 @@ function App() {
         driftX: `${(Math.random() * 12 - 6).toFixed(1)}px`,
         driftY: `${(Math.random() * 16 - 8).toFixed(1)}px`,
       })),
-    [],
+    [motionScale],
   )
   const shootingStars = useMemo(
     () =>
-      Array.from({ length: 5 }, (_, id) => ({
+      Array.from({ length: Math.max(1, Math.round(5 * motionScale)) }, (_, id) => ({
         id,
         top: `${Math.random() * 80 + 5}%`,
         delay: `${Math.random() * 30}s`,
         duration: `${55 + Math.random() * 10}s`,
         skew: `${(Math.random() * 12 - 6).toFixed(1)}deg`,
       })),
-    [],
+    [motionScale],
   )
   const comets = useMemo(
     () =>
-      Array.from({ length: 3 }, (_, id) => ({
+      Array.from({ length: Math.max(1, Math.round(3 * motionScale)) }, (_, id) => ({
         id,
         top: `${Math.random() * 70 + 10}%`,
         delay: `${Math.random() * 18 + id * 8}s`,
         duration: `${18 + Math.random() * 8}s`,
         rotation: `${(Math.random() * 8 - 4).toFixed(1)}deg`,
       })),
-    [],
+    [motionScale],
   )
   const cosmicPlanets = useMemo(
     () =>
-      Array.from({ length: 2 }, (_, id) => ({
+      Array.from({ length: Math.max(1, Math.round(2 * motionScale)) }, (_, id) => ({
         id,
         size: 120 + Math.random() * 80,
         top: `${Math.random() * 50 + 15}%`,
@@ -1243,7 +1248,7 @@ function App() {
         delay: `${Math.random() * 3}s`,
         duration: `${24 + Math.random() * 10}s`,
       })),
-    [],
+    [motionScale],
   )
   const bgAudioRef = useRef<HTMLAudioElement | null>(null)
   const autoBgAttempted = useRef(false)
@@ -1336,6 +1341,43 @@ function App() {
       ? { nowPlaying: 'Now playing', remaining: 'Remaining', stop: 'Stop', volume: 'Vol' }
       : { nowPlaying: 'Calan parca', remaining: 'Kalan', stop: 'Durdur', volume: 'Ses' }
 
+  const audioUiCopy =
+    activeLocale === 'DE'
+      ? {
+          hobbyLoading: 'Lädt...',
+          hobbyPlaying: 'Spielt',
+          hobbyReady: 'Bereit',
+          musicLoading: 'Musik lädt...',
+          musicOn: 'Musik aus',
+          musicOff: 'Musik an',
+          musicStatusLoading: 'Bereitet vor',
+          musicStatusOn: 'Läuft',
+          musicStatusOff: 'Aus',
+        }
+      : activeLocale === 'EN'
+      ? {
+          hobbyLoading: 'Loading...',
+          hobbyPlaying: 'Playing',
+          hobbyReady: 'Ready',
+          musicLoading: 'Music loading...',
+          musicOn: 'Turn music off',
+          musicOff: 'Turn music on',
+          musicStatusLoading: 'Preparing',
+          musicStatusOn: 'Playing',
+          musicStatusOff: 'Off',
+        }
+      : {
+          hobbyLoading: 'Yukleniyor...',
+          hobbyPlaying: 'Çalıyor',
+          hobbyReady: 'Hazır',
+          musicLoading: 'Muzik yukleniyor...',
+          musicOn: 'Muzigi kapat',
+          musicOff: 'Muzigi aç',
+          musicStatusLoading: 'Hazırlanıyor',
+          musicStatusOn: 'Çalıyor',
+          musicStatusOff: 'Kapalı',
+        }
+
   const trackMeta = { title: 'Nocturne', artist: 'JegBaa' }
   const trackSrc = '/track-new.mp3?v=1' // cache-bust to force new audio
   const remainingTime = Math.max(duration - currentTime, 0)
@@ -1421,6 +1463,7 @@ function App() {
 
   const startAudioReactive = async () => {
     try {
+      setAudioLoading(true)
       if (bgAudioRef.current) {
         bgAudioRef.current.pause()
         setBgPlaying(false)
@@ -1507,6 +1550,8 @@ function App() {
       console.error('Audio start failed', err)
       setAudioActive(false)
       triggerMoonLeave()
+    } finally {
+      setAudioLoading(false)
     }
   }
 
@@ -1567,7 +1612,9 @@ function App() {
   }
 
   const startBgAudio = async () => {
+    if (reduceMotion) return
     try {
+      setBgLoading(true)
       if (bgVolume <= 0) {
         stopBgAudio()
         return
@@ -1608,6 +1655,8 @@ function App() {
     } catch (err) {
       console.error('BG audio failed', err)
       setBgPlaying(false)
+    } finally {
+      setBgLoading(false)
     }
   }
 
@@ -1617,6 +1666,7 @@ function App() {
       bgAudioRef.current.currentTime = 0
     }
     setBgPlaying(false)
+    setBgLoading(false)
   }
 
   const toggleBgControls = async () => {
@@ -1816,6 +1866,21 @@ function App() {
   }, [])
 
   useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const apply = (value: boolean) => {
+      setReduceMotion(value)
+      document.body.classList.toggle('low-motion', value)
+    }
+    apply(mq.matches)
+    const handler = (event: MediaQueryListEvent) => apply(event.matches)
+    mq.addEventListener('change', handler)
+    return () => {
+      mq.removeEventListener('change', handler)
+      document.body.classList.remove('low-motion')
+    }
+  }, [])
+
+  useEffect(() => {
     if (!audioActive) {
       triggerMoonLeave()
     } else {
@@ -1833,34 +1898,41 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (autoBgAttempted.current) return
+    if (autoBgAttempted.current || reduceMotion) return
     autoBgAttempted.current = true
-    let cleanup = () => {}
     const resume = () => {
-      if (bgPlaying) return
+      if (bgPlaying || bgVolume <= 0) return
       startBgAudio().catch((err) => console.warn('BG resume blocked', err))
     }
-    startBgAudio().catch((err) => {
-      console.warn('BG autoplay blocked', err)
-      window.addEventListener('pointerdown', resume, { once: true, passive: true } as AddEventListenerOptions)
-      window.addEventListener('keydown', resume, { once: true })
-      window.addEventListener('visibilitychange', resume, { once: true })
-      cleanup = () => {
-        window.removeEventListener('pointerdown', resume)
-        window.removeEventListener('keydown', resume)
-        window.removeEventListener('visibilitychange', resume)
-      }
-    })
-    return cleanup
-  }, [bgPlaying, bgVolume])
+    window.addEventListener('pointerdown', resume, { once: true, passive: true } as AddEventListenerOptions)
+    window.addEventListener('keydown', resume, { once: true })
+    window.addEventListener('visibilitychange', resume, { once: true })
+    return () => {
+      window.removeEventListener('pointerdown', resume)
+      window.removeEventListener('keydown', resume)
+      window.removeEventListener('visibilitychange', resume)
+    }
+  }, [bgPlaying, bgVolume, reduceMotion])
+
+  const scrollTicking = useRef(false)
+  const scrollShowRef = useRef(false)
 
   useEffect(() => {
     const root = document.documentElement
     const handleScroll = () => {
-      const max = Math.max(1, document.body.scrollHeight - window.innerHeight)
-      const progress = Math.min(1, window.scrollY / max)
-      root.style.setProperty('--scroll-progress', progress.toString())
-      setShowScrollTop(window.scrollY > 400)
+      if (scrollTicking.current) return
+      scrollTicking.current = true
+      requestAnimationFrame(() => {
+        const max = Math.max(1, document.body.scrollHeight - window.innerHeight)
+        const progress = Math.min(1, window.scrollY / max)
+        root.style.setProperty('--scroll-progress', progress.toString())
+        const shouldShow = window.scrollY > 420
+        if (scrollShowRef.current !== shouldShow) {
+          scrollShowRef.current = shouldShow
+          setShowScrollTop(shouldShow)
+        }
+        scrollTicking.current = false
+      })
     }
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -2217,6 +2289,33 @@ function App() {
           <span className="pill small">{c.hero.eyebrow}</span>
           <p className="section-text">{c.hero.lede}</p>
         </div>
+        <div className="drawer-music">
+          <p className="eyebrow">{activeLocale === 'DE' ? 'Audio Kontrol' : activeLocale === 'EN' ? 'Audio Control' : 'Ses Kontrol'}</p>
+          <div className="drawer-audio-row">
+            <button
+              type="button"
+              className={`btn ghost mini ${bgLoading ? 'loading' : ''}`}
+              onClick={bgPlaying ? stopBgAudio : startBgAudio}
+              disabled={bgLoading}
+            >
+              {bgLoading ? audioUiCopy.musicLoading : bgPlaying ? audioUiCopy.musicOn : audioUiCopy.musicOff}
+            </button>
+            <div className="drawer-volume">
+              <input
+                type="range"
+                min={0}
+                max={1}
+                step={0.05}
+                value={bgVolume}
+                onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
+                aria-label="Muzik ses"
+              />
+              <span className="pill small ghost">
+                {bgLoading ? audioUiCopy.musicStatusLoading : bgPlaying ? audioUiCopy.musicStatusOn : audioUiCopy.musicStatusOff}
+              </span>
+            </div>
+          </div>
+        </div>
       </aside>
       {isDrawerOpen && <div className="drawer-overlay" onClick={() => setIsDrawerOpen(false)} aria-hidden="true" />}
 
@@ -2554,13 +2653,19 @@ function App() {
             <p className="section-text subtle">{c.sections.hobby.benefit}</p>
           </div>
           <div className="cta-row hobby-controls">
-            <button
-              className={`btn primary audio-btn ${audioActive ? 'active' : ''}`}
-              type="button"
-              onClick={startAudioReactive}
-            >
-              {c.sections.hobby.cta}
-            </button>
+            <div className="audio-btn-stack">
+              <button
+                className={`btn primary audio-btn ${audioActive ? 'active' : ''} ${audioLoading ? 'loading' : ''}`}
+                type="button"
+                onClick={startAudioReactive}
+                disabled={audioLoading}
+              >
+                {audioLoading ? audioUiCopy.hobbyLoading : audioActive ? audioUiCopy.hobbyPlaying : c.sections.hobby.cta}
+              </button>
+              <span className="pill small ghost">
+                {audioLoading ? audioUiCopy.musicStatusLoading : audioActive ? audioUiCopy.hobbyPlaying : audioUiCopy.hobbyReady}
+              </span>
+            </div>
             {audioStarted && (
               <>
                 <div className="player-meta">
@@ -2673,33 +2778,47 @@ function App() {
           </form>
         </section>
 
+        
         <footer className="footer-note">
           <span>Created by Baha Buyukates - Portfolio 2025</span>
-          <div className="audio-controls footer-music">
-            <div className={`music-fab ${bgControlsOpen ? 'open' : ''}`} aria-label="Arka plan muzik kontrol">
-              <button
-                type="button"
-                className="chip-btn icon"
-                onClick={toggleBgControls}
-                aria-expanded={bgControlsOpen}
-                title="Opsiyonel arka plan muzik (varsayilan kapali)"
-              >
-                {bgVolume === 0 || !bgPlaying ? '🔈' : '🔊'}
-              </button>
-              <div className="music-slider">
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  value={bgVolume}
-                  onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
-                  aria-label="Muzik ses"
-                />
-                <span className="volume-readout">{Math.round(bgVolume * 100)}%</span>
+          {!isMobile && (
+            <div className="audio-controls footer-music">
+              <div className={`music-fab ${bgControlsOpen ? 'open' : ''}`} aria-label="Arka plan muzik kontrol">
+                <button
+                  type="button"
+                  className="chip-btn icon"
+                  onClick={toggleBgControls}
+                  aria-expanded={bgControlsOpen}
+                  title="Opsiyonel arka plan muzik (varsayilan kapali)"
+                >
+                  {bgVolume === 0 || !bgPlaying ? '🔇' : '🔊'}
+                </button>
+                <div className="music-slider">
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.05}
+                    value={bgVolume}
+                    onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
+                    aria-label="Muzik ses"
+                  />
+                  <span className="volume-readout">{Math.round(bgVolume * 100)}%</span>
+                </div>
+                <div className="music-toggle">
+                  <button
+                    type="button"
+                    className={`btn ghost mini ${bgLoading ? 'loading' : ''}`}
+                    onClick={bgPlaying ? stopBgAudio : startBgAudio}
+                    disabled={bgLoading}
+                  >
+                    {bgLoading ? audioUiCopy.musicLoading : bgPlaying ? audioUiCopy.musicOn : audioUiCopy.musicOff}
+                  </button>
+                  <span className="pill small ghost">{bgLoading ? audioUiCopy.musicStatusLoading : bgPlaying ? audioUiCopy.musicStatusOn : audioUiCopy.musicStatusOff}</span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </footer>
       </main>
       {!isMobile && (
@@ -2826,6 +2945,3 @@ function App() {
 }
 
 export default App
-
-
-

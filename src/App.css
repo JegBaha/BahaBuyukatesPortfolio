@@ -31,12 +31,13 @@
   position: fixed;
   inset: -15%;
   pointer-events: none;
-  filter: blur(64px) saturate(1.08);
-  opacity: 0.62;
+  filter: blur(48px) saturate(1.04);
+  opacity: 0.56;
   mix-blend-mode: screen;
   z-index: 0;
   animation: ambientFade 14s ease-in-out infinite alternate;
   transform: translate3d(0, calc(var(--scroll-progress, 0) * -18px), 0);
+  will-change: transform, opacity;
 }
 
 .scroll-progress {
@@ -114,6 +115,12 @@
   background: radial-gradient(circle at 40% 40%, rgba(146, 168, 209, 0.24), rgba(109, 127, 161, 0.12), transparent 60%);
   animation: orbFlow 28s ease-in-out infinite alternate-reverse, glowPulse 11s ease-in-out infinite alternate;
   opacity: 0.8;
+}
+
+body.low-motion .ambient-lights {
+  filter: blur(20px) saturate(0.9);
+  opacity: 0.35;
+  animation: none;
 }
 
 .aurora {
@@ -528,6 +535,28 @@
   gap: 0.35rem;
 }
 
+.drawer-audio-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.drawer-audio-row .btn.mini {
+  padding: 0.6rem 0.8rem;
+}
+
+.drawer-volume {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.drawer-volume input[type='range'] {
+  width: 110px;
+  accent-color: #f56565;
+}
+
 .audio-controls {
   position: fixed;
   right: 18px;
@@ -594,6 +623,20 @@
   max-height: 70px;
   opacity: 1;
   transform: translateY(2px);
+}
+
+.music-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.audio-btn-stack {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
 }
 
 .music-fab input[type='range'] {
@@ -850,6 +893,22 @@ main {
     transform: translateX(180%) skewX(-12deg);
     opacity: 0.7;
   }
+}
+
+.btn.loading {
+  opacity: 0.7;
+  pointer-events: none;
+  position: relative;
+}
+
+.btn.loading::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
 .btn.ghost {
@@ -1723,6 +1782,7 @@ main {
   z-index: 0;
   overflow: hidden;
   transform: translate3d(0, calc(var(--scroll-progress, 0) * -35px), 0);
+  will-change: transform;
 }
 
 .comet-field {
@@ -2360,6 +2420,15 @@ body.low-motion .background-dust {
     opacity: 1;
     filter: blur(0);
     transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
