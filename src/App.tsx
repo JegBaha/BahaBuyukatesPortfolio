@@ -134,7 +134,7 @@ const content: Record<
       ],
       labels: ['Data', 'Endüstriyel', 'Yazılım & IT', 'BI'],
     },
-    projectsNote: 'Kucuk/canli projelerimi GitHubimdan takip edebilirsin; yeni bir fikir varsa iletisime gecelim.',
+    projectsNote: 'Kucuk/canli projelerimi GitHubimdan takip edebilirsin.',
     projectsNoteCta: 'İletişim',
     sections: {
       experience: {
@@ -247,7 +247,7 @@ const content: Record<
     skills: [
       {
         title: 'Data Analysis & BI',
-        items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
         detail: 'Veriyi karar destek panellerine ve ölçülebilir KPI takibine dönüştürüyorum.',
       },
       {
@@ -486,7 +486,7 @@ const content: Record<
       ],
       labels: ['Data', 'Industrie 4.0', 'Software&IT', 'BI'],
     },
-    projectsNote: 'Laufende kleine/Lern-Projekte findest du live auf meinem GitHub; bei einer Idee lass uns sprechen.',
+    projectsNote: 'Laufende kleine/Lern-Projekte findest du live auf meinem GitHub.',
     projectsNoteCta: 'Kontakt aufnehmen',
     sections: {
       experience: {
@@ -599,7 +599,7 @@ const content: Record<
     skills: [
       {
         title: 'Data Analysis & BI',
-        items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
         detail: 'Ich uebersetze Daten in Entscheidungs-Dashboards und messbare KPIs.',
       },
       {
@@ -831,7 +831,7 @@ const content: Record<
       ],
       labels: ['Data', 'Industrial 4.0', 'Software&IT', 'BI'],
     },
-    projectsNote: 'You can follow my smaller/learning projects live on my GitHub; lets talk if you have an idea.',
+    projectsNote: 'You can follow my smaller/learning projects live on my GitHub.',
     projectsNoteCta: 'Contact me',
     sections: {
       experience: {
@@ -944,7 +944,7 @@ const content: Record<
     skills: [
       {
         title: 'Data Analysis & BI',
-        items: ['Power BI', 'Excel (Advanced)', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
         detail: 'I turn data into decision-ready dashboards and measurable KPIs.',
       },
       {
@@ -1180,7 +1180,7 @@ function App() {
   const moonVisible = moonPhase !== 'hidden'
   const [bgPlaying, setBgPlaying] = useState(false)
   const [bgControlsOpen, setBgControlsOpen] = useState(false)
-  const [bgVolume, setBgVolume] = useState(0.15)
+  const [bgVolume, setBgVolume] = useState(0.10)
   const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
