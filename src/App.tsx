@@ -92,6 +92,7 @@ const content: Record<
       tags: string[]
       image: string
       impact?: string
+      playground?: boolean
     }[]
     education: { school: string; degree: string; location: string; period: string }[]
     certifications: string[]
@@ -348,41 +349,59 @@ const content: Record<
         impact: 'İzin ve takip süreçlerinde belirgin zaman kazancı.',
       },
       {
+        title: 'Excel VBA Automation Toolkit (Playground)',
+        description:
+          'Excel VBA tabanlı modüler otomasyon toolkit’i; SAP CSV verisini Config’ten okuyup Raw → Staging akışına alıyor, dashboard/pivotlar otomatik yeniliyor. Merkezi loglama/hata yönetimi, Config’e bağlı UserForm EN/TR UI ve çoklu veri kaynakları (CSV/JSON/Excel) entegrasyonu var.',
+        summary:
+          'Mock SAP export ve JSON datasetleriyle konfigürasyon bazlı, yeniden kullanılabilir otomasyon playground’u; log temizleme ve dashboard refresh otomatik.',
+        stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Playground', 'Excel VBA', 'Automation'],
+        image: '/projects/excel-vba-automation.webp',
+        impact: 'Modüler VBA mimarisi, hata yakalama ve Config yönetimi pratiği.',
+        playground: true,
+      },
+      {
         title: '3D Runner Game',
-        description: 'Unity ve C# ile geliştirilen tek kişilik 3D koşu oyunu; level tasarımı ve fizik odaklı.',
-        summary: "Unity'de pipeline ve asset yönetimi deneyimi kazandıran hobi projesi.",
+        description: 'Unity/C# tek kişilik 3D koşu; basit level tasarımı ve fizik odaklı, hızlı iterasyon.', 
+        summary: "Pipeline ve asset yönetimi pratiği için hobi playground’u.",
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Game', 'C#', 'Unity'],
+        tags: ['Game', 'C#', 'Unity', 'Playground'],
         image: '',
         impact: 'Tek kişilik pipeline ve iterasyon hızında artış.',
+        playground: true,
       },
       {
         title: 'Galaxy Survivor 2D Game',
-        description: 'Unity 2D shooter; tek kişilik geliştirme, levellar ve düşman dalgaları ile kısa sürede tamamlandı.',
-        summary: '2D oyun döngüsü, basit AI ve asset entegrasyonu.',
+        description: 'Unity 2D shooter; kısa sürede level ve düşman dalgaları kurulan mini proje.',
+        summary: '2D oyun döngüsü, basit AI ve asset entegrasyonu playground’u.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Game', 'C#', 'Unity'],
+        tags: ['Game', 'C#', 'Unity', 'Playground'],
         image: '',
         impact: 'Hızlı prototipleme ve asset entegrasyonu pratiği.',
+        playground: true,
       },
       {
         title: '3D First Person Shooter Game',
         description:
-          'Okul projesi olarak 3 kişilik ekipte 2.5 haftada tamamlanan FPS/puzzle oyunu; seviye tasarımı, basit AI ve etkileşimli ortamlar içeriyor.',
-        summary: 'Ekip içi görev dağılımı ve hızlı prototipleme ile teslim edilen FPS proje.',
+          '3 kişilik ekipte 2.5 haftada tamamlanan FPS/puzzle; seviye tasarımı, basit AI ve etkileşimli ortamlar.',
+        summary: 'Ekip içi görev dağılımı ve hızlı prototipleme odaklı mini proje.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Game', 'C#', 'Unity'],
+        tags: ['Game', 'C#', 'Unity', 'Playground'],
         image: '',
         impact: '2.5 haftada ekipçe MVP; koordinasyon deneyimi.',
+        playground: true,
       },
     ],
     education: [
@@ -681,41 +700,59 @@ const content: Record<
         impact: 'Genehmigungs- und Tracking-Workflows spuerbar schneller.',
       },
       {
+        title: 'Excel VBA Automation Toolkit (Playground)',
+        description:
+          'Modulares Excel-VBA-Automation-Toolkit: SAP-CSV wird aus Config gelesen, Raw → Staging Pipeline, Dashboards/Pivots aktualisieren automatisch. Zentrales Logging/Error-Handling, EN/DE UserForm-UI aus Config und Multi-Source-Import (CSV/JSON/Excel).',
+        summary:
+          'Konfigurierbarer Playground mit Mock-SAP-Export und JSON-Datasets; automatische Log-Cleanup und Dashboard-Refresh.',
+        stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Playground', 'Excel VBA', 'Automation'],
+        image: '/projects/excel-vba-automation.webp',
+        impact: 'Praxis in modularer VBA-Architektur, zentralem Fehlerfang und Config-Steuerung.',
+        playground: true,
+      },
+      {
         title: '3D Runner Game',
-        description: 'Unity/C# Einzelprojekt; 3D Runner mit Level-Design und Physik.',
-        summary: 'Hobbyprojekt, Fokus auf Asset-Handling und Gameplay-Loop.',
+        description: 'Unity/C# Einzelprojekt; 3D Runner mit schnellem Iterationsfokus auf Level und Physik.',
+        summary: 'Playground für Asset-Handling und Gameplay-Loop.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Game', 'C#', 'Unity'],
+        tags: ['Game', 'C#', 'Unity', 'Playground'],
         image: '',
         impact: 'Solo-Projekt; Pipeline und Iterationstempo gesteigert.',
+        playground: true,
       },
       {
         title: 'Galaxy Survivor 2D Game',
-        description: 'Unity 2D Shooter, allein entwickelt; Level-Wellen und kurze Entwicklungszeit.',
-        summary: '2D Gameplay-Loop, einfache Gegner-Logik und Assets.',
+        description: 'Unity 2D Shooter, allein entwickelt; schnelle Level-Wellen und kurze Entwicklungszeit.',
+        summary: '2D Gameplay-Loop, einfache Gegner-Logik und Asset-Integration als Playground.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Game', 'C#', 'Unity'],
+        tags: ['Game', 'C#', 'Unity', 'Playground'],
         image: '',
         impact: 'Schnelles Prototyping und Asset-Integration geuebt.',
+        playground: true,
       },
       {
         title: '3D First Person Shooter Game',
         description:
-          'Schulprojekt mit 3 Personen in 2,5 Wochen; FPS/Puzzle mit Level-Design, einfacher AI und Interaktionen.',
-        summary: 'Schnelles Prototyping und Team-Arbeit fuer ein kleines FPS.',
+          'FPS/Puzzle in 2,5 Wochen im 3er-Team; Level-Design, einfache AI und interaktive Umgebung.',
+        summary: 'MVP mit schneller Prototyping-Pipeline und klarer Rollenverteilung.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Game', 'C#', 'Unity'],
+        tags: ['Game', 'C#', 'Unity', 'Playground'],
         image: '',
         impact: 'Team-MVP in ~2.5 Wochen; Koordination gestaerkt.',
+        playground: true,
       },
     ],
     education: [
@@ -1008,41 +1045,59 @@ const content: Record<
         impact: 'Approvals and leave tracking noticeably faster.',
       },
       {
+        title: 'Excel VBA Automation Toolkit (Playground)',
+        description:
+          'Modular Excel VBA automation toolkit: reads SAP CSV via Config, runs Raw → Staging flow, auto-refreshes dashboards/pivots. Centralized logging/error handling, Config-driven EN/TR UserForm UI, and multi-source import (CSV/JSON/Excel).',
+        summary:
+          'Configurable playground with mock SAP export and JSON datasets; auto log cleanup and dashboard refresh built-in.',
+        stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
+        link: 'https://github.com/JegBaha',
+        github: 'https://github.com/JegBaha',
+        live: '#',
+        tags: ['Playground', 'Excel VBA', 'Automation'],
+        image: '/projects/excel-vba-automation.webp',
+        impact: 'Practice in modular VBA architecture, centralized error capture, and config management.',
+        playground: true,
+      },
+      {
         title: '3D Runner Game',
-        description: 'Solo Unity/C# project; 3D runner with level design and physics focus.',
-        summary: 'Hobby build emphasizing asset handling and gameplay loop.',
+        description: 'Solo Unity/C# project; 3D runner with quick iterations on levels and physics.',
+        summary: 'Playground focused on asset handling and gameplay loop.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Game', 'C#', 'Unity'],
+        tags: ['Game', 'C#', 'Unity', 'Playground'],
         image: '',
         impact: 'Solo build; better pipeline and iteration speed.',
+        playground: true,
       },
       {
         title: 'Galaxy Survivor 2D Game',
         description: 'Unity 2D shooter built solo; enemy waves, levels, and quick turnaround.',
-        summary: '2D loop, simple enemy logic, and asset integration.',
+        summary: '2D loop, simple enemy logic, and asset integration playground.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Game', 'C#', 'Unity'],
+        tags: ['Game', 'C#', 'Unity', 'Playground'],
         image: '',
         impact: 'Practiced fast prototyping and asset integration.',
+        playground: true,
       },
       {
         title: '3D First Person Shooter Game',
         description:
-          'School project with a 3-person team, delivered in ~2.5 weeks; FPS/puzzle with level design, simple AI, and interactive environments.',
-        summary: 'Rapid prototyping and team delivery of a small FPS.',
+          'FPS/puzzle built in 2.5 weeks with a 3-person team; level design, simple AI, and interactive environments.',
+        summary: 'MVP via rapid prototyping and clear team role split; compact playground build.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha',
         github: 'https://github.com/JegBaha',
         live: '#',
-        tags: ['Game', 'C#', 'Unity'],
+        tags: ['Game', 'C#', 'Unity', 'Playground'],
         image: '',
         impact: 'Delivered a team MVP in ~2.5 weeks; coordination boost.',
+        playground: true,
       },
     ],
     education: [
@@ -2378,8 +2433,9 @@ function App() {
           <div className="grid projects">
             {filteredProjects.map((project) => {
               const isUnityProject = project.stack.toLowerCase().includes('unity')
+              const isPlayground = Boolean(project.playground)
               return (
-                <article className="card project-card" key={project.title}>
+                <article className={`card project-card${isPlayground ? ' playground' : ''}`} key={project.title}>
                   {project.image && !isUnityProject && (
                     <div className="project-media" style={getProjectMediaStyle(project.title)}>
                       <img src={project.image} alt={project.title} loading="lazy" />
@@ -2390,6 +2446,7 @@ function App() {
                       <h3>{project.title}</h3>
                       <p className="stack">{project.stack}</p>
                     </div>
+                    {isPlayground && <span className="pill small ghost">Playground</span>}
                     <span className={getProjectAccentClass(project.title)} />
                   </div>
                   <p className="card-text">{project.description}</p>
