@@ -112,13 +112,13 @@ const content: Record<
       contact: 'İletişim',
     },
     brandEyebrow: 'Computer Engineer | Data/Software/IT/Endüstriyel',
-    welcome: 'Hoş geldin!',
+    welcome: '',
     hero: {
-      eyebrow: 'Bilgisayar Mühendisi',
+      eyebrow: 'Hoş geldin',
       titleMain: 'Bilgisayar Mühendisi,',
       titleAccent: ' veri, yazılım, IT ve endüstriyel sistemlere odaklı',
       lede:
-        'Data Analysis, Software Development, IT destek ve endüstriyel entegrasyon alanlarında çalışıyor ve kendimi geliştiriyorum; KPI dashboardları (Power BI, SQL, DAX), Python/ML eğitimi, backend ve otomasyon deneyimim var.',
+        'Veri merkezli sistemlere odaklanıyorum; verinin kendisini, onu üreten süreçleri ve etrafındaki yazılım/entegrasyon katmanlarını birlikte geliştiriyorum. Ana odağım data.',
       ctas: { browse: 'Projelerime göz at', collaborate: 'Birlikte üretelim' },
     },
     heroMeta: ['AB vatandaşı', 'Vize sponsorluğu gerekmez', 'Hemen başlayabilirim'],
@@ -435,7 +435,7 @@ const content: Record<
     about: {
       eyebrow: 'Hakkımda',
       title: 'Veri, yazılım, IT ve endüstriyel sistemlerde üretiyor ve öğreniyorum.',
-      bio: 'Kendimi birçok alanda geliştiriyor ve yeniliklere açık kalıyorum; teknoloji hız kesmiyor, bu yüzden yazılım, endüstriyel ve mikroservis tarafında da bilgi ediniyorum. Asıl odağım Data: KPI dashboard, backend/API, otomasyon ve ML eğitimi üzerinde çalışıp öğrenmeye devam ediyorum.',
+      bio: 'Verinin yalnızca analiz edilmesiyle değil; nasıl üretildiği, nasıl taşındığı ve nasıl anlamlı kararlara dönüştüğüyle ilgileniyorum. Yazılım, backend, otomasyon ve endüstriyel entegrasyon tarafında kendimi geliştirirken, tüm bu katmanların merkezinde veriyi konumlandırıyorum. Amacım; sahadan gelen veriyi güvenilir, ölçeklenebilir ve karar destek odaklı sistemlere dönüştürmek.',
       strengths: [
         'Data storytelling & dashboarding',
         'ML/CNN eğitimi ve değerlendirme',
@@ -444,7 +444,7 @@ const content: Record<
         'Ekip içi Git akışları ve QA',
       ],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
-      highlight: 'Manuel işleri otomasyonla azalttım; MRI sınıflandırmada yüksek doğruluk.',
+      highlight: 'Data, otomasyon, endüstriyel dijitalizasyon ve BI alanlarında her gün kendimi geliştiriyorum.',
     },
     skillMatrix: [
       { name: 'Power BI / DAX', level: 'İleri', tools: ['Star Schema', 'KPI', 'Gateway'] },
@@ -465,13 +465,13 @@ const content: Record<
       contact: 'Kontakt',
     },
     brandEyebrow: 'Computer Engineer | Data/Software/IT/Industrie',
-    welcome: 'Willkommen!',
+    welcome: '',
     hero: {
-      eyebrow: 'Informatikingenieur',
+      eyebrow: 'Willkommen',
       titleMain: 'Informatikingenieur,',
       titleAccent: ' mit Fokus auf Daten, Software, IT und industrielle Systeme',
       lede:
-        'Ich arbeite und lerne an der Schnittstelle von Data Analysis, Softwareentwicklung, IT-Support und Industrie-Integration; KPI-Dashboards (Power BI, SQL, DAX), Python/ML-Training, Backend und Automatisierungen.',
+        'Ich fokussiere mich auf datenzentrierte Systeme; ich entwickle die Daten selbst, die Prozesse dahinter und die Software-/Integrationsschichten darum herum gemeinsam. Mein Hauptfokus ist Data.',
       ctas: { browse: 'Projekte ansehen', collaborate: 'Lass uns zusammenarbeiten' },
     },
     heroMeta: ['EU-Buerger', 'Kein Visasponsoring noetig', 'Sofort startklar'],
@@ -786,10 +786,10 @@ const content: Record<
     about: {
       eyebrow: 'Über mich',
       title: 'Ich arbeite und lerne in Daten, Software, IT und Industrie-Kontexten.',
-      bio: 'Wie man sieht, halte ich mich in vielen Bereichen fit und offen fuer Neues – Software, Industrie, Microservices – weil Technologie schnell voranschreitet. Mein Hauptfokus bleibt Data: KPI-Dashboards, Backend/API, Automationen und ML-Training, uebend und lernend.',
+      bio: 'Ich interessiere mich nicht nur für Datenanalyse, sondern auch dafür, wie Daten erzeugt, transportiert und in sinnvolle Entscheidungen überführt werden. Während ich mich in Software, Backend, Automatisierung und industrieller Integration weiterentwickle, setze ich Daten ins Zentrum all dieser Schichten. Ziel: Shopfloor-Daten in verlässliche, skalierbare und entscheidungsorientierte Systeme verwandeln.',
       strengths: ['Data Storytelling & BI', 'ML/CNN Training & Bewertung', 'Backend/API & Automatisierung', 'IT/ERP Verstaendnis', 'Git-basierte Kollaboration'],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrie-Ingenieur'],
-      highlight: 'Weniger manuelle HR-Arbeit durch Automatisierung + hohe MRI-Klassifikationsgenauigkeit',
+      highlight: 'Ich entwickle mich täglich in Data, Automatisierung, industrieller Digitalisierung und BI weiter.',
     },
     skillMatrix: [
       { name: 'Power BI / DAX', level: 'Fortgeschritten', tools: ['Star Schema', 'KPI', 'Gateway'] },
@@ -810,13 +810,13 @@ const content: Record<
       contact: 'Contact',
     },
     brandEyebrow: 'Computer Engineer | Data/Software/IT/Industrial',
-    welcome: 'Welcome!',
+    welcome: '',
     hero: {
-      eyebrow: 'Computer Engineer',
+      eyebrow: 'Welcome',
       titleMain: 'Computer Engineer,',
       titleAccent: ' focused on data, software, IT, and industrial systems',
       lede:
-        'I work across data analysis, software, IT support, and industrial integration. I build KPI dashboards (Power BI, SQL, DAX) and keep learning Python/ML, backend, and automation.',
+        'I focus on data-centric systems; I build the data itself, the processes that generate it, and the surrounding software/integration layers together. My main focus is data.',
       ctas: { browse: 'Browse projects', collaborate: "Let's build together" },
     },
     heroMeta: ['EU citizen', 'No visa sponsorship required', 'Immediate availability'],
@@ -1131,10 +1131,10 @@ const content: Record<
     about: {
       eyebrow: 'About',
       title: 'Working and learning across data, software, IT, and industrial contexts.',
-      bio: 'I keep learning in software, industrial work, and microservices because tech moves fast. I focus on data: KPI dashboards, backend/API, automation, and ML training with a keep-improving mindset.',
+      bio: "I'm interested not just in analyzing data, but in how it's produced, moved, and turned into meaningful decisions. As I grow in software, backend, automation, and industrial integration, I keep data at the center of every layer. My goal: turn shop-floor data into reliable, scalable, decision-support systems.",
       strengths: ['Data storytelling & BI', 'ML/CNN training and evaluation', 'Backend/API and automation', 'IT/ERP awareness', 'Git-first teamwork'],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
-      highlight: 'Manual-work reduction via automation + high MRI classification accuracy',
+      highlight: 'I keep improving daily across data, automation, industrial digitalization, and BI.',
     },
     skillMatrix: [
       { name: 'Power BI / DAX', level: 'Advanced', tools: ['Star Schema', 'KPI', 'Gateway'] },
@@ -2322,9 +2322,6 @@ function App() {
       <main>
         <section className="hero" id="hero">
           <div className="hero-text">
-            <div className="welcome-banner" aria-label={c.welcome}>
-              {c.welcome}
-            </div>
             <p className="eyebrow">{c.hero.eyebrow}</p>
             <h1>
               {c.hero.titleMain}
