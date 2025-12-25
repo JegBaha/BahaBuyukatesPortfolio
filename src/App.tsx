@@ -15,6 +15,20 @@ type FeedbackEntry = {
   createdAt: number
 }
 
+type Project = {
+  title: string
+  description: string
+  summary: string
+  stack: string
+  link: string
+  github: string
+  live: string
+  tags: string[]
+  image: string
+  impact?: string
+  playground?: boolean
+}
+
 const localeOptions: { code: Locale; flag: string }[] = [
   { code: 'TR', flag: 'TR' },
   { code: 'DE', flag: 'DE' },
@@ -81,19 +95,7 @@ const content: Record<
       impact?: string
     }[]
     skills: { title: string; items: string[]; detail: string }[]
-    projects: {
-      title: string
-      description: string
-      summary: string
-      stack: string
-      link: string
-      github: string
-      live: string
-      tags: string[]
-      image: string
-      impact?: string
-      playground?: boolean
-    }[]
+    projects: Project[]
     education: { school: string; degree: string; location: string; period: string }[]
     certifications: string[]
     languages: { name: string; level: string }[]
@@ -1157,6 +1159,7 @@ function App() {
   const [selectedTag, setSelectedTag] = useState<string>(() =>
     activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All',
   )
+  const [activeProjectDetail, setActiveProjectDetail] = useState<Project | null>(null)
   const [audioActive, setAudioActive] = useState(false)
   const [audioStarted, setAudioStarted] = useState(false)
   const [volume, setVolume] = useState(0.1)
@@ -1384,6 +1387,18 @@ function App() {
   }, [sectionIdsToTrack])
 
   const indicatorLabel = sectionLabels[activeSection as keyof typeof sectionLabels] ?? sectionLabels.hero
+
+  const projectUiCopy =
+    activeLocale === 'DE'
+      ? { open: 'Details: bitte am Desktop/Web ansehen', close: 'Schließen' }
+      : activeLocale === 'EN'
+      ? { open: 'Details: switch to desktop/web view', close: 'Close' }
+      : { open: 'Detaylar icin Desktop/Web görünümü', close: 'Kapat' }
+
+  const getProjectPreview = (project: Project): string => {
+    const base = project.summary || project.description
+    return base.length > 140 ? `${base.slice(0, 137)}...` : base
+  }
 
   const getProjectMediaStyle = (title: string): CSSProperties | undefined => {
     const t = title.toLowerCase()
@@ -1926,6 +1941,28 @@ function App() {
   useEffect(() => {
     setSelectedTag(tagAllLabel)
   }, [tagAllLabel])
+
+  useEffect(() => {
+    if (!isMobile) {
+      setActiveProjectDetail(null)
+      return
+    }
+    if (activeProjectDetail && !filteredProjects.includes(activeProjectDetail)) {
+      setActiveProjectDetail(null)
+    }
+  }, [isMobile, filteredProjects, activeProjectDetail])
+
+  useEffect(() => {
+    if (isMobile && activeProjectDetail) {
+      const previousOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      return () => {
+        document.body.style.overflow = previousOverflow
+      }
+    }
+    document.body.style.overflow = ''
+    return undefined
+  }, [isMobile, activeProjectDetail])
 
   useEffect(() => {
     const updateMobile = () => {
@@ -2608,10 +2645,32 @@ function App() {
               </button>
             ))}
           </div>
-          <div className="grid projects">
+          <div className={`grid projects${isMobile ? ' mobile' : ''}`}>
             {filteredProjects.map((project) => {
               const isUnityProject = project.stack.toLowerCase().includes('unity')
               const isPlayground = Boolean(project.playground)
+
+              if (isMobile) {
+                return (
+                  <article
+                    className={`card project-card mobile-compact${isPlayground ? ' playground' : ''}`}
+                    key={project.title}
+                  >
+                    <div className="card-head">
+                      <div>
+                        <h3>{project.title}</h3>
+                        <p className="stack">{project.stack}</p>
+                      </div>
+                      {isPlayground && <span className="pill small ghost">Playground</span>}
+                    </div>
+                    <p className="card-text">{getProjectPreview(project)}</p>
+                    <button className="btn ghost small full-width" type="button" disabled aria-disabled="true">
+                      {projectUiCopy.open}
+                    </button>
+                  </article>
+                )
+              }
+
               return (
                 <article className={`card project-card${isPlayground ? ' playground' : ''}`} key={project.title}>
                   {project.image && !isUnityProject && (
@@ -2648,6 +2707,51 @@ function App() {
               )
             })}
           </div>
+          {isMobile && activeProjectDetail && (
+            <div className="project-modal-overlay" role="dialog" aria-modal="true" aria-label={activeProjectDetail.title}>
+              <div className="project-modal">
+                <div className="modal-head">
+                  <div>
+                    <p className="eyebrow">{activeProjectDetail.stack}</p>
+                    <h3>{activeProjectDetail.title}</h3>
+                  </div>
+                  <button className="close-btn" type="button" aria-label={projectUiCopy.close} onClick={() => setActiveProjectDetail(null)}>
+                    ×
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <p className="card-text">{activeProjectDetail.description}</p>
+                  <p className="card-text subtle">{activeProjectDetail.summary}</p>
+                  <div className="tags">
+                    {activeProjectDetail.tags.map((tag) => (
+                      <span className="pill small" key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="links modal-links">
+                    <a className="link" href={activeProjectDetail.github} target="_blank" rel="noreferrer">
+                      GitHub
+                    </a>
+                    {activeProjectDetail.live && activeProjectDetail.live !== '#' && (
+                      <a className="link" href={activeProjectDetail.live} target="_blank" rel="noreferrer">
+                        Live
+                      </a>
+                    )}
+                    {activeProjectDetail.link && activeProjectDetail.link !== '#' && (
+                      <a className="link" href={activeProjectDetail.link} target="_blank" rel="noreferrer">
+                        Link
+                      </a>
+                    )}
+                  </div>
+                  <p className="impact-line">{activeProjectDetail.impact ?? defaultProjectImpact}</p>
+                </div>
+                <button className="btn primary full-width" type="button" onClick={() => setActiveProjectDetail(null)}>
+                  {projectUiCopy.close}
+                </button>
+              </div>
+            </div>
+          )}
           <div className="projects-note">
             <p className="section-text subtle">{c.projectsNote}</p>
             <a className="btn primary projects-note-cta" href="#contact">
