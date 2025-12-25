@@ -1153,6 +1153,7 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true)
   const [welcomePhase, setWelcomePhase] = useState<'enter' | 'dusting'>('enter')
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState<string>('hero')
   const [selectedTag, setSelectedTag] = useState<string>(() =>
     activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All',
   )
@@ -1264,11 +1265,21 @@ function App() {
     [],
   )
   const c = content[activeLocale]
-  const tagAllLabel = activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All'
+  const tagAllLabel = useMemo(
+    () => (activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All'),
+    [activeLocale],
+  )
+
+  useEffect(() => {
+    setSelectedTag(tagAllLabel)
+  }, [tagAllLabel])
+
   const allTags = [tagAllLabel, ...new Set(c.projects.flatMap((p) => p.tags))]
   const hobbyNavLabel = activeLocale === 'TR' ? 'Hobim' : 'Hobby'
   const filteredProjects =
-    selectedTag === tagAllLabel ? c.projects : c.projects.filter((p) => p.tags.includes(selectedTag))
+    selectedTag === tagAllLabel || !allTags.includes(selectedTag)
+      ? c.projects
+      : c.projects.filter((p) => p.tags.includes(selectedTag))
 
   const learningList =
     activeLocale === 'TR'
@@ -1309,6 +1320,70 @@ function App() {
       : activeLocale === 'EN'
       ? 'Business impact: improved efficiency/accuracy, reduced manual work.'
       : 'Is etkisi: verim ve dogruluk artisi, manuel is azalmasi.'
+
+  const sectionIdsToTrack = useMemo(
+    () => ['hero', 'about', 'experience', 'skills', 'projects', 'education', 'certifications', 'hobby', 'contact'],
+    [],
+  )
+  const sectionLabels =
+    activeLocale === 'DE'
+      ? {
+          hero: 'Willkommen',
+          about: 'Über mich',
+          experience: 'Erfahrung',
+          skills: 'Skills',
+          projects: 'Projekte',
+          education: 'Ausbildung',
+          certifications: 'Zertifikate',
+          hobby: 'Hobby',
+          contact: 'Kontakt',
+        }
+      : activeLocale === 'EN'
+      ? {
+          hero: 'Welcome',
+          about: 'About',
+          experience: 'Experience',
+          skills: 'Skills',
+          projects: 'Projects',
+          education: 'Education',
+          certifications: 'Certifications',
+          hobby: 'Hobby',
+          contact: 'Contact',
+        }
+      : {
+          hero: 'Hoş geldin',
+          about: 'Hakkımda',
+          experience: 'Deneyim',
+          skills: 'Yetenekler',
+          projects: 'Projeler',
+          education: 'Eğitim',
+          certifications: 'Sertifikalar',
+          hobby: 'Hobim',
+          contact: 'İletişim',
+        }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+        if (visible[0]) {
+          setActiveSection(visible[0].target.id)
+        }
+      },
+      { threshold: [0.35, 0.6], rootMargin: '-10% 0px -25% 0px' },
+    )
+
+    sectionIdsToTrack.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [sectionIdsToTrack])
+
+  const indicatorLabel = sectionLabels[activeSection as keyof typeof sectionLabels] ?? sectionLabels.hero
 
   const getProjectMediaStyle = (title: string): CSSProperties | undefined => {
     const t = title.toLowerCase()
@@ -2318,6 +2393,13 @@ function App() {
         </div>
       </aside>
       {isDrawerOpen && <div className="drawer-overlay" onClick={() => setIsDrawerOpen(false)} aria-hidden="true" />}
+
+      <div className="section-indicator" aria-live="polite">
+        <div className="indicator-ring">
+          <span className="indicator-orb" aria-hidden="true" />
+        </div>
+        <span className="indicator-label">{indicatorLabel}</span>
+      </div>
 
       <main>
         <section className="hero" id="hero">

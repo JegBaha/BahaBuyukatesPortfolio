@@ -1580,6 +1580,73 @@ main {
   font-size: 0.82rem;
 }
 
+.section-indicator {
+  position: fixed;
+  left: 1.1rem;
+  top: 32%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(14, 18, 30, 0.6);
+  border: 1px solid rgba(120, 150, 210, 0.28);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+  padding: 0.55rem 0.65rem;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  z-index: 12;
+}
+
+.indicator-ring {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(138, 212, 255, 0.35), rgba(20, 30, 50, 0.35));
+  border: 1px solid rgba(138, 212, 255, 0.2);
+  box-shadow: inset 0 0 14px rgba(99, 166, 255, 0.2);
+}
+
+.indicator-orb {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8ad4ff, #63a6ff);
+  box-shadow: 0 0 0 6px rgba(99, 166, 255, 0.15);
+  top: 50%;
+  left: 50%;
+  transform-origin: -14px -14px;
+  animation: orbit 5s linear infinite;
+}
+
+.indicator-label {
+  color: #f4f6fb;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translate(-14px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translate(-14px) rotate(-360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .section-indicator {
+    top: auto;
+    bottom: 1.2rem;
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    justify-content: center;
+  }
+}
+
 .project-card.playground .impact-line {
   font-size: 0.95rem;
 }
