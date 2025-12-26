@@ -285,10 +285,10 @@ const content: Record<
         description:
           'Node-RED OPC UA simulasyonu -> MQTT -> Python ETL ile Postgres yildiz sema; PyTorch LSTM ile ariza olasiligi; Power BI dashboard ve cok dilli web UI. Docker Compose ile konumlandirildi, TLS/MQTT ve veri dogrulama ile uca-uca prototip.',
         summary:
-          'Simule saha verisi, veri ambari ve ariza tahmini pipeline; KPI (OEE/MTTR/MTTF) dashboardlari. Halen uretim asamasinda/WIP.',
+          'Simule saha verisi, veri ambari ve ariza tahmini pipeline; KPI (OEE/MTTR/MTTF) dashboardlari. Halen uretim asamasinda/Iterative prototype.',
         stack: 'Node-RED, MQTT, Postgres, Python, PyTorch, Power BI, Docker',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['IoT', 'Data', 'ML', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
@@ -301,8 +301,8 @@ const content: Record<
         summary:
           'Veri ön-işleme, çoklu model denemesi ve sağlık verisinde kalp hastalığı olasılığı tahmini.',
         stack: 'Scikit-Learn, Python, ML',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
@@ -315,8 +315,8 @@ const content: Record<
         summary:
           'Çok veri kaynaklı MRI pipeline, model ensemble ve REST API ile sağlık için uca-uca AI.',
         stack: 'PyTorch, TensorFlow, CNN',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
@@ -325,14 +325,14 @@ const content: Record<
       {
         title: 'Drumveil Ritual - Metal Davul Transkripsiyon',
         description:
-          'PyTorch + Demucs ile metal parçalarda davulları ayırıp "Onsets and Frames" mimarisiyle notaları MIDI çıktısına çeviren pipeline. Slakh dataseti ve gerçek kayıtlarla eğitilip spektrum tabanlı yaklaşım kullanıyor. Donanım kısıtı nedeniyle bakımda/WIP; şimdilik birkaç saniyelik davul kesitlerini başarıyla çevirdi.',
+          'PyTorch + Demucs ile metal parçalarda davulları ayırıp "Onsets and Frames" mimarisiyle notaları MIDI çıktısına çeviren pipeline. Slakh dataseti ve gerçek kayıtlarla eğitilip spektrum tabanlı yaklaşım kullanıyor. Donanım kısıtı nedeniyle bakımda/Iterative prototype; şimdilik birkaç saniyelik davul kesitlerini başarıyla çevirdi.',
         summary:
-          'Kaynak ayrıştırma, nota çıkarma ve metal ritimlerine odaklanan derin öğrenme projesi; donanım kısıtı nedeniyle bakımda/WIP, birkaç saniyelik kesitlerde doğrulandı.',
+          'Kaynak ayrıştırma, nota çıkarma ve metal ritimlerine odaklanan derin öğrenme projesi; donanım kısıtı nedeniyle bakımda/Iterative prototype, birkaç saniyelik kesitlerde doğrulandı.',
         stack: 'PyTorch, Demucs, Audio DSP',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Audio', 'AI', 'Python', 'WIP'],
+        tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
           'Manuel transkripsiyon süreleri saatlerden dakikalara iniyor; birkaç saniyelik parçalarda doğrulandı, tam ölçek için donanım güncellemesi bekleniyor.',
@@ -351,16 +351,16 @@ const content: Record<
         impact: 'İzin ve takip süreçlerinde belirgin zaman kazancı.',
       },
       {
-        title: 'Excel VBA Automation Toolkit (Playground)',
+        title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
         description:
           'Excel VBA tabanlı modüler otomasyon toolkit’i; SAP CSV verisini Config’ten okuyup Raw → Staging akışına alıyor, dashboard/pivotlar otomatik yeniliyor. Merkezi loglama/hata yönetimi, Config’e bağlı UserForm EN/TR UI ve çoklu veri kaynakları (CSV/JSON/Excel) entegrasyonu var.',
         summary:
-          'Mock SAP export ve JSON datasetleriyle konfigürasyon bazlı, yeniden kullanılabilir otomasyon playground’u; log temizleme ve dashboard refresh otomatik.',
+          'Mock SAP export ve JSON datasetleriyle konfigürasyon bazlı, yeniden kullanılabilir otomasyon Prototype / Demo; log temizleme ve dashboard refresh otomatik.',
         stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Playground', 'Excel VBA', 'Automation'],
+        tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
         image: '/projects/excel-vba-automation.webp',
         impact: 'Modüler VBA mimarisi, hata yakalama ve Config yönetimi pratiği.',
         playground: true,
@@ -368,12 +368,12 @@ const content: Record<
       {
         title: '3D Runner Game',
         description: 'Unity/C# tek kişilik 3D koşu; basit level tasarımı ve fizik odaklı, hızlı iterasyon.', 
-        summary: "Pipeline ve asset yönetimi pratiği için hobi playground’u.",
+        summary: 'Pipeline ve asset yönetimi pratiği için hobi Prototype / Demo.',
         stack: 'Unity, C#',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Game', 'C#', 'Unity', 'Playground'],
+        tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
         impact: 'Tek kişilik pipeline ve iterasyon hızında artış.',
         playground: true,
@@ -381,12 +381,12 @@ const content: Record<
       {
         title: 'Galaxy Survivor 2D Game',
         description: 'Unity 2D shooter; kısa sürede level ve düşman dalgaları kurulan mini proje.',
-        summary: '2D oyun döngüsü, basit AI ve asset entegrasyonu playground’u.',
+        summary: '2D oyun döngüsü, basit AI ve asset entegrasyonu Prototype / Demo.',
         stack: 'Unity, C#',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Game', 'C#', 'Unity', 'Playground'],
+        tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
         impact: 'Hızlı prototipleme ve asset entegrasyonu pratiği.',
         playground: true,
@@ -397,10 +397,10 @@ const content: Record<
           '3 kişilik ekipte 2.5 haftada tamamlanan FPS/puzzle; seviye tasarımı, basit AI ve etkileşimli ortamlar.',
         summary: 'Ekip içi görev dağılımı ve hızlı prototipleme odaklı mini proje.',
         stack: 'Unity, C#',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Game', 'C#', 'Unity', 'Playground'],
+        tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
         impact: '2.5 haftada ekipçe MVP; koordinasyon deneyimi.',
         playground: true,
@@ -637,10 +637,10 @@ const content: Record<
         description:
           'Node-RED OPC UA Simulation -> MQTT -> Python ETL nach Postgres Sternschema; PyTorch LSTM fuer Ausfallwahrscheinlichkeit; Power BI Dashboards und mehrsprachiges Web-UI. Docker-Compose Deployment, TLS/MQTT moeglich, Datenvalidierung fuer End-to-End Prototyp.',
         summary:
-          'Simulierter Shopfloor-Datenstrom, Data Warehouse und Failure Prediction Pipeline; KPI (OEE/MTTR/MTTF) Dashboards. Noch in Produktion/WIP.',
+          'Simulierter Shopfloor-Datenstrom, Data Warehouse und Failure Prediction Pipeline; KPI (OEE/MTTR/MTTF) Dashboards. Noch in Produktion/Iterative prototype.',
         stack: 'Node-RED, MQTT, Postgres, Python, PyTorch, Power BI, Docker',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['IoT', 'Data', 'ML', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
@@ -652,8 +652,8 @@ const content: Record<
           'Heart Failure Prediction Dataset bereinigt (Missing Values, Encoding, Normalisierung) und KNN, Logistische Regression, Decision Trees verglichen. Bewertet mit Accuracy/Precision/Recall/F1 fuer Outcome-Prediction.',
         summary: 'Datenaufbereitung, Modellvergleich und Healthcare-Use-Case fuer Herzrisiko-Prognose.',
         stack: 'Scikit-Learn, Python, ML',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
@@ -666,8 +666,8 @@ const content: Record<
         summary:
           'End-to-End MRI-Pipeline mit Ensemble und generalisierbaren Modellen fuer den Klinik-Einsatz.',
         stack: 'PyTorch, TensorFlow, CNN',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
@@ -676,14 +676,14 @@ const content: Record<
       {
         title: 'Drumveil Ritual - Metal Drum Transkription',
         description:
-          'PyTorch + Demucs trennen Metal-Tracks, “Onsets and Frames” extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik. Hardware-Limit -> in Wartung/WIP; aktuell nur wenige Sekunden Drums erfolgreich transkribiert.',
+          'PyTorch + Demucs trennen Metal-Tracks, “Onsets and Frames” extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik. Hardware-Limit -> in Wartung/Iterative prototype; aktuell nur wenige Sekunden Drums erfolgreich transkribiert.',
         summary:
-          'Quelltrennung, Noten-Extraktion und Metal-Rhythmik im Fokus; Wartung/WIP wegen Hardware-Limit, kurze Snippets verifiziert.',
+          'Quelltrennung, Noten-Extraktion und Metal-Rhythmik im Fokus; Wartung/Iterative prototype wegen Hardware-Limit, kurze Snippets verifiziert.',
         stack: 'PyTorch, Demucs, Audio DSP',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Audio', 'AI', 'Python', 'WIP'],
+        tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
           'Manuelle Transkription von Stunden auf Minuten reduziert; kurze Ausschnitte bestaetigt, volle Laenge nach Hardware-Upgrade.',
@@ -702,16 +702,16 @@ const content: Record<
         impact: 'Genehmigungs- und Tracking-Workflows spuerbar schneller.',
       },
       {
-        title: 'Excel VBA Automation Toolkit (Playground)',
+        title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
         description:
           'Modulares Excel-VBA-Automation-Toolkit: SAP-CSV wird aus Config gelesen, Raw → Staging Pipeline, Dashboards/Pivots aktualisieren automatisch. Zentrales Logging/Error-Handling, EN/DE UserForm-UI aus Config und Multi-Source-Import (CSV/JSON/Excel).',
         summary:
-          'Konfigurierbarer Playground mit Mock-SAP-Export und JSON-Datasets; automatische Log-Cleanup und Dashboard-Refresh.',
+          'Konfigurierbarer Prototype / Demo mit Mock-SAP-Export und JSON-Datasets; automatische Log-Cleanup und Dashboard-Refresh.',
         stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Playground', 'Excel VBA', 'Automation'],
+        tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
         image: '/projects/excel-vba-automation.webp',
         impact: 'Praxis in modularer VBA-Architektur, zentralem Fehlerfang und Config-Steuerung.',
         playground: true,
@@ -719,12 +719,12 @@ const content: Record<
       {
         title: '3D Runner Game',
         description: 'Unity/C# Einzelprojekt; 3D Runner mit schnellem Iterationsfokus auf Level und Physik.',
-        summary: 'Playground für Asset-Handling und Gameplay-Loop.',
+        summary: 'Prototype / Demo für Asset-Handling und Gameplay-Loop.',
         stack: 'Unity, C#',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Game', 'C#', 'Unity', 'Playground'],
+        tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
         impact: 'Solo-Projekt; Pipeline und Iterationstempo gesteigert.',
         playground: true,
@@ -732,12 +732,12 @@ const content: Record<
       {
         title: 'Galaxy Survivor 2D Game',
         description: 'Unity 2D Shooter, allein entwickelt; schnelle Level-Wellen und kurze Entwicklungszeit.',
-        summary: '2D Gameplay-Loop, einfache Gegner-Logik und Asset-Integration als Playground.',
+        summary: '2D Gameplay-Loop, einfache Gegner-Logik und Asset-Integration als Prototype / Demo.',
         stack: 'Unity, C#',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Game', 'C#', 'Unity', 'Playground'],
+        tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
         impact: 'Schnelles Prototyping und Asset-Integration geuebt.',
         playground: true,
@@ -748,10 +748,10 @@ const content: Record<
           'FPS/Puzzle in 2,5 Wochen im 3er-Team; Level-Design, einfache AI und interaktive Umgebung.',
         summary: 'MVP mit schneller Prototyping-Pipeline und klarer Rollenverteilung.',
         stack: 'Unity, C#',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Game', 'C#', 'Unity', 'Playground'],
+        tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
         impact: 'Team-MVP in ~2.5 Wochen; Koordination gestaerkt.',
         playground: true,
@@ -982,10 +982,10 @@ const content: Record<
         description:
           'Node-RED OPC UA simulation -> MQTT -> Python ETL into Postgres star schema; PyTorch LSTM for failure likelihood; Power BI dashboards plus multilingual web UI. Docker Compose deploy, TLS/MQTT optional, data validation for an end-to-end prototype.',
         summary:
-          'Simulated shopfloor stream, data warehouse, and failure-prediction pipeline; KPI dashboards for OEE/MTTR/MTTF. Still in production/WIP.',
+          'Simulated shopfloor stream, data warehouse, and failure-prediction pipeline; KPI dashboards for OEE/MTTR/MTTF. Still in production/Iterative prototype.',
         stack: 'Node-RED, MQTT, Postgres, Python, PyTorch, Power BI, Docker',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['IoT', 'Data', 'ML', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
@@ -997,8 +997,8 @@ const content: Record<
           'Cleaned/encoded/normalized the Heart Failure Prediction dataset, compared KNN, Logistic Regression, and Decision Trees; evaluated via accuracy, precision, recall, and F1 to predict heart-disease likelihood.',
         summary: 'Data preprocessing, multi-model testing, healthcare-focused risk prediction.',
         stack: 'Scikit-Learn, Python, ML',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
@@ -1011,8 +1011,8 @@ const content: Record<
         summary:
           'End-to-end MRI pipeline with ensemble models and production-ready APIs for healthcare.',
         stack: 'PyTorch, TensorFlow, CNN',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
@@ -1021,14 +1021,14 @@ const content: Record<
       {
         title: 'Drumveil Ritual - Metal Drum Transcription',
         description:
-          "PyTorch + Demucs for source separation on metal tracks; 'Onsets and Frames' extracts drum notes to MIDI. Uses Slakh data and real recordings with a spectrogram approach for heavy rhythms. Hardware constraints keep it in maintenance/WIP; currently only a few-second drum snippets transcribed successfully.",
+          "PyTorch + Demucs for source separation on metal tracks; 'Onsets and Frames' extracts drum notes to MIDI. Uses Slakh data and real recordings with a spectrogram approach for heavy rhythms. Hardware constraints keep it in maintenance/Iterative prototype; currently only a few-second drum snippets transcribed successfully.",
         summary:
-          'Source separation and note extraction tailored to metal drum patterns; WIP/maintenance due to hardware limits, short snippets validated.',
+          'Source separation and note extraction tailored to metal drum patterns; Iterative prototype/maintenance due to hardware limits, short snippets validated.',
         stack: 'PyTorch, Demucs, Audio DSP',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Audio', 'AI', 'Python', 'WIP'],
+        tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
           'Cuts manual transcription from hours to minutes; a few-second clips confirmed, full-length pending hardware upgrade.',
@@ -1047,29 +1047,29 @@ const content: Record<
         impact: 'Approvals and leave tracking noticeably faster.',
       },
       {
-        title: 'Excel VBA Automation Toolkit (Playground)',
+        title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
         description:
           'Modular Excel VBA automation toolkit: reads SAP CSV via Config, runs Raw → Staging flow, auto-refreshes dashboards/pivots. Centralized logging/error handling, Config-driven EN/TR UserForm UI, and multi-source import (CSV/JSON/Excel).',
         summary:
-          'Configurable playground with mock SAP export and JSON datasets; auto log cleanup and dashboard refresh built-in.',
+          'Configurable Prototype / Demo with mock SAP export and JSON datasets; auto log cleanup and dashboard refresh built-in.',
         stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Playground', 'Excel VBA', 'Automation'],
+        tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
         image: '/projects/excel-vba-automation.webp',
-        impact: 'Practice in modular VBA architecture, centralized error capture, and config management.',
+        impact: 'Applied project in modular VBA architecture, centralized error capture, and config management.',
         playground: true,
       },
       {
         title: '3D Runner Game',
         description: 'Solo Unity/C# project; 3D runner with quick iterations on levels and physics.',
-        summary: 'Playground focused on asset handling and gameplay loop.',
+        summary: 'Prototype / Demo focused on asset handling and gameplay loop.',
         stack: 'Unity, C#',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Game', 'C#', 'Unity', 'Playground'],
+        tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
         impact: 'Solo build; better pipeline and iteration speed.',
         playground: true,
@@ -1077,26 +1077,26 @@ const content: Record<
       {
         title: 'Galaxy Survivor 2D Game',
         description: 'Unity 2D shooter built solo; enemy waves, levels, and quick turnaround.',
-        summary: '2D loop, simple enemy logic, and asset integration playground.',
+        summary: '2D loop, simple enemy logic, and asset integration Prototype / Demo.',
         stack: 'Unity, C#',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Game', 'C#', 'Unity', 'Playground'],
+        tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
-        impact: 'Practiced fast prototyping and asset integration.',
+        impact: 'Applied project for fast prototyping and asset integration.',
         playground: true,
       },
       {
         title: '3D First Person Shooter Game',
         description:
           'FPS/puzzle built in 2.5 weeks with a 3-person team; level design, simple AI, and interactive environments.',
-        summary: 'MVP via rapid prototyping and clear team role split; compact playground build.',
+        summary: 'MVP via rapid prototyping and clear team role split; compact Prototype / Demo build.',
         stack: 'Unity, C#',
-        link: 'https://github.com/JegBaha',
-        github: 'https://github.com/JegBaha',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['Game', 'C#', 'Unity', 'Playground'],
+        tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
         impact: 'Delivered a team MVP in ~2.5 weeks; coordination boost.',
         playground: true,
@@ -2661,7 +2661,7 @@ function App() {
                         <h3>{project.title}</h3>
                         <p className="stack">{project.stack}</p>
                       </div>
-                      {isPlayground && <span className="pill small ghost">Playground</span>}
+                      {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
                     </div>
                     <p className="card-text">{getProjectPreview(project)}</p>
                     <button className="btn ghost small full-width" type="button" disabled aria-disabled="true">
@@ -2683,7 +2683,7 @@ function App() {
                       <h3>{project.title}</h3>
                       <p className="stack">{project.stack}</p>
                     </div>
-                    {isPlayground && <span className="pill small ghost">Playground</span>}
+                    {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
                     <span className={getProjectAccentClass(project.title)} />
                   </div>
                   <p className="card-text">{project.description}</p>
@@ -2932,7 +2932,7 @@ function App() {
             </a>
             <a
               className="btn ghost"
-              href="https://github.com/JegBaha"
+              href="https://github.com/JegBaha?tab=repositories"
               target="_blank"
               rel="noreferrer"
             >
