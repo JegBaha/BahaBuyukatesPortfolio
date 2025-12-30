@@ -20,8 +20,22 @@ pnpm-debug.log*
 dist/
 build/
 web-build/
+.vite/
+.vite-cache/
+vite.config.ts.timestamp-*
 .expo/
 .expo-shared/
+
+# =========================
+# TypeScript
+# =========================
+*.tsbuildinfo
+
+# =========================
+# Tests / Coverage
+# =========================
+coverage/
+*.lcov
 
 # =========================
 # React Native

@@ -281,6 +281,20 @@ const content: Record<
     ],
     projects: [
       {
+        title: 'Smart Factory Digitalization Platform',
+        description:
+          '8000 satir sentetik uretim (sicaklik, hat hizi, vardiya, operator deneyimi, makine yasi); IQR outlier temizleme + standartlastirma + One-Hot ile defect (0/1) tahmini. Logistic Regression (yorumlanabilir) ve Random Forest (non-linear) ile ROC-AUC, classification report, feature importance. MES-ERP entegrasyonu plan fulfillment/delay/scrap KPI\'larini feature olarak besliyor.',
+        summary:
+          'Saha parametrelerinin defect riskini nasil arttirdigini metrik ve grafiklerle gosterir; script ve notebook uzerinden uca-uca Industry 4.0 veri/ML pipeline.',
+        stack: 'Python, Scikit-Learn, Pandas, Matplotlib, Seaborn, Jupyter',
+        link: 'https://github.com/JegBaha/Smart-Factory-Digitalization-Platform',
+        github: 'https://github.com/JegBaha/Smart-Factory-Digitalization-Platform',
+        live: '#',
+        tags: ['ML', 'Industry 4.0', 'Data', 'Analytics'],
+        image: '/projects/smart-factory-digitalization.webp',
+        impact: 'Plan vs gerceklesme KPI ve saha parametrelerini ayni modelde okuyup defekt riskini dusuren aksiyonlari gosteriyor.',
+      },
+      {
         title: 'Endustri 4.0 IoT Predictive Maintenance Platformu',
         description:
           'Node-RED OPC UA simulasyonu -> MQTT -> Python ETL ile Postgres yildiz sema; PyTorch LSTM ile ariza olasiligi; Power BI dashboard ve cok dilli web UI. Docker Compose ile konumlandirildi, TLS/MQTT ve veri dogrulama ile uca-uca prototip.',
@@ -633,6 +647,21 @@ const content: Record<
     ],
     projects: [
       {
+        title: 'Smart Factory Digitalization Platform',
+        description:
+          '8.000 Zeilen synthetische Fertigung (Temperatur, Liniengeschwindigkeit, Schicht, Erfahrung, Maschinenalter); IQR-Outlier-Cleaning + Standardisierung + One-Hot fuer Defect (0/1). Logistic Regression (interpretierbar) und Random Forest (non-linear) liefern ROC-AUC, Classification Report, Feature-Importance. MES-ERP Integration speist Plan-Fulfillment/Delay/Scrap KPIs als Features ein.',
+        summary:
+          'Zeigt mit Metriken und Grafiken, wie Shopfloor-Parameter Defect-Risiko treiben; End-to-End Industry 4.0 Daten/ML-Pipeline per Script und Notebook.',
+        stack: 'Python, Scikit-Learn, Pandas, Matplotlib, Seaborn, Jupyter',
+        link: 'https://github.com/JegBaha/ai-process-optimization',
+        github: 'https://github.com/JegBaha/mes-erp-integration',
+        live: '#',
+        tags: ['ML', 'Industry 4.0', 'Data', 'Analytics'],
+        image: '/projects/smart-factory-digitalization.webp',
+        impact:
+          'Verbindet Plan-vs-Actual KPI und Shopfloor-Parameter in einem Modell und zeigt risikosenkende Hebel.',
+      },
+      {
         title: 'Industrie 4.0 IoT Predictive Maintenance Plattform',
         description:
           'Node-RED OPC UA Simulation -> MQTT -> Python ETL nach Postgres Sternschema; PyTorch LSTM fuer Ausfallwahrscheinlichkeit; Power BI Dashboards und mehrsprachiges Web-UI. Docker-Compose Deployment, TLS/MQTT moeglich, Datenvalidierung fuer End-to-End Prototyp.',
@@ -977,6 +1006,21 @@ const content: Record<
       },
     ],
     projects: [
+      {
+        title: 'Smart Factory Digitalization Platform',
+        description:
+          '8k-row synthetic manufacturing data (temperature, line speed, shift, operator experience, machine age); IQR outlier removal + standardization + One-Hot for defect (0/1). Logistic Regression (interpretable) and Random Forest (non-linear) produce ROC-AUC, classification report, and feature importance. MES–ERP integration feeds plan-fulfillment/delay/scrap KPIs as features.',
+        summary:
+          'Shows with metrics and charts how shop-floor parameters drive defect risk; end-to-end Industry 4.0 data/ML pipeline via scripts and notebook.',
+        stack: 'Python, Scikit-Learn, Pandas, Matplotlib, Seaborn, Jupyter',
+        link: 'https://github.com/JegBaha/ai-process-optimization',
+        github: 'https://github.com/JegBaha/mes-erp-integration',
+        live: '#',
+        tags: ['ML', 'Industry 4.0', 'Data', 'Analytics'],
+        image: '/projects/smart-factory-digitalization.webp',
+        impact:
+          'Combines plan-vs-actual KPIs with shop-floor parameters in one model to highlight actions that reduce defects.',
+      },
       {
         title: 'Industry 4.0 IoT Predictive Maintenance Platform',
         description:
