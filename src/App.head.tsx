@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+﻿import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties, FormEvent, MouseEvent as ReactMouseEvent } from 'react'
 import './App.css'
 
@@ -41,12 +41,12 @@ const content: Record<
     nav: { about: string; experience: string; projects: string; skills: string; contact: string }
     brandEyebrow: string
     welcome: string
-      hero: {
+    hero: {
       eyebrow: string
       titleMain: string
       titleAccent: string
       lede: string
-      ctas: { browse: string; download: string }
+      ctas: { browse: string; collaborate: string }
     }
     heroMeta: string[]
     heroPanel: {
@@ -107,176 +107,176 @@ const content: Record<
 > = {
   TR: {
     nav: {
-      about: 'Hakkımda',
+      about: 'Hakk─▒mda',
       experience: 'Deneyim',
       projects: 'Projeler',
       skills: 'Yetenekler',
-      contact: 'İletişim',
+      contact: '─░leti┼şim',
     },
-    brandEyebrow: 'Computer Engineer | Data/Software/IT/Endüstriyel',
+    brandEyebrow: 'Computer Engineer | Data/Software/IT/End├╝striyel',
     welcome: '',
     hero: {
-      eyebrow: 'Hoş geldin',
-      titleMain: 'Bilgisayar Mühendisi,',
-      titleAccent: ' veri, yazılım, IT ve endüstriyel sistemlere odaklı',
+      eyebrow: 'Ho┼ş geldin',
+      titleMain: 'Bilgisayar M├╝hendisi,',
+      titleAccent: ' veri, yaz─▒l─▒m, IT ve end├╝striyel sistemlere odakl─▒',
       lede:
-        'Veri merkezli sistemlere odaklanıyorum; verinin kendisini, onu üreten süreçleri ve etrafındaki yazılım/entegrasyon katmanlarını birlikte geliştiriyorum. Ana odağım data.',
-      ctas: { browse: 'Projelerime göz at', download: 'CV indir' },
+        'Veri merkezli sistemlere odaklan─▒yorum; verinin kendisini, onu ├╝reten s├╝re├ğleri ve etraf─▒ndaki yaz─▒l─▒m/entegrasyon katmanlar─▒n─▒ birlikte geli┼ştiriyorum. Ana oda─ş─▒m data.',
+      ctas: { browse: 'Projelerime g├Âz at', collaborate: 'Birlikte ├╝retelim' },
     },
-    heroMeta: ['AB vatandaşı', 'Vize sponsorluğu gerekmez', 'Hemen başlayabilirim'],
+    heroMeta: ['AB vatanda┼ş─▒', 'Vize sponsorlu─şu gerekmez', 'Hemen ba┼şlayabilirim'],
     heroPanel: {
-      status: 'Canlı durum',
-      focus: 'Odak alanları',
+      status: 'Canl─▒ durum',
+      focus: 'Odak alanlar─▒',
       profileEyebrow: 'Profil',
       profileItems: [
         'Data Analysis & BI: Power BI, Excel, SQL, DAX, KPI (MTTR, MTBF, OEE)',
         'AI & ML: PyTorch, TensorFlow, CNNs, LLM training',
         'DevOps: AWS, Docker, Kubernetes, Jenkins, CI/CD',
-        'Data + Software + IT + Endüstriyel entegrasyon projeleri (aktif öğrenme ve uygulama)',
+        'Data + Software + IT + End├╝striyel entegrasyon projeleri (aktif ├Â─şrenme ve uygulama)',
       ],
-      labels: ['Data', 'Endüstriyel', 'Yazılım & IT', 'BI'],
+      labels: ['Data', 'End├╝striyel', 'Yaz─▒l─▒m & IT', 'BI'],
     },
     projectsNote: 'Kucuk/canli projelerimi GitHubimdan takip edebilirsin.',
-    projectsNoteCta: 'İletişim',
+    projectsNoteCta: '─░leti┼şim',
     sections: {
       experience: {
         eyebrow: 'Profesyonel Deneyim',
-        title: 'Sahada neler yaptım',
-        text: 'AI eğitimi, veri analizi ve kurumsal IT arasında köprü kuran tecrübeler.',
+        title: 'Sahada neler yapt─▒m',
+        text: 'AI e─şitimi, veri analizi ve kurumsal IT aras─▒nda k├Âpr├╝ kuran tecr├╝beler.',
       },
       skills: {
         eyebrow: 'Ne sunuyorum',
         title: 'Yetenek seti',
-        text: 'Veri, yapay zeka, otomasyon ve kurumsal süreçleri birleştiren beceriler.',
+        text: 'Veri, yapay zeka, otomasyon ve kurumsal s├╝re├ğleri birle┼ştiren beceriler.',
       },
       projects: {
-        eyebrow: 'Seçili projeler',
-        title: 'Hayal gücüm ve mesleğim ile birleşen projeler',
-        text: 'Performans ve kullanıcı deneyimi birlikte.',
+        eyebrow: 'Se├ğili projeler',
+        title: 'Hayal g├╝c├╝m ve mesle─şim ile birle┼şen projeler',
+        text: 'Performans ve kullan─▒c─▒ deneyimi birlikte.',
       },
       education: {
-        eyebrow: 'Eğitim',
-        title: 'Temel ve ileri düzey',
-        text: 'Mühür: Bilgisayar Mühendisliği + AI odaklı bootcamp.',
+        eyebrow: 'E─şitim',
+        title: 'Temel ve ileri d├╝zey',
+        text: 'M├╝h├╝r: Bilgisayar M├╝hendisli─şi + AI odakl─▒ bootcamp.',
       },
       certifications: {
         eyebrow: 'Sertifikalar & Diller',
-        title: 'Sürekli öğrenme ve global iletişim',
-        text: 'Bulut, veri, AI ve endüstriyel otomasyon alanlarında güncel sertifikalar; çok dilli iletişim.',
+        title: 'S├╝rekli ├Â─şrenme ve global ileti┼şim',
+        text: 'Bulut, veri, AI ve end├╝striyel otomasyon alanlar─▒nda g├╝ncel sertifikalar; ├ğok dilli ileti┼şim.',
       },
       hobby: {
         eyebrow: 'Hobim',
-        title: 'Müzik prodüksiyonu',
-        text: 'Djent ve progressive metal odaklı parçalar üretmek ve mevcut eserleri coverlamak üzerine çalışıyorum. Müzik benim için ayrı bir tutku; projelerimde bu tutkuyu teknik üretimle birleştirerek özgün ve ikonik işler ortaya koymayı seviyorum.',
+        title: 'M├╝zik prod├╝ksiyonu',
+        text: 'Djent ve progressive metal odakl─▒ par├ğalar ├╝retmek ve mevcut eserleri coverlamak ├╝zerine ├ğal─▒┼ş─▒yorum. M├╝zik benim i├ğin ayr─▒ bir tutku; projelerimde bu tutkuyu teknik ├╝retimle birle┼ştirerek ├Âzg├╝n ve ikonik i┼şler ortaya koymay─▒ seviyorum.',
         benefit:
-          'Disiplinli çalışma alışkanlığım, ritim ve detay odaklı yaklaşımım hem müzikal üretimlerime hem de profesyonel projelerime doğrudan yansıyor.',
+          'Disiplinli ├ğal─▒┼şma al─▒┼şkanl─▒─ş─▒m, ritim ve detay odakl─▒ yakla┼ş─▒m─▒m hem m├╝zikal ├╝retimlerime hem de profesyonel projelerime do─şrudan yans─▒yor.',
         cta: 'Dinlemek ister misin?',
       },
       contact: {
-        eyebrow: 'İletişim',
-        title: 'Yeni bir proje için hazırım.',
-        text: 'Veri analizi, dashboard geliştirme, AI eğitimi veya otomasyon ihtiyacınız varsa iletişime geçebiliriz.',
+        eyebrow: '─░leti┼şim',
+        title: 'Yeni bir proje i├ğin haz─▒r─▒m.',
+        text: 'Veri analizi, dashboard geli┼ştirme, AI e─şitimi veya otomasyon ihtiyac─▒n─▒z varsa ileti┼şime ge├ğebiliriz.',
       },
     },
     feedback: {
-      cta: 'Değerlendir',
-      reminder: '30 saniyedir buradasın, bir değerlendirme bırakır mısın?',
-      title: 'Beğendiniz mi?',
-      subtitle: '1-5 yıldız ver, istersen kısa yorum ekle.',
-      ratingLabel: 'Yıldız',
-      moodQuestion: 'Hızlı seçim',
-      like: 'Beğendim',
-      dislike: 'Beğenmedim',
-      commentPlaceholder: 'Neyi sevdiniz / geliştirilebilir?',
+      cta: 'De─şerlendir',
+      reminder: '30 saniyedir buradas─▒n, bir de─şerlendirme b─▒rak─▒r m─▒s─▒n?',
+      title: 'Be─şendiniz mi?',
+      subtitle: '1-5 y─▒ld─▒z ver, istersen k─▒sa yorum ekle.',
+      ratingLabel: 'Y─▒ld─▒z',
+      moodQuestion: 'H─▒zl─▒ se├ğim',
+      like: 'Be─şendim',
+      dislike: 'Be─şenmedim',
+      commentPlaceholder: 'Neyi sevdiniz / geli┼ştirilebilir?',
       storageNote: '',
-      submit: 'Gönder',
-      thanks: 'Teşekkürler, kaydedildi!',
+      submit: 'G├Ânder',
+      thanks: 'Te┼şekk├╝rler, kaydedildi!',
       averageLabel: 'Ortalama',
-      recentTitle: 'Kayıtlı geri bildirimler (tarayıcıda)',
-      empty: 'Henüz kayıt yok.',
+      recentTitle: 'Kay─▒tl─▒ geri bildirimler (taray─▒c─▒da)',
+      empty: 'Hen├╝z kay─▒t yok.',
       copy: 'Panoya kopyala',
-      copied: 'Kopyalandı!',
+      copied: 'Kopyaland─▒!',
     },
     experience: [
       {
         company: 'Outlier',
         role: 'AI Trainer',
         location: 'Remote',
-        period: 'Eki 2025 - Güncel',
+        period: 'Eki 2025 - G├╝ncel',
         bullets: [
-          'LLM eğitim ve değerlendirme ile kod üretimi/akıl yürütme kabiliyetlerini iyileştirme.',
-          'Veri anotasyonu, prompt mühendisliği ve QA sürecinde kaliteyi sağlama.',
+          'LLM e─şitim ve de─şerlendirme ile kod ├╝retimi/ak─▒l y├╝r├╝tme kabiliyetlerini iyile┼ştirme.',
+          'Veri anotasyonu, prompt m├╝hendisli─şi ve QA s├╝recinde kaliteyi sa─şlama.',
         ],
-        impact: 'LLM kalite puanlarında artış; hatalı cevaplar düştü.',
+        impact: 'LLM kalite puanlar─▒nda art─▒┼ş; hatal─▒ cevaplar d├╝┼şt├╝.',
       },
       {
-        company: 'Prestij Bilgi Sistemleri Arge A.Ş.',
+        company: 'Prestij Bilgi Sistemleri Arge A.┼Ş.',
         role: 'C#.NET Developer Intern',
-        location: 'Bursa, Türkiye (Hibrit)',
-        period: 'Ağu 2024 - Eyl 2024',
+        location: 'Bursa, T├╝rkiye (Hibrit)',
+        period: 'A─şu 2024 - Eyl 2024',
         bullets: [
-          'Capstone seviyesinde HIS modülleri geliştirdim; .NET ve SQL ile ölçeklenebilir, güvenli modüller teslim ettim.',
-          'Git üzerinden ekip içinde kod inceleme ve versiyonlama deneyimi kazandım.',
-          'HIS mimarisinde veri güvenliği, performans optimizasyonu ve regülasyon uyumu hakkında derinleşmiş bilgi.',
-          'Operasyonel süreklilik için sorun giderme ve önleyici bakım adımlarını dokümante ettim.',
+          'Capstone seviyesinde HIS mod├╝lleri geli┼ştirdim; .NET ve SQL ile ├Âl├ğeklenebilir, g├╝venli mod├╝ller teslim ettim.',
+          'Git ├╝zerinden ekip i├ğinde kod inceleme ve versiyonlama deneyimi kazand─▒m.',
+          'HIS mimarisinde veri g├╝venli─şi, performans optimizasyonu ve reg├╝lasyon uyumu hakk─▒nda derinle┼şmi┼ş bilgi.',
+          'Operasyonel s├╝reklilik i├ğin sorun giderme ve ├Ânleyici bak─▒m ad─▒mlar─▒n─▒ dok├╝mante ettim.',
         ],
-        impact: 'Rapor ve HIS sorgularında performans artışı sağlandı.',
+        impact: 'Rapor ve HIS sorgular─▒nda performans art─▒┼ş─▒ sa─şland─▒.',
       },
       {
         company: 'Sanofi',
         role: 'IT Intern',
-        location: 'Lüleburgaz, Türkiye',
+        location: 'L├╝leburgaz, T├╝rkiye',
         period: 'Tem 2024',
         bullets: [
-          'Donanım onarımı, ağ bakımı ve temel IT operasyonlarında pratik yaparak SAP ve veritabanı tarafında deneyim kazandım.',
-          'ERP bağlamında SAP S/4HANA ve SAP Fiori temel modüllerini inceledim.',
-          'SAP entegrasyonlarını finans, tedarik zinciri, İK gibi süreçlere nasıl uyarlayacağımızı öğrendim; iş akışı özelleştirmeleri yaptım.',
+          'Donan─▒m onar─▒m─▒, a─ş bak─▒m─▒ ve temel IT operasyonlar─▒nda pratik yaparak SAP ve veritaban─▒ taraf─▒nda deneyim kazand─▒m.',
+          'ERP ba─şlam─▒nda SAP S/4HANA ve SAP Fiori temel mod├╝llerini inceledim.',
+          'SAP entegrasyonlar─▒n─▒ finans, tedarik zinciri, ─░K gibi s├╝re├ğlere nas─▒l uyarlayaca─ş─▒m─▒z─▒ ├Â─şrendim; i┼ş ak─▒┼ş─▒ ├Âzelle┼ştirmeleri yapt─▒m.',
         ],
-        impact: "SLA'yi koruyup destek kapanış süresini kısalttım.",
+        impact: "SLA'yi koruyup destek kapan─▒┼ş s├╝resini k─▒saltt─▒m.",
       },
       {
-        company: 'Kırklareli State Hospital',
+        company: 'K─▒rklareli State Hospital',
         role: 'IT Intern',
-        location: 'Kırklareli, Türkiye',
-        period: 'Ağu 2023 - Eyl 2023',
+        location: 'K─▒rklareli, T├╝rkiye',
+        period: 'A─şu 2023 - Eyl 2023',
         bullets: [
-          'Donanım ve ağ tarafında teknik destek sağladım; workstation/ağırlıklı sistem kesintilerini minimuma indirdim.',
-          'IT operasyonları için temel bakım ve hata giderme prosedürlerini uyguladım.',
+          'Donan─▒m ve a─ş taraf─▒nda teknik destek sa─şlad─▒m; workstation/a─ş─▒rl─▒kl─▒ sistem kesintilerini minimuma indirdim.',
+          'IT operasyonlar─▒ i├ğin temel bak─▒m ve hata giderme prosed├╝rlerini uygulad─▒m.',
         ],
-        impact: 'Kesinti sürelerini azalttım; çözüm hızlandı.',
+        impact: 'Kesinti s├╝relerini azaltt─▒m; ├ğ├Âz├╝m h─▒zland─▒.',
       },
     ],
     skills: [
       {
         title: 'Data Analysis & BI',
         items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
-        detail: 'Veriyi karar destek panellerine ve ölçülebilir KPI takibine dönüştürüyorum.',
+        detail: 'Veriyi karar destek panellerine ve ├Âl├ğ├╝lebilir KPI takibine d├Ân├╝┼şt├╝r├╝yorum.',
       },
       {
         title: 'Programming',
         items: ['Python', 'C', 'C#', 'JavaScript', 'SQL'],
-        detail: 'Farklı yığınlarda temiz, bakımı kolay ve test edilebilir kod yazıyorum.',
+        detail: 'Farkl─▒ y─▒─ş─▒nlarda temiz, bak─▒m─▒ kolay ve test edilebilir kod yaz─▒yorum.',
       },
       {
         title: 'AI & Machine Learning',
         items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
-        detail: 'Model eğitimi, değerlendirme ve son kullanıcı için anlamlı çıktılar üretme.',
+        detail: 'Model e─şitimi, de─şerlendirme ve son kullan─▒c─▒ i├ğin anlaml─▒ ├ğ─▒kt─▒lar ├╝retme.',
       },
       {
         title: 'Industry 4.0 & IoT',
         items: ['PLC', 'SCADA', 'OPC UA', 'MQTT', 'Edge Devices', 'Digitalization', 'IoT Protokolleri'],
         detail:
-          'Saha verisini bulut ve dashboard katmanlarına güvenli şekilde taşıyorum; PLC, SCADA, OPC UA, MQTT, bus/protokol entegrasyonları ve edge cihazlarında tecrübeliyim.',
+          'Saha verisini bulut ve dashboard katmanlar─▒na g├╝venli ┼şekilde ta┼ş─▒yorum; PLC, SCADA, OPC UA, MQTT, bus/protokol entegrasyonlar─▒ ve edge cihazlar─▒nda tecr├╝beliyim.',
       },
       {
         title: 'DevOps & Cloud',
         items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
-        detail: 'Teslimatı hızlandıran otomasyon boru hatları ve container stratejileri.',
+        detail: 'Teslimat─▒ h─▒zland─▒ran otomasyon boru hatlar─▒ ve container stratejileri.',
       },
       {
         title: 'Enterprise Solutions',
         items: ['SAP S/4HANA', 'SAP Fiori'],
-        detail: 'Kurumsal iş süreçlerine uyumlu entegrasyon ve geliştirme.',
+        detail: 'Kurumsal i┼ş s├╝re├ğlerine uyumlu entegrasyon ve geli┼ştirme.',
       },
     ],
     projects: [
@@ -311,37 +311,37 @@ const content: Record<
       {
         title: 'Heart Disease Prediction ML Projesi',
         description:
-          'Heart Failure Prediction verisinde eksik/kategorik/numerik alanları temizleyip normalize ederek KNN, Lojistik Regresyon ve Karar Ağacı modellerini karşılaştırdım. Performansı accuracy/precision/recall/F1 ile ölçtüm.',
+          'Heart Failure Prediction verisinde eksik/kategorik/numerik alanlar─▒ temizleyip normalize ederek KNN, Lojistik Regresyon ve Karar A─şac─▒ modellerini kar┼ş─▒la┼şt─▒rd─▒m. Performans─▒ accuracy/precision/recall/F1 ile ├Âl├ğt├╝m.',
         summary:
-          'Veri ön-işleme, çoklu model denemesi ve sağlık verisinde kalp hastalığı olasılığı tahmini.',
+          'Veri ├Ân-i┼şleme, ├ğoklu model denemesi ve sa─şl─▒k verisinde kalp hastal─▒─ş─▒ olas─▒l─▒─ş─▒ tahmini.',
         stack: 'Scikit-Learn, Python, ML',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
-        impact: 'Erken uyarıda hassasiyet artışı hedeflendi.',
+        impact: 'Erken uyar─▒da hassasiyet art─▒┼ş─▒ hedeflendi.',
       },
       {
-        title: 'NeuraVeil - MRI Tümör Sınıflandırma',
+        title: 'NeuraVeil - MRI T├╝m├Âr S─▒n─▒fland─▒rma',
         description:
-          'EfficientNet, DenseNet, ResNet gibi modelleri transfer learning ve Optuna ile ayarlayarak MRI üzerinde çoklu tümör tipini yüksek doğrulukla sınıflandıran sistem. OpenCV preprocessing, veri dengesi, L2 regülasyonu ve dropout ile üretim seviyesinde model.',
+          'EfficientNet, DenseNet, ResNet gibi modelleri transfer learning ve Optuna ile ayarlayarak MRI ├╝zerinde ├ğoklu t├╝m├Âr tipini y├╝ksek do─şrulukla s─▒n─▒fland─▒ran sistem. OpenCV preprocessing, veri dengesi, L2 reg├╝lasyonu ve dropout ile ├╝retim seviyesinde model.',
         summary:
-          'Çok veri kaynaklı MRI pipeline, model ensemble ve REST API ile sağlık için uca-uca AI.',
+          '├çok veri kaynakl─▒ MRI pipeline, model ensemble ve REST API ile sa─şl─▒k i├ğin uca-uca AI.',
         stack: 'PyTorch, TensorFlow, CNN',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
-        impact: 'Yanlış pozitif/negatif oranında belirgin iyileşme.',
+        impact: 'Yanl─▒┼ş pozitif/negatif oran─▒nda belirgin iyile┼şme.',
       },
       {
         title: 'Drumveil Ritual - Metal Davul Transkripsiyon',
         description:
-          'PyTorch + Demucs ile metal parçalarda davulları ayırıp "Onsets and Frames" mimarisiyle notaları MIDI çıktısına çeviren pipeline. Slakh dataseti ve gerçek kayıtlarla eğitilip spektrum tabanlı yaklaşım kullanıyor. Donanım kısıtı nedeniyle bakımda/Iterative prototype; şimdilik birkaç saniyelik davul kesitlerini başarıyla çevirdi.',
+          'PyTorch + Demucs ile metal par├ğalarda davullar─▒ ay─▒r─▒p "Onsets and Frames" mimarisiyle notalar─▒ MIDI ├ğ─▒kt─▒s─▒na ├ğeviren pipeline. Slakh dataseti ve ger├ğek kay─▒tlarla e─şitilip spektrum tabanl─▒ yakla┼ş─▒m kullan─▒yor. Donan─▒m k─▒s─▒t─▒ nedeniyle bak─▒mda/Iterative prototype; ┼şimdilik birka├ğ saniyelik davul kesitlerini ba┼şar─▒yla ├ğevirdi.',
         summary:
-          'Kaynak ayrıştırma, nota çıkarma ve metal ritimlerine odaklanan derin öğrenme projesi; donanım kısıtı nedeniyle bakımda/Iterative prototype, birkaç saniyelik kesitlerde doğrulandı.',
+          'Kaynak ayr─▒┼şt─▒rma, nota ├ğ─▒karma ve metal ritimlerine odaklanan derin ├Â─şrenme projesi; donan─▒m k─▒s─▒t─▒ nedeniyle bak─▒mda/Iterative prototype, birka├ğ saniyelik kesitlerde do─şruland─▒.',
         stack: 'PyTorch, Demucs, Audio DSP',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
@@ -349,74 +349,74 @@ const content: Record<
         tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
-          'Manuel transkripsiyon süreleri saatlerden dakikalara iniyor; birkaç saniyelik parçalarda doğrulandı, tam ölçek için donanım güncellemesi bekleniyor.',
+          'Manuel transkripsiyon s├╝releri saatlerden dakikalara iniyor; birka├ğ saniyelik par├ğalarda do─şruland─▒, tam ├Âl├ğek i├ğin donan─▒m g├╝ncellemesi bekleniyor.',
       },
       {
         title: 'Employee Management System (.NET)',
         description:
-          '.NET ile geliştirilen basit çalışan yönetim sistemi; CRUD, roller, izin/rapor işlemleri ve SQL veri tabanı katmanı. Staj sürecinde gerçek senaryolarla test edildi.',
-        summary: 'C#.NET tabanlı HR/employee yönetim uygulaması; temel CRUD ve raporlama.',
+          '.NET ile geli┼ştirilen basit ├ğal─▒┼şan y├Ânetim sistemi; CRUD, roller, izin/rapor i┼şlemleri ve SQL veri taban─▒ katman─▒. Staj s├╝recinde ger├ğek senaryolarla test edildi.',
+        summary: 'C#.NET tabanl─▒ HR/employee y├Ânetim uygulamas─▒; temel CRUD ve raporlama.',
         stack: 'C#.NET, SQL, Entity Framework',
         link: 'https://github.com/JegBaha/StajEmployeeManagement',
         github: 'https://github.com/JegBaha/StajEmployeeManagement',
         live: '#',
         tags: ['.NET', 'C#', 'SQL'],
         image: '',
-        impact: 'İzin ve takip süreçlerinde belirgin zaman kazancı.',
+        impact: '─░zin ve takip s├╝re├ğlerinde belirgin zaman kazanc─▒.',
       },
       {
         title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
         description:
-          'Excel VBA tabanlı modüler otomasyon toolkit’i; SAP CSV verisini Config’ten okuyup Raw → Staging akışına alıyor, dashboard/pivotlar otomatik yeniliyor. Merkezi loglama/hata yönetimi, Config’e bağlı UserForm EN/TR UI ve çoklu veri kaynakları (CSV/JSON/Excel) entegrasyonu var.',
+          'Excel VBA tabanl─▒ mod├╝ler otomasyon toolkitÔÇÖi; SAP CSV verisini ConfigÔÇÖten okuyup Raw ÔåÆ Staging ak─▒┼ş─▒na al─▒yor, dashboard/pivotlar otomatik yeniliyor. Merkezi loglama/hata y├Ânetimi, ConfigÔÇÖe ba─şl─▒ UserForm EN/TR UI ve ├ğoklu veri kaynaklar─▒ (CSV/JSON/Excel) entegrasyonu var.',
         summary:
-          'Mock SAP export ve JSON datasetleriyle konfigürasyon bazlı, yeniden kullanılabilir otomasyon Prototype / Demo; log temizleme ve dashboard refresh otomatik.',
+          'Mock SAP export ve JSON datasetleriyle konfig├╝rasyon bazl─▒, yeniden kullan─▒labilir otomasyon Prototype / Demo; log temizleme ve dashboard refresh otomatik.',
         stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
         image: '/projects/excel-vba-automation.webp',
-        impact: 'Modüler VBA mimarisi, hata yakalama ve Config yönetimi pratiği.',
+        impact: 'Mod├╝ler VBA mimarisi, hata yakalama ve Config y├Ânetimi prati─şi.',
         playground: true,
       },
       {
         title: '3D Runner Game',
-        description: 'Unity/C# tek kişilik 3D koşu; basit level tasarımı ve fizik odaklı, hızlı iterasyon.', 
-        summary: 'Pipeline ve asset yönetimi pratiği için hobi Prototype / Demo.',
+        description: 'Unity/C# tek ki┼şilik 3D ko┼şu; basit level tasar─▒m─▒ ve fizik odakl─▒, h─▒zl─▒ iterasyon.', 
+        summary: 'Pipeline ve asset y├Ânetimi prati─şi i├ğin hobi Prototype / Demo.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
-        impact: 'Tek kişilik pipeline ve iterasyon hızında artış.',
+        impact: 'Tek ki┼şilik pipeline ve iterasyon h─▒z─▒nda art─▒┼ş.',
         playground: true,
       },
       {
         title: 'Galaxy Survivor 2D Game',
-        description: 'Unity 2D shooter; kısa sürede level ve düşman dalgaları kurulan mini proje.',
-        summary: '2D oyun döngüsü, basit AI ve asset entegrasyonu Prototype / Demo.',
+        description: 'Unity 2D shooter; k─▒sa s├╝rede level ve d├╝┼şman dalgalar─▒ kurulan mini proje.',
+        summary: '2D oyun d├Âng├╝s├╝, basit AI ve asset entegrasyonu Prototype / Demo.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
-        impact: 'Hızlı prototipleme ve asset entegrasyonu pratiği.',
+        impact: 'H─▒zl─▒ prototipleme ve asset entegrasyonu prati─şi.',
         playground: true,
       },
       {
         title: '3D First Person Shooter Game',
         description:
-          '3 kişilik ekipte 2.5 haftada tamamlanan FPS/puzzle; seviye tasarımı, basit AI ve etkileşimli ortamlar.',
-        summary: 'Ekip içi görev dağılımı ve hızlı prototipleme odaklı mini proje.',
+          '3 ki┼şilik ekipte 2.5 haftada tamamlanan FPS/puzzle; seviye tasar─▒m─▒, basit AI ve etkile┼şimli ortamlar.',
+        summary: 'Ekip i├ği g├Ârev da─ş─▒l─▒m─▒ ve h─▒zl─▒ prototipleme odakl─▒ mini proje.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['Game', 'C#', 'Unity', 'Prototype / Demo'],
         image: '',
-        impact: '2.5 haftada ekipçe MVP; koordinasyon deneyimi.',
+        impact: '2.5 haftada ekip├ğe MVP; koordinasyon deneyimi.',
         playground: true,
       },
     ],
@@ -424,7 +424,7 @@ const content: Record<
       {
         school: 'Trakya University',
         degree: 'Bachelor of Engineering, Computer Engineering',
-        location: 'Edirne, Türkiye',
+        location: 'Edirne, T├╝rkiye',
         period: 'Sep 2021 - Sep 2025',
       },
       {
@@ -440,41 +440,41 @@ const content: Record<
       'Microsoft Azure AI Essentials',
       'Apache Spark Essentials',
       'LLM Foundations & RAG',
-      'Endüstriyel otomasyon ve IoT sertifikaları (PLC, SCADA, OPC UA, MQTT)',
-      'Daha fazlası LinkedIn: https://www.linkedin.com/in/baha-buyukates',
+      'End├╝striyel otomasyon ve IoT sertifikalar─▒ (PLC, SCADA, OPC UA, MQTT)',
+      'Daha fazlas─▒ LinkedIn: https://www.linkedin.com/in/baha-buyukates',
     ],
     languages: [
-      { name: 'Türkçe', level: 'Ana dil' },
-      { name: 'İngilizce', level: 'B2' },
+      { name: 'T├╝rk├ğe', level: 'Ana dil' },
+      { name: '─░ngilizce', level: 'B2' },
       { name: 'Almanca', level: 'A2' },
     ],
     about: {
-      eyebrow: 'Hakkımda',
-      title: 'Veri, yazılım, IT ve endüstriyel sistemlerde üretiyor ve öğreniyorum.',
-      bio: 'Verinin yalnızca analiz edilmesiyle değil; nasıl üretildiği, nasıl taşındığı ve nasıl anlamlı kararlara dönüştüğüyle ilgileniyorum. Yazılım, backend, otomasyon ve endüstriyel entegrasyon tarafında kendimi geliştirirken, tüm bu katmanların merkezinde veriyi konumlandırıyorum. Amacım; sahadan gelen veriyi güvenilir, ölçeklenebilir ve karar destek odaklı sistemlere dönüştürmek.',
+      eyebrow: 'Hakk─▒mda',
+      title: 'Veri, yaz─▒l─▒m, IT ve end├╝striyel sistemlerde ├╝retiyor ve ├Â─şreniyorum.',
+      bio: 'Verinin yaln─▒zca analiz edilmesiyle de─şil; nas─▒l ├╝retildi─şi, nas─▒l ta┼ş─▒nd─▒─ş─▒ ve nas─▒l anlaml─▒ kararlara d├Ân├╝┼şt├╝─ş├╝yle ilgileniyorum. Yaz─▒l─▒m, backend, otomasyon ve end├╝striyel entegrasyon taraf─▒nda kendimi geli┼ştirirken, t├╝m bu katmanlar─▒n merkezinde veriyi konumland─▒r─▒yorum. Amac─▒m; sahadan gelen veriyi g├╝venilir, ├Âl├ğeklenebilir ve karar destek odakl─▒ sistemlere d├Ân├╝┼şt├╝rmek.',
       strengths: [
         'Data storytelling & dashboarding',
-        'ML/CNN eğitimi ve değerlendirme',
+        'ML/CNN e─şitimi ve de─şerlendirme',
         'Backend/API ve otomasyon',
-        'IT/ERP entegrasyon farkındalığı',
-        'Ekip içi Git akışları ve QA',
+        'IT/ERP entegrasyon fark─▒ndal─▒─ş─▒',
+        'Ekip i├ği Git ak─▒┼şlar─▒ ve QA',
       ],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
-      highlight: 'Data, otomasyon, endüstriyel dijitalizasyon ve BI alanlarında her gün kendimi geliştiriyorum.',
+      highlight: 'Data, otomasyon, end├╝striyel dijitalizasyon ve BI alanlar─▒nda her g├╝n kendimi geli┼ştiriyorum.',
     },
     skillMatrix: [
-      { name: 'Power BI / DAX', level: 'İleri', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Power BI / DAX', level: '─░leri', tools: ['Star Schema', 'KPI', 'Gateway'] },
       { name: 'Python / PyTorch', level: 'Orta', tools: ['CNN', 'Data Pipelines', 'Evaluation'] },
       { name: 'SQL', level: 'Orta', tools: ['Query Optimize', 'Joins', 'CTE'] },
       { name: 'Automation', level: 'Orta', tools: ['Zapier', 'Airtable', 'Slack'] },
       { name: 'Cloud & DevOps', level: 'Baslangic', tools: ['AWS', 'Docker', 'CI/CD'] },
     ],
     toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
-    cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Aralık 2025', label: 'CV indir (Aralık 2025)' },
+    cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Aral─▒k 2025', label: 'CV indir (Aral─▒k 2025)' },
   },
   DE: {
     nav: {
-      about: 'Über mich',
+      about: '├£ber mich',
       experience: 'Erfahrung',
       projects: 'Projekte',
       skills: 'Skills',
@@ -488,7 +488,7 @@ const content: Record<
       titleAccent: ' mit Fokus auf Daten, Software, IT und industrielle Systeme',
       lede:
         'Ich fokussiere mich auf datenzentrierte Systeme; ich entwickle die Daten selbst, die Prozesse dahinter und die Software-/Integrationsschichten darum herum gemeinsam. Mein Hauptfokus ist Data.',
-      ctas: { browse: 'Projekte ansehen', download: 'CV herunterladen' },
+      ctas: { browse: 'Projekte ansehen', collaborate: 'Lass uns zusammenarbeiten' },
     },
     heroMeta: ['EU-Buerger', 'Kein Visasponsoring noetig', 'Sofort startklar'],
     heroPanel: {
@@ -533,9 +533,9 @@ const content: Record<
       hobby: {
         eyebrow: 'Hobby',
         title: 'Musikproduktion',
-        text: ' Djent- und Progressive-Metal-Tracks erstellen oder covern. Die Leidenschaft verbinde ich mit Technik, um eigenständige und markante Stücke zu bauen.',
+        text: ' Djent- und Progressive-Metal-Tracks erstellen oder covern. Die Leidenschaft verbinde ich mit Technik, um eigenst├ñndige und markante St├╝cke zu bauen.',
         benefit:
-          'Disziplin beim Üben, Rhythmus- und Detailfokus fließen direkt in meine musikalischen Arbeiten und beruflichen Projekte ein.',
+          'Disziplin beim ├£ben, Rhythmus- und Detailfokus flie├şen direkt in meine musikalischen Arbeiten und beruflichen Projekte ein.',
         cta: 'Willst du reinhoeren?',
       },
       contact: {
@@ -551,15 +551,15 @@ const content: Record<
       subtitle: '1-5 Sterne, Kommentar optional.',
       ratingLabel: 'Sterne',
       moodQuestion: 'Schnellauswahl',
-      like: 'Gefällt mir',
-      dislike: 'Gefällt mir nicht',
+      like: 'Gef├ñllt mir',
+      dislike: 'Gef├ñllt mir nicht',
       commentPlaceholder: 'Was war gut / was fehlt?',
       storageNote: '',
       submit: 'Senden',
       thanks: 'Danke, gespeichert!',
       averageLabel: 'Durchschnitt',
       recentTitle: 'Gespeichertes Feedback (lokal)',
-      empty: 'Noch keine Einträge.',
+      empty: 'Noch keine Eintr├ñge.',
       copy: 'In Zwischenablage',
       copied: 'Kopiert!',
     },
@@ -705,7 +705,7 @@ const content: Record<
       {
         title: 'Drumveil Ritual - Metal Drum Transkription',
         description:
-          'PyTorch + Demucs trennen Metal-Tracks, “Onsets and Frames” extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik. Hardware-Limit -> in Wartung/Iterative prototype; aktuell nur wenige Sekunden Drums erfolgreich transkribiert.',
+          'PyTorch + Demucs trennen Metal-Tracks, ÔÇ£Onsets and FramesÔÇØ extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik. Hardware-Limit -> in Wartung/Iterative prototype; aktuell nur wenige Sekunden Drums erfolgreich transkribiert.',
         summary:
           'Quelltrennung, Noten-Extraktion und Metal-Rhythmik im Fokus; Wartung/Iterative prototype wegen Hardware-Limit, kurze Snippets verifiziert.',
         stack: 'PyTorch, Demucs, Audio DSP',
@@ -733,7 +733,7 @@ const content: Record<
       {
         title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
         description:
-          'Modulares Excel-VBA-Automation-Toolkit: SAP-CSV wird aus Config gelesen, Raw → Staging Pipeline, Dashboards/Pivots aktualisieren automatisch. Zentrales Logging/Error-Handling, EN/DE UserForm-UI aus Config und Multi-Source-Import (CSV/JSON/Excel).',
+          'Modulares Excel-VBA-Automation-Toolkit: SAP-CSV wird aus Config gelesen, Raw ÔåÆ Staging Pipeline, Dashboards/Pivots aktualisieren automatisch. Zentrales Logging/Error-Handling, EN/DE UserForm-UI aus Config und Multi-Source-Import (CSV/JSON/Excel).',
         summary:
           'Konfigurierbarer Prototype / Demo mit Mock-SAP-Export und JSON-Datasets; automatische Log-Cleanup und Dashboard-Refresh.',
         stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
@@ -748,7 +748,7 @@ const content: Record<
       {
         title: '3D Runner Game',
         description: 'Unity/C# Einzelprojekt; 3D Runner mit schnellem Iterationsfokus auf Level und Physik.',
-        summary: 'Prototype / Demo für Asset-Handling und Gameplay-Loop.',
+        summary: 'Prototype / Demo f├╝r Asset-Handling und Gameplay-Loop.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
@@ -815,12 +815,12 @@ const content: Record<
       { name: 'Deutsch', level: 'A2' },
     ],
     about: {
-      eyebrow: 'Über mich',
+      eyebrow: '├£ber mich',
       title: 'Ich arbeite und lerne in Daten, Software, IT und Industrie-Kontexten.',
-      bio: 'Ich interessiere mich nicht nur für Datenanalyse, sondern auch dafür, wie Daten erzeugt, transportiert und in sinnvolle Entscheidungen überführt werden. Während ich mich in Software, Backend, Automatisierung und industrieller Integration weiterentwickle, setze ich Daten ins Zentrum all dieser Schichten. Ziel: Shopfloor-Daten in verlässliche, skalierbare und entscheidungsorientierte Systeme verwandeln.',
+      bio: 'Ich interessiere mich nicht nur f├╝r Datenanalyse, sondern auch daf├╝r, wie Daten erzeugt, transportiert und in sinnvolle Entscheidungen ├╝berf├╝hrt werden. W├ñhrend ich mich in Software, Backend, Automatisierung und industrieller Integration weiterentwickle, setze ich Daten ins Zentrum all dieser Schichten. Ziel: Shopfloor-Daten in verl├ñssliche, skalierbare und entscheidungsorientierte Systeme verwandeln.',
       strengths: ['Data Storytelling & BI', 'ML/CNN Training & Bewertung', 'Backend/API & Automatisierung', 'IT/ERP Verstaendnis', 'Git-basierte Kollaboration'],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrie-Ingenieur'],
-      highlight: 'Ich entwickle mich täglich in Data, Automatisierung, industrieller Digitalisierung und BI weiter.',
+      highlight: 'Ich entwickle mich t├ñglich in Data, Automatisierung, industrieller Digitalisierung und BI weiter.',
     },
     skillMatrix: [
       { name: 'Power BI / DAX', level: 'Fortgeschritten', tools: ['Star Schema', 'KPI', 'Gateway'] },
@@ -848,7 +848,7 @@ const content: Record<
       titleAccent: ' focused on data, software, IT, and industrial systems',
       lede:
         'I focus on data-centric systems; I build the data itself, the processes that generate it, and the surrounding software/integration layers together. My main focus is data.',
-      ctas: { browse: 'Browse projects', download: 'Download CV' },
+      ctas: { browse: 'Browse projects', collaborate: "Let's build together" },
     },
     heroMeta: ['EU citizen', 'No visa sponsorship required', 'Immediate availability'],
     heroPanel: {
@@ -906,7 +906,7 @@ const content: Record<
     },
     feedback: {
       cta: 'Leave feedback',
-      reminder: 'You have been here about 30s — want to rate the page?',
+      reminder: 'You have been here about 30s ÔÇö want to rate the page?',
       title: 'Did you like it?',
       subtitle: 'Rate 1-5 stars; add a note if you want.',
       ratingLabel: 'Star',
@@ -1009,7 +1009,7 @@ const content: Record<
       {
         title: 'Smart Factory Digitalization Platform',
         description:
-          '8k-row synthetic manufacturing data (temperature, line speed, shift, operator experience, machine age); IQR outlier removal + standardization + One-Hot for defect (0/1). Logistic Regression (interpretable) and Random Forest (non-linear) produce ROC-AUC, classification report, and feature importance. MES–ERP integration feeds plan-fulfillment/delay/scrap KPIs as features.',
+          '8k-row synthetic manufacturing data (temperature, line speed, shift, operator experience, machine age); IQR outlier removal + standardization + One-Hot for defect (0/1). Logistic Regression (interpretable) and Random Forest (non-linear) produce ROC-AUC, classification report, and feature importance. MESÔÇôERP integration feeds plan-fulfillment/delay/scrap KPIs as features.',
         summary:
           'Shows with metrics and charts how shop-floor parameters drive defect risk; end-to-end Industry 4.0 data/ML pipeline via scripts and notebook.',
         stack: 'Python, Scikit-Learn, Pandas, Matplotlib, Seaborn, Jupyter',
@@ -1093,7 +1093,7 @@ const content: Record<
       {
         title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
         description:
-          'Modular Excel VBA automation toolkit: reads SAP CSV via Config, runs Raw → Staging flow, auto-refreshes dashboards/pivots. Centralized logging/error handling, Config-driven EN/TR UserForm UI, and multi-source import (CSV/JSON/Excel).',
+          'Modular Excel VBA automation toolkit: reads SAP CSV via Config, runs Raw ÔåÆ Staging flow, auto-refreshes dashboards/pivots. Centralized logging/error handling, Config-driven EN/TR UserForm UI, and multi-source import (CSV/JSON/Excel).',
         summary:
           'Configurable Prototype / Demo with mock SAP export and JSON datasets; auto log cleanup and dashboard refresh built-in.',
         stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
@@ -1340,7 +1340,7 @@ function App() {
       ? [
           'Junior Data / BI Engineer ariyorsaniz konusalim.',
           'Industry 4.0 + Data entegrasyonu gerekiyorsa destek olabilirim.',
-          'Backend + otomasyon geliştirici ariyorsaniz ulasin.',
+          'Backend + otomasyon geli┼ştirici ariyorsaniz ulasin.',
         ]
       : activeLocale === 'DE'
       ? [
@@ -1349,7 +1349,7 @@ function App() {
           'Backend + Automatisierung Entwickler gesucht? Melde dich.',
         ]
       : [
-          'If you need a Junior Data / BI Engineer, let’s talk.',
+          'If you need a Junior Data / BI Engineer, letÔÇÖs talk.',
           'If you need Industry 4.0 + Data integration, I can help.',
           'If you want a backend + automation engineer, reach out.',
         ]
@@ -1376,7 +1376,7 @@ function App() {
     activeLocale === 'DE'
       ? {
           hero: 'Willkommen',
-          about: 'Über mich',
+          about: '├£ber mich',
           experience: 'Erfahrung',
           skills: 'Skills',
           projects: 'Projekte',
@@ -1398,15 +1398,15 @@ function App() {
           contact: 'Contact',
         }
       : {
-          hero: 'Hoş geldin',
-          about: 'Hakkımda',
+          hero: 'Ho┼ş geldin',
+          about: 'Hakk─▒mda',
           experience: 'Deneyim',
           skills: 'Yetenekler',
           projects: 'Projeler',
-          education: 'Eğitim',
+          education: 'E─şitim',
           certifications: 'Sertifikalar',
           hobby: 'Hobim',
-          contact: 'İletişim',
+          contact: '─░leti┼şim',
         }
 
   useEffect(() => {
@@ -1434,10 +1434,10 @@ function App() {
 
   const projectUiCopy =
     activeLocale === 'DE'
-      ? { open: 'Details: bitte am Desktop/Web ansehen', close: 'Schließen' }
+      ? { open: 'Details: bitte am Desktop/Web ansehen', close: 'Schlie├şen' }
       : activeLocale === 'EN'
       ? { open: 'Details: switch to desktop/web view', close: 'Close' }
-      : { open: 'Detaylar icin Desktop/Web görünümü', close: 'Kapat' }
+      : { open: 'Detaylar icin Desktop/Web g├Âr├╝n├╝m├╝', close: 'Kapat' }
 
   const getProjectPreview = (project: Project): string => {
     const base = project.summary || project.description
@@ -1466,7 +1466,7 @@ function App() {
     return 'mini-dot'
   }
 
-  const welcomeOverlayCopy = { title: 'Hoş geldin / Welcome / Willkommen', subtitle: 'Hope your day is going well.' }
+  const welcomeOverlayCopy = { title: 'Ho┼ş geldin / Welcome / Willkommen', subtitle: 'Hope your day is going well.' }
 
   const playerCopy =
     activeLocale === 'DE'
@@ -1478,14 +1478,14 @@ function App() {
   const audioUiCopy =
     activeLocale === 'DE'
       ? {
-          hobbyLoading: 'Lädt...',
+          hobbyLoading: 'L├ñdt...',
           hobbyPlaying: 'Spielt',
           hobbyReady: 'Bereit',
-          musicLoading: 'Musik lädt...',
+          musicLoading: 'Musik l├ñdt...',
           musicOn: 'Musik aus',
           musicOff: 'Musik an',
           musicStatusLoading: 'Bereitet vor',
-          musicStatusOn: 'Läuft',
+          musicStatusOn: 'L├ñuft',
           musicStatusOff: 'Aus',
         }
       : activeLocale === 'EN'
@@ -1502,14 +1502,14 @@ function App() {
         }
       : {
           hobbyLoading: 'Yukleniyor...',
-          hobbyPlaying: 'Çalıyor',
-          hobbyReady: 'Hazır',
+          hobbyPlaying: '├çal─▒yor',
+          hobbyReady: 'Haz─▒r',
           musicLoading: 'Muzik yukleniyor...',
           musicOn: 'Muzigi kapat',
-          musicOff: 'Muzigi aç',
-          musicStatusLoading: 'Hazırlanıyor',
-          musicStatusOn: 'Çalıyor',
-          musicStatusOff: 'Kapalı',
+          musicOff: 'Muzigi a├ğ',
+          musicStatusLoading: 'Haz─▒rlan─▒yor',
+          musicStatusOn: '├çal─▒yor',
+          musicStatusOff: 'Kapal─▒',
         }
 
   const trackMeta = { title: 'Nocturne', artist: 'JegBaa' }
@@ -1528,18 +1528,18 @@ function App() {
       ? `${feedbackEntries.length} gespeichert`
       : activeLocale === 'EN'
       ? `${feedbackEntries.length} saved`
-      : `${feedbackEntries.length} kayıt`
+      : `${feedbackEntries.length} kay─▒t`
   const recentFeedback = feedbackEntries.slice(0, 3)
   const ratingRequiredCopy =
     activeLocale === 'DE'
-      ? 'Bitte Sterne wählen.'
+      ? 'Bitte Sterne w├ñhlen.'
       : activeLocale === 'EN'
       ? 'Please pick a star rating.'
-      : 'Lütfen bir yıldız seçin.'
-  const laterLabel = activeLocale === 'DE' ? 'Später' : activeLocale === 'EN' ? 'Later' : 'Sonra'
+      : 'L├╝tfen bir y─▒ld─▒z se├ğin.'
+  const laterLabel = activeLocale === 'DE' ? 'Sp├ñter' : activeLocale === 'EN' ? 'Later' : 'Sonra'
 
   useEffect(() => {
-  const title = `Baha Büyükateş | ${c.hero.eyebrow}`
+  const title = `Baha B├╝y├╝kate┼ş | ${c.hero.eyebrow}`
     document.title = title
     const metaPairs: { name?: string; property?: string; content: string }[] = [
       { name: 'description', content: c.hero.lede },
@@ -2339,10 +2339,10 @@ function App() {
             <span className="brand-mark">//</span>
             <div>
               <p className="eyebrow">{c.brandEyebrow}</p>
-              <p className="brand-name">Baha Büyükateş</p>
+              <p className="brand-name">Baha B├╝y├╝kate┼ş</p>
             </div>
           </div>
-          <div className="lang-switch" role="group" aria-label="Dil seçimi">
+          <div className="lang-switch" role="group" aria-label="Dil se├ğimi">
             {localeOptions.map((option) => (
               <button
                 key={option.code}
@@ -2396,9 +2396,9 @@ function App() {
         <div className="drawer-head">
           <div>
             <p className="eyebrow">{c.brandEyebrow}</p>
-            <p className="brand-name">Baha Büyükateş</p>
+            <p className="brand-name">Baha B├╝y├╝kate┼ş</p>
           </div>
-          <button className="close-drawer" type="button" aria-label="Menüyü kapat" onClick={() => setIsDrawerOpen(false)}>
+          <button className="close-drawer" type="button" aria-label="Men├╝y├╝ kapat" onClick={() => setIsDrawerOpen(false)}>
             X
           </button>
         </div>
@@ -2479,8 +2479,8 @@ function App() {
             <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)}>
               {c.hero.ctas.browse}
             </a>
-            <a className="btn ghost" href="#about" onClick={(e) => scrollToSection('about', e)}>
-              {c.hero.ctas.download}
+            <a className="btn ghost" href="#contact" onClick={(e) => scrollToSection('contact', e)}>
+              {c.hero.ctas.collaborate}
             </a>
           </div>
             <div className="hero-meta">
@@ -2525,7 +2525,7 @@ function App() {
           </div>
           <div className="about-grid">
             <div className="card">
-              <h3>{activeLocale === 'DE' ? 'Staerken' : activeLocale === 'EN' ? 'Strengths' : 'Güç alanlarım'}</h3>
+              <h3>{activeLocale === 'DE' ? 'Staerken' : activeLocale === 'EN' ? 'Strengths' : 'G├╝├ğ alanlar─▒m'}</h3>
               <ul className="list compact">
                 {c.about.strengths.map((item) => (
                   <li key={item}>{item}</li>
@@ -2533,7 +2533,7 @@ function App() {
               </ul>
             </div>
             <div className="card">
-              <h3>{activeLocale === 'DE' ? 'Offen fuer' : activeLocale === 'EN' ? 'Open roles' : 'Açık olduğum roller'}</h3>
+              <h3>{activeLocale === 'DE' ? 'Offen fuer' : activeLocale === 'EN' ? 'Open roles' : 'A├ğ─▒k oldu─şum roller'}</h3>
               <div className="tags">
                 {c.about.openTo.map((item) => (
                   <span className="pill" key={item}>
@@ -2554,7 +2554,7 @@ function App() {
                     ? `Aktualisiert: ${c.cv.updated}`
                     : activeLocale === 'EN'
                     ? `Updated: ${c.cv.updated}`
-                    : `Güncelleme: ${c.cv.updated}`}
+                    : `G├╝ncelleme: ${c.cv.updated}`}
                 </span>
               </div>
             </div>
@@ -2640,7 +2640,7 @@ function App() {
                 ? 'Toolbelt & zuletzt genutzt'
                 : activeLocale === 'EN'
                 ? 'Toolbelt & recent stack'
-                : 'Toolbelt & son kullanılanlar'}
+                : 'Toolbelt & son kullan─▒lanlar'}
             </p>
             <div className="tags">
               {c.toolbelt.map((tool) => (
@@ -2741,7 +2741,7 @@ function App() {
                     <h3>{activeProjectDetail.title}</h3>
                   </div>
                   <button className="close-btn" type="button" aria-label={projectUiCopy.close} onClick={() => setActiveProjectDetail(null)}>
-                    ×
+                    ├ù
                   </button>
                 </div>
                 <div className="modal-body">
@@ -2939,7 +2939,7 @@ function App() {
           </div>
           <div className="contact-photo">
             <div className="photo-frame">
-              <img src="/photo.jpg" alt="Profil fotoğrafı" loading="lazy" />
+              <img src="/photo.jpg" alt="Profil foto─şraf─▒" loading="lazy" />
             </div>
            
           </div>
@@ -2999,7 +2999,7 @@ function App() {
                   aria-expanded={bgControlsOpen}
                   title="Opsiyonel arka plan muzik (varsayilan kapali)"
                 >
-                  {bgVolume === 0 || !bgPlaying ? '🔇' : '🔊'}
+                  {bgVolume === 0 || !bgPlaying ? '­şöç' : '­şöè'}
                 </button>
                 {bgControlsOpen && (
                   <>
@@ -3058,7 +3058,7 @@ function App() {
               title="Opsiyonel geri bildirim"
             >
               <div className="trigger-text">
-                <span>💬 {feedbackCopy.cta}</span>
+                <span>­şÆ¼ {feedbackCopy.cta}</span>
                 <span className="subtext">{feedbackCopy.title}</span>
               </div>
               <span className="pill small">
@@ -3074,8 +3074,8 @@ function App() {
         </>
       )}
       {showScrollTop && (
-        <button className="scroll-top" type="button" onClick={scrollToTop} aria-label="Başa dön">
-          ↑
+        <button className="scroll-top" type="button" onClick={scrollToTop} aria-label="Ba┼şa d├Ân">
+          Ôåæ
         </button>
       )}
       <aside
@@ -3092,7 +3092,7 @@ function App() {
             <p className="section-text subtle">{feedbackCopy.storageNote}</p>
           </div>
           <button className="close-btn" type="button" aria-label="Kapat" onClick={closeFeedback}>
-            ×
+            ├ù
           </button>
         </div>
         <form className="feedback-form" onSubmit={handleFeedbackSubmit}>
@@ -3108,7 +3108,7 @@ function App() {
                 }}
                 aria-pressed={feedbackRating === score}
               >
-                ★
+                Ôİà
               </button>
             ))}
           </div>
@@ -3147,7 +3147,7 @@ function App() {
               ? 'Veriler sadece mir zu Lernzwecken; nur Score wird gespeichert.'
               : activeLocale === 'EN'
               ? 'Data stays local for my own improvement; only score is stored.'
-              : 'Veriler sadece kendimi geliştirme amaçlı; sadece puanlama tutulur.'}
+              : 'Veriler sadece kendimi geli┼ştirme ama├ğl─▒; sadece puanlama tutulur.'}
           </p>
         </div>
       </aside>
