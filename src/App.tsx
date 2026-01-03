@@ -1228,7 +1228,8 @@ function App() {
   const moonVisible = moonPhase !== 'hidden'
   const [bgPlaying, setBgPlaying] = useState(false)
   const [bgControlsOpen, setBgControlsOpen] = useState(false)
-  const [bgVolume, setBgVolume] = useState(0.1)
+  const [bgVolume, setBgVolume] = useState(0)
+  const [bgVolumeTouched, setBgVolumeTouched] = useState(false)
   const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -1299,7 +1300,6 @@ function App() {
     [motionScale],
   )
   const bgAudioRef = useRef<HTMLAudioElement | null>(null)
-  const autoBgAttempted = useRef(false)
   const dustPieces = useMemo(
     () =>
       Array.from({ length: 36 }, (_, id) => ({
@@ -1705,9 +1705,6 @@ function App() {
     flashRef.current = 0
     document.documentElement.style.setProperty('--flash-strength', '0')
     setCurrentTime(0)
-    if (bgVolume > 0) {
-      startBgAudio().catch((err) => console.error('BG resume failed', err))
-    }
   }
 
   const handleVolumeChange = (value: number) => {
@@ -1749,10 +1746,15 @@ function App() {
     if (reduceMotion) return
     try {
       setBgLoading(true)
-      if (bgVolume <= 0) {
+      const targetVolume = bgVolume === 0 && !bgVolumeTouched ? 0.05 : bgVolume
+      if (targetVolume <= 0) {
         stopBgAudio()
         return
       }
+      if (bgVolume !== targetVolume) {
+        setBgVolume(targetVolume)
+      }
+      setBgVolumeTouched(true)
       if (bgPlaying) return
       if (!bgAudioRef.current) {
         const audio = new Audio('/bg-music.mp3?v=2')
@@ -1760,17 +1762,17 @@ function App() {
         audio.preload = 'auto'
         audio.autoplay = true
         audio.playsInline = true
-        audio.volume = bgVolume
+        audio.volume = targetVolume
         bgAudioRef.current = audio
       } else {
         bgAudioRef.current.currentTime = 0
-        bgAudioRef.current.volume = bgVolume
+        bgAudioRef.current.volume = targetVolume
       }
       const audio = bgAudioRef.current
       const tryPlay = async () => {
         if (!audio) throw new Error('no audio element')
         audio.muted = false
-        audio.volume = bgVolume
+        audio.volume = targetVolume
         await audio.play()
       }
       try {
@@ -1783,7 +1785,7 @@ function App() {
         audio.volume = 0
         await audio.play()
         audio.muted = false
-        audio.volume = bgVolume
+        audio.volume = targetVolume
         setBgPlaying(true)
       }
     } catch (err) {
@@ -1803,23 +1805,19 @@ function App() {
     setBgLoading(false)
   }
 
-  const toggleBgControls = async () => {
+  const toggleBgControls = () => {
     setBgControlsOpen((open) => !open)
-    if (!bgPlaying && bgVolume > 0) {
-      await startBgAudio()
-    }
   }
 
-  const handleBgVolume = async (value: number) => {
+  const handleBgVolume = (value: number) => {
     const clamped = Math.max(0, Math.min(1, value))
+    setBgVolumeTouched(true)
     setBgVolume(clamped)
     if (bgAudioRef.current) {
       bgAudioRef.current.volume = clamped
     }
     if (clamped === 0) {
       stopBgAudio()
-    } else if (!bgPlaying) {
-      await startBgAudio()
     }
   }
 
@@ -2052,23 +2050,6 @@ function App() {
       }
     }
   }, [])
-
-  useEffect(() => {
-    if (autoBgAttempted.current || reduceMotion) return
-    autoBgAttempted.current = true
-    const resume = () => {
-      if (bgPlaying || bgVolume <= 0) return
-      startBgAudio().catch((err) => console.warn('BG resume blocked', err))
-    }
-    window.addEventListener('pointerdown', resume, { once: true, passive: true } as AddEventListenerOptions)
-    window.addEventListener('keydown', resume, { once: true })
-    window.addEventListener('visibilitychange', resume, { once: true })
-    return () => {
-      window.removeEventListener('pointerdown', resume)
-      window.removeEventListener('keydown', resume)
-      window.removeEventListener('visibilitychange', resume)
-    }
-  }, [bgPlaying, bgVolume, reduceMotion])
 
   const scrollTicking = useRef(false)
   const scrollShowRef = useRef(false)
@@ -3020,29 +3001,33 @@ function App() {
                 >
                   {bgVolume === 0 || !bgPlaying ? '🔇' : '🔊'}
                 </button>
-                <div className="music-slider">
-                  <input
-                    type="range"
-                    min={0}
-                    max={1}
-                    step={0.05}
-                    value={bgVolume}
-                    onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
-                    aria-label="Muzik ses"
-                  />
-                  <span className="volume-readout">{Math.round(bgVolume * 100)}%</span>
-                </div>
-                <div className="music-toggle">
-                  <button
-                    type="button"
-                    className={`btn ghost mini ${bgLoading ? 'loading' : ''}`}
-                    onClick={bgPlaying ? stopBgAudio : startBgAudio}
-                    disabled={bgLoading}
-                  >
-                    {bgLoading ? audioUiCopy.musicLoading : bgPlaying ? audioUiCopy.musicOn : audioUiCopy.musicOff}
-                  </button>
-                  <span className="pill small ghost">{bgLoading ? audioUiCopy.musicStatusLoading : bgPlaying ? audioUiCopy.musicStatusOn : audioUiCopy.musicStatusOff}</span>
-                </div>
+                {bgControlsOpen && (
+                  <>
+                    <div className="music-slider">
+                      <input
+                        type="range"
+                        min={0}
+                        max={1}
+                        step={0.05}
+                        value={bgVolume}
+                        onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
+                        aria-label="Muzik ses"
+                      />
+                      <span className="volume-readout">{Math.round(bgVolume * 100)}%</span>
+                    </div>
+                    <div className="music-toggle">
+                      <button
+                        type="button"
+                        className={`btn ghost mini ${bgLoading ? 'loading' : ''}`}
+                        onClick={bgPlaying ? stopBgAudio : startBgAudio}
+                        disabled={bgLoading}
+                      >
+                        {bgLoading ? audioUiCopy.musicLoading : bgPlaying ? audioUiCopy.musicOn : audioUiCopy.musicOff}
+                      </button>
+                      <span className="pill small ghost">{bgLoading ? audioUiCopy.musicStatusLoading : bgPlaying ? audioUiCopy.musicStatusOn : audioUiCopy.musicStatusOff}</span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           )}
