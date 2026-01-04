@@ -320,7 +320,7 @@ const content: Record<
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
-        impact: 'Erken uyarıda hassasiyet artışı hedeflendi.',
+        impact: 'F1 skorunda artış hedeflendi.',
       },
       {
         title: 'NeuraVeil - MRI Tümör Sınıflandırma',
@@ -686,7 +686,7 @@ const content: Record<
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
-        impact: 'Fruehwarnung mit erhoehten Sensitivitaetswerten.',
+        impact: 'F1-Score-Steigerung angestrebt.',
       },
       {
         title: 'NeuraVeil - MRI Tumor Klassifikation',
@@ -1046,7 +1046,7 @@ const content: Record<
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
-        impact: 'Targeted better sensitivity for early warning.',
+        impact: 'Improved F1 score for the model.',
       },
       {
         title: 'NeuraVeil - MRI Tumor Classification',
@@ -1327,6 +1327,18 @@ function App() {
     selectedTag === tagAllLabel || !allTags.includes(selectedTag)
       ? c.projects
       : c.projects.filter((p) => p.tags.includes(selectedTag))
+  const projectsCountLabel =
+    activeLocale === 'DE'
+      ? `${filteredProjects.length} Projekte`
+      : activeLocale === 'EN'
+      ? `${filteredProjects.length} projects`
+      : `${filteredProjects.length} proje`
+  const projectsFilterLabel =
+    activeLocale === 'DE'
+      ? `Aktives Tag: ${selectedTag}`
+      : activeLocale === 'EN'
+      ? `Filter: ${selectedTag}`
+      : `Filtre: ${selectedTag}`
 
   const learningList =
     activeLocale === 'TR'
@@ -1434,14 +1446,14 @@ function App() {
 
   const projectUiCopy =
     activeLocale === 'DE'
-      ? { open: 'Details: bitte am Desktop/Web ansehen', close: 'Schließen' }
+      ? { open: 'Details', close: 'Schließen' }
       : activeLocale === 'EN'
-      ? { open: 'Details: switch to desktop/web view', close: 'Close' }
-      : { open: 'Detaylar icin Desktop/Web görünümü', close: 'Kapat' }
+      ? { open: 'Details', close: 'Close' }
+      : { open: 'Detay', close: 'Kapat' }
 
   const getProjectPreview = (project: Project): string => {
-    const base = project.summary || project.description
-    return base.length > 140 ? `${base.slice(0, 137)}...` : base
+    const base = project.impact || project.summary || project.description
+    return base.length > 180 ? `${base.slice(0, 177)}...` : base
   }
 
   const getProjectMediaStyle = (title: string): CSSProperties | undefined => {
@@ -1467,6 +1479,13 @@ function App() {
   }
 
   const welcomeOverlayCopy = { title: 'Hoş geldin / Welcome / Willkommen', subtitle: 'Hope your day is going well.' }
+  const openProjectDetail = (project: Project) => {
+    setActiveProjectDetail(project)
+    const projectsSection = document.getElementById('projects')
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }
 
   const playerCopy =
     activeLocale === 'DE'
@@ -1985,26 +2004,15 @@ function App() {
   }, [tagAllLabel])
 
   useEffect(() => {
-    if (!isMobile) {
-      setActiveProjectDetail(null)
-      return
-    }
     if (activeProjectDetail && !filteredProjects.includes(activeProjectDetail)) {
       setActiveProjectDetail(null)
     }
-  }, [isMobile, filteredProjects, activeProjectDetail])
+  }, [filteredProjects, activeProjectDetail])
 
   useEffect(() => {
-    if (isMobile && activeProjectDetail) {
-      const previousOverflow = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
-      return () => {
-        document.body.style.overflow = previousOverflow
-      }
-    }
     document.body.style.overflow = ''
     return undefined
-  }, [isMobile, activeProjectDetail])
+  }, [activeProjectDetail])
 
   useEffect(() => {
     const updateMobile = () => {
@@ -2456,12 +2464,14 @@ function App() {
       </aside>
       {isDrawerOpen && <div className="drawer-overlay" onClick={() => setIsDrawerOpen(false)} aria-hidden="true" />}
 
-      <div className="section-indicator" aria-live="polite">
-        <div className="indicator-ring">
-          <span className="indicator-orb" aria-hidden="true" />
+      {!activeProjectDetail && (
+        <div className="section-indicator" aria-live="polite">
+          <div className="indicator-ring">
+            <span className="indicator-orb" aria-hidden="true" />
+          </div>
+          <span className="indicator-label">{indicatorLabel}</span>
         </div>
-        <span className="indicator-label">{indicatorLabel}</span>
-      </div>
+      )}
 
       <main>
         <section className="hero" id="hero">
@@ -2658,6 +2668,10 @@ function App() {
             <h2>{c.sections.projects.title}</h2>
             <p className="section-text">{c.sections.projects.text}</p>
           </div>
+          <div className="projects-toolbar">
+            <span className="pill small ghost">{projectsCountLabel}</span>
+            <span className="pill small ghost subtle-text">{projectsFilterLabel}</span>
+          </div>
           <div className="project-filter">
             {allTags.map((tag) => (
               <button
@@ -2674,6 +2688,9 @@ function App() {
             {filteredProjects.map((project) => {
               const isUnityProject = project.stack.toLowerCase().includes('unity')
               const isPlayground = Boolean(project.playground)
+              const preview = getProjectPreview(project)
+              const visibleTags = project.tags.slice(0, 3)
+              const remainingTagCount = project.tags.length - visibleTags.length
 
               if (isMobile) {
                 return (
@@ -2682,18 +2699,32 @@ function App() {
                     key={project.title}
                   >
                     <div className="card-head">
-                      <div>
-                        <h3>{project.title}</h3>
-                        <p className="stack">{project.stack}</p>
-                      </div>
-                      {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
+                    <div>
+                      <h3>{project.title}</h3>
+                      <p className="stack">{project.stack}</p>
                     </div>
-                    <p className="card-text">{getProjectPreview(project)}</p>
-                    <button className="btn ghost small full-width" type="button" disabled aria-disabled="true">
+                    {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
+                  </div>
+                  <p className="card-text project-brief">{preview}</p>
+                  <div className="tags">
+                    {visibleTags.map((tag) => (
+                      <span className="pill small" key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                    {remainingTagCount > 0 && <span className="pill small ghost">+{remainingTagCount}</span>}
+                  </div>
+                  <div className="card-footer project-actions">
+                    <button
+                      className="btn ghost small full-width"
+                      type="button"
+                      onClick={() => openProjectDetail(project)}
+                    >
                       {projectUiCopy.open}
                     </button>
-                  </article>
-                )
+                  </div>
+                </article>
+              )
               }
 
               return (
@@ -2711,30 +2742,36 @@ function App() {
                     {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
                     <span className={getProjectAccentClass(project.title)} />
                   </div>
-                  <p className="card-text">{project.description}</p>
-                  <p className="card-text subtle">{project.summary}</p>
+                  <p className="card-text project-brief">{preview}</p>
                   <div className="tags">
-                    {project.tags.map((tag) => (
+                    {visibleTags.map((tag) => (
                       <span className="pill small" key={tag}>
                         {tag}
                       </span>
                     ))}
+                    {remainingTagCount > 0 && <span className="pill small ghost">+{remainingTagCount}</span>}
                   </div>
-                  <div className="card-footer links">
+                  <div className="card-footer project-actions">
+                    <button className="btn ghost small" type="button" onClick={() => openProjectDetail(project)}>
+                      {projectUiCopy.open}
+                    </button>
                     <a className="link" href={project.github} target="_blank" rel="noreferrer">
                       GitHub
                     </a>
                   </div>
-                  <p className="impact-line">
-                    {project.impact ?? defaultProjectImpact}
-                  </p>
                 </article>
               )
             })}
           </div>
-          {isMobile && activeProjectDetail && (
-            <div className="project-modal-overlay" role="dialog" aria-modal="true" aria-label={activeProjectDetail.title}>
-              <div className="project-modal">
+          {activeProjectDetail && (
+            <div
+              className="project-modal-overlay"
+              role="dialog"
+              aria-modal="true"
+              aria-label={activeProjectDetail.title}
+              onClick={() => setActiveProjectDetail(null)}
+            >
+              <div className="project-modal" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-head">
                   <div>
                     <p className="eyebrow">{activeProjectDetail.stack}</p>
@@ -2745,6 +2782,11 @@ function App() {
                   </button>
                 </div>
                 <div className="modal-body">
+                  {activeProjectDetail.image && !activeProjectDetail.stack.toLowerCase().includes('unity') && (
+                    <div className="project-media modal-media" style={getProjectMediaStyle(activeProjectDetail.title)}>
+                      <img src={activeProjectDetail.image} alt={activeProjectDetail.title} loading="lazy" />
+                    </div>
+                  )}
                   <p className="card-text">{activeProjectDetail.description}</p>
                   <p className="card-text subtle">{activeProjectDetail.summary}</p>
                   <div className="tags">
