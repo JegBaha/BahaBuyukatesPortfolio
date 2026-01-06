@@ -2174,10 +2174,6 @@ function App() {
         <span className="flare f3" />
       </div>
       <div className="grid-overlay" aria-hidden="true" />
-      <div className="light-beams" aria-hidden="true">
-        <span className="beam b1" />
-        <span className="beam b2" />
-      </div>
       <div className="background-dust" aria-hidden="true">
         <div className="space-haze">
           <span className="haze h1" />

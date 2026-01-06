@@ -43,7 +43,6 @@
   background: radial-gradient(circle at 50% 52%, rgba(142, 214, 255, 0.2), rgba(82, 177, 255, 0.1), transparent 65%);
   filter: blur(12px);
   opacity: 0.8;
-  animation: atmospherePulse 12s ease-in-out infinite;
 }
 
 .earth-horizon::after {
@@ -79,14 +78,12 @@ body.low-motion .earth-horizon {
   background-size: 180px 180px;
   opacity: 0.28;
   transform: translate3d(0, calc(var(--scroll-progress, 0) * -12px), 0);
-  animation: starDrift 26s ease-in-out infinite alternate;
 }
 
 .parallax-stars .l1 {
   background-image: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.2) 1px, transparent 3px),
     radial-gradient(circle at 80% 70%, rgba(245, 101, 101, 0.18) 1px, transparent 3px);
   filter: blur(0.3px);
-  animation-duration: 24s;
 }
 
 .parallax-stars .l2 {
@@ -95,7 +92,6 @@ body.low-motion .earth-horizon {
   opacity: 0.35;
   background-size: 220px 220px;
   transform: translate3d(0, calc(var(--scroll-progress, 0) * -18px), 0);
-  animation-duration: 30s;
 }
 
 .parallax-stars .l3 {
@@ -105,12 +101,6 @@ body.low-motion .earth-horizon {
   background-size: 260px 260px;
   filter: blur(0.6px);
   transform: translate3d(0, calc(var(--scroll-progress, 0) * -24px), 0);
-  animation-duration: 34s;
-  animation-name: starDrift, twinkle;
-  animation-timing-function: ease-in-out, ease-in-out;
-  animation-iteration-count: infinite, infinite;
-  animation-direction: alternate, alternate;
-  animation-delay: 0s, 1s;
 }
 
 .nebula-clouds {
@@ -152,7 +142,6 @@ body.low-motion .earth-horizon {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.08), rgba(82, 177, 255, 0.06), transparent 70%);
   filter: blur(18px);
   opacity: 0.4;
-  animation: flarePulse 18s ease-in-out infinite alternate;
 }
 
 .lens-flares .f1 {
@@ -180,7 +169,6 @@ body.low-motion .earth-horizon {
   opacity: 0.2;
   mix-blend-mode: soft-light;
   transform: translate3d(0, calc(var(--scroll-progress, 0) * -10px), 0);
-  animation: gridFloat 28s ease-in-out infinite alternate;
 }
 
 body.low-motion .parallax-stars .layer,
@@ -191,60 +179,6 @@ body.low-motion .grid-overlay {
   animation: none !important;
 }
 
-@keyframes atmospherePulse {
-  0% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.02);
-  }
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-}
-
-@keyframes starDrift {
-  0% {
-    transform: translate3d(0, calc(var(--scroll-progress, 0) * -10px), 0);
-  }
-  100% {
-    transform: translate3d(4px, calc(var(--scroll-progress, 0) * -18px), 0);
-  }
-}
-
-@keyframes gridFloat {
-  0% {
-    transform: translate3d(0, calc(var(--scroll-progress, 0) * -8px), 0) scale(1);
-  }
-  100% {
-    transform: translate3d(6px, calc(var(--scroll-progress, 0) * -12px), 0) scale(1.01);
-  }
-}
-
-@keyframes beamFloat {
-  0% {
-    transform: skewX(-8deg) rotate(4deg) translateY(0);
-    opacity: 0.24;
-  }
-  100% {
-    transform: skewX(-6deg) rotate(3deg) translateY(-12px);
-    opacity: 0.32;
-  }
-}
-
-@keyframes flarePulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-  100% {
-    transform: scale(1.06);
-    opacity: 0.45;
-  }
-}
 
 .footer-note {
   position: relative;
@@ -267,38 +201,6 @@ footer .footer-note span,
 footer .footer-note .audio-controls {
   position: relative;
   z-index: 1;
-}
-
-.light-beams {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  z-index: 0;
-}
-
-.light-beams .beam {
-  position: absolute;
-  width: 40%;
-  height: 60%;
-  background: linear-gradient(135deg, rgba(82, 177, 255, 0.12), rgba(255, 255, 255, 0.04));
-  filter: blur(26px);
-  opacity: 0.28;
-  transform: skewX(-8deg) rotate(4deg);
-  animation: beamFloat 24s ease-in-out infinite alternate;
-}
-
-.light-beams .b1 {
-  top: -10%;
-  left: -6%;
-}
-
-.light-beams .b2 {
-  bottom: -14%;
-  right: -8%;
-  animation-duration: 28s;
-  animation-direction: alternate-reverse;
-  background: linear-gradient(135deg, rgba(245, 101, 101, 0.1), rgba(255, 191, 143, 0.06));
 }
 
 body::before {
