@@ -2099,23 +2099,39 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (!('IntersectionObserver' in window)) return
+    const targets = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        '.section, .card, .project-card, .hero, .hero-panel, .hero-text, .about-grid, .contact-form, .feedback-trigger, .audio-btn-stack, .player-meta, .player-progress, .player-actions',
+      ),
+    )
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      targets.forEach((node) => node.classList.add('visible'))
+      return undefined
+    }
+
+    targets.forEach((node, index) => {
+      node.classList.add('reveal-item')
+      node.style.setProperty('--reveal-delay', `${Math.min(index, 6) * 40}ms`)
+    })
+
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
+            const target = entry.target as HTMLElement
+            target.classList.add('visible')
+            obs.unobserve(target)
           }
         })
       },
-      { threshold: 0.16 },
+      { threshold: 0.2 },
     )
-    const sections = Array.from(document.querySelectorAll('.section'))
-    sections.forEach((node) => observer.observe(node))
-    return () => {
-      sections.forEach((node) => observer.unobserve(node))
-    }
-  }, [])
+
+    targets.forEach((node) => observer.observe(node))
+
+    return () => observer.disconnect()
+  }, [reduceMotion, activeLocale])
 
   const scrollToTop = () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
