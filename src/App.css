@@ -3494,6 +3494,20 @@ body.low-motion .background-dust {
     animation: none !important;
   }
 }
+
+@media (max-width: 720px) {
+  /* Mobile performance: disable heavy blurred backgrounds */
+  .space-haze,
+  .nebula-clouds,
+  .lens-flares,
+  .ambient-lights,
+  .aurora {
+    display: none !important;
+  }
+  .background-dust {
+    filter: none;
+  }
+}
 @media (max-width: 800px) {
   .top-nav {
     position: sticky;
