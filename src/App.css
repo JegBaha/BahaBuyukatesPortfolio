@@ -499,6 +499,12 @@ body.low-motion .ambient-lights {
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease, color 0.2s ease;
 }
 
+.drawer-links button.active {
+  background: linear-gradient(135deg, rgba(245, 101, 101, 0.22), rgba(109, 127, 161, 0.15));
+  border-color: rgba(245, 101, 101, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.32);
+}
+
 .drawer-links button:hover {
   background: linear-gradient(135deg, rgba(245, 101, 101, 0.18), rgba(109, 127, 161, 0.12));
   border-color: rgba(245, 101, 101, 0.35);
@@ -717,6 +723,14 @@ body.drawer-open {
 .nav-links a:hover::after,
 .nav-links a:focus-visible::after {
   transform: scaleX(1);
+}
+
+.nav-links a.active,
+.nav-links .link-button.active {
+  color: #fff;
+  border-color: rgba(245, 101, 101, 0.45);
+  background: linear-gradient(135deg, rgba(245, 101, 101, 0.16), rgba(109, 127, 161, 0.14));
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
 main {

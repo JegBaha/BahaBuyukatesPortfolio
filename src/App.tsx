@@ -2369,25 +2369,51 @@ function App() {
         </div>
         <div className="nav-right">
           <nav className="nav-links">
-            <a href="#about" onClick={(e) => handleNavClick('about', e)}>
+            <a
+              href="#about"
+              className={activeSection === 'about' ? 'active' : ''}
+              aria-current={activeSection === 'about' ? 'page' : undefined}
+              onClick={(e) => handleNavClick('about', e)}
+            >
               {c.nav.about}
             </a>
-            <a href="#experience" onClick={(e) => handleNavClick('experience', e)}>
+            <a
+              href="#experience"
+              className={activeSection === 'experience' ? 'active' : ''}
+              aria-current={activeSection === 'experience' ? 'page' : undefined}
+              onClick={(e) => handleNavClick('experience', e)}
+            >
               {c.nav.experience}
             </a>
-            <a href="#projects" onClick={(e) => handleNavClick('projects', e)}>
+            <a
+              href="#projects"
+              className={activeSection === 'projects' ? 'active' : ''}
+              aria-current={activeSection === 'projects' ? 'page' : undefined}
+              onClick={(e) => handleNavClick('projects', e)}
+            >
               {c.nav.projects}
             </a>
-            <a href="#skills" onClick={(e) => handleNavClick('skills', e)}>
+            <a
+              href="#skills"
+              className={activeSection === 'skills' ? 'active' : ''}
+              aria-current={activeSection === 'skills' ? 'page' : undefined}
+              onClick={(e) => handleNavClick('skills', e)}
+            >
               {c.nav.skills}
             </a>
-            <a href="#contact" onClick={(e) => handleNavClick('contact', e)}>
+            <a
+              href="#contact"
+              className={activeSection === 'contact' ? 'active' : ''}
+              aria-current={activeSection === 'contact' ? 'page' : undefined}
+              onClick={(e) => handleNavClick('contact', e)}
+            >
               {c.nav.contact}
             </a>
             <button
-              className="link-button guitar-link"
+              className={`link-button guitar-link ${activeSection === 'hobby' ? 'active' : ''}`}
               type="button"
               aria-label="Hobby"
+              aria-current={activeSection === 'hobby' ? 'page' : undefined}
               onClick={(e) => handleNavClick('hobby', e)}
             >
               {hobbyNavLabel}
@@ -2411,22 +2437,52 @@ function App() {
           </button>
         </div>
         <nav className="drawer-links">
-          <button type="button" onClick={(e) => handleNavClick('about', e)}>
+          <button
+            type="button"
+            className={activeSection === 'about' ? 'active' : ''}
+            aria-current={activeSection === 'about' ? 'page' : undefined}
+            onClick={(e) => handleNavClick('about', e)}
+          >
             {c.nav.about}
           </button>
-          <button type="button" onClick={(e) => handleNavClick('experience', e)}>
+          <button
+            type="button"
+            className={activeSection === 'experience' ? 'active' : ''}
+            aria-current={activeSection === 'experience' ? 'page' : undefined}
+            onClick={(e) => handleNavClick('experience', e)}
+          >
             {c.nav.experience}
           </button>
-          <button type="button" onClick={(e) => handleNavClick('projects', e)}>
+          <button
+            type="button"
+            className={activeSection === 'projects' ? 'active' : ''}
+            aria-current={activeSection === 'projects' ? 'page' : undefined}
+            onClick={(e) => handleNavClick('projects', e)}
+          >
             {c.nav.projects}
           </button>
-          <button type="button" onClick={(e) => handleNavClick('skills', e)}>
+          <button
+            type="button"
+            className={activeSection === 'skills' ? 'active' : ''}
+            aria-current={activeSection === 'skills' ? 'page' : undefined}
+            onClick={(e) => handleNavClick('skills', e)}
+          >
             {c.nav.skills}
           </button>
-          <button type="button" onClick={(e) => handleNavClick('hobby', e)}>
+          <button
+            type="button"
+            className={activeSection === 'hobby' ? 'active' : ''}
+            aria-current={activeSection === 'hobby' ? 'page' : undefined}
+            onClick={(e) => handleNavClick('hobby', e)}
+          >
             {hobbyNavLabel}
           </button>
-          <button type="button" onClick={(e) => handleNavClick('contact', e)}>
+          <button
+            type="button"
+            className={activeSection === 'contact' ? 'active' : ''}
+            aria-current={activeSection === 'contact' ? 'page' : undefined}
+            onClick={(e) => handleNavClick('contact', e)}
+          >
             {c.nav.contact}
           </button>
         </nav>
@@ -2514,7 +2570,7 @@ function App() {
               <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)}>
                 {c.hero.ctas.browse}
               </a>
-              <a className="btn ghost" href="#about" onClick={(e) => scrollToSection('about', e)}>
+              <a className="btn ghost" href={c.cv.link} target="_blank" rel="noreferrer">
                 {c.hero.ctas.download}
               </a>
             </div>
