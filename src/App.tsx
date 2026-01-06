@@ -2099,6 +2099,21 @@ function App() {
   }, [])
 
   useEffect(() => {
+    if (reduceMotion) return
+    const interval = window.setInterval(() => {
+      const id = Date.now()
+      const duration = 1100 + Math.random() * 800
+      const left = `${15 + Math.random() * 70}%`
+      setFallingStars((prev) => [...prev.slice(-3), { id, left, duration }])
+      window.setTimeout(() => {
+        setFallingStars((prev) => prev.filter((item) => item.id !== id))
+      }, duration + 220)
+    }, 9000 + Math.random() * 5000)
+
+    return () => window.clearInterval(interval)
+  }, [reduceMotion])
+
+  useEffect(() => {
     const targets = Array.from(
       document.querySelectorAll<HTMLElement>(
         '.section, .card, .project-card, .hero, .hero-panel, .hero-text, .about-grid, .contact-form, .feedback-trigger, .audio-btn-stack, .player-meta, .player-progress, .player-actions',
@@ -2144,6 +2159,25 @@ function App() {
         <span />
       </div>
       <div className="cursor-glow" aria-hidden="true" />
+      <div className="parallax-stars" aria-hidden="true">
+        <span className="layer l1" />
+        <span className="layer l2" />
+        <span className="layer l3" />
+      </div>
+      <div className="nebula-clouds" aria-hidden="true">
+        <span className="cloud c1" />
+        <span className="cloud c2" />
+      </div>
+      <div className="lens-flares" aria-hidden="true">
+        <span className="flare f1" />
+        <span className="flare f2" />
+        <span className="flare f3" />
+      </div>
+      <div className="grid-overlay" aria-hidden="true" />
+      <div className="light-beams" aria-hidden="true">
+        <span className="beam b1" />
+        <span className="beam b2" />
+      </div>
       <div className="background-dust" aria-hidden="true">
         <div className="space-haze">
           <span className="haze h1" />
@@ -2284,6 +2318,9 @@ function App() {
         <div className="aurora">
           <span className="ribbon r1" />
           <span className="ribbon r2" />
+          <span className="ribbon r3" />
+          <span className="spark s1" />
+          <span className="spark s2" />
         </div>
       </div>
       <div className="edge-lights" aria-hidden="true" />

@@ -11,6 +11,296 @@
   z-index: 1;
 }
 
+.earth-horizon {
+  position: fixed;
+  left: 50%;
+  bottom: -120vmax;
+  width: 140vmax;
+  height: 140vmax;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 50% 48%, #52b1ff 0%, #2c6acb 18%, #10346f 42%, rgba(7, 11, 22, 0.92) 62%, rgba(5, 8, 16, 0.96) 100%);
+  filter: drop-shadow(0 -10px 64px rgba(82, 177, 255, 0.28)) saturate(1.02);
+  opacity: 0.6;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  clip-path: inset(0 0 85% 0);
+  mask-image: linear-gradient(180deg, transparent 0%, transparent 78%, rgba(0, 0, 0, 0.9) 90%, rgba(0, 0, 0, 1) 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, transparent 78%, rgba(0, 0, 0, 0.9) 90%, rgba(0, 0, 0, 1) 100%);
+}
+
+.earth-horizon::before,
+.earth-horizon::after {
+  content: '';
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.earth-horizon::before {
+  background: radial-gradient(circle at 50% 52%, rgba(142, 214, 255, 0.2), rgba(82, 177, 255, 0.1), transparent 65%);
+  filter: blur(12px);
+  opacity: 0.8;
+  animation: atmospherePulse 12s ease-in-out infinite;
+}
+
+.earth-horizon::after {
+  inset: 10%;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.08), transparent 55%);
+  filter: blur(10px);
+  opacity: 0.65;
+}
+
+body.low-motion .earth-horizon {
+  animation: none;
+  filter: drop-shadow(0 -8px 60px rgba(82, 177, 255, 0.25));
+}
+
+.parallax-stars,
+.nebula-clouds,
+.lens-flares,
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.parallax-stars {
+  mix-blend-mode: screen;
+}
+
+.parallax-stars .layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.28;
+  transform: translate3d(0, calc(var(--scroll-progress, 0) * -12px), 0);
+  animation: starDrift 26s ease-in-out infinite alternate;
+}
+
+.parallax-stars .l1 {
+  background-image: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.2) 1px, transparent 3px),
+    radial-gradient(circle at 80% 70%, rgba(245, 101, 101, 0.18) 1px, transparent 3px);
+  filter: blur(0.3px);
+  animation-duration: 24s;
+}
+
+.parallax-stars .l2 {
+  background-image: radial-gradient(circle at 40% 10%, rgba(255, 255, 255, 0.2) 1px, transparent 3px),
+    radial-gradient(circle at 60% 80%, rgba(109, 127, 161, 0.2) 1px, transparent 3px);
+  opacity: 0.35;
+  background-size: 220px 220px;
+  transform: translate3d(0, calc(var(--scroll-progress, 0) * -18px), 0);
+  animation-duration: 30s;
+}
+
+.parallax-stars .l3 {
+  background-image: radial-gradient(circle at 30% 60%, rgba(255, 191, 143, 0.18) 1px, transparent 3px),
+    radial-gradient(circle at 70% 25%, rgba(255, 255, 255, 0.22) 1px, transparent 3px);
+  opacity: 0.2;
+  background-size: 260px 260px;
+  filter: blur(0.6px);
+  transform: translate3d(0, calc(var(--scroll-progress, 0) * -24px), 0);
+  animation-duration: 34s;
+  animation-name: starDrift, twinkle;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  animation-direction: alternate, alternate;
+  animation-delay: 0s, 1s;
+}
+
+.nebula-clouds {
+  mix-blend-mode: screen;
+  filter: blur(16px) saturate(1.05);
+}
+
+.nebula-clouds .cloud {
+  position: absolute;
+  width: 50%;
+  height: 40%;
+  opacity: 0.35;
+  background: radial-gradient(circle at 30% 40%, rgba(109, 127, 161, 0.24), rgba(82, 177, 255, 0.14), transparent 65%);
+  animation: hazeDrift 30s ease-in-out infinite;
+}
+
+.nebula-clouds .c1 {
+  top: 6%;
+  left: -8%;
+}
+
+.nebula-clouds .c2 {
+  bottom: 8%;
+  right: -6%;
+  background: radial-gradient(circle at 60% 55%, rgba(245, 101, 101, 0.16), rgba(255, 191, 143, 0.18), transparent 70%);
+  animation-duration: 34s;
+  animation-direction: alternate-reverse;
+}
+
+.lens-flares {
+  mix-blend-mode: screen;
+}
+
+.lens-flares .flare {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08), rgba(82, 177, 255, 0.06), transparent 70%);
+  filter: blur(18px);
+  opacity: 0.4;
+  animation: flarePulse 18s ease-in-out infinite alternate;
+}
+
+.lens-flares .f1 {
+  top: 14%;
+  left: -6%;
+}
+
+.lens-flares .f2 {
+  top: 24%;
+  right: -4%;
+  background: radial-gradient(circle, rgba(245, 101, 101, 0.08), rgba(255, 191, 143, 0.06), transparent 70%);
+}
+
+.lens-flares .f3 {
+  bottom: 18%;
+  left: 12%;
+  width: 160px;
+  height: 160px;
+  opacity: 0.32;
+}
+
+.grid-overlay {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 120px 120px;
+  opacity: 0.2;
+  mix-blend-mode: soft-light;
+  transform: translate3d(0, calc(var(--scroll-progress, 0) * -10px), 0);
+  animation: gridFloat 28s ease-in-out infinite alternate;
+}
+
+body.low-motion .parallax-stars .layer,
+body.low-motion .nebula-clouds,
+body.low-motion .lens-flares,
+body.low-motion .grid-overlay {
+  transform: none !important;
+  animation: none !important;
+}
+
+@keyframes atmospherePulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+@keyframes starDrift {
+  0% {
+    transform: translate3d(0, calc(var(--scroll-progress, 0) * -10px), 0);
+  }
+  100% {
+    transform: translate3d(4px, calc(var(--scroll-progress, 0) * -18px), 0);
+  }
+}
+
+@keyframes gridFloat {
+  0% {
+    transform: translate3d(0, calc(var(--scroll-progress, 0) * -8px), 0) scale(1);
+  }
+  100% {
+    transform: translate3d(6px, calc(var(--scroll-progress, 0) * -12px), 0) scale(1.01);
+  }
+}
+
+@keyframes beamFloat {
+  0% {
+    transform: skewX(-8deg) rotate(4deg) translateY(0);
+    opacity: 0.24;
+  }
+  100% {
+    transform: skewX(-6deg) rotate(3deg) translateY(-12px);
+    opacity: 0.32;
+  }
+}
+
+@keyframes flarePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.06);
+    opacity: 0.45;
+  }
+}
+
+.footer-note {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-note::before {
+  content: '';
+  position: absolute;
+  inset: -40% -20% auto -20%;
+  height: 80%;
+  background: radial-gradient(circle at 50% 100%, rgba(82, 177, 255, 0.16), transparent 70%);
+  filter: blur(30px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+footer .footer-note span,
+footer .footer-note .audio-controls {
+  position: relative;
+  z-index: 1;
+}
+
+.light-beams {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 0;
+}
+
+.light-beams .beam {
+  position: absolute;
+  width: 40%;
+  height: 60%;
+  background: linear-gradient(135deg, rgba(82, 177, 255, 0.12), rgba(255, 255, 255, 0.04));
+  filter: blur(26px);
+  opacity: 0.28;
+  transform: skewX(-8deg) rotate(4deg);
+  animation: beamFloat 24s ease-in-out infinite alternate;
+}
+
+.light-beams .b1 {
+  top: -10%;
+  left: -6%;
+}
+
+.light-beams .b2 {
+  bottom: -14%;
+  right: -8%;
+  animation-duration: 28s;
+  animation-direction: alternate-reverse;
+  background: linear-gradient(135deg, rgba(245, 101, 101, 0.1), rgba(255, 191, 143, 0.06));
+}
+
 body::before {
   content: '';
   position: fixed;
@@ -166,6 +456,38 @@ body.low-motion .ambient-lights {
   opacity: 0.7;
   animation-duration: 22s;
   animation-direction: alternate-reverse;
+}
+
+.aurora .r3 {
+  top: -20%;
+  height: 80%;
+  opacity: 0.4;
+  background: linear-gradient(120deg, rgba(82, 177, 255, 0.12), rgba(109, 127, 161, 0.14), rgba(255, 255, 255, 0.08));
+  animation-duration: 26s;
+  animation-direction: alternate;
+  filter: blur(2px);
+}
+
+.aurora .spark {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(82, 177, 255, 0.1));
+  opacity: 0;
+  animation: sparklePulse 4s ease-in-out infinite;
+}
+
+.aurora .s1 {
+  top: 20%;
+  left: 35%;
+  animation-delay: 1.2s;
+}
+
+.aurora .s2 {
+  top: 55%;
+  left: 62%;
+  animation-delay: 2s;
 }
 .aurora {
   position: absolute;
@@ -2155,6 +2477,8 @@ body.low-motion .background-dust {
   animation: planetDrift var(--planet-duration, 28s) ease-in-out infinite alternate;
   position: absolute;
   transform: translate3d(0, calc(var(--scroll-progress, 0) * -30px), 0);
+  animation-delay: var(--planet-delay, 0s);
+  animation-duration: calc(var(--planet-duration, 28s) + 4s);
 }
 
 .background-dust .planet::after {
