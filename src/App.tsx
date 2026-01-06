@@ -2483,16 +2483,41 @@ function App() {
             </h1>
             <p className="lede">{c.hero.lede}</p>
             <div className="cta-row hero-cta">
-            <a className="btn ghost" href="mailto:bahabuyukates@gmail.com">
-              bahabuyukates@gmail.com
-            </a>
-            <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)}>
-              {c.hero.ctas.browse}
-            </a>
-            <a className="btn ghost" href="#about" onClick={(e) => scrollToSection('about', e)}>
-              {c.hero.ctas.download}
-            </a>
-          </div>
+              <div className="contact-cta">
+                <div className="social-badges" aria-label="Sosyal baglantilar">
+                  <a
+                    className="icon-btn linkedin"
+                    href="https://www.linkedin.com/in/baha-buyukates"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="LinkedIn"
+                    title="LinkedIn"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-4.72 17.7H4.28V9.3h3v8.4zM5.83 8.07c-.96 0-1.73-.79-1.73-1.76 0-.97.77-1.76 1.73-1.76s1.73.79 1.73 1.76c0 .97-.77 1.76-1.73 1.76zm12.87 9.63h-3v-4.58c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.65h-3V9.3h2.88v1.15h.04c.4-.75 1.38-1.54 2.85-1.54 3.05 0 3.6 2.01 3.6 4.62v5.17z" />
+                    </svg>
+                  </a>
+                  <a
+                    className="icon-btn github"
+                    href="https://github.com/JegBaha?tab=repositories"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="GitHub"
+                    title="GitHub"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.011-1.04-.017-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.083-.73.083-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.521.117-3.172 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.018.005 2.044.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.654 1.651.243 2.869.119 3.172.77.84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.625-5.475 5.921.43.372.823 1.103.823 2.222 0 1.606-.015 2.898-.015 3.292 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)}>
+                {c.hero.ctas.browse}
+              </a>
+              <a className="btn ghost" href="#about" onClick={(e) => scrollToSection('about', e)}>
+                {c.hero.ctas.download}
+              </a>
+            </div>
             <div className="hero-meta">
               {c.heroMeta.map((pill) => (
                 <span className="pill" key={pill}>
