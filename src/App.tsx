@@ -147,7 +147,7 @@ const content: Record<
       skills: {
         eyebrow: 'Ne sunuyorum',
         title: 'Yetenek seti',
-        text: 'Veri, yapay zeka, otomasyon ve kurumsal süreçleri birleştiren beceriler.',
+        text: 'Veri, yapay zeka, otomasyon ve kurumsal s?re?leri birle?tiren beceriler; genel olarak orta seviye.',
       },
       projects: {
         eyebrow: 'Seçili projeler',
@@ -156,7 +156,7 @@ const content: Record<
       },
       education: {
         eyebrow: 'Eğitim',
-        title: 'Temel ve ileri düzey',
+        title: 'Temel ve orta d?zey',
         text: 'Mühür: Bilgisayar Mühendisliği + AI odaklı bootcamp.',
       },
       certifications: {
@@ -463,7 +463,7 @@ const content: Record<
       highlight: 'Data, otomasyon, endüstriyel dijitalizasyon ve BI alanlarında her gün kendimi geliştiriyorum.',
     },
     skillMatrix: [
-      { name: 'Power BI / DAX', level: 'İleri', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Power BI / DAX', level: 'Orta', tools: ['Star Schema', 'KPI', 'Gateway'] },
       { name: 'Python / PyTorch', level: 'Orta', tools: ['CNN', 'Data Pipelines', 'Evaluation'] },
       { name: 'SQL', level: 'Orta', tools: ['Query Optimize', 'Joins', 'CTE'] },
       { name: 'Automation', level: 'Orta', tools: ['Zapier', 'Airtable', 'Slack'] },
@@ -513,7 +513,7 @@ const content: Record<
       skills: {
         eyebrow: 'Was ich biete',
         title: 'Skill-Stack',
-        text: 'Faehigkeiten, die Daten, KI, Automatisierung und Unternehmensprozesse verbinden.',
+        text: 'Faehigkeiten, die Daten, KI, Automatisierung und Unternehmensprozesse verbinden; insgesamt auf mittlerem Niveau.',
       },
       projects: {
         eyebrow: 'Ausgewaehlte Projekte',
@@ -522,7 +522,7 @@ const content: Record<
       },
       education: {
         eyebrow: 'Ausbildung',
-        title: 'Fundament & Vertiefung',
+        title: 'Grundlagen & Mittelstufe',
         text: 'Siegel: Informatikstudium + AI-Bootcamp.',
       },
       certifications: {
@@ -823,7 +823,7 @@ const content: Record<
       highlight: 'Ich entwickle mich täglich in Data, Automatisierung, industrieller Digitalisierung und BI weiter.',
     },
     skillMatrix: [
-      { name: 'Power BI / DAX', level: 'Fortgeschritten', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Power BI / DAX', level: 'Mittel', tools: ['Star Schema', 'KPI', 'Gateway'] },
       { name: 'Python / PyTorch', level: 'Mittel', tools: ['CNN', 'Pipelines', 'Eval'] },
       { name: 'SQL', level: 'Mittel', tools: ['Query Optimize', 'Joins', 'CTE'] },
       { name: 'Automation', level: 'Mittel', tools: ['Zapier', 'Airtable', 'Slack'] },
@@ -873,7 +873,7 @@ const content: Record<
       skills: {
         eyebrow: 'What I offer',
         title: 'Skill set',
-        text: 'Capabilities that connect data, AI, automation, and enterprise processes.',
+        text: 'Capabilities that connect data, AI, automation, and enterprise processes; overall at an intermediate level.',
       },
       projects: {
         eyebrow: 'Featured projects',
@@ -882,7 +882,7 @@ const content: Record<
       },
       education: {
         eyebrow: 'Education',
-        title: 'Foundation and depth',
+        title: 'Foundation and intermediate level',
         text: 'Computer Engineering degree and an AI-focused bootcamp.',
       },
       certifications: {
@@ -1183,7 +1183,7 @@ const content: Record<
       highlight: 'I keep improving daily across data, automation, industrial digitalization, and BI.',
     },
     skillMatrix: [
-      { name: 'Power BI / DAX', level: 'Advanced', tools: ['Star Schema', 'KPI', 'Gateway'] },
+      { name: 'Power BI / DAX', level: 'Intermediate', tools: ['Star Schema', 'KPI', 'Gateway'] },
       { name: 'Python / PyTorch', level: 'Intermediate', tools: ['CNN', 'Pipelines', 'Evaluation'] },
       { name: 'SQL', level: 'Intermediate', tools: ['Query Optimize', 'Joins', 'CTE'] },
       { name: 'Automation', level: 'Intermediate', tools: ['Zapier', 'Airtable', 'Slack'] },
