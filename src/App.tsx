@@ -147,7 +147,7 @@ const content: Record<
       skills: {
         eyebrow: 'Ne sunuyorum',
         title: 'Yetenek seti',
-        text: 'Veri, yapay zeka, otomasyon ve kurumsal s?re?leri birle?tiren beceriler; genel olarak orta seviye.',
+        text: 'Veri, yapay zeka, otomasyon ve kurumsal süreçleri birleştiren beceriler; genel olarak orta seviye.',
       },
       projects: {
         eyebrow: 'Seçili projeler',
