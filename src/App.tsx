@@ -156,7 +156,7 @@ const content: Record<
       },
       education: {
         eyebrow: 'Eğitim',
-        title: 'Temel ve orta d?zey',
+        title: 'Temel ve orta düzey',
         text: 'Mühür: Bilgisayar Mühendisliği + AI odaklı bootcamp.',
       },
       certifications: {
