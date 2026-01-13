@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+﻿import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties, FormEvent, MouseEvent as ReactMouseEvent } from 'react'
 import './App.css'
 
@@ -1194,6 +1194,45 @@ const content: Record<
   },
 }
 
+// Epic Welcome Screen Component - English Only with Multiple Effects
+function EpicWelcomeText() {
+  const [displayText, setDisplayText] = useState('')
+  const [isTypingComplete, setIsTypingComplete] = useState(false)
+
+  const fullText = 'WELCOME'
+  const subtitle = 'Entering the portfolio dimension...'
+
+  useEffect(() => {
+    // Matrix-style character reveal
+    let currentIndex = 0
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayText(fullText.slice(0, currentIndex))
+        currentIndex++
+      } else {
+        setIsTypingComplete(true)
+        clearInterval(typingInterval)
+      }
+    }, 150) // 150ms per character for dramatic effect
+
+    return () => clearInterval(typingInterval)
+  }, [])
+
+  return (
+    <>
+      <div className="welcome-lang-container">
+        <span className="welcome-lang-word active">
+          {displayText}
+          {!isTypingComplete && <span className="typing-cursor">_</span>}
+        </span>
+      </div>
+      <p className={`welcome-subtitle-typing ${isTypingComplete ? 'show' : ''}`}>
+        {subtitle}
+      </p>
+    </>
+  )
+}
+
 function App() {
   const [activeLocale, setActiveLocale] = useState<Locale>('TR')
   const [showWelcome, setShowWelcome] = useState(true)
@@ -1963,8 +2002,8 @@ function App() {
   }, [feedbackEntries.length, isMobile])
 
   useEffect(() => {
-    const dustTimer = setTimeout(() => setWelcomePhase('dusting'), 1400)
-    const hideTimer = setTimeout(() => setShowWelcome(false), 2800)
+    const dustTimer = setTimeout(() => setWelcomePhase('dusting'), 3200) // Epic timing: 3.2s
+    const hideTimer = setTimeout(() => setShowWelcome(false), 4400) // Epic timing: 4.4s total
     const root = document.documentElement
     const handleMove = (e: MouseEvent) => {
       root.style.setProperty('--cursor-x', `${e.clientX}px`)
@@ -2148,6 +2187,287 @@ function App() {
     return () => observer.disconnect()
   }, [reduceMotion, activeLocale])
 
+  // ============================================
+  // NEW DESKTOP-ONLY EFFECTS
+  // ============================================
+
+  // Mouse Trail Particles Effect (Desktop Only)
+  useEffect(() => {
+    if (isMobile || reduceMotion) return
+
+    let particleId = 0
+    const maxParticles = 15 // Limit particles for performance
+
+    const handleMouseMove = (e: MouseEvent) => {
+      // Throttle particle creation (create only 30% of the time)
+      if (Math.random() > 0.3) return
+
+      const particle = document.createElement('div')
+      particle.className = 'mouse-particle'
+      particle.style.left = `${e.clientX}px`
+      particle.style.top = `${e.clientY}px`
+
+      // Add slight random offset for organic feel
+      const offsetX = (Math.random() - 0.5) * 10
+      const offsetY = (Math.random() - 0.5) * 10
+      particle.style.transform = `translate(${offsetX}px, ${offsetY}px)`
+
+      document.body.appendChild(particle)
+      particleId++
+
+      // Remove particle after animation completes
+      setTimeout(() => {
+        particle.remove()
+      }, 800)
+
+      // Cleanup old particles if too many exist
+      const particles = document.querySelectorAll('.mouse-particle')
+      if (particles.length > maxParticles) {
+        particles[0].remove()
+      }
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [isMobile, reduceMotion])
+
+  // 3D Tilt Effect on Cards (Desktop Only)
+  useEffect(() => {
+    if (isMobile || reduceMotion) return
+
+    const cards = document.querySelectorAll<HTMLElement>('.card')
+
+    const handleMouseMove = (e: MouseEvent, card: HTMLElement) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+
+      // Calculate rotation based on mouse position
+      const rotateY = ((x - centerX) / centerX) * 10 // Max 10deg
+      const rotateX = ((centerY - y) / centerY) * 10 // Max 10deg
+
+      card.style.setProperty('--tilt-x', `${rotateX}deg`)
+      card.style.setProperty('--tilt-y', `${rotateY}deg`)
+      card.classList.add('tilt-active')
+    }
+
+    const handleMouseLeave = (card: HTMLElement) => {
+      card.style.setProperty('--tilt-x', '0deg')
+      card.style.setProperty('--tilt-y', '0deg')
+      card.classList.remove('tilt-active')
+    }
+
+    cards.forEach((card) => {
+      const moveHandler = (e: MouseEvent) => handleMouseMove(e, card)
+      const leaveHandler = () => handleMouseLeave(card)
+
+      card.addEventListener('mousemove', moveHandler as EventListener)
+      card.addEventListener('mouseleave', leaveHandler)
+
+      // Store handlers for cleanup
+      ;(card as any)._tiltHandlers = { moveHandler, leaveHandler }
+    })
+
+    return () => {
+      cards.forEach((card) => {
+        const handlers = (card as any)._tiltHandlers
+        if (handlers) {
+          card.removeEventListener('mousemove', handlers.moveHandler as EventListener)
+          card.removeEventListener('mouseleave', handlers.leaveHandler)
+        }
+      })
+    }
+  }, [isMobile, reduceMotion, activeLocale])
+
+  // Magnetic Button Effect (Desktop Only)
+  useEffect(() => {
+    if (isMobile || reduceMotion) return
+
+    const magneticElements = document.querySelectorAll<HTMLElement>(
+      '.btn, .cta-btn, .toggle-audio, .lang-btn, .project-tag'
+    )
+
+    const handleMouseMove = (e: MouseEvent, element: HTMLElement) => {
+      const rect = element.getBoundingClientRect()
+      const x = e.clientX - rect.left - rect.width / 2
+      const y = e.clientY - rect.top - rect.height / 2
+
+      // Magnetic distance (pixels from center)
+      const distance = Math.sqrt(x * x + y * y)
+      const maxDistance = 80 // Maximum distance for magnetic effect
+
+      if (distance < maxDistance) {
+        // Apply magnetic pull (30% of distance)
+        const pullX = x * 0.3
+        const pullY = y * 0.3
+        element.style.setProperty('--magnetic-x', `${pullX}px`)
+        element.style.setProperty('--magnetic-y', `${pullY}px`)
+        element.classList.add('magnetic')
+      } else {
+        element.style.setProperty('--magnetic-x', '0px')
+        element.style.setProperty('--magnetic-y', '0px')
+        element.classList.remove('magnetic')
+      }
+    }
+
+    const handleMouseLeave = (element: HTMLElement) => {
+      element.style.setProperty('--magnetic-x', '0px')
+      element.style.setProperty('--magnetic-y', '0px')
+      element.classList.remove('magnetic')
+    }
+
+    magneticElements.forEach((element) => {
+      const moveHandler = (e: MouseEvent) => handleMouseMove(e, element)
+      const leaveHandler = () => handleMouseLeave(element)
+
+      element.addEventListener('mousemove', moveHandler as EventListener)
+      element.addEventListener('mouseleave', leaveHandler)
+
+      // Store handlers for cleanup
+      ;(element as any)._magneticHandlers = { moveHandler, leaveHandler }
+    })
+
+    return () => {
+      magneticElements.forEach((element) => {
+        const handlers = (element as any)._magneticHandlers
+        if (handlers) {
+          element.removeEventListener('mousemove', handlers.moveHandler as EventListener)
+          element.removeEventListener('mouseleave', handlers.leaveHandler)
+        }
+      })
+    }
+  }, [isMobile, reduceMotion, activeLocale])
+
+  // ============================================
+  // EPIC COSMIC ENHANCEMENTS - DESKTOP ONLY
+  // ============================================
+
+  // Scroll-based Parallax Depth Layers - OPTIMIZED with RAF
+  useEffect(() => {
+    if (isMobile || reduceMotion) return
+
+    let ticking = false
+    let lastScrollY = 0
+
+    const updateParallax = () => {
+      const nearLayer = document.querySelector('.parallax-stars-near') as HTMLElement
+      const midLayer = document.querySelector('.parallax-stars-mid') as HTMLElement
+      const farLayer = document.querySelector('.parallax-stars-far') as HTMLElement
+
+      if (nearLayer) nearLayer.style.transform = `translateY(${lastScrollY * 0.5}px)`
+      if (midLayer) midLayer.style.transform = `translateY(${lastScrollY * 0.3}px)`
+      if (farLayer) farLayer.style.transform = `translateY(${lastScrollY * 0.1}px)`
+
+      ticking = false
+    }
+
+    const handleParallaxScroll = () => {
+      lastScrollY = window.scrollY
+
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax)
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleParallaxScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleParallaxScroll)
+  }, [isMobile, reduceMotion])
+
+  // Bottom Planet Visibility - Show only at Contact Section
+  useEffect(() => {
+    if (isMobile || reduceMotion) return
+
+    const handlePlanetVisibility = () => {
+      const contactSection = document.querySelector('#contact') as HTMLElement
+      const planet = document.querySelector('.cosmic-planet-bottom') as HTMLElement
+
+      if (contactSection && planet) {
+        const rect = contactSection.getBoundingClientRect()
+        const windowHeight = window.innerHeight
+
+        // Show planet when contact section is visible in viewport
+        if (rect.top < windowHeight && rect.bottom > 0) {
+          planet.classList.add('visible')
+        } else {
+          planet.classList.remove('visible')
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handlePlanetVisibility, { passive: true })
+    handlePlanetVisibility() // Check initial state
+    return () => window.removeEventListener('scroll', handlePlanetVisibility)
+  }, [isMobile, reduceMotion])
+
+  // Ambient Particle Field - OPTIMIZED (reduced count)
+  useEffect(() => {
+    if (isMobile || reduceMotion) return
+
+    const particleCount = 12 // Reduced from 20 to 12
+    const particles: HTMLElement[] = []
+    const colors = ['', 'blue', 'red', 'purple']
+
+    // Create particles
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div')
+      particle.className = `ambient-particle ${colors[Math.floor(Math.random() * colors.length)]}`
+
+      // Random starting position
+      particle.style.left = `${Math.random() * 100}vw`
+      particle.style.top = `${Math.random() * 100}vh`
+
+      // Random animation delay and duration
+      particle.style.animationDelay = `${Math.random() * 5}s`
+      particle.style.animationDuration = `${15 + Math.random() * 10}s`
+
+      // Use will-change sparingly for better performance
+      particle.style.willChange = 'transform, opacity'
+
+      document.body.appendChild(particle)
+      particles.push(particle)
+    }
+
+    // Cleanup
+    return () => {
+      particles.forEach((p) => p.remove())
+    }
+  }, [isMobile, reduceMotion])
+
+  // Enhanced Header Scroll Effect - OPTIMIZED with RAF
+  useEffect(() => {
+    if (isMobile || reduceMotion) return
+
+    let ticking = false
+    let lastScrollY = 0
+
+    const updateHeader = () => {
+      const header = document.querySelector('header') as HTMLElement
+      if (header) {
+        if (lastScrollY > 50) {
+          header.classList.add('scrolled')
+        } else {
+          header.classList.remove('scrolled')
+        }
+      }
+      ticking = false
+    }
+
+    const handleHeaderScroll = () => {
+      lastScrollY = window.scrollY
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeader)
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleHeaderScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleHeaderScroll)
+  }, [isMobile, reduceMotion])
+
   const scrollToTop = () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
@@ -2159,11 +2479,27 @@ function App() {
         <span />
       </div>
       <div className="cursor-glow" aria-hidden="true" />
+
+      {/* NEW: Enhanced Parallax Star Layers */}
+      {!isMobile && !reduceMotion && (
+        <>
+          <div className="parallax-stars-layer parallax-stars-near" aria-hidden="true" />
+          <div className="parallax-stars-layer parallax-stars-mid" aria-hidden="true" />
+          <div className="parallax-stars-layer parallax-stars-far" aria-hidden="true" />
+        </>
+      )}
+
+      {/* Original parallax stars */}
       <div className="parallax-stars" aria-hidden="true">
         <span className="layer l1" />
         <span className="layer l2" />
         <span className="layer l3" />
       </div>
+
+      {/* NEW: Large Bottom Planet */}
+      {!isMobile && !reduceMotion && (
+        <div className="cosmic-planet-bottom" aria-hidden="true" />
+      )}
       <div className="nebula-clouds" aria-hidden="true">
         <span className="cloud c1" />
         <span className="cloud c2" />
@@ -2298,8 +2634,7 @@ function App() {
               ))}
             </div>
             <div className="welcome-text">
-              <h3>{welcomeOverlayCopy.title}</h3>
-              <p className="welcome-sub">{welcomeOverlayCopy.subtitle}</p>
+              <EpicWelcomeText />
             </div>
           </div>
         </div>
