@@ -1194,40 +1194,38 @@ const content: Record<
   },
 }
 
-// Epic Welcome Screen Component - English Only with Multiple Effects
+// Epic Welcome Screen Component - Simple & Professional
 function EpicWelcomeText() {
-  const [displayText, setDisplayText] = useState('')
-  const [isTypingComplete, setIsTypingComplete] = useState(false)
+  const [showText, setShowText] = useState(false)
+  const [showGreeting, setShowGreeting] = useState(false)
 
   const fullText = 'WELCOME'
-  const subtitle = 'Entering the portfolio dimension...'
 
   useEffect(() => {
-    // Matrix-style character reveal
-    let currentIndex = 0
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayText(fullText.slice(0, currentIndex))
-        currentIndex++
-      } else {
-        setIsTypingComplete(true)
-        clearInterval(typingInterval)
-      }
-    }, 150) // 150ms per character for dramatic effect
+    const showTimer = setTimeout(() => setShowText(true), 200)
+    const greetingTimer = setTimeout(() => setShowGreeting(true), 800)
 
-    return () => clearInterval(typingInterval)
+    return () => {
+      clearTimeout(showTimer)
+      clearTimeout(greetingTimer)
+    }
   }, [])
 
   return (
     <>
       <div className="welcome-lang-container">
-        <span className="welcome-lang-word active">
-          {displayText}
-          {!isTypingComplete && <span className="typing-cursor">_</span>}
-        </span>
+        {fullText.split('').map((char, index) => (
+          <span
+            key={index}
+            className={`welcome-char-fade ${showText ? 'visible' : ''}`}
+            style={{ animationDelay: `${index * 0.08}s` }}
+          >
+            {char}
+          </span>
+        ))}
       </div>
-      <p className={`welcome-subtitle-typing ${isTypingComplete ? 'show' : ''}`}>
-        {subtitle}
+      <p className={`welcome-greeting-text ${showGreeting ? 'visible' : ''}`}>
+        Hope your day is going well
       </p>
     </>
   )
@@ -2377,6 +2375,103 @@ function App() {
     return () => window.removeEventListener('scroll', handleParallaxScroll)
   }, [isMobile, reduceMotion])
 
+  // Constellation Canvas - Neural Network Connected Stars
+  useEffect(() => {
+    if (isMobile || reduceMotion) return
+
+    const canvas = document.querySelector('.constellation-canvas') as HTMLCanvasElement
+    if (!canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    // Set canvas size
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    // Star particles
+    interface Star {
+      x: number
+      y: number
+      vx: number
+      vy: number
+      radius: number
+    }
+
+    const stars: Star[] = []
+    const starCount = 80
+    const maxDistance = 150
+
+    // Create stars
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 1.5 + 0.5,
+      })
+    }
+
+    // Animation loop
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      // Update and draw stars
+      stars.forEach((star) => {
+        star.x += star.vx
+        star.y += star.vy
+
+        // Bounce off edges
+        if (star.x < 0 || star.x > canvas.width) star.vx *= -1
+        if (star.y < 0 || star.y > canvas.height) star.vy *= -1
+
+        // Draw star
+        ctx.fillStyle = 'rgba(255, 107, 53, 0.8)'
+        ctx.beginPath()
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2)
+        ctx.fill()
+      })
+
+      // Draw connections
+      ctx.strokeStyle = 'rgba(255, 107, 53, 0.15)'
+      ctx.lineWidth = 1
+
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x
+          const dy = stars[i].y - stars[j].y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+
+          if (distance < maxDistance) {
+            ctx.beginPath()
+            ctx.moveTo(stars[i].x, stars[i].y)
+            ctx.lineTo(stars[j].x, stars[j].y)
+            ctx.globalAlpha = 1 - distance / maxDistance
+            ctx.stroke()
+            ctx.globalAlpha = 1
+          }
+        }
+      }
+
+      requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    // Handle resize
+    const handleResize = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [isMobile, reduceMotion])
+
   // Bottom Planet Visibility - Show only at Contact Section
   useEffect(() => {
     if (isMobile || reduceMotion) return
@@ -2475,9 +2570,23 @@ function App() {
 
   return (
     <div className={`page ${audioActive ? 'sport-mode' : ''}`}>
-      <div className="scroll-progress" aria-hidden="true">
-        <span />
-      </div>
+      {/* Scroll Progress Indicator - Desktop: Wormhole, Mobile: Simple Bar */}
+      {!isMobile ? (
+        <div className="wormhole-scroll-indicator" aria-hidden="true">
+          <div className="wormhole-track">
+            <div className="wormhole-rings">
+              <div className="wormhole-ring ring-1" />
+              <div className="wormhole-ring ring-2" />
+              <div className="wormhole-ring ring-3" />
+            </div>
+            <div className="wormhole-progress" style={{ width: `calc(var(--scroll-progress, 0) * 100%)` }} />
+          </div>
+        </div>
+      ) : (
+        <div className="mobile-scroll-progress" aria-hidden="true">
+          <div className="mobile-scroll-bar" style={{ width: `calc(var(--scroll-progress, 0) * 100%)` }} />
+        </div>
+      )}
       <div className="cursor-glow" aria-hidden="true" />
 
       {/* NEW: Enhanced Parallax Star Layers */}
@@ -2712,6 +2821,10 @@ function App() {
           )}
         </div>
       )}
+      {/* Constellation Canvas - Neural Network Stars */}
+      {!isMobile && !reduceMotion && <canvas className="constellation-canvas" aria-hidden="true" />}
+
+
       <div className={`content-shell ${showWelcome ? 'is-blurred' : ''} ${moonVisible ? 'is-hidden' : ''}`}>
       <header className="top-nav">
         <button
