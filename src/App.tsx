@@ -2000,8 +2000,8 @@ function App() {
   }, [feedbackEntries.length, isMobile])
 
   useEffect(() => {
-    const dustTimer = setTimeout(() => setWelcomePhase('dusting'), 3200) // Epic timing: 3.2s
-    const hideTimer = setTimeout(() => setShowWelcome(false), 4400) // Epic timing: 4.4s total
+    const dustTimer = setTimeout(() => setWelcomePhase('dusting'), 3800) // Professional timing: 3.8s
+    const hideTimer = setTimeout(() => setShowWelcome(false), 5000) // Professional timing: 5s total
     const root = document.documentElement
     const handleMove = (e: MouseEvent) => {
       root.style.setProperty('--cursor-x', `${e.clientX}px`)
