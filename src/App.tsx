@@ -35,6 +35,30 @@ const localeOptions: { code: Locale; flag: string }[] = [
   { code: 'EN', flag: 'EN' },
 ]
 
+// Tech Stack Icon Mapping using Simple Icons CDN
+const techIcons: Record<string, string> = {
+  Python: 'https://cdn.simpleicons.org/python/3776AB',
+  PyTorch: 'https://cdn.simpleicons.org/pytorch/EE4C2C',
+  'Power BI': 'https://cdn.simpleicons.org/powerbi/F2C811',
+  SQL: 'https://cdn.simpleicons.org/postgresql/4169E1',
+  DAX: 'https://cdn.simpleicons.org/powerbi/F2C811',
+  Zapier: 'https://cdn.simpleicons.org/zapier/FF4A00',
+  Airtable: 'https://cdn.simpleicons.org/airtable/18BFFF',
+  Docker: 'https://cdn.simpleicons.org/docker/2496ED',
+  AWS: 'https://cdn.simpleicons.org/amazonaws/FF9900',
+  'SAP Fiori': 'https://cdn.simpleicons.org/sap/0FAAFF',
+  React: 'https://cdn.simpleicons.org/react/61DAFB',
+  TypeScript: 'https://cdn.simpleicons.org/typescript/3178C6',
+  JavaScript: 'https://cdn.simpleicons.org/javascript/F7DF1E',
+  'Node.js': 'https://cdn.simpleicons.org/nodedotjs/339933',
+  Git: 'https://cdn.simpleicons.org/git/F05032',
+  Azure: 'https://cdn.simpleicons.org/microsoftazure/0078D4',
+}
+
+const getTechIcon = (tool: string): string | null => {
+  return techIcons[tool] || null
+}
+
 const content: Record<
   Locale,
   {
@@ -103,6 +127,25 @@ const content: Record<
     skillMatrix: { name: string; level: string; tools: string[] }[]
     toolbelt: string[]
     cv: { link: string; updated: string; label: string }
+    impactStats: {
+      experienceValue: string
+      experienceLabel: string
+      projectsValue: string
+      projectsLabel: string
+      languagesValue: string
+      languagesLabel: string
+      englishValue: string
+      englishLabel: string
+    }
+    currentlyLearning: {
+      title: string
+      items: {
+        icon: string
+        title: string
+        subtitle: string
+        progress: number
+      }[]
+    }
   }
 > = {
   TR: {
@@ -320,7 +363,7 @@ const content: Record<
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
-        impact: 'F1 skorunda artış hedeflendi.',
+        impact: 'Model karşılaştırması ile en iyi tahmin doğruluğu belirlendi.',
       },
       {
         title: 'NeuraVeil - MRI Tümör Sınıflandırma',
@@ -334,7 +377,7 @@ const content: Record<
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
-        impact: 'Yanlış pozitif/negatif oranında belirgin iyileşme.',
+        impact: 'Transfer learning ile yüksek doğrulukta tümör sınıflandırması sağlandı.',
       },
       {
         title: 'Drumveil Ritual - Metal Davul Transkripsiyon',
@@ -471,6 +514,33 @@ const content: Record<
     ],
     toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Aralık 2025', label: 'CV indir (Aralık 2025)' },
+    impactStats: {
+      experienceValue: '4+',
+      experienceLabel: 'Staj/İş Deneyimi',
+      projectsValue: '10+',
+      projectsLabel: 'Proje Tamamlandı',
+      languagesValue: '3',
+      languagesLabel: 'Dil Konuşuyor',
+      englishValue: 'B2',
+      englishLabel: 'İngilizce Seviye',
+    },
+    currentlyLearning: {
+      title: 'Şu An Öğreniyorum',
+      items: [
+        {
+          icon: '🏭',
+          title: 'Endüstri 4.0',
+          subtitle: 'PLC, SCADA, OPC UA',
+          progress: 65,
+        },
+        {
+          icon: '🤖',
+          title: 'Dijitalizasyon & Otomasyon',
+          subtitle: 'IoT, Akıllı Sistemler',
+          progress: 45,
+        },
+      ],
+    },
   },
   DE: {
     nav: {
@@ -686,7 +756,7 @@ const content: Record<
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
-        impact: 'F1-Score-Steigerung angestrebt.',
+        impact: 'Beste Vorhersagegenauigkeit durch Modellvergleich ermittelt.',
       },
       {
         title: 'NeuraVeil - MRI Tumor Klassifikation',
@@ -700,7 +770,7 @@ const content: Record<
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
-        impact: 'Falsch-Positiv/Negativ Quote merklich verbessert.',
+        impact: 'Hochgenaue Tumorklassifizierung durch Transfer Learning erreicht.',
       },
       {
         title: 'Drumveil Ritual - Metal Drum Transkription',
@@ -831,6 +901,33 @@ const content: Record<
     ],
     toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'CV herunterladen' },
+    impactStats: {
+      experienceValue: '4+',
+      experienceLabel: 'Berufserfahrung',
+      projectsValue: '10+',
+      projectsLabel: 'Projekte abgeschlossen',
+      languagesValue: '3',
+      languagesLabel: 'Sprachen',
+      englishValue: 'B2',
+      englishLabel: 'Englischniveau',
+    },
+    currentlyLearning: {
+      title: 'Aktuell am Lernen',
+      items: [
+        {
+          icon: '🏭',
+          title: 'Industrie 4.0',
+          subtitle: 'SPS, SCADA, OPC UA',
+          progress: 65,
+        },
+        {
+          icon: '🤖',
+          title: 'Digitalisierung & Automatisierung',
+          subtitle: 'IoT, Smart Systems',
+          progress: 45,
+        },
+      ],
+    },
   },
   EN: {
     nav: {
@@ -1046,7 +1143,7 @@ const content: Record<
         live: '#',
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
-        impact: 'Improved F1 score for the model.',
+        impact: 'Identified best prediction accuracy through model comparison.',
       },
       {
         title: 'NeuraVeil - MRI Tumor Classification',
@@ -1060,7 +1157,7 @@ const content: Record<
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
-        impact: 'Improved false positive/negative balance.',
+        impact: 'Achieved high-accuracy tumor classification via transfer learning.',
       },
       {
         title: 'Drumveil Ritual - Metal Drum Transcription',
@@ -1191,6 +1288,33 @@ const content: Record<
     ],
     toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'Download CV (updated Dec 2025)' },
+    impactStats: {
+      experienceValue: '4+',
+      experienceLabel: 'Work Experience',
+      projectsValue: '10+',
+      projectsLabel: 'Projects Completed',
+      languagesValue: '3',
+      languagesLabel: 'Languages Spoken',
+      englishValue: 'B2',
+      englishLabel: 'English Level',
+    },
+    currentlyLearning: {
+      title: 'Currently Learning',
+      items: [
+        {
+          icon: '🏭',
+          title: 'Industry 4.0',
+          subtitle: 'PLC, SCADA, OPC UA',
+          progress: 65,
+        },
+        {
+          icon: '🤖',
+          title: 'Digitalization & Automation',
+          subtitle: 'IoT, Smart Systems',
+          progress: 45,
+        },
+      ],
+    },
   },
 }
 
@@ -1977,31 +2101,14 @@ function App() {
     }
   }, [feedbackEntries])
 
-  useEffect(() => {
-    const seen =
-      (() => {
-        try {
-          return localStorage.getItem('feedback_prompt_seen') === '1'
-        } catch (err) {
-          console.error('Feedback prompt read failed', err)
-          return false
-        }
-      })()
-    if (seen || feedbackEntries.length > 0 || isMobile) return
-    const timer = window.setTimeout(() => {
-      setFeedbackReminder(true)
-      try {
-        localStorage.setItem('feedback_prompt_seen', '1')
-      } catch (err) {
-        console.error('Feedback prompt cache failed', err)
-      }
-    }, 45000)
-    return () => clearTimeout(timer)
-  }, [feedbackEntries.length, isMobile])
+  // Feedback reminder popup disabled for professional appearance
+  // useEffect(() => {
+  //   ... feedback reminder logic removed
+  // }, [feedbackEntries.length, isMobile])
 
   useEffect(() => {
-    const dustTimer = setTimeout(() => setWelcomePhase('dusting'), 3800) // Professional timing: 3.8s
-    const hideTimer = setTimeout(() => setShowWelcome(false), 5000) // Professional timing: 5s total
+    const dustTimer = setTimeout(() => setWelcomePhase('dusting'), 1500) // Quick professional timing: 1.5s
+    const hideTimer = setTimeout(() => setShowWelcome(false), 2500) // Quick professional timing: 2.5s total
     const root = document.documentElement
     const handleMove = (e: MouseEvent) => {
       root.style.setProperty('--cursor-x', `${e.clientX}px`)
@@ -3105,6 +3212,26 @@ function App() {
           </div>
         </section>
 
+        {/* Impact Stats - Professional metrics showcase */}
+        <div className="impact-stats" aria-label="Key statistics">
+          <div className="impact-stat">
+            <div className="stat-value">{c.impactStats.experienceValue}</div>
+            <div className="stat-label">{c.impactStats.experienceLabel}</div>
+          </div>
+          <div className="impact-stat">
+            <div className="stat-value">{c.impactStats.projectsValue}</div>
+            <div className="stat-label">{c.impactStats.projectsLabel}</div>
+          </div>
+          <div className="impact-stat">
+            <div className="stat-value">{c.impactStats.languagesValue}</div>
+            <div className="stat-label">{c.impactStats.languagesLabel}</div>
+          </div>
+          <div className="impact-stat">
+            <div className="stat-value">{c.impactStats.englishValue}</div>
+            <div className="stat-label">{c.impactStats.englishLabel}</div>
+          </div>
+        </div>
+
         <section className="section about" id="about">
           <div className="section-header">
             <p className="eyebrow">{c.about.eyebrow}</p>
@@ -3206,21 +3333,31 @@ function App() {
             ))}
           </div>
           <div className="matrix-grid">
-            {c.skillMatrix.map((skill) => (
-              <div className="card matrix-card" key={skill.name}>
-                <div className="card-head">
-                  <h3>{skill.name}</h3>
-                  <span className={`badge level-${skill.level.toLowerCase()}`}>{skill.level}</span>
+            {c.skillMatrix.map((skill) => {
+              const levelPercent = skill.level.toLowerCase().includes('ileri') || skill.level.toLowerCase().includes('advanced') || skill.level.toLowerCase().includes('fortgeschritten')
+                ? 90
+                : skill.level.toLowerCase().includes('orta') || skill.level.toLowerCase().includes('intermediate') || skill.level.toLowerCase().includes('mittel')
+                ? 70
+                : 40
+              return (
+                <div className="card matrix-card" key={skill.name}>
+                  <div className="card-head">
+                    <h3>{skill.name}</h3>
+                    <span className={`badge level-${skill.level.toLowerCase()}`}>{skill.level}</span>
+                  </div>
+                  <div className="skill-progress-bar">
+                    <div className="skill-progress-fill" style={{ width: `${levelPercent}%` }} />
+                  </div>
+                  <div className="tags">
+                    {skill.tools.map((tool) => (
+                      <span className="pill small" key={tool}>
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="tags">
-                  {skill.tools.map((tool) => (
-                    <span className="pill small" key={tool}>
-                      {tool}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
           <div className="toolbelt">
             <p className="eyebrow">
@@ -3231,10 +3368,33 @@ function App() {
                 : 'Toolbelt & son kullanılanlar'}
             </p>
             <div className="tags">
-              {c.toolbelt.map((tool) => (
-                <span className="pill" key={tool}>
-                  {tool}
-                </span>
+              {c.toolbelt.map((tool) => {
+                const icon = getTechIcon(tool)
+                return (
+                  <span className={`pill ${icon ? 'pill-with-icon' : ''}`} key={tool}>
+                    {icon && <img src={icon} alt={tool} className="skill-icon" loading="lazy" />}
+                    {tool}
+                  </span>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Currently Learning Section */}
+          <div className="currently-learning">
+            <p className="eyebrow">{c.currentlyLearning.title}</p>
+            <div className="learning-items">
+              {c.currentlyLearning.items.map((item) => (
+                <div className="learning-item" key={item.title}>
+                  <span className="learning-icon">{item.icon}</span>
+                  <div className="learning-content">
+                    <span className="learning-title">{item.title}</span>
+                    <span className="learning-subtitle">{item.subtitle}</span>
+                    <div className="learning-progress">
+                      <div className="learning-progress-bar" style={{ width: `${item.progress}%` }} />
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -3246,6 +3406,7 @@ function App() {
             <h2>{c.sections.projects.title}</h2>
             <p className="section-text">{c.sections.projects.text}</p>
           </div>
+
           <div className="projects-toolbar">
             <span className="pill small ghost">{projectsCountLabel}</span>
             <span className="pill small ghost subtle-text">{projectsFilterLabel}</span>
@@ -3307,9 +3468,9 @@ function App() {
 
               return (
                 <article className={`card project-card${isPlayground ? ' playground' : ''}`} key={project.title}>
-                  {project.image && !isUnityProject && (
-                    <div className="project-media" style={getProjectMediaStyle(project.title)}>
-                      <img src={project.image} alt={project.title} loading="lazy" />
+                  {!isUnityProject && (
+                    <div className={`project-media${!project.image ? ' no-image' : ''}`} style={getProjectMediaStyle(project.title)}>
+                      {project.image && <img src={project.image} alt={project.title} loading="lazy" />}
                     </div>
                   )}
                   <div className="card-head">
@@ -3329,6 +3490,12 @@ function App() {
                     ))}
                     {remainingTagCount > 0 && <span className="pill small ghost">+{remainingTagCount}</span>}
                   </div>
+                  {project.impact && (
+                    <div className="project-impact">
+                      <span className="impact-icon">📈</span>
+                      <span className="impact-text">{project.impact}</span>
+                    </div>
+                  )}
                   <div className="card-footer project-actions">
                     <button className="btn ghost small" type="button" onClick={() => openProjectDetail(project)}>
                       {projectUiCopy.open}
