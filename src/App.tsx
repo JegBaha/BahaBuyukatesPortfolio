@@ -1318,47 +1318,10 @@ const content: Record<
   },
 }
 
-// Epic Welcome Screen Component - Simple & Professional
-function EpicWelcomeText() {
-  const [showText, setShowText] = useState(false)
-  const [showGreeting, setShowGreeting] = useState(false)
-
-  const fullText = 'WELCOME'
-
-  useEffect(() => {
-    const showTimer = setTimeout(() => setShowText(true), 200)
-    const greetingTimer = setTimeout(() => setShowGreeting(true), 800)
-
-    return () => {
-      clearTimeout(showTimer)
-      clearTimeout(greetingTimer)
-    }
-  }, [])
-
-  return (
-    <>
-      <div className="welcome-lang-container">
-        {fullText.split('').map((char, index) => (
-          <span
-            key={index}
-            className={`welcome-char-fade ${showText ? 'visible' : ''}`}
-            style={{ animationDelay: `${index * 0.08}s` }}
-          >
-            {char}
-          </span>
-        ))}
-      </div>
-      <p className={`welcome-greeting-text ${showGreeting ? 'visible' : ''}`}>
-        Hope your day is going well
-      </p>
-    </>
-  )
-}
 
 function App() {
   const [activeLocale, setActiveLocale] = useState<Locale>('TR')
   const [showWelcome, setShowWelcome] = useState(true)
-  const [welcomePhase, setWelcomePhase] = useState<'enter' | 'dusting'>('enter')
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('hero')
   const [selectedTag, setSelectedTag] = useState<string>(() =>
@@ -1461,17 +1424,6 @@ function App() {
     [motionScale],
   )
   const bgAudioRef = useRef<HTMLAudioElement | null>(null)
-  const dustPieces = useMemo(
-    () =>
-      Array.from({ length: 36 }, (_, id) => ({
-        id,
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 0.6}s`,
-        scale: 0.5 + Math.random() * 0.9,
-      })),
-    [],
-  )
   const c = content[activeLocale]
   const tagAllLabel = useMemo(
     () => (activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All'),
@@ -1639,7 +1591,6 @@ function App() {
     return 'mini-dot'
   }
 
-  const welcomeOverlayCopy = { title: 'Hoş geldin / Welcome / Willkommen', subtitle: 'Hope your day is going well.' }
   const openProjectDetail = (project: Project) => {
     setActiveProjectDetail(project)
     const projectsSection = document.getElementById('projects')
@@ -2107,8 +2058,10 @@ function App() {
   // }, [feedbackEntries.length, isMobile])
 
   useEffect(() => {
-    const dustTimer = setTimeout(() => setWelcomePhase('dusting'), 1500) // Quick professional timing: 1.5s
-    const hideTimer = setTimeout(() => setShowWelcome(false), 2500) // Quick professional timing: 2.5s total
+    // Ensure page starts at top on load
+    window.scrollTo(0, 0)
+    // Cinematic blur entrance: hide after animation completes
+    const hideTimer = setTimeout(() => setShowWelcome(false), 2200)
     const root = document.documentElement
     const handleMove = (e: MouseEvent) => {
       root.style.setProperty('--cursor-x', `${e.clientX}px`)
@@ -2121,7 +2074,6 @@ function App() {
     window.addEventListener('mousemove', handleMove)
     window.addEventListener('click', handleClick)
     return () => {
-      clearTimeout(dustTimer)
       clearTimeout(hideTimer)
       window.removeEventListener('mousemove', handleMove)
       window.removeEventListener('click', handleClick)
@@ -2829,31 +2781,7 @@ function App() {
         </div>
       </div>
       {showWelcome && (
-        <div className={`welcome-overlay ${welcomePhase === 'dusting' ? 'dusting' : ''}`} aria-live="polite">
-          <div className="welcome-card">
-            <span className="welcome-ring" aria-hidden="true" />
-            <div className="dust-field" aria-hidden="true">
-              {dustPieces.map((piece) => (
-                <span
-                  key={piece.id}
-                  className="dust"
-                  style={
-                    {
-                      top: piece.top,
-                      left: piece.left,
-                      animationDelay: piece.delay,
-                      '--dust-scale': piece.scale,
-                      '--dust-delay': piece.delay,
-                    } as CSSProperties
-                  }
-                />
-              ))}
-            </div>
-            <div className="welcome-text">
-              <EpicWelcomeText />
-            </div>
-          </div>
-        </div>
+        <div className="biome-entrance" aria-live="polite" />
       )}
       <div className="ambient-lights" aria-hidden="true">
         <span className="orb o1" />
