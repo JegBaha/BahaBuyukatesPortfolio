@@ -29,10 +29,10 @@ type Project = {
   playground?: boolean
 }
 
-const localeOptions: { code: Locale; flag: string }[] = [
-  { code: 'TR', flag: 'TR' },
-  { code: 'DE', flag: 'DE' },
-  { code: 'EN', flag: 'EN' },
+const localeOptions: { code: Locale; flag: string; label: string }[] = [
+  { code: 'TR', flag: '🇹🇷', label: 'Türkçe' },
+  { code: 'DE', flag: '🇩🇪', label: 'Deutsch' },
+  { code: 'EN', flag: '🇬🇧', label: 'English' },
 ]
 
 // Tech Stack Icon Mapping using Simple Icons CDN
@@ -80,7 +80,6 @@ const content: Record<
       profileItems: string[]
       labels: string[]
     }
-    projectsNote: string
     projectsNoteCta: string
     sections: {
       experience: { eyebrow: string; title: string; text: string }
@@ -123,10 +122,9 @@ const content: Record<
     education: { school: string; degree: string; location: string; period: string }[]
     certifications: string[]
     languages: { name: string; level: string }[]
-    about: { eyebrow: string; title: string; bio: string; strengths: string[]; openTo: string[]; highlight: string }
-    skillMatrix: { name: string; level: string; tools: string[] }[]
-    toolbelt: string[]
-    cv: { link: string; updated: string; label: string }
+    about: { eyebrow: string; title: string; bio: string; strengths: string[]; openTo: string[]; highlight: string };
+    toolbelt: string[];
+    cv: { link: string; updated: string; label: string };
     impactStats: {
       experienceValue: string
       experienceLabel: string
@@ -172,15 +170,14 @@ const content: Record<
       focus: 'Odak alanları',
       profileEyebrow: 'Profil',
       profileItems: [
-        'Data Analysis & BI: Power BI, Excel, SQL, DAX, KPI (MTTR, MTBF, OEE)',
-        'AI & ML: PyTorch, TensorFlow, CNNs, LLM training',
-        'DevOps: AWS, Docker, Kubernetes, Jenkins, CI/CD',
-        'Data + Software + IT + Endüstriyel entegrasyon projeleri (aktif öğrenme ve uygulama)',
+        'Veri analizi, BI dashboardları ve KPI takibi',
+        'Yapay zeka model eğitimi ve değerlendirme',
+        'DevOps ve bulut altyapısı',
+        'Endüstriyel sistemler ve IoT entegrasyonu',
       ],
-      labels: ['Data', 'Endüstriyel', 'Yazılım & IT', 'BI'],
+      labels: ['Data', 'Endüstriyel', 'Yazılım', 'AI'],
     },
-    projectsNote: 'Kucuk/canli projelerimi GitHubimdan takip edebilirsin.',
-    projectsNoteCta: 'İletişim',
+    projectsNoteCta: 'Daha fazlası için',
     sections: {
       experience: {
         eyebrow: 'Profesyonel Deneyim',
@@ -190,11 +187,11 @@ const content: Record<
       skills: {
         eyebrow: 'Ne sunuyorum',
         title: 'Yetenek seti',
-        text: 'Veri, yapay zeka, otomasyon ve kurumsal süreçleri birleştiren beceriler; genel olarak orta seviye.',
+        text: 'Veri, yapay zeka, otomasyon ve kurumsal süreçleri bir araya getiriyorum; projelerde aktif kullandığım beceriler.',
       },
       projects: {
         eyebrow: 'Seçili projeler',
-        title: 'Hayal gücüm ve mesleğim ile birleşen projeler',
+        title: 'Seçili projeler',
         text: 'Performans ve kullanıcı deneyimi birlikte.',
       },
       education: {
@@ -209,11 +206,10 @@ const content: Record<
       },
       hobby: {
         eyebrow: 'Hobim',
-        title: 'Müzik prodüksiyonu',
-        text: 'Djent ve progressive metal odaklı parçalar üretmek ve mevcut eserleri coverlamak üzerine çalışıyorum. Müzik benim için ayrı bir tutku; projelerimde bu tutkuyu teknik üretimle birleştirerek özgün ve ikonik işler ortaya koymayı seviyorum.',
-        benefit:
-          'Disiplinli çalışma alışkanlığım, ritim ve detay odaklı yaklaşımım hem müzikal üretimlerime hem de profesyonel projelerime doğrudan yansıyor.',
-        cta: 'Dinlemek ister misin?',
+        title: 'Müzik Prodüksiyonu',
+        text: 'Djent ve progressive metal tarzında parçalar üretiyorum. Müzik, teknik detaylara ve disiplinli çalışmaya olan ilgimi yansıtan bir tutkum.',
+        benefit: '',
+        cta: '',
       },
       contact: {
         eyebrow: 'İletişim',
@@ -293,7 +289,7 @@ const content: Record<
       {
         title: 'Data Analysis & BI',
         items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
-        detail: 'Veriyi karar destek panellerine ve ölçülebilir KPI takibine dönüştürüyorum.',
+        detail: 'Dashboard ve KPI takibini sahadan gelen veriye bağlayıp karar desteğine çeviriyorum.',
       },
       {
         title: 'Programming',
@@ -303,7 +299,7 @@ const content: Record<
       {
         title: 'AI & Machine Learning',
         items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
-        detail: 'Model eğitimi, değerlendirme ve son kullanıcı için anlamlı çıktılar üretme.',
+        detail: 'Model eğitimi, değerlendirme ve kullanılabilir çıktılar üretme.',
       },
       {
         title: 'Industry 4.0 & IoT',
@@ -314,12 +310,12 @@ const content: Record<
       {
         title: 'DevOps & Cloud',
         items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
-        detail: 'Teslimatı hızlandıran otomasyon boru hatları ve container stratejileri.',
+        detail: 'Saha verisini bulut ve dashboard katmanlarına taşır; PLC, SCADA, OPC UA, MQTT entegrasyonlarında pratik sahibiyim.',
       },
       {
         title: 'Enterprise Solutions',
         items: ['SAP S/4HANA', 'SAP Fiori'],
-        detail: 'Kurumsal iş süreçlerine uyumlu entegrasyon ve geliştirme.',
+        detail: 'Kurumsal iş süreçlerine uyumlu SAP entegrasyonları ve geliştirme.',
       },
     ],
     projects: [
@@ -496,23 +492,16 @@ const content: Record<
       title: 'Veri, yazılım, IT ve endüstriyel sistemlerde üretiyor ve öğreniyorum.',
       bio: 'Verinin yalnızca analiz edilmesiyle değil; nasıl üretildiği, nasıl taşındığı ve nasıl anlamlı kararlara dönüştüğüyle ilgileniyorum. Yazılım, backend, otomasyon ve endüstriyel entegrasyon tarafında kendimi geliştirirken, tüm bu katmanların merkezinde veriyi konumlandırıyorum. Amacım; sahadan gelen veriyi güvenilir, ölçeklenebilir ve karar destek odaklı sistemlere dönüştürmek.',
       strengths: [
-        'Data storytelling & dashboarding',
-        'ML/CNN eğitimi ve değerlendirme',
-        'Backend/API ve otomasyon',
-        'IT/ERP entegrasyon farkındalığı',
-        'Ekip içi Git akışları ve QA',
+        'Problem cozumleme ve sistem dusuncesi',
+        'Urun ve kullanici odakli yaklasim',
+        'Net iletisim ve paydas yonetimi',
+        'Hizli ogrenme ve adaptasyon',
+        'Uctan uca veri akisina bakis',
       ],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
       highlight: 'Data, otomasyon, endüstriyel dijitalizasyon ve BI alanlarında her gün kendimi geliştiriyorum.',
     },
-    skillMatrix: [
-      { name: 'Power BI / DAX', level: 'Orta', tools: ['Star Schema', 'KPI', 'Gateway'] },
-      { name: 'Python / PyTorch', level: 'Orta', tools: ['CNN', 'Data Pipelines', 'Evaluation'] },
-      { name: 'SQL', level: 'Orta', tools: ['Query Optimize', 'Joins', 'CTE'] },
-      { name: 'Automation', level: 'Orta', tools: ['Zapier', 'Airtable', 'Slack'] },
-      { name: 'Cloud & DevOps', level: 'Baslangic', tools: ['AWS', 'Docker', 'CI/CD'] },
-    ],
-    toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
+    toolbelt: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway', 'Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation', 'SQL', 'Query Optimize', 'Joins', 'CTE', 'Automation', 'Zapier', 'Airtable', 'Slack', 'Cloud & DevOps', 'AWS', 'Docker', 'CI/CD'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Aralık 2025', label: 'CV indir (Aralık 2025)' },
     impactStats: {
       experienceValue: '4+',
@@ -566,14 +555,14 @@ const content: Record<
       focus: 'Fokusbereiche',
       profileEyebrow: 'Profil',
       profileItems: [
-        'Data Analysis & BI: Power BI, Excel, SQL, DAX, KPI (MTTR, MTBF, OEE)',
-        'AI & ML: PyTorch, TensorFlow, CNNs, LLM-Training',
-        'DevOps: AWS, Docker, Kubernetes, Jenkins, CI/CD',
+        'Datenanalyse, BI-Dashboards und KPI-Tracking',
+        'KI-Modelltraining und -bewertung',
+        'DevOps und Cloud-Infrastruktur',
+        'Industriesysteme und IoT-Integration',
       ],
-      labels: ['Data', 'Industrie 4.0', 'Software&IT', 'BI'],
+      labels: ['Data', 'Industrie', 'Software', 'AI'],
     },
-    projectsNote: 'Laufende kleine/Lern-Projekte findest du live auf meinem GitHub.',
-    projectsNoteCta: 'Kontakt aufnehmen',
+    projectsNoteCta: 'Mehr auf GitHub',
     sections: {
       experience: {
         eyebrow: 'Berufserfahrung',
@@ -583,11 +572,11 @@ const content: Record<
       skills: {
         eyebrow: 'Was ich biete',
         title: 'Skill-Stack',
-        text: 'Faehigkeiten, die Daten, KI, Automatisierung und Unternehmensprozesse verbinden; insgesamt auf mittlerem Niveau.',
+        text: 'Faehigkeiten, die Daten, KI, Automatisierung und Unternehmensprozesse verbinden; mit praxisnaher Erfahrung.',
       },
       projects: {
         eyebrow: 'Ausgewaehlte Projekte',
-        title: 'Projekte, in denen Vorstellungskraft und Beruf zusammenkommen',
+        title: 'Ausgewaehlte Projekte',
         text: 'Performance und Nutzererlebnis zusammen.',
       },
       education: {
@@ -603,10 +592,9 @@ const content: Record<
       hobby: {
         eyebrow: 'Hobby',
         title: 'Musikproduktion',
-        text: ' Djent- und Progressive-Metal-Tracks erstellen oder covern. Die Leidenschaft verbinde ich mit Technik, um eigenständige und markante Stücke zu bauen.',
-        benefit:
-          'Disziplin beim Üben, Rhythmus- und Detailfokus fließen direkt in meine musikalischen Arbeiten und beruflichen Projekte ein.',
-        cta: 'Willst du reinhoeren?',
+        text: 'Ich produziere Djent- und Progressive-Metal-Tracks. Musik spiegelt meine Leidenschaft für technische Details und diszipliniertes Arbeiten wider.',
+        benefit: '',
+        cta: '',
       },
       contact: {
         eyebrow: 'Kontakt',
@@ -696,7 +684,7 @@ const content: Record<
       {
         title: 'AI & Machine Learning',
         items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
-        detail: 'Training, Bewertung und nutzernahe Modelle mit verwertbaren Outputs.',
+        detail: 'Training, Bewertung und nutzernahe Modelle mit klaren Outputs.',
       },
       {
         title: 'Industrie 4.0 & IoT',
@@ -707,7 +695,7 @@ const content: Record<
       {
         title: 'DevOps & Cloud',
         items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
-        detail: 'Automatisierungspipelines und Container-Strategien fuer schnelle Lieferung.',
+        detail: 'Felddaten in Cloud- und Dashboard-Ebenen; Praxis mit PLC, SCADA, OPC UA, MQTT und Edge-Integration.',
       },
       {
         title: 'Enterprise Solutions',
@@ -888,18 +876,17 @@ const content: Record<
       eyebrow: 'Über mich',
       title: 'Ich arbeite und lerne in Daten, Software, IT und Industrie-Kontexten.',
       bio: 'Ich interessiere mich nicht nur für Datenanalyse, sondern auch dafür, wie Daten erzeugt, transportiert und in sinnvolle Entscheidungen überführt werden. Während ich mich in Software, Backend, Automatisierung und industrieller Integration weiterentwickle, setze ich Daten ins Zentrum all dieser Schichten. Ziel: Shopfloor-Daten in verlässliche, skalierbare und entscheidungsorientierte Systeme verwandeln.',
-      strengths: ['Data Storytelling & BI', 'ML/CNN Training & Bewertung', 'Backend/API & Automatisierung', 'IT/ERP Verstaendnis', 'Git-basierte Kollaboration'],
+      strengths: [
+        'Systemdenken und Problemloesung',
+        'Nutzerorientierung und Produktfokus',
+        'Klare Kommunikation & Stakeholder-Management',
+        'Schnelles Lernen und Anpassung',
+        'End-to-end Blick auf Datenfluesse',
+      ],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrie-Ingenieur'],
       highlight: 'Ich entwickle mich täglich in Data, Automatisierung, industrieller Digitalisierung und BI weiter.',
     },
-    skillMatrix: [
-      { name: 'Power BI / DAX', level: 'Mittel', tools: ['Star Schema', 'KPI', 'Gateway'] },
-      { name: 'Python / PyTorch', level: 'Mittel', tools: ['CNN', 'Pipelines', 'Eval'] },
-      { name: 'SQL', level: 'Mittel', tools: ['Query Optimize', 'Joins', 'CTE'] },
-      { name: 'Automation', level: 'Mittel', tools: ['Zapier', 'Airtable', 'Slack'] },
-      { name: 'Cloud & DevOps', level: 'Basis', tools: ['AWS', 'Docker', 'CI/CD'] },
-    ],
-    toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
+    toolbelt: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway', 'Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation', 'SQL', 'Query Optimize', 'Joins', 'CTE', 'Automation', 'Zapier', 'Airtable', 'Slack', 'Cloud & DevOps', 'AWS', 'Docker', 'CI/CD'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'CV herunterladen' },
     impactStats: {
       experienceValue: '4+',
@@ -953,14 +940,14 @@ const content: Record<
       focus: 'Focus areas',
       profileEyebrow: 'Profile',
       profileItems: [
-        'Data Analysis & BI: Power BI, Excel, SQL, DAX, KPI (MTTR, MTBF, OEE)',
-        'AI & ML: PyTorch, TensorFlow, CNNs, LLM training',
-        'DevOps: AWS, Docker, Kubernetes, Jenkins, CI/CD',
+        'Data analysis, BI dashboards, and KPI tracking',
+        'AI model training and evaluation',
+        'DevOps and cloud infrastructure',
+        'Industrial systems and IoT integration',
       ],
-      labels: ['Data', 'Industrial 4.0', 'Software&IT', 'BI'],
+      labels: ['Data', 'Industrial', 'Software', 'AI'],
     },
-    projectsNote: 'You can follow my smaller/learning projects live on my GitHub.',
-    projectsNoteCta: 'Contact me',
+    projectsNoteCta: 'More on GitHub',
     sections: {
       experience: {
         eyebrow: 'Professional Experience',
@@ -970,11 +957,11 @@ const content: Record<
       skills: {
         eyebrow: 'What I offer',
         title: 'Skill set',
-        text: 'Capabilities that connect data, AI, automation, and enterprise processes; overall at an intermediate level.',
+        text: 'Capabilities that connect data, AI, automation, and enterprise processes, backed by hands-on work.',
       },
       projects: {
         eyebrow: 'Featured projects',
-        title: 'Projects blending imagination and craft',
+        title: 'Selected projects',
         text: 'Performance and UX together, with clear outcomes.',
       },
       education: {
@@ -989,11 +976,10 @@ const content: Record<
       },
       hobby: {
         eyebrow: 'Hobby',
-        title: 'Music production: ',
-        text: "writing djent and progressive metal pieces and covering existing songs. It's a core passion; I blend it with technical execution to make distinct, recognizable work.",
-        benefit:
-          'Discipline, rhythmic focus, and detail orientation from music directly translate to my professional projects.',
-        cta: 'Want to listen?',
+        title: 'Music Production',
+        text: 'I produce djent and progressive metal tracks. Music reflects my passion for technical details and disciplined work.',
+        benefit: '',
+        cta: '',
       },
       contact: {
         eyebrow: 'Contact',
@@ -1094,7 +1080,7 @@ const content: Record<
       {
         title: 'DevOps & Cloud',
         items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
-        detail: 'Automation pipelines and container strategies that speed delivery.',
+        detail: 'Bridge shop-floor data into cloud and dashboard layers; hands-on with PLC, SCADA, OPC UA, MQTT, and edge integration.',
       },
       {
         title: 'Enterprise Solutions',
@@ -1275,18 +1261,17 @@ const content: Record<
       eyebrow: 'About',
       title: 'Working and learning across data, software, IT, and industrial contexts.',
       bio: "I'm interested not just in analyzing data, but in how it's produced, moved, and turned into meaningful decisions. As I grow in software, backend, automation, and industrial integration, I keep data at the center of every layer. My goal: turn shop-floor data into reliable, scalable, decision-support systems.",
-      strengths: ['Data storytelling & BI', 'ML/CNN training and evaluation', 'Backend/API and automation', 'IT/ERP awareness', 'Git-first teamwork'],
+      strengths: [
+        'Systems thinking and problem solving',
+        'Product and user focus',
+        'Clear communication with stakeholders',
+        'Fast learning and adaptation',
+        'End-to-end view of data flow',
+      ],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
       highlight: 'I keep improving daily across data, automation, industrial digitalization, and BI.',
     },
-    skillMatrix: [
-      { name: 'Power BI / DAX', level: 'Intermediate', tools: ['Star Schema', 'KPI', 'Gateway'] },
-      { name: 'Python / PyTorch', level: 'Intermediate', tools: ['CNN', 'Pipelines', 'Evaluation'] },
-      { name: 'SQL', level: 'Intermediate', tools: ['Query Optimize', 'Joins', 'CTE'] },
-      { name: 'Automation', level: 'Intermediate', tools: ['Zapier', 'Airtable', 'Slack'] },
-      { name: 'Cloud & DevOps', level: 'Basic', tools: ['AWS', 'Docker', 'CI/CD'] },
-    ],
-    toolbelt: ['Python', 'PyTorch', 'Power BI', 'SQL', 'DAX', 'Zapier', 'Airtable', 'Docker', 'AWS', 'SAP Fiori'],
+    toolbelt: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway', 'Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation', 'SQL', 'Query Optimize', 'Joins', 'CTE', 'Automation', 'Zapier', 'Airtable', 'Slack', 'Cloud & DevOps', 'AWS', 'Docker', 'CI/CD'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'Download CV (updated Dec 2025)' },
     impactStats: {
       experienceValue: '4+',
@@ -1324,20 +1309,7 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('hero')
-  const [selectedTag, setSelectedTag] = useState<string>(() =>
-    activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All',
-  )
   const [activeProjectDetail, setActiveProjectDetail] = useState<Project | null>(null)
-  const [audioActive, setAudioActive] = useState(false)
-  const [audioStarted, setAudioStarted] = useState(false)
-  const [volume, setVolume] = useState(0.1)
-  const [duration, setDuration] = useState(0)
-  const [currentTime, setCurrentTime] = useState(0)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const analyserRef = useRef<AnalyserNode | null>(null)
-  const rafRef = useRef<number | null>(null)
-  const flashRef = useRef(0)
-  const sideRef = useRef(1)
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [feedbackReminder, setFeedbackReminder] = useState(false)
   const [feedbackRating, setFeedbackRating] = useState<number | null>(null)
@@ -1350,24 +1322,19 @@ function App() {
   const [moonPhase, setMoonPhase] = useState<'hidden' | 'enter' | 'leave'>('hidden')
   const moonTimerRef = useRef<number | null>(null)
   const moonVisible = moonPhase !== 'hidden'
-  const [bgPlaying, setBgPlaying] = useState(false)
-  const [bgControlsOpen, setBgControlsOpen] = useState(false)
-  const [bgVolume, setBgVolume] = useState(0)
-  const [bgVolumeTouched, setBgVolumeTouched] = useState(false)
   const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [reduceMotion, setReduceMotion] = useState(false)
-  const [bgLoading, setBgLoading] = useState(false)
-  const [audioLoading, setAudioLoading] = useState(false)
+  const [isLowPerformance, setIsLowPerformance] = useState(false)
   const sparkleField = useMemo(
     () =>
-      Array.from({ length: 16 }, (_, id) => ({
+      Array.from({ length: 8 }, (_, id) => ({
         id,
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
         delay: `${Math.random() * 6}s`,
-        duration: `${6 + Math.random() * 6}s`,
+        duration: `${8 + Math.random() * 6}s`,
         scale: 0.6 + Math.random() * 0.6,
       })),
     [],
@@ -1376,15 +1343,15 @@ function App() {
 
   const cosmicDust = useMemo(
     () =>
-      Array.from({ length: Math.max(12, Math.round(90 * motionScale)) }, (_, id) => ({
+      Array.from({ length: Math.max(8, Math.round(40 * motionScale)) }, (_, id) => ({
         id,
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
         delay: `${Math.random() * 8}s`,
-        duration: `${12 + Math.random() * 10}s`,
+        duration: `${16 + Math.random() * 10}s`,
         scale: 0.26 + Math.random() * 0.35,
-        driftX: `${(Math.random() * 12 - 6).toFixed(1)}px`,
-        driftY: `${(Math.random() * 16 - 8).toFixed(1)}px`,
+        driftX: `${(Math.random() * 8 - 4).toFixed(1)}px`,
+        driftY: `${(Math.random() * 10 - 5).toFixed(1)}px`,
       })),
     [motionScale],
   )
@@ -1423,35 +1390,8 @@ function App() {
       })),
     [motionScale],
   )
-  const bgAudioRef = useRef<HTMLAudioElement | null>(null)
   const c = content[activeLocale]
-  const tagAllLabel = useMemo(
-    () => (activeLocale === 'TR' ? 'Hepsi' : activeLocale === 'DE' ? 'Alle' : 'All'),
-    [activeLocale],
-  )
-
-  useEffect(() => {
-    setSelectedTag(tagAllLabel)
-  }, [tagAllLabel])
-
-  const allTags = [tagAllLabel, ...new Set(c.projects.flatMap((p) => p.tags))]
   const hobbyNavLabel = activeLocale === 'TR' ? 'Hobim' : 'Hobby'
-  const filteredProjects =
-    selectedTag === tagAllLabel || !allTags.includes(selectedTag)
-      ? c.projects
-      : c.projects.filter((p) => p.tags.includes(selectedTag))
-  const projectsCountLabel =
-    activeLocale === 'DE'
-      ? `${filteredProjects.length} Projekte`
-      : activeLocale === 'EN'
-      ? `${filteredProjects.length} projects`
-      : `${filteredProjects.length} proje`
-  const projectsFilterLabel =
-    activeLocale === 'DE'
-      ? `Aktives Tag: ${selectedTag}`
-      : activeLocale === 'EN'
-      ? `Filter: ${selectedTag}`
-      : `Filtre: ${selectedTag}`
 
   const learningList =
     activeLocale === 'TR'
@@ -1493,179 +1433,8 @@ function App() {
       ? 'Business impact: improved efficiency/accuracy, reduced manual work.'
       : 'Is etkisi: verim ve dogruluk artisi, manuel is azalmasi.'
 
-  // Sound Effects State
-  const [sfxEnabled, setSfxEnabled] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('sfxEnabled')
-      return stored !== null ? stored === 'true' : true
-    }
-    return true
-  })
-  const sfxContextRef = useRef<AudioContext | null>(null)
-
-  // Initialize AudioContext for sound effects
-  const getSfxContext = () => {
-    if (!sfxContextRef.current) {
-      const AudioCtx = (window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext }).AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-      if (AudioCtx) {
-        sfxContextRef.current = new AudioCtx()
-      }
-    }
-    return sfxContextRef.current
-  }
-
-  // Space-themed sound effect generators using Web Audio API
-  const playHoverSound = () => {
-    if (!sfxEnabled) return
-    const ctx = getSfxContext()
-    if (!ctx) return
-    if (ctx.state === 'suspended') ctx.resume()
-
-    const oscillator = ctx.createOscillator()
-    const gainNode = ctx.createGain()
-
-    oscillator.type = 'sine'
-    oscillator.frequency.setValueAtTime(800, ctx.currentTime)
-    oscillator.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.08)
-
-    gainNode.gain.setValueAtTime(0.04, ctx.currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1)
-
-    oscillator.connect(gainNode)
-    gainNode.connect(ctx.destination)
-
-    oscillator.start(ctx.currentTime)
-    oscillator.stop(ctx.currentTime + 0.1)
-  }
-
-  const playClickSound = () => {
-    if (!sfxEnabled) return
-    const ctx = getSfxContext()
-    if (!ctx) return
-    if (ctx.state === 'suspended') ctx.resume()
-
-    // Sci-fi beep click
-    const oscillator = ctx.createOscillator()
-    const gainNode = ctx.createGain()
-    const filter = ctx.createBiquadFilter()
-
-    oscillator.type = 'square'
-    oscillator.frequency.setValueAtTime(600, ctx.currentTime)
-    oscillator.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 0.03)
-    oscillator.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.12)
-
-    filter.type = 'lowpass'
-    filter.frequency.setValueAtTime(2000, ctx.currentTime)
-    filter.Q.setValueAtTime(5, ctx.currentTime)
-
-    gainNode.gain.setValueAtTime(0.08, ctx.currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15)
-
-    oscillator.connect(filter)
-    filter.connect(gainNode)
-    gainNode.connect(ctx.destination)
-
-    oscillator.start(ctx.currentTime)
-    oscillator.stop(ctx.currentTime + 0.15)
-  }
-
-  const playNavigationSound = () => {
-    if (!sfxEnabled) return
-    const ctx = getSfxContext()
-    if (!ctx) return
-    if (ctx.state === 'suspended') ctx.resume()
-
-    // Warp/whoosh sound for navigation
-    const oscillator = ctx.createOscillator()
-    const gainNode = ctx.createGain()
-    const filter = ctx.createBiquadFilter()
-
-    oscillator.type = 'sawtooth'
-    oscillator.frequency.setValueAtTime(150, ctx.currentTime)
-    oscillator.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.1)
-    oscillator.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.3)
-
-    filter.type = 'lowpass'
-    filter.frequency.setValueAtTime(800, ctx.currentTime)
-    filter.frequency.exponentialRampToValueAtTime(2000, ctx.currentTime + 0.1)
-    filter.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.3)
-
-    gainNode.gain.setValueAtTime(0.06, ctx.currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35)
-
-    oscillator.connect(filter)
-    filter.connect(gainNode)
-    gainNode.connect(ctx.destination)
-
-    oscillator.start(ctx.currentTime)
-    oscillator.stop(ctx.currentTime + 0.35)
-  }
-
-  const playSuccessSound = () => {
-    if (!sfxEnabled) return
-    const ctx = getSfxContext()
-    if (!ctx) return
-    if (ctx.state === 'suspended') ctx.resume()
-
-    // Ascending tones for success/confirm
-    const frequencies = [523.25, 659.25, 783.99] // C5, E5, G5
-    frequencies.forEach((freq, i) => {
-      const oscillator = ctx.createOscillator()
-      const gainNode = ctx.createGain()
-
-      oscillator.type = 'sine'
-      oscillator.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.08)
-
-      gainNode.gain.setValueAtTime(0, ctx.currentTime + i * 0.08)
-      gainNode.gain.linearRampToValueAtTime(0.06, ctx.currentTime + i * 0.08 + 0.02)
-      gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.08 + 0.2)
-
-      oscillator.connect(gainNode)
-      gainNode.connect(ctx.destination)
-
-      oscillator.start(ctx.currentTime + i * 0.08)
-      oscillator.stop(ctx.currentTime + i * 0.08 + 0.25)
-    })
-  }
-
-  const playToggleSound = (on: boolean) => {
-    if (!sfxEnabled && on) return // Allow toggle off sound even when disabled
-    const ctx = getSfxContext()
-    if (!ctx) return
-    if (ctx.state === 'suspended') ctx.resume()
-
-    const oscillator = ctx.createOscillator()
-    const gainNode = ctx.createGain()
-
-    oscillator.type = 'sine'
-    if (on) {
-      oscillator.frequency.setValueAtTime(400, ctx.currentTime)
-      oscillator.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.1)
-    } else {
-      oscillator.frequency.setValueAtTime(800, ctx.currentTime)
-      oscillator.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.1)
-    }
-
-    gainNode.gain.setValueAtTime(0.05, ctx.currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12)
-
-    oscillator.connect(gainNode)
-    gainNode.connect(ctx.destination)
-
-    oscillator.start(ctx.currentTime)
-    oscillator.stop(ctx.currentTime + 0.12)
-  }
-
-  // Toggle SFX and persist
-  const toggleSfx = () => {
-    const newValue = !sfxEnabled
-    setSfxEnabled(newValue)
-    localStorage.setItem('sfxEnabled', String(newValue))
-    playToggleSound(newValue)
-  }
-
   const sectionIdsToTrack = useMemo(
-    () => ['hero', 'about', 'experience', 'skills', 'projects', 'education', 'certifications', 'hobby', 'contact'],
+    () => ['hero', 'about', 'education', 'experience', 'skills', 'projects', 'certifications', 'hobby', 'contact'],
     [],
   )
   const sectionLabels =
@@ -1770,54 +1539,6 @@ function App() {
     }
   }
 
-  const playerCopy =
-    activeLocale === 'DE'
-      ? { nowPlaying: 'Laeuft', remaining: 'Rest', stop: 'Stop', volume: 'Laut' }
-      : activeLocale === 'EN'
-      ? { nowPlaying: 'Now playing', remaining: 'Remaining', stop: 'Stop', volume: 'Vol' }
-      : { nowPlaying: 'Calan parca', remaining: 'Kalan', stop: 'Durdur', volume: 'Ses' }
-
-  const audioUiCopy =
-    activeLocale === 'DE'
-      ? {
-          hobbyLoading: 'Lädt...',
-          hobbyPlaying: 'Spielt',
-          hobbyReady: 'Bereit',
-          musicLoading: 'Musik lädt...',
-          musicOn: 'Musik aus',
-          musicOff: 'Musik an',
-          musicStatusLoading: 'Bereitet vor',
-          musicStatusOn: 'Läuft',
-          musicStatusOff: 'Aus',
-        }
-      : activeLocale === 'EN'
-      ? {
-          hobbyLoading: 'Loading...',
-          hobbyPlaying: 'Playing',
-          hobbyReady: 'Ready',
-          musicLoading: 'Music loading...',
-          musicOn: 'Turn music off',
-          musicOff: 'Turn music on',
-          musicStatusLoading: 'Preparing',
-          musicStatusOn: 'Playing',
-          musicStatusOff: 'Off',
-        }
-      : {
-          hobbyLoading: 'Yukleniyor...',
-          hobbyPlaying: 'Çalıyor',
-          hobbyReady: 'Hazır',
-          musicLoading: 'Muzik yukleniyor...',
-          musicOn: 'Muzigi kapat',
-          musicOff: 'Muzigi aç',
-          musicStatusLoading: 'Hazırlanıyor',
-          musicStatusOn: 'Çalıyor',
-          musicStatusOff: 'Kapalı',
-        }
-
-  const trackMeta = { title: 'Nocturne', artist: 'JegBaa' }
-  const trackSrc = '/track-new.mp3?v=1' // cache-bust to force new audio
-  const remainingTime = Math.max(duration - currentTime, 0)
-  const progressMax = Math.max(duration, currentTime, 0.1)
   const feedbackCopy = c.feedback
   const feedbackAverage =
     feedbackEntries.length === 0
@@ -1874,7 +1595,7 @@ function App() {
 
   const scrollToSection = (id: string, event?: ReactMouseEvent<HTMLElement>) => {
     if (event) event.preventDefault()
-    playNavigationSound()
+    
     const el = document.getElementById(id)
     if (!el) return
 
@@ -1898,132 +1619,44 @@ function App() {
 
   const toggleDrawer = () => setIsDrawerOpen((open) => !open)
 
-  const startAudioReactive = async () => {
-    try {
-      setAudioLoading(true)
-      if (bgAudioRef.current) {
-        bgAudioRef.current.pause()
-        setBgPlaying(false)
-      }
-      if (audioActive) return
-      if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current.currentTime = 0
-      }
-      const audioEl = new Audio(trackSrc)
-      audioEl.crossOrigin = 'anonymous'
-      audioEl.preload = 'auto'
-      audioEl.loop = false
-      audioEl.volume = volume
-      audioEl.onloadedmetadata = () => {
-        if (Number.isFinite(audioEl.duration)) {
-          setDuration(audioEl.duration)
+  // Section navigation order
+  const navSections = ['hero', 'about', 'education', 'experience', 'skills', 'projects', 'certifications', 'hobby', 'contact']
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't trigger when typing in inputs
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+
+      const currentIndex = navSections.indexOf(activeSection)
+
+      // Arrow keys or J/K for navigation
+      if (e.key === 'ArrowDown' || e.key === 'j' || e.key === 'J') {
+        e.preventDefault()
+        const nextIndex = Math.min(currentIndex + 1, navSections.length - 1)
+        scrollToSection(navSections[nextIndex])
+      } else if (e.key === 'ArrowUp' || e.key === 'k' || e.key === 'K') {
+        e.preventDefault()
+        const prevIndex = Math.max(currentIndex - 1, 0)
+        scrollToSection(navSections[prevIndex])
+      } else if (e.key === 'Home') {
+        e.preventDefault()
+        scrollToSection('hero')
+      } else if (e.key === 'End') {
+        e.preventDefault()
+        scrollToSection('contact')
+      } else if (e.key >= '1' && e.key <= '9') {
+        const index = parseInt(e.key) - 1
+        if (index < navSections.length) {
+          e.preventDefault()
+          scrollToSection(navSections[index])
         }
       }
-      audioEl.ondurationchange = audioEl.onloadedmetadata
-      audioEl.ontimeupdate = () => setCurrentTime(audioEl.currentTime)
-      audioEl.onended = () => {
-        setAudioActive(false)
-        analyserRef.current = null
-        flashRef.current = 0
-        document.documentElement.style.setProperty('--flash-strength', '0')
-        setCurrentTime(0)
-        if (rafRef.current) {
-          cancelAnimationFrame(rafRef.current)
-          rafRef.current = null
-        }
-      }
-      const AudioCtx = (window as any).AudioContext || (window as any).webkitAudioContext
-      const ctx = new AudioCtx()
-      const source = ctx.createMediaElementSource(audioEl)
-      const analyser = ctx.createAnalyser()
-      analyser.fftSize = 1024
-      analyser.smoothingTimeConstant = 0.7
-      source.connect(analyser)
-      analyser.connect(ctx.destination)
-      analyserRef.current = analyser
-      audioRef.current = audioEl
-      const data = new Uint8Array(analyser.frequencyBinCount)
-
-      const tick = () => {
-        if (!analyserRef.current) return
-        analyserRef.current.getByteFrequencyData(data)
-        const lowBins = data.slice(1, 30)
-        const midBins = data.slice(30, 90)
-        const lowAvg = lowBins.reduce((a, b) => a + b, 0) / lowBins.length / 255
-        const midAvg = midBins.reduce((a, b) => a + b, 0) / midBins.length / 255
-        const boosted = Math.pow(Math.min(1, lowAvg * 2.5), 1.2)
-        const eased = Math.min(1, Math.max(0, boosted))
-        document.documentElement.style.setProperty('--breath-intensity', eased.toString())
-
-        const kickHit = lowAvg > 0.22
-        const snareHit = midAvg > 0.18
-        if (kickHit || snareHit) {
-          flashRef.current = Math.min(1, flashRef.current + (kickHit ? 0.6 : 0.4))
-          sideRef.current = sideRef.current === 1 ? -1 : 1
-          const xPos = sideRef.current === 1 ? '78%' : '22%'
-          const yPos = `${30 + Math.random() * 40}%`
-          document.documentElement.style.setProperty('--flash-x', xPos)
-          document.documentElement.style.setProperty('--flash-y', yPos)
-        } else {
-          flashRef.current *= 0.9
-        }
-        document.documentElement.style.setProperty('--flash-strength', flashRef.current.toString())
-        rafRef.current = requestAnimationFrame(tick)
-      }
-
-      setDuration(Number.isFinite(audioEl.duration) ? audioEl.duration : 0)
-      audioRef.current = audioEl
-      audioEl.currentTime = 0
-      audioEl.onended = () => {
-        stopAudioReactive()
-      }
-      await audioEl.play()
-      setAudioStarted(true)
-      setAudioActive(true)
-      triggerMoonEnter()
-      tick()
-    } catch (err) {
-      console.error('Audio start failed', err)
-      setAudioActive(false)
-      triggerMoonLeave()
-    } finally {
-      setAudioLoading(false)
     }
-  }
 
-  const stopAudioReactive = () => {
-    if (audioRef.current) {
-      audioRef.current.pause()
-      audioRef.current.currentTime = 0
-      audioRef.current = null
-    }
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current)
-      rafRef.current = null
-    }
-    analyserRef.current = null
-    setAudioActive(false)
-    triggerMoonLeave()
-    flashRef.current = 0
-    document.documentElement.style.setProperty('--flash-strength', '0')
-    setCurrentTime(0)
-  }
-
-  const handleVolumeChange = (value: number) => {
-    const clamped = Math.max(0, Math.min(1, value))
-    setVolume(clamped)
-    if (audioRef.current) {
-      audioRef.current.volume = clamped
-    }
-  }
-
-  const handleSeekChange = (value: number) => {
-    if (!audioRef.current || !Number.isFinite(duration) || duration === 0) return
-    const clamped = Math.max(0, Math.min(duration, value))
-    audioRef.current.currentTime = clamped
-    setCurrentTime(clamped)
-  }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeSection])
 
   const triggerMoonEnter = () => {
     if (moonTimerRef.current) {
@@ -2043,85 +1676,6 @@ function App() {
       setMoonPhase('hidden')
       moonTimerRef.current = null
     }, 620)
-  }
-
-  const startBgAudio = async () => {
-    if (reduceMotion) return
-    try {
-      setBgLoading(true)
-      const targetVolume = bgVolume === 0 && !bgVolumeTouched ? 0.05 : bgVolume
-      if (targetVolume <= 0) {
-        stopBgAudio()
-        return
-      }
-      if (bgVolume !== targetVolume) {
-        setBgVolume(targetVolume)
-      }
-      setBgVolumeTouched(true)
-      if (bgPlaying) return
-      if (!bgAudioRef.current) {
-        const audio = new Audio('/bg-music.mp3?v=2')
-        audio.loop = true
-        audio.preload = 'auto'
-        audio.autoplay = true
-        audio.playsInline = true
-        audio.volume = targetVolume
-        bgAudioRef.current = audio
-      } else {
-        bgAudioRef.current.currentTime = 0
-        bgAudioRef.current.volume = targetVolume
-      }
-      const audio = bgAudioRef.current
-      const tryPlay = async () => {
-        if (!audio) throw new Error('no audio element')
-        audio.muted = false
-        audio.volume = targetVolume
-        await audio.play()
-      }
-      try {
-        await tryPlay()
-        setBgPlaying(true)
-      } catch (err) {
-        console.warn('BG play blocked, retry muted', err)
-        if (!audio) throw err
-        audio.muted = true
-        audio.volume = 0
-        await audio.play()
-        audio.muted = false
-        audio.volume = targetVolume
-        setBgPlaying(true)
-      }
-    } catch (err) {
-      console.error('BG audio failed', err)
-      setBgPlaying(false)
-    } finally {
-      setBgLoading(false)
-    }
-  }
-
-  const stopBgAudio = () => {
-    if (bgAudioRef.current) {
-      bgAudioRef.current.pause()
-      bgAudioRef.current.currentTime = 0
-    }
-    setBgPlaying(false)
-    setBgLoading(false)
-  }
-
-  const toggleBgControls = () => {
-    setBgControlsOpen((open) => !open)
-  }
-
-  const handleBgVolume = (value: number) => {
-    const clamped = Math.max(0, Math.min(1, value))
-    setBgVolumeTouched(true)
-    setBgVolume(clamped)
-    if (bgAudioRef.current) {
-      bgAudioRef.current.volume = clamped
-    }
-    if (clamped === 0) {
-      stopBgAudio()
-    }
   }
 
   const formatTime = (value: number) => {
@@ -2249,16 +1803,8 @@ function App() {
       clearTimeout(hideTimer)
       window.removeEventListener('mousemove', handleMove)
       window.removeEventListener('click', handleClick)
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
   }, [])
-
-  useEffect(() => {
-    document.body.classList.toggle('sport-mode', audioActive)
-    return () => {
-      document.body.classList.remove('sport-mode')
-    }
-  }, [audioActive])
 
   useEffect(() => {
     document.body.classList.toggle('drawer-open', isDrawerOpen)
@@ -2266,16 +1812,6 @@ function App() {
       document.body.classList.remove('drawer-open')
     }
   }, [isDrawerOpen])
-
-  useEffect(() => {
-    setSelectedTag(tagAllLabel)
-  }, [tagAllLabel])
-
-  useEffect(() => {
-    if (activeProjectDetail && !filteredProjects.includes(activeProjectDetail)) {
-      setActiveProjectDetail(null)
-    }
-  }, [filteredProjects, activeProjectDetail])
 
   useEffect(() => {
     document.body.style.overflow = ''
@@ -2310,20 +1846,44 @@ function App() {
     }
   }, [])
 
+  // Performance detection for low-end devices
   useEffect(() => {
-    if (!audioActive) {
-      triggerMoonLeave()
-    } else {
-      triggerMoonEnter()
-    }
-  }, [audioActive])
+    const detectLowPerformance = () => {
+      // Check hardware concurrency (CPU cores)
+      const cores = navigator.hardwareConcurrency || 4
+      const isLowCores = cores <= 4
 
-  useEffect(() => {
-    return () => {
-      if (bgAudioRef.current) {
-        bgAudioRef.current.pause()
-        bgAudioRef.current = null
+      // Check device memory (if available)
+      const memory = (navigator as any).deviceMemory || 8
+      const isLowMemory = memory <= 4
+
+      // Check for mobile/tablet user agents that typically have lower performance
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+
+      // Check screen refresh rate capability via a simple FPS test
+      let lowFPS = false
+      let frameCount = 0
+      let startTime = performance.now()
+      const testFrames = () => {
+        frameCount++
+        if (frameCount < 30) {
+          requestAnimationFrame(testFrames)
+        } else {
+          const elapsed = performance.now() - startTime
+          const fps = (frameCount / elapsed) * 1000
+          lowFPS = fps < 50 // If can't maintain 50fps, consider low performance
+
+          const isLow = (isLowCores && isLowMemory) || (isMobileDevice && isLowCores) || lowFPS
+          setIsLowPerformance(isLow)
+          document.body.classList.toggle('low-performance', isLow)
+        }
       }
+      requestAnimationFrame(testFrames)
+    }
+
+    detectLowPerformance()
+    return () => {
+      document.body.classList.remove('low-performance')
     }
   }, [])
 
@@ -2367,19 +1927,20 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (reduceMotion) return
+    if (reduceMotion || isLowPerformance) return
+    // Increased interval from 9-14s to 15-25s for better performance
     const interval = window.setInterval(() => {
       const id = Date.now()
-      const duration = 1100 + Math.random() * 800
+      const duration = 1100 + Math.random() * 600
       const left = `${15 + Math.random() * 70}%`
-      setFallingStars((prev) => [...prev.slice(-3), { id, left, duration }])
+      setFallingStars((prev) => [...prev.slice(-2), { id, left, duration }]) // Max 2 stars instead of 3
       window.setTimeout(() => {
         setFallingStars((prev) => prev.filter((item) => item.id !== id))
-      }, duration + 220)
-    }, 9000 + Math.random() * 5000)
+      }, duration + 200)
+    }, 15000 + Math.random() * 10000)
 
     return () => window.clearInterval(interval)
-  }, [reduceMotion])
+  }, [reduceMotion, isLowPerformance])
 
   useEffect(() => {
     const targets = Array.from(
@@ -2460,11 +2021,25 @@ function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [isMobile, reduceMotion])
 
-  // 3D Tilt Effect on Cards (Desktop Only)
+  // 3D Tilt Effect on Cards (Desktop Only) - OPTIMIZED with throttle
   useEffect(() => {
-    if (isMobile || reduceMotion) return
+    if (isMobile || reduceMotion || isLowPerformance) return
 
     const cards = document.querySelectorAll<HTMLElement>('.card')
+
+    // Throttle function for performance
+    const throttle = (fn: Function, delay: number) => {
+      let lastCall = 0
+      let rafId: number | null = null
+      return (...args: any[]) => {
+        const now = performance.now()
+        if (now - lastCall >= delay) {
+          lastCall = now
+          if (rafId) cancelAnimationFrame(rafId)
+          rafId = requestAnimationFrame(() => fn(...args))
+        }
+      }
+    }
 
     const handleMouseMove = (e: MouseEvent, card: HTMLElement) => {
       const rect = card.getBoundingClientRect()
@@ -2474,9 +2049,9 @@ function App() {
       const centerX = rect.width / 2
       const centerY = rect.height / 2
 
-      // Calculate rotation based on mouse position
-      const rotateY = ((x - centerX) / centerX) * 10 // Max 10deg
-      const rotateX = ((centerY - y) / centerY) * 10 // Max 10deg
+      // Calculate rotation based on mouse position - reduced intensity
+      const rotateY = ((x - centerX) / centerX) * 6 // Reduced from 10 to 6
+      const rotateX = ((centerY - y) / centerY) * 6
 
       card.style.setProperty('--tilt-x', `${rotateX}deg`)
       card.style.setProperty('--tilt-y', `${rotateY}deg`)
@@ -2490,14 +2065,15 @@ function App() {
     }
 
     cards.forEach((card) => {
-      const moveHandler = (e: MouseEvent) => handleMouseMove(e, card)
+      // Throttle mousemove to ~30fps (33ms)
+      const throttledMoveHandler = throttle((e: MouseEvent) => handleMouseMove(e, card), 33)
       const leaveHandler = () => handleMouseLeave(card)
 
-      card.addEventListener('mousemove', moveHandler as EventListener)
+      card.addEventListener('mousemove', throttledMoveHandler as EventListener)
       card.addEventListener('mouseleave', leaveHandler)
 
       // Store handlers for cleanup
-      ;(card as any)._tiltHandlers = { moveHandler, leaveHandler }
+      ;(card as any)._tiltHandlers = { moveHandler: throttledMoveHandler, leaveHandler }
     })
 
     return () => {
@@ -2509,15 +2085,27 @@ function App() {
         }
       })
     }
-  }, [isMobile, reduceMotion, activeLocale])
+  }, [isMobile, reduceMotion, isLowPerformance, activeLocale])
 
-  // Magnetic Button Effect (Desktop Only)
+  // Magnetic Button Effect (Desktop Only) - OPTIMIZED with throttle
   useEffect(() => {
-    if (isMobile || reduceMotion) return
+    if (isMobile || reduceMotion || isLowPerformance) return
 
     const magneticElements = document.querySelectorAll<HTMLElement>(
-      '.btn, .cta-btn, .toggle-audio, .lang-btn, .project-tag'
-    )
+      '.btn, .cta-btn, .toggle-audio, .lang-btn'
+    ) // Removed .project-tag for performance
+
+    // Throttle function
+    const throttle = (fn: Function, delay: number) => {
+      let lastCall = 0
+      return (...args: any[]) => {
+        const now = performance.now()
+        if (now - lastCall >= delay) {
+          lastCall = now
+          fn(...args)
+        }
+      }
+    }
 
     const handleMouseMove = (e: MouseEvent, element: HTMLElement) => {
       const rect = element.getBoundingClientRect()
@@ -2525,13 +2113,13 @@ function App() {
       const y = e.clientY - rect.top - rect.height / 2
 
       // Magnetic distance (pixels from center)
-      const distance = Math.sqrt(x * x + y * y)
-      const maxDistance = 80 // Maximum distance for magnetic effect
+      const distanceSquared = x * x + y * y
+      const maxDistanceSquared = 60 * 60 // Reduced from 80 to 60
 
-      if (distance < maxDistance) {
-        // Apply magnetic pull (30% of distance)
-        const pullX = x * 0.3
-        const pullY = y * 0.3
+      if (distanceSquared < maxDistanceSquared) {
+        // Apply magnetic pull (20% of distance - reduced from 30%)
+        const pullX = x * 0.2
+        const pullY = y * 0.2
         element.style.setProperty('--magnetic-x', `${pullX}px`)
         element.style.setProperty('--magnetic-y', `${pullY}px`)
         element.classList.add('magnetic')
@@ -2549,14 +2137,15 @@ function App() {
     }
 
     magneticElements.forEach((element) => {
-      const moveHandler = (e: MouseEvent) => handleMouseMove(e, element)
+      // Throttle mousemove to ~20fps (50ms) for subtle effect
+      const throttledMoveHandler = throttle((e: MouseEvent) => handleMouseMove(e, element), 50)
       const leaveHandler = () => handleMouseLeave(element)
 
-      element.addEventListener('mousemove', moveHandler as EventListener)
+      element.addEventListener('mousemove', throttledMoveHandler as EventListener)
       element.addEventListener('mouseleave', leaveHandler)
 
       // Store handlers for cleanup
-      ;(element as any)._magneticHandlers = { moveHandler, leaveHandler }
+      ;(element as any)._magneticHandlers = { moveHandler: throttledMoveHandler, leaveHandler }
     })
 
     return () => {
@@ -2568,27 +2157,29 @@ function App() {
         }
       })
     }
-  }, [isMobile, reduceMotion, activeLocale])
+  }, [isMobile, reduceMotion, isLowPerformance, activeLocale])
 
   // ============================================
   // EPIC COSMIC ENHANCEMENTS - DESKTOP ONLY
   // ============================================
 
-  // Scroll-based Parallax Depth Layers - OPTIMIZED with RAF
+  // Scroll-based Parallax Depth Layers - OPTIMIZED with RAF and low-perf check
   useEffect(() => {
-    if (isMobile || reduceMotion) return
+    if (isMobile || reduceMotion || isLowPerformance) return
 
     let ticking = false
     let lastScrollY = 0
 
-    const updateParallax = () => {
-      const nearLayer = document.querySelector('.parallax-stars-near') as HTMLElement
-      const midLayer = document.querySelector('.parallax-stars-mid') as HTMLElement
-      const farLayer = document.querySelector('.parallax-stars-far') as HTMLElement
+    // Cache DOM queries
+    const nearLayer = document.querySelector('.parallax-stars-near') as HTMLElement
+    const midLayer = document.querySelector('.parallax-stars-mid') as HTMLElement
+    const farLayer = document.querySelector('.parallax-stars-far') as HTMLElement
 
-      if (nearLayer) nearLayer.style.transform = `translateY(${lastScrollY * 0.5}px)`
-      if (midLayer) midLayer.style.transform = `translateY(${lastScrollY * 0.3}px)`
-      if (farLayer) farLayer.style.transform = `translateY(${lastScrollY * 0.1}px)`
+    const updateParallax = () => {
+      // Use transform3d for GPU acceleration
+      if (nearLayer) nearLayer.style.transform = `translate3d(0, ${lastScrollY * 0.4}px, 0)`
+      if (midLayer) midLayer.style.transform = `translate3d(0, ${lastScrollY * 0.25}px, 0)`
+      if (farLayer) farLayer.style.transform = `translate3d(0, ${lastScrollY * 0.1}px, 0)`
 
       ticking = false
     }
@@ -2604,23 +2195,35 @@ function App() {
 
     window.addEventListener('scroll', handleParallaxScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleParallaxScroll)
-  }, [isMobile, reduceMotion])
+  }, [isMobile, reduceMotion, isLowPerformance])
 
-  // Constellation Canvas - Neural Network Connected Stars
+  // Constellation Canvas - Neural Network Connected Stars (OPTIMIZED)
   useEffect(() => {
-    if (isMobile || reduceMotion) return
+    if (isMobile || reduceMotion || isLowPerformance) return
 
     const canvas = document.querySelector('.constellation-canvas') as HTMLCanvasElement
     if (!canvas) return
 
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
 
-    // Set canvas size
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    let animationId: number | null = null
+    let isRunning = true
 
-    // Star particles
+    // Set canvas size with device pixel ratio consideration
+    const dpr = Math.min(window.devicePixelRatio || 1, 2) // Cap at 2x for performance
+    const setCanvasSize = () => {
+      const width = window.innerWidth
+      const height = window.innerHeight
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      canvas.style.width = `${width}px`
+      canvas.style.height = `${height}px`
+      ctx.scale(dpr, dpr)
+    }
+    setCanvasSize()
+
+    // Star particles - REDUCED count for better performance
     interface Star {
       x: number
       y: number
@@ -2630,128 +2233,171 @@ function App() {
     }
 
     const stars: Star[] = []
-    const starCount = 80
-    const maxDistance = 150
+    const starCount = 40 // Reduced from 80 to 40
+    const maxDistance = 120 // Reduced from 150 to 120
+
+    const width = window.innerWidth
+    const height = window.innerHeight
 
     // Create stars
     for (let i = 0; i < starCount; i++) {
       stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: Math.random() * 1.5 + 0.5,
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.2, // Slower movement
+        vy: (Math.random() - 0.5) * 0.2,
+        radius: Math.random() * 1.2 + 0.5,
       })
     }
 
-    // Animation loop
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+    // Frame skip for performance - target 30fps instead of 60fps
+    let lastTime = 0
+    const targetInterval = 1000 / 30 // 30 FPS
+
+    // Pre-calculate squared distance to avoid sqrt
+    const maxDistanceSquared = maxDistance * maxDistance
+
+    // Animation loop with frame throttling
+    const animate = (currentTime: number) => {
+      if (!isRunning) return
+
+      const deltaTime = currentTime - lastTime
+      if (deltaTime < targetInterval) {
+        animationId = requestAnimationFrame(animate)
+        return
+      }
+      lastTime = currentTime - (deltaTime % targetInterval)
+
+      const w = window.innerWidth
+      const h = window.innerHeight
+
+      ctx.clearRect(0, 0, w, h)
 
       // Update and draw stars
+      ctx.fillStyle = 'rgba(139, 37, 37, 0.7)'
       stars.forEach((star) => {
         star.x += star.vx
         star.y += star.vy
 
         // Bounce off edges
-        if (star.x < 0 || star.x > canvas.width) star.vx *= -1
-        if (star.y < 0 || star.y > canvas.height) star.vy *= -1
+        if (star.x < 0 || star.x > w) star.vx *= -1
+        if (star.y < 0 || star.y > h) star.vy *= -1
 
         // Draw star
-        ctx.fillStyle = 'rgba(255, 107, 53, 0.8)'
         ctx.beginPath()
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2)
         ctx.fill()
       })
 
-      // Draw connections
-      ctx.strokeStyle = 'rgba(255, 107, 53, 0.15)'
+      // Draw connections with spatial optimization
+      ctx.strokeStyle = 'rgba(139, 37, 37, 0.12)'
       ctx.lineWidth = 1
 
+      // Only check nearby stars using squared distance (avoid sqrt)
       for (let i = 0; i < stars.length; i++) {
         for (let j = i + 1; j < stars.length; j++) {
           const dx = stars[i].x - stars[j].x
           const dy = stars[i].y - stars[j].y
-          const distance = Math.sqrt(dx * dx + dy * dy)
+          const distanceSquared = dx * dx + dy * dy
 
-          if (distance < maxDistance) {
+          if (distanceSquared < maxDistanceSquared) {
+            const distance = Math.sqrt(distanceSquared)
             ctx.beginPath()
             ctx.moveTo(stars[i].x, stars[i].y)
             ctx.lineTo(stars[j].x, stars[j].y)
-            ctx.globalAlpha = 1 - distance / maxDistance
+            ctx.globalAlpha = (1 - distance / maxDistance) * 0.8
             ctx.stroke()
-            ctx.globalAlpha = 1
           }
         }
       }
+      ctx.globalAlpha = 1
 
-      requestAnimationFrame(animate)
+      animationId = requestAnimationFrame(animate)
     }
 
-    animate()
+    animationId = requestAnimationFrame(animate)
 
-    // Handle resize
+    // Handle resize with debounce
+    let resizeTimeout: number | null = null
     const handleResize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      if (resizeTimeout) clearTimeout(resizeTimeout)
+      resizeTimeout = window.setTimeout(() => {
+        setCanvasSize()
+        // Update star positions proportionally
+        const newWidth = window.innerWidth
+        const newHeight = window.innerHeight
+        stars.forEach(star => {
+          star.x = (star.x / width) * newWidth
+          star.y = (star.y / height) * newHeight
+        })
+      }, 150)
     }
 
     window.addEventListener('resize', handleResize)
 
     return () => {
+      isRunning = false
+      if (animationId) cancelAnimationFrame(animationId)
+      if (resizeTimeout) clearTimeout(resizeTimeout)
       window.removeEventListener('resize', handleResize)
     }
-  }, [isMobile, reduceMotion])
+  }, [isMobile, reduceMotion, isLowPerformance])
 
-  // Bottom Planet Visibility - Show only at Contact Section
+  // Bottom Planet Visibility - Show only at Contact Section (OPTIMIZED)
   useEffect(() => {
-    if (isMobile || reduceMotion) return
+    if (isMobile || reduceMotion || isLowPerformance) return
+
+    // Cache DOM queries
+    const contactSection = document.querySelector('#contact') as HTMLElement
+    const planet = document.querySelector('.cosmic-planet-bottom') as HTMLElement
+    if (!contactSection || !planet) return
+
+    let ticking = false
+    let lastVisible = false
 
     const handlePlanetVisibility = () => {
-      const contactSection = document.querySelector('#contact') as HTMLElement
-      const planet = document.querySelector('.cosmic-planet-bottom') as HTMLElement
+      if (ticking) return
+      ticking = true
 
-      if (contactSection && planet) {
+      requestAnimationFrame(() => {
         const rect = contactSection.getBoundingClientRect()
         const windowHeight = window.innerHeight
+        const isVisible = rect.top < windowHeight && rect.bottom > 0
 
-        // Show planet when contact section is visible in viewport
-        if (rect.top < windowHeight && rect.bottom > 0) {
-          planet.classList.add('visible')
-        } else {
-          planet.classList.remove('visible')
+        // Only update DOM if visibility changed
+        if (isVisible !== lastVisible) {
+          lastVisible = isVisible
+          planet.classList.toggle('visible', isVisible)
         }
-      }
+        ticking = false
+      })
     }
 
     window.addEventListener('scroll', handlePlanetVisibility, { passive: true })
     handlePlanetVisibility() // Check initial state
     return () => window.removeEventListener('scroll', handlePlanetVisibility)
-  }, [isMobile, reduceMotion])
+  }, [isMobile, reduceMotion, isLowPerformance])
 
-  // Ambient Particle Field - OPTIMIZED (reduced count)
+  // Ambient Particle Field - OPTIMIZED (further reduced)
   useEffect(() => {
-    if (isMobile || reduceMotion) return
+    if (isMobile || reduceMotion || isLowPerformance) return
 
-    const particleCount = 12 // Reduced from 20 to 12
+    const particleCount = 6 // Reduced from 12 to 6
     const particles: HTMLElement[] = []
-    const colors = ['', 'blue', 'red', 'purple']
+    const colors = ['', 'blue']
 
     // Create particles
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div')
-      particle.className = `ambient-particle ${colors[Math.floor(Math.random() * colors.length)]}`
+      particle.className = `ambient-particle ${colors[i % colors.length]}`
 
       // Random starting position
       particle.style.left = `${Math.random() * 100}vw`
       particle.style.top = `${Math.random() * 100}vh`
 
-      // Random animation delay and duration
+      // Random animation delay and duration - longer for less CPU usage
       particle.style.animationDelay = `${Math.random() * 5}s`
-      particle.style.animationDuration = `${15 + Math.random() * 10}s`
-
-      // Use will-change sparingly for better performance
-      particle.style.willChange = 'transform, opacity'
+      particle.style.animationDuration = `${20 + Math.random() * 10}s`
 
       document.body.appendChild(particle)
       particles.push(particle)
@@ -2761,29 +2407,30 @@ function App() {
     return () => {
       particles.forEach((p) => p.remove())
     }
-  }, [isMobile, reduceMotion])
+  }, [isMobile, reduceMotion, isLowPerformance])
 
   // Enhanced Header Scroll Effect - OPTIMIZED with RAF
   useEffect(() => {
-    if (isMobile || reduceMotion) return
+    // Cache DOM query
+    const header = document.querySelector('header') as HTMLElement
+    if (!header) return
 
     let ticking = false
-    let lastScrollY = 0
+    let lastScrolled = false
 
     const updateHeader = () => {
-      const header = document.querySelector('header') as HTMLElement
-      if (header) {
-        if (lastScrollY > 50) {
-          header.classList.add('scrolled')
-        } else {
-          header.classList.remove('scrolled')
-        }
+      const scrollY = window.scrollY
+      const shouldBeScrolled = scrollY > 50
+
+      // Only update DOM if state changed
+      if (shouldBeScrolled !== lastScrolled) {
+        lastScrolled = shouldBeScrolled
+        header.classList.toggle('scrolled', shouldBeScrolled)
       }
       ticking = false
     }
 
     const handleHeaderScroll = () => {
-      lastScrollY = window.scrollY
       if (!ticking) {
         window.requestAnimationFrame(updateHeader)
         ticking = true
@@ -2792,16 +2439,16 @@ function App() {
 
     window.addEventListener('scroll', handleHeaderScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleHeaderScroll)
-  }, [isMobile, reduceMotion])
+  }, [])
 
   const scrollToTop = () => {
-    playNavigationSound()
+    
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
   }
 
   return (
-    <div className={`page ${audioActive ? 'sport-mode' : ''}`}>
+    <div className="page">
       {/* Scroll Progress Indicator - Desktop: Wormhole, Mobile: Simple Bar */}
       {!isMobile ? (
         <div className="wormhole-scroll-indicator" aria-hidden="true">
@@ -2980,53 +2627,6 @@ function App() {
             <span className="moon-ring" />
             <span className="moon-sparkle" />
           </div>
-          {audioStarted && (
-            <div className="moon-player">
-              <div className="song-label">
-                <span className="eyebrow">{trackMeta.title}</span>
-                <span className="pill ghost">{playerCopy.nowPlaying}</span>
-                <span className="pill ghost">by {trackMeta.artist}</span>
-              </div>
-              <div className={`wave-bars ${audioActive ? 'live' : ''}`} aria-hidden="true">
-                <span className="wave" />
-                <span className="wave" />
-                <span className="wave" />
-                <span className="wave" />
-              </div>
-              <div className="moon-controls">
-                <input
-                  className="timeline-slider"
-                  type="range"
-                  min={0}
-                  max={progressMax}
-                  step={0.1}
-                  value={Math.min(currentTime, progressMax)}
-                  onChange={(e) => handleSeekChange(parseFloat(e.target.value))}
-                  aria-label="Seek"
-                />
-                <div className="time-row">
-                  <span className="eyebrow">
-                    {formatTime(currentTime)} / {formatTime(duration)}
-                  </span>
-                  <button className="btn ghost" type="button" onClick={stopAudioReactive}>
-                    {playerCopy.stop}
-                  </button>
-                </div>
-                <label className="volume-control moon-volume">
-                  <span>{playerCopy.volume}</span>
-                  <input
-                    type="range"
-                    min={0}
-                    max={1}
-                    step={0.05}
-                    value={volume}
-                    onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
-                    aria-label={playerCopy.volume}
-                  />
-                </label>
-              </div>
-            </div>
-          )}
         </div>
       )}
       {/* Constellation Canvas - Neural Network Stars */}
@@ -3041,96 +2641,34 @@ function App() {
           aria-label="Menu"
           aria-expanded={isDrawerOpen}
           aria-controls="mobile-drawer"
-          onClick={() => { playClickSound(); toggleDrawer() }}
+          onClick={() => { toggleDrawer() }}
         >
           <span />
           <span />
           <span />
         </button>
-        <div className="brand-cluster">
-          <div className="brand">
-            <span className="brand-mark">//</span>
-            <div>
-              <p className="eyebrow">{c.brandEyebrow}</p>
-              <p className="brand-name">Baha Büyükateş</p>
-            </div>
-          </div>
-          <div className="lang-switch" role="group" aria-label="Dil seçimi">
-            {localeOptions.map((option) => (
-              <button
-                key={option.code}
-                type="button"
-                className={`lang-btn ${activeLocale === option.code ? 'active' : ''}`}
-                onClick={() => { playClickSound(); setActiveLocale(option.code) }}
-                onMouseEnter={playHoverSound}
-                aria-pressed={activeLocale === option.code}
-              >
-                <span className="flag" aria-hidden="true">
-                  {option.flag}
-                </span>
-                <span className="code">{option.code}</span>
-              </button>
-            ))}
+        <div className="brand">
+          <span className="brand-mark">//</span>
+          <div>
+            <p className="eyebrow">{c.brandEyebrow}</p>
+            <p className="brand-name">Baha Büyükateş</p>
           </div>
         </div>
-        <div className="nav-right">
-          <nav className="nav-links">
-            <a
-              href="#about"
-              className={activeSection === 'about' ? 'active' : ''}
-              aria-current={activeSection === 'about' ? 'page' : undefined}
-              onClick={(e) => handleNavClick('about', e)}
-              onMouseEnter={playHoverSound}
-            >
-              {c.nav.about}
-            </a>
-            <a
-              href="#experience"
-              className={activeSection === 'experience' ? 'active' : ''}
-              aria-current={activeSection === 'experience' ? 'page' : undefined}
-              onClick={(e) => handleNavClick('experience', e)}
-              onMouseEnter={playHoverSound}
-            >
-              {c.nav.experience}
-            </a>
-            <a
-              href="#projects"
-              className={activeSection === 'projects' ? 'active' : ''}
-              aria-current={activeSection === 'projects' ? 'page' : undefined}
-              onClick={(e) => handleNavClick('projects', e)}
-              onMouseEnter={playHoverSound}
-            >
-              {c.nav.projects}
-            </a>
-            <a
-              href="#skills"
-              className={activeSection === 'skills' ? 'active' : ''}
-              aria-current={activeSection === 'skills' ? 'page' : undefined}
-              onClick={(e) => handleNavClick('skills', e)}
-              onMouseEnter={playHoverSound}
-            >
-              {c.nav.skills}
-            </a>
-            <a
-              href="#contact"
-              className={activeSection === 'contact' ? 'active' : ''}
-              aria-current={activeSection === 'contact' ? 'page' : undefined}
-              onClick={(e) => handleNavClick('contact', e)}
-              onMouseEnter={playHoverSound}
-            >
-              {c.nav.contact}
-            </a>
+        <div className="lang-switch" role="group" aria-label="Dil seçimi">
+          {localeOptions.map((option) => (
             <button
-              className={`link-button guitar-link ${activeSection === 'hobby' ? 'active' : ''}`}
+              key={option.code}
               type="button"
-              aria-label="Hobby"
-              aria-current={activeSection === 'hobby' ? 'page' : undefined}
-              onClick={(e) => handleNavClick('hobby', e)}
-              onMouseEnter={playHoverSound}
+              className={`lang-btn ${activeLocale === option.code ? 'active' : ''}`}
+              onClick={() => { setActiveLocale(option.code) }}
+              aria-pressed={activeLocale === option.code}
             >
-              {hobbyNavLabel}
+              <span className="flag" aria-hidden="true">
+                {option.flag}
+              </span>
+              <span className="code">{option.code}</span>
             </button>
-          </nav>
+          ))}
         </div>
       </header>
 
@@ -3144,7 +2682,7 @@ function App() {
             <p className="eyebrow">{c.brandEyebrow}</p>
             <p className="brand-name">Baha Büyükateş</p>
           </div>
-          <button className="close-drawer" type="button" aria-label="Menüyü kapat" onClick={() => { playClickSound(); setIsDrawerOpen(false) }}>
+          <button className="close-drawer" type="button" aria-label="Menüyü kapat" onClick={() => { setIsDrawerOpen(false) }}>
             X
           </button>
         </div>
@@ -3154,7 +2692,7 @@ function App() {
             className={activeSection === 'about' ? 'active' : ''}
             aria-current={activeSection === 'about' ? 'page' : undefined}
             onClick={(e) => handleNavClick('about', e)}
-            onMouseEnter={playHoverSound}
+           
           >
             {c.nav.about}
           </button>
@@ -3163,7 +2701,7 @@ function App() {
             className={activeSection === 'experience' ? 'active' : ''}
             aria-current={activeSection === 'experience' ? 'page' : undefined}
             onClick={(e) => handleNavClick('experience', e)}
-            onMouseEnter={playHoverSound}
+           
           >
             {c.nav.experience}
           </button>
@@ -3172,7 +2710,7 @@ function App() {
             className={activeSection === 'projects' ? 'active' : ''}
             aria-current={activeSection === 'projects' ? 'page' : undefined}
             onClick={(e) => handleNavClick('projects', e)}
-            onMouseEnter={playHoverSound}
+           
           >
             {c.nav.projects}
           </button>
@@ -3181,7 +2719,7 @@ function App() {
             className={activeSection === 'skills' ? 'active' : ''}
             aria-current={activeSection === 'skills' ? 'page' : undefined}
             onClick={(e) => handleNavClick('skills', e)}
-            onMouseEnter={playHoverSound}
+           
           >
             {c.nav.skills}
           </button>
@@ -3190,7 +2728,7 @@ function App() {
             className={activeSection === 'hobby' ? 'active' : ''}
             aria-current={activeSection === 'hobby' ? 'page' : undefined}
             onClick={(e) => handleNavClick('hobby', e)}
-            onMouseEnter={playHoverSound}
+           
           >
             {hobbyNavLabel}
           </button>
@@ -3199,7 +2737,7 @@ function App() {
             className={activeSection === 'contact' ? 'active' : ''}
             aria-current={activeSection === 'contact' ? 'page' : undefined}
             onClick={(e) => handleNavClick('contact', e)}
-            onMouseEnter={playHoverSound}
+           
           >
             {c.nav.contact}
           </button>
@@ -3208,44 +2746,22 @@ function App() {
           <span className="pill small">{c.hero.eyebrow}</span>
           <p className="section-text">{c.hero.lede}</p>
         </div>
-        <div className="drawer-music">
-          <p className="eyebrow">{activeLocale === 'DE' ? 'Audio Kontrol' : activeLocale === 'EN' ? 'Audio Control' : 'Ses Kontrol'}</p>
-          <div className="drawer-audio-row">
+        <div className="drawer-lang-switch" role="group" aria-label="Dil seçimi">
+          {localeOptions.map((option) => (
             <button
+              key={option.code}
               type="button"
-              className={`btn ghost mini ${bgLoading ? 'loading' : ''}`}
-              onClick={bgPlaying ? stopBgAudio : startBgAudio}
-              disabled={bgLoading}
+              className={`drawer-lang-btn ${activeLocale === option.code ? 'active' : ''}`}
+              onClick={() => { setActiveLocale(option.code) }}
+              aria-pressed={activeLocale === option.code}
             >
-              {bgLoading ? audioUiCopy.musicLoading : bgPlaying ? audioUiCopy.musicOn : audioUiCopy.musicOff}
+              <span className="flag" aria-hidden="true">{option.flag}</span>
+              <span className="label">{option.label}</span>
             </button>
-            <div className="drawer-volume">
-              <input
-                type="range"
-                min={0}
-                max={1}
-                step={0.05}
-                value={bgVolume}
-                onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
-                aria-label="Muzik ses"
-              />
-              <span className="pill small ghost">
-                {bgLoading ? audioUiCopy.musicStatusLoading : bgPlaying ? audioUiCopy.musicStatusOn : audioUiCopy.musicStatusOff}
-              </span>
-            </div>
-          </div>
+          ))}
         </div>
       </aside>
       {isDrawerOpen && <div className="drawer-overlay" onClick={() => setIsDrawerOpen(false)} aria-hidden="true" />}
-
-      {!activeProjectDetail && (
-        <div className="section-indicator" aria-live="polite">
-          <div className="indicator-ring">
-            <span className="indicator-orb" aria-hidden="true" />
-          </div>
-          <span className="indicator-label">{indicatorLabel}</span>
-        </div>
-      )}
 
       <main>
         <section className="hero" id="hero">
@@ -3266,8 +2782,8 @@ function App() {
                     rel="noreferrer"
                     aria-label="LinkedIn"
                     title="LinkedIn"
-                    onMouseEnter={playHoverSound}
-                    onClick={playClickSound}
+                   
+                   
                   >
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-4.72 17.7H4.28V9.3h3v8.4zM5.83 8.07c-.96 0-1.73-.79-1.73-1.76 0-.97.77-1.76 1.73-1.76s1.73.79 1.73 1.76c0 .97-.77 1.76-1.73 1.76zm12.87 9.63h-3v-4.58c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.65h-3V9.3h2.88v1.15h.04c.4-.75 1.38-1.54 2.85-1.54 3.05 0 3.6 2.01 3.6 4.62v5.17z" />
@@ -3280,8 +2796,8 @@ function App() {
                     rel="noreferrer"
                     aria-label="GitHub"
                     title="GitHub"
-                    onMouseEnter={playHoverSound}
-                    onClick={playClickSound}
+                   
+                   
                   >
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.011-1.04-.017-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.083-.73.083-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.521.117-3.172 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.018.005 2.044.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.654 1.651.243 2.869.119 3.172.77.84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.625-5.475 5.921.43.372.823 1.103.823 2.222 0 1.606-.015 2.898-.015 3.292 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
@@ -3289,10 +2805,10 @@ function App() {
                   </a>
                 </div>
               </div>
-              <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)} onMouseEnter={playHoverSound}>
+              <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)}>
                 {c.hero.ctas.browse}
               </a>
-              <a className="btn ghost" href={c.cv.link} target="_blank" rel="noreferrer" onMouseEnter={playHoverSound} onClick={playClickSound}>
+              <a className="btn ghost" href={c.cv.link} target="_blank" rel="noreferrer">
                 {c.hero.ctas.download}
               </a>
             </div>
@@ -3394,6 +2910,28 @@ function App() {
           </div>
         </section>
 
+        <section className="section" id="education">
+          <div className="section-header">
+            <p className="eyebrow">{c.sections.education.eyebrow}</p>
+            <h2>{c.sections.education.title}</h2>
+            <p className="section-text">{c.sections.education.text}</p>
+          </div>
+          <div className="grid">
+            {c.education.map((edu) => (
+              <article className="card" key={edu.school}>
+                <div className="card-head">
+                  <h3>{edu.school}</h3>
+                  <span className="spark" />
+                </div>
+                <p className="card-text">{edu.degree}</p>
+                <p className="stack">
+                  {edu.location} / {edu.period}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="section" id="experience">
           <div className="section-header">
             <p className="eyebrow">{c.sections.experience.eyebrow}</p>
@@ -3450,33 +2988,6 @@ function App() {
               </div>
             ))}
           </div>
-          <div className="matrix-grid">
-            {c.skillMatrix.map((skill) => {
-              const levelPercent = skill.level.toLowerCase().includes('ileri') || skill.level.toLowerCase().includes('advanced') || skill.level.toLowerCase().includes('fortgeschritten')
-                ? 90
-                : skill.level.toLowerCase().includes('orta') || skill.level.toLowerCase().includes('intermediate') || skill.level.toLowerCase().includes('mittel')
-                ? 70
-                : 40
-              return (
-                <div className="card matrix-card" key={skill.name}>
-                  <div className="card-head">
-                    <h3>{skill.name}</h3>
-                    <span className={`badge level-${skill.level.toLowerCase()}`}>{skill.level}</span>
-                  </div>
-                  <div className="skill-progress-bar">
-                    <div className="skill-progress-fill" style={{ width: `${levelPercent}%` }} />
-                  </div>
-                  <div className="tags">
-                    {skill.tools.map((tool) => (
-                      <span className="pill small" key={tool}>
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
           <div className="toolbelt">
             <p className="eyebrow">
               {activeLocale === 'DE'
@@ -3525,25 +3036,8 @@ function App() {
             <p className="section-text">{c.sections.projects.text}</p>
           </div>
 
-          <div className="projects-toolbar">
-            <span className="pill small ghost">{projectsCountLabel}</span>
-            <span className="pill small ghost subtle-text">{projectsFilterLabel}</span>
-          </div>
-          <div className="project-filter">
-            {allTags.map((tag) => (
-              <button
-                key={tag}
-                className={`pill filter-pill ${selectedTag === tag ? 'active' : ''}`}
-                onClick={() => { playClickSound(); setSelectedTag(tag) }}
-                onMouseEnter={playHoverSound}
-                type="button"
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
           <div className={`grid projects${isMobile ? ' mobile' : ''}`}>
-            {filteredProjects.map((project) => {
+            {c.projects.map((project) => {
               const isUnityProject = project.stack.toLowerCase().includes('unity')
               const isPlayground = Boolean(project.playground)
               const preview = getProjectPreview(project)
@@ -3577,7 +3071,7 @@ function App() {
                       className="btn ghost small full-width"
                       type="button"
                       onClick={() => openProjectDetail(project)}
-                      onMouseEnter={playHoverSound}
+                     
                     >
                       {projectUiCopy.open}
                     </button>
@@ -3617,10 +3111,10 @@ function App() {
                     </div>
                   )}
                   <div className="card-footer project-actions">
-                    <button className="btn ghost small" type="button" onClick={() => openProjectDetail(project)} onMouseEnter={playHoverSound}>
+                    <button className="btn ghost small" type="button" onClick={() => openProjectDetail(project)}>
                       {projectUiCopy.open}
                     </button>
-                    <a className="link" href={project.github} target="_blank" rel="noreferrer" onMouseEnter={playHoverSound} onClick={playClickSound}>
+                    <a className="link" href={project.github} target="_blank" rel="noreferrer">
                       GitHub
                     </a>
                   </div>
@@ -3642,7 +3136,7 @@ function App() {
                     <p className="eyebrow">{activeProjectDetail.stack}</p>
                     <h3>{activeProjectDetail.title}</h3>
                   </div>
-                  <button className="close-btn" type="button" aria-label={projectUiCopy.close} onClick={() => { playClickSound(); setActiveProjectDetail(null) }} onMouseEnter={playHoverSound}>
+                  <button className="close-btn" type="button" aria-label={projectUiCopy.close} onClick={() => { setActiveProjectDetail(null) }}>
                     ×
                   </button>
                 </div>
@@ -3662,55 +3156,37 @@ function App() {
                     ))}
                   </div>
                   <div className="links modal-links">
-                    <a className="link" href={activeProjectDetail.github} target="_blank" rel="noreferrer" onMouseEnter={playHoverSound} onClick={playClickSound}>
+                    <a className="link" href={activeProjectDetail.github} target="_blank" rel="noreferrer">
                       GitHub
                     </a>
                     {activeProjectDetail.live && activeProjectDetail.live !== '#' && (
-                      <a className="link" href={activeProjectDetail.live} target="_blank" rel="noreferrer" onMouseEnter={playHoverSound} onClick={playClickSound}>
+                      <a className="link" href={activeProjectDetail.live} target="_blank" rel="noreferrer">
                         Live
                       </a>
                     )}
                     {activeProjectDetail.link && activeProjectDetail.link !== '#' && (
-                      <a className="link" href={activeProjectDetail.link} target="_blank" rel="noreferrer" onMouseEnter={playHoverSound} onClick={playClickSound}>
+                      <a className="link" href={activeProjectDetail.link} target="_blank" rel="noreferrer">
                         Link
                       </a>
                     )}
                   </div>
                   <p className="impact-line">{activeProjectDetail.impact ?? defaultProjectImpact}</p>
                 </div>
-                <button className="btn primary full-width" type="button" onClick={() => { playClickSound(); setActiveProjectDetail(null) }} onMouseEnter={playHoverSound}>
+                <button className="btn primary full-width" type="button" onClick={() => { setActiveProjectDetail(null) }}>
                   {projectUiCopy.close}
                 </button>
               </div>
             </div>
           )}
           <div className="projects-note">
-            <p className="section-text subtle">{c.projectsNote}</p>
-            <a className="btn primary projects-note-cta" href="#contact">
+            <a
+              className="btn primary projects-note-cta"
+              href="https://github.com/JegBaha?tab=repositories"
+              target="_blank"
+              rel="noreferrer"
+            >
               {c.projectsNoteCta}
             </a>
-          </div>
-        </section>
-
-        <section className="section" id="education">
-          <div className="section-header">
-            <p className="eyebrow">{c.sections.education.eyebrow}</p>
-            <h2>{c.sections.education.title}</h2>
-            <p className="section-text">{c.sections.education.text}</p>
-          </div>
-          <div className="grid">
-            {c.education.map((edu) => (
-              <article className="card" key={edu.school}>
-                <div className="card-head">
-                  <h3>{edu.school}</h3>
-                  <span className="spark" />
-                </div>
-                <p className="card-text">{edu.degree}</p>
-                <p className="stack">
-                  {edu.location} / {edu.period}
-                </p>
-              </article>
-            ))}
           </div>
         </section>
 
@@ -3765,77 +3241,6 @@ function App() {
             <p className="eyebrow">{c.sections.hobby.eyebrow}</p>
             <h2>{c.sections.hobby.title}</h2>
             <p className="section-text">{c.sections.hobby.text}</p>
-            <p className="section-text subtle">{c.sections.hobby.benefit}</p>
-          </div>
-          <div className="cta-row hobby-controls">
-            <div className="audio-btn-stack">
-              <button
-                className={`btn primary audio-btn ${audioActive ? 'active' : ''} ${audioLoading ? 'loading' : ''}`}
-                type="button"
-                onClick={startAudioReactive}
-                onMouseEnter={playHoverSound}
-                disabled={audioLoading}
-              >
-                {audioLoading ? audioUiCopy.hobbyLoading : audioActive ? audioUiCopy.hobbyPlaying : c.sections.hobby.cta}
-              </button>
-              <span className="pill small ghost">
-                {audioLoading ? audioUiCopy.musicStatusLoading : audioActive ? audioUiCopy.hobbyPlaying : audioUiCopy.hobbyReady}
-              </span>
-            </div>
-            {audioStarted && (
-              <>
-                <div className="player-meta">
-                  <div className="song-label">
-                    <span className="eyebrow">{trackMeta.title}</span>
-                    <span className="pill">{playerCopy.nowPlaying}</span>
-                    <span className="pill ghost">by {trackMeta.artist}</span>
-                  </div>
-                  <div className={`wave-bars ${audioActive ? 'live' : ''}`} aria-hidden="true">
-                    <span className="wave" />
-                    <span className="wave" />
-                    <span className="wave" />
-                    <span className="wave" />
-                  </div>
-                </div>
-                <div className="player-progress">
-                  <input
-                    className="timeline-slider"
-                    type="range"
-                    min={0}
-                    max={progressMax}
-                    step={0.1}
-                    value={Math.min(currentTime, progressMax)}
-                    onChange={(e) => handleSeekChange(parseFloat(e.target.value))}
-                    aria-label="Seek"
-                  />
-                  <div className="time-row">
-                    <span className="eyebrow">
-                      {formatTime(currentTime)} / {formatTime(duration)}
-                    </span>
-                    <span className="pill ghost">
-                      {playerCopy.remaining}: {formatTime(remainingTime)}
-                    </span>
-                  </div>
-                </div>
-                <div className="player-actions">
-                  <button className="btn ghost" type="button" onClick={stopAudioReactive} onMouseEnter={playHoverSound}>
-                    {playerCopy.stop}
-                  </button>
-                  <label className="volume-control">
-                    <span>{playerCopy.volume}</span>
-                    <input
-                      type="range"
-                      min={0}
-                      max={1}
-                      step={0.05}
-                      value={volume}
-                      onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
-                      aria-label="Volume"
-                    />
-                  </label>
-                </div>
-              </>
-            )}
           </div>
         </section>
 
@@ -3852,7 +3257,7 @@ function App() {
            
           </div>
           <div className="contact-actions">
-            <a className="btn primary" href="mailto:bahabuyukates@gmail.com" onMouseEnter={playHoverSound} onClick={playClickSound}>
+            <a className="btn primary" href="mailto:bahabuyukates@gmail.com">
               bahabuyukates@gmail.com
             </a>
             <a
@@ -3860,8 +3265,8 @@ function App() {
               href="https://www.linkedin.com/in/baha-buyukates"
               target="_blank"
               rel="noreferrer"
-              onMouseEnter={playHoverSound}
-              onClick={playClickSound}
+             
+             
             >
               LinkedIn
             </a>
@@ -3870,8 +3275,8 @@ function App() {
               href="https://github.com/JegBaha?tab=repositories"
               target="_blank"
               rel="noreferrer"
-              onMouseEnter={playHoverSound}
-              onClick={playClickSound}
+             
+             
             >
               GitHub
             </a>
@@ -3880,13 +3285,13 @@ function App() {
               href="https://www.instagram.com/jegbaa?igsh=MXQ1aHRybnByOHU5bQ=="
               target="_blank"
               rel="noreferrer"
-              onMouseEnter={playHoverSound}
-              onClick={playClickSound}
+             
+             
             >
               Instagram
             </a>
 
-            <a className="btn ghost" href="tel:+905421559766" onMouseEnter={playHoverSound} onClick={playClickSound}>
+            <a className="btn ghost" href="tel:+905421559766">
               +90 542 155 9766
             </a>
           </div>
@@ -3896,66 +3301,98 @@ function App() {
               <input type="email" name="email" placeholder="E-posta / Email" required />
             </div>
             <textarea name="message" rows={3} placeholder="Kisa mesaj / Short message" required />
-            <button type="submit" className="btn primary" onMouseEnter={playHoverSound}>Gonder / Send</button>
+            <button type="submit" className="btn primary">Gonder / Send</button>
           </form>
         </section>
 
         
         <footer className="footer-note">
           <span>Created by Baha Buyukates - Portfolio 2025</span>
-          {!isMobile && (
-            <div className="audio-controls footer-music">
-              <button
-                type="button"
-                className="chip-btn icon sfx-toggle"
-                onClick={toggleSfx}
-                title={sfxEnabled ? 'Ses efektlerini kapat' : 'Ses efektlerini aç'}
-                aria-label={sfxEnabled ? 'Ses efektlerini kapat' : 'Ses efektlerini aç'}
-              >
-                {sfxEnabled ? '🔔' : '🔕'}
-              </button>
-              <div className={`music-fab ${bgControlsOpen ? 'open' : ''}`} aria-label="Arka plan muzik kontrol">
-                <button
-                  type="button"
-                  className="chip-btn icon"
-                  onClick={toggleBgControls}
-                  aria-expanded={bgControlsOpen}
-                  title="Opsiyonel arka plan muzik (varsayilan kapali)"
-                >
-                  {bgVolume === 0 || !bgPlaying ? '🔇' : '🔊'}
-                </button>
-                {bgControlsOpen && (
-                  <>
-                    <div className="music-slider">
-                      <input
-                        type="range"
-                        min={0}
-                        max={1}
-                        step={0.05}
-                        value={bgVolume}
-                        onChange={(e) => handleBgVolume(parseFloat(e.target.value))}
-                        aria-label="Muzik ses"
-                      />
-                      <span className="volume-readout">{Math.round(bgVolume * 100)}%</span>
-                    </div>
-                    <div className="music-toggle">
-                      <button
-                        type="button"
-                        className={`btn ghost mini ${bgLoading ? 'loading' : ''}`}
-                        onClick={bgPlaying ? stopBgAudio : startBgAudio}
-                        disabled={bgLoading}
-                      >
-                        {bgLoading ? audioUiCopy.musicLoading : bgPlaying ? audioUiCopy.musicOn : audioUiCopy.musicOff}
-                      </button>
-                      <span className="pill small ghost">{bgLoading ? audioUiCopy.musicStatusLoading : bgPlaying ? audioUiCopy.musicStatusOn : audioUiCopy.musicStatusOff}</span>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          )}
         </footer>
       </main>
+
+      {/* Floating Navigation Sidebar */}
+      {!isMobile && (
+        <nav className="floating-sidebar" aria-label="Section navigation">
+          <div className="sidebar-header">
+            <span className="sidebar-title">
+              {activeLocale === 'DE' ? 'Navigation' : activeLocale === 'EN' ? 'Navigate' : 'Gezinti'}
+            </span>
+            <span className="sidebar-hint">↑↓ or 1-9</span>
+          </div>
+          <div className="sidebar-items">
+            {navSections.map((section, index) => {
+              const sectionIcons: Record<string, string> = {
+                hero: '🏠',
+                about: '👤',
+                education: '🎓',
+                experience: '💼',
+                skills: '⚡',
+                projects: '🚀',
+                certifications: '📜',
+                hobby: '🎸',
+                contact: '✉️'
+              }
+              const sectionNames: Record<string, string> = activeLocale === 'DE'
+                ? {
+                    hero: 'Start',
+                    about: 'Über mich',
+                    education: 'Ausbildung',
+                    experience: 'Erfahrung',
+                    skills: 'Skills',
+                    projects: 'Projekte',
+                    certifications: 'Zertifikate',
+                    hobby: 'Hobby',
+                    contact: 'Kontakt'
+                  }
+                : activeLocale === 'EN'
+                ? {
+                    hero: 'Top',
+                    about: 'About',
+                    education: 'Education',
+                    experience: 'Experience',
+                    skills: 'Skills',
+                    projects: 'Projects',
+                    certifications: 'Certs',
+                    hobby: 'Hobby',
+                    contact: 'Contact'
+                  }
+                : {
+                    hero: 'Başla',
+                    about: 'Hakkımda',
+                    education: 'Eğitim',
+                    experience: 'Deneyim',
+                    skills: 'Yetenekler',
+                    projects: 'Projeler',
+                    certifications: 'Sertifikalar',
+                    hobby: 'Hobim',
+                    contact: 'İletişim'
+                  }
+              return (
+                <button
+                  key={section}
+                  type="button"
+                  className={`sidebar-item ${activeSection === section ? 'active' : ''}`}
+                  onClick={() => scrollToSection(section)}
+                  aria-label={`Go to ${section}`}
+                >
+                  <span className="item-key">{index + 1}</span>
+                  <span className="item-icon">{sectionIcons[section]}</span>
+                  <span className="item-label">{sectionNames[section]}</span>
+                  <span className="item-indicator" />
+                </button>
+              )
+            })}
+          </div>
+          <div className="sidebar-progress">
+            <div
+              className="progress-fill"
+              style={{ height: `${((navSections.indexOf(activeSection) + 1) / navSections.length) * 100}%` }}
+            />
+          </div>
+        </nav>
+      )}
+
       {!isMobile && (
         <>
           <div className="feedback-launcher">
@@ -3963,10 +3400,10 @@ function App() {
               <div className="feedback-reminder" role="status">
                 <p>{feedbackCopy.reminder}</p>
                 <div className="reminder-actions">
-                  <button type="button" className="btn primary mini" onClick={openFeedback} onMouseEnter={playHoverSound}>
+                  <button type="button" className="btn primary mini" onClick={openFeedback}>
                     {feedbackCopy.cta}
                   </button>
-                  <button type="button" className="link-button" onClick={() => { playClickSound(); setFeedbackReminder(false) }} onMouseEnter={playHoverSound}>
+                  <button type="button" className="link-button" onClick={() => { setFeedbackReminder(false) }}>
                     {laterLabel}
                   </button>
                 </div>
@@ -3978,7 +3415,7 @@ function App() {
               aria-controls="feedback-drawer"
               aria-expanded={feedbackOpen}
               onClick={openFeedback}
-              onMouseEnter={playHoverSound}
+             
               title="Opsiyonel geri bildirim"
             >
               <div className="trigger-text">
@@ -3998,7 +3435,7 @@ function App() {
         </>
       )}
       {showScrollTop && (
-        <button className="scroll-top" type="button" onClick={scrollToTop} onMouseEnter={playHoverSound} aria-label="Başa dön">
+        <button className="scroll-top" type="button" onClick={scrollToTop} aria-label="Başa dön">
           ↑
         </button>
       )}
