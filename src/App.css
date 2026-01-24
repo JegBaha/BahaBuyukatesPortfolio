@@ -1697,6 +1697,23 @@ main {
   position: relative;
 }
 
+.hero-cta-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.65rem;
+  font-size: 0.85rem;
+  color: rgba(230, 234, 242, 0.75);
+}
+
+.hero-cta-notes span {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 37, 37, 0.35);
+  background: rgba(139, 37, 37, 0.12);
+  text-shadow: 0 1px 6px rgba(139, 37, 37, 0.2);
+}
+
 .contact-cta {
   display: flex;
   align-items: center;

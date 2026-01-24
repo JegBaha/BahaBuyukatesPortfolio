@@ -71,6 +71,7 @@ const content: Record<
       titleAccent: string
       lede: string
       ctas: { browse: string; download: string }
+      ctaNotes: { citizen: string; availability: string }
     }
     heroPanel: {
       status: string
@@ -168,6 +169,7 @@ const content: Record<
       lede:
         'Veri merkezli sistemlere odaklanıyorum; verinin kendisini, onu üreten süreçleri ve etrafındaki yazılım/entegrasyon katmanlarını birlikte geliştiriyorum. Ana odağım data.',
       ctas: { browse: 'Projelerime göz at', download: 'CV indir' },
+      ctaNotes: { citizen: 'AB Vatandaşı (Bulgaristan)', availability: 'Hemen başlayabilir' },
     },
     heroPanel: {
       status: 'Çevrimiçi',
@@ -628,6 +630,7 @@ const content: Record<
       lede:
         'Ich fokussiere mich auf datenzentrierte Systeme; ich entwickle die Daten selbst, die Prozesse dahinter und die Software-/Integrationsschichten darum herum gemeinsam. Mein Hauptfokus ist Data.',
       ctas: { browse: 'Projekte ansehen', download: 'CV herunterladen' },
+      ctaNotes: { citizen: 'EU-Bürger (Bulgarien)', availability: 'Sofort startbereit' },
     },
     heroPanel: {
       status: 'Online',
@@ -1088,6 +1091,7 @@ const content: Record<
       lede:
         'I focus on data-centric systems; I build the data itself, the processes that generate it, and the surrounding software/integration layers together. My main focus is data.',
       ctas: { browse: 'Browse projects', download: 'Download CV' },
+      ctaNotes: { citizen: 'EU Citizen (Bulgaria)', availability: 'Available to start immediately' },
     },
     heroPanel: {
       status: 'Online',
@@ -3144,12 +3148,16 @@ function App() {
               <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)}>
                 {c.hero.ctas.browse}
               </a>
-              <a className="btn ghost" href={c.cv.link} target="_blank" rel="noreferrer">
-                {c.hero.ctas.download}
-              </a>
+                <a className="btn ghost" href={c.cv.link} target="_blank" rel="noreferrer">
+                  {c.hero.ctas.download}
+                </a>
+              </div>
+              <div className="hero-cta-notes">
+                <span>{c.hero.ctaNotes.citizen}</span>
+                <span>{c.hero.ctaNotes.availability}</span>
+              </div>
             </div>
-          </div>
-          <div className="hero-panel">
+            <div className="hero-panel">
             <div className="panel-header">
               <div className="panel-status">
                 <span className="status-dot" />
