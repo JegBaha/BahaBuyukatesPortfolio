@@ -87,7 +87,7 @@ const content: Record<
       projects: { eyebrow: string; title: string; text: string }
       education: { eyebrow: string; title: string; text: string }
       certifications: { eyebrow: string; title: string; text: string }
-      contact: { eyebrow: string; title: string; text: string }
+      contact: { eyebrow: string; title: string; text: string; formTitle: string; subjects: string[]; availability: string; sent: string }
       hobby: { eyebrow: string; title: string; text: string; benefit: string; cta: string }
     }
     feedback: {
@@ -119,10 +119,10 @@ const content: Record<
     }[]
     skills: { title: string; items: string[]; detail: string }[]
     projects: Project[]
-    education: { school: string; degree: string; location: string; period: string }[]
-    certifications: string[]
-    languages: { name: string; level: string }[]
-    about: { eyebrow: string; title: string; bio: string; strengths: string[]; openTo: string[]; highlight: string };
+    education: { school: string; degree: string; location: string; period: string; diploma?: string }[]
+    certifications: { name: string; provider: string }[]
+    languages: { name: string; level: string; percent: number }[]
+    about: { eyebrow: string; title: string; bio: string; strengths: string[]; openTo: string[]; highlight: string; motto: string; timeline: { year: string; text: string }[] };
     toolbelt: string[];
     cv: { link: string; updated: string; label: string };
     impactStats: {
@@ -215,6 +215,10 @@ const content: Record<
         eyebrow: 'İletişim',
         title: 'Yeni bir proje için hazırım.',
         text: 'Veri analizi, dashboard geliştirme, AI eğitimi veya otomasyon ihtiyacınız varsa iletişime geçebiliriz.',
+        formTitle: 'Mesaj Gönderin',
+        subjects: ['Proje Teklifi', 'İş Birliği', 'Diğer'],
+        availability: 'Müsait',
+        sent: 'Gönderildi!',
       },
     },
     feedback: {
@@ -464,7 +468,8 @@ const content: Record<
         school: 'Trakya University',
         degree: 'Bachelor of Engineering, Computer Engineering',
         location: 'Edirne, Türkiye',
-        period: 'Sep 2021 - Sep 2025',
+        period: 'Sep 2021 - Jan 2026',
+        diploma: '/diploma.jpg',
       },
       {
         school: 'GEN Academy',
@@ -474,18 +479,17 @@ const content: Record<
       },
     ],
     certifications: [
-      'AWS for DevOps: Continuous Delivery and Automation',
-      'Jenkins, Kubernetes, Docker',
-      'Microsoft Azure AI Essentials',
-      'Apache Spark Essentials',
-      'LLM Foundations & RAG',
-      'Endüstriyel otomasyon ve IoT sertifikaları (PLC, SCADA, OPC UA, MQTT)',
-      'Daha fazlası LinkedIn: https://www.linkedin.com/in/baha-buyukates',
+      { name: 'AWS for DevOps: Continuous Delivery and Automation', provider: 'AWS' },
+      { name: 'Jenkins, Kubernetes, Docker', provider: 'DevOps' },
+      { name: 'Microsoft Azure AI Essentials', provider: 'Microsoft' },
+      { name: 'Apache Spark Essentials', provider: 'Databricks' },
+      { name: 'LLM Foundations & RAG', provider: 'AI' },
+      { name: 'Endüstriyel Otomasyon & IoT (PLC, SCADA, OPC UA, MQTT)', provider: 'Endüstri' },
     ],
     languages: [
-      { name: 'Türkçe', level: 'Ana dil' },
-      { name: 'İngilizce', level: 'B2' },
-      { name: 'Almanca', level: 'A2' },
+      { name: 'Türkçe', level: 'Ana dil', percent: 100 },
+      { name: 'İngilizce', level: 'B2', percent: 70 },
+      { name: 'Almanca', level: 'A2 → B2 devam ediyor', percent: 30 },
     ],
     about: {
       eyebrow: 'Hakkımda',
@@ -500,6 +504,14 @@ const content: Record<
       ],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
       highlight: 'Data, otomasyon, endüstriyel dijitalizasyon ve BI alanlarında her gün kendimi geliştiriyorum.',
+      motto: '"Veriyi anlamak, sistemi anlamaktır."',
+      timeline: [
+        { year: '2021', text: 'Trakya Üniversitesi Bilgisayar Mühendisliği başlangıç' },
+        { year: '2023', text: 'İlk staj deneyimi — kurumsal IT & veri' },
+        { year: '2024', text: 'GEN Academy AI Bootcamp başlangıç' },
+        { year: '2025', text: 'AI eğitim uzmanı olarak profesyonel deneyim' },
+        { year: '2026', text: 'Mezuniyet — Bilgisayar Mühendisliği' },
+      ],
     },
     toolbelt: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway', 'Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation', 'SQL', 'Query Optimize', 'Joins', 'CTE', 'Automation', 'Zapier', 'Airtable', 'Slack', 'Cloud & DevOps', 'AWS', 'Docker', 'CI/CD'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Aralık 2025', label: 'CV indir (Aralık 2025)' },
@@ -600,6 +612,10 @@ const content: Record<
         eyebrow: 'Kontakt',
         title: 'Bereit fuer das naechste Projekt.',
         text: 'Fuer Datenanalyse, Dashboarding, AI-Training oder Automatisierung: Melde dich gern.',
+        formTitle: 'Nachricht senden',
+        subjects: ['Projektanfrage', 'Zusammenarbeit', 'Sonstiges'],
+        availability: 'Verfuegbar',
+        sent: 'Gesendet!',
       },
     },
     feedback: {
@@ -849,7 +865,8 @@ const content: Record<
         school: 'Trakya University',
         degree: 'Bachelor of Engineering, Computer Engineering',
         location: 'Edirne, Tuerkei',
-        period: 'Sep 2021 - Sep 2025',
+        period: 'Sep 2021 - Jan 2026',
+        diploma: '/diploma.jpg',
       },
       {
         school: 'GEN Academy',
@@ -859,18 +876,17 @@ const content: Record<
       },
     ],
     certifications: [
-      'AWS for DevOps: Continuous Delivery and Automation',
-      'Jenkins, Kubernetes, Docker',
-      'Microsoft Azure AI Essentials',
-      'Apache Spark Essentials',
-      'LLM Foundations & RAG',
-      'Zertifikate in Industrie-Automatisierung & IoT (PLC, SCADA, OPC UA, MQTT)',
-      'Mehr auf LinkedIn: https://www.linkedin.com/in/baha-buyukates',
+      { name: 'AWS for DevOps: Continuous Delivery and Automation', provider: 'AWS' },
+      { name: 'Jenkins, Kubernetes, Docker', provider: 'DevOps' },
+      { name: 'Microsoft Azure AI Essentials', provider: 'Microsoft' },
+      { name: 'Apache Spark Essentials', provider: 'Databricks' },
+      { name: 'LLM Foundations & RAG', provider: 'AI' },
+      { name: 'Industrie-Automatisierung & IoT (PLC, SCADA, OPC UA, MQTT)', provider: 'Industrie' },
     ],
     languages: [
-      { name: 'Tuerkisch', level: 'Muttersprache' },
-      { name: 'Englisch', level: 'B2' },
-      { name: 'Deutsch', level: 'A2' },
+      { name: 'Tuerkisch', level: 'Muttersprache', percent: 100 },
+      { name: 'Englisch', level: 'B2', percent: 70 },
+      { name: 'Deutsch', level: 'A2 → B2 in Arbeit', percent: 30 },
     ],
     about: {
       eyebrow: 'Über mich',
@@ -885,6 +901,14 @@ const content: Record<
       ],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrie-Ingenieur'],
       highlight: 'Ich entwickle mich täglich in Data, Automatisierung, industrieller Digitalisierung und BI weiter.',
+      motto: '"Daten verstehen heisst das System verstehen."',
+      timeline: [
+        { year: '2021', text: 'Informatikstudium an der Trakya Universitaet' },
+        { year: '2023', text: 'Erstes Praktikum — Enterprise IT & Daten' },
+        { year: '2024', text: 'GEN Academy AI Bootcamp Start' },
+        { year: '2025', text: 'Professionelle Erfahrung als AI-Trainer' },
+        { year: '2026', text: 'Abschluss — Informatikingenieur' },
+      ],
     },
     toolbelt: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway', 'Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation', 'SQL', 'Query Optimize', 'Joins', 'CTE', 'Automation', 'Zapier', 'Airtable', 'Slack', 'Cloud & DevOps', 'AWS', 'Docker', 'CI/CD'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'CV herunterladen' },
@@ -985,6 +1009,10 @@ const content: Record<
         eyebrow: 'Contact',
         title: 'Ready for a new project.',
         text: 'For data analysis, dashboards, AI training, or automation, feel free to reach out.',
+        formTitle: 'Send a Message',
+        subjects: ['Project Inquiry', 'Collaboration', 'Other'],
+        availability: 'Available',
+        sent: 'Sent!',
       },
     },
     feedback: {
@@ -1234,7 +1262,8 @@ const content: Record<
         school: 'Trakya University',
         degree: 'Bachelor of Engineering, Computer Engineering',
         location: 'Edirne, Turkiye',
-        period: 'Sep 2021 - Sep 2025',
+        period: 'Sep 2021 - Jan 2026',
+        diploma: '/diploma.jpg',
       },
       {
         school: 'GEN Academy',
@@ -1244,18 +1273,17 @@ const content: Record<
       },
     ],
     certifications: [
-      'AWS for DevOps: Continuous Delivery and Automation',
-      'Jenkins, Kubernetes, Docker',
-      'Microsoft Azure AI Essentials',
-      'Apache Spark Essentials',
-      'LLM Foundations & RAG',
-      'Industrial automation & IoT certs (PLC, SCADA, OPC UA, MQTT)',
-      'See more on LinkedIn: https://www.linkedin.com/in/baha-buyukates',
+      { name: 'AWS for DevOps: Continuous Delivery and Automation', provider: 'AWS' },
+      { name: 'Jenkins, Kubernetes, Docker', provider: 'DevOps' },
+      { name: 'Microsoft Azure AI Essentials', provider: 'Microsoft' },
+      { name: 'Apache Spark Essentials', provider: 'Databricks' },
+      { name: 'LLM Foundations & RAG', provider: 'AI' },
+      { name: 'Industrial Automation & IoT (PLC, SCADA, OPC UA, MQTT)', provider: 'Industry' },
     ],
     languages: [
-      { name: 'Turkish', level: 'Native' },
-      { name: 'English', level: 'B2' },
-      { name: 'German', level: 'A2' },
+      { name: 'Turkish', level: 'Native', percent: 100 },
+      { name: 'English', level: 'B2', percent: 70 },
+      { name: 'German', level: 'A2 → B2 in progress', percent: 30 },
     ],
     about: {
       eyebrow: 'About',
@@ -1270,6 +1298,14 @@ const content: Record<
       ],
       openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
       highlight: 'I keep improving daily across data, automation, industrial digitalization, and BI.',
+      motto: '"Understanding data means understanding the system."',
+      timeline: [
+        { year: '2021', text: 'Started Computer Engineering at Trakya University' },
+        { year: '2023', text: 'First internship — enterprise IT & data' },
+        { year: '2024', text: 'GEN Academy AI Bootcamp start' },
+        { year: '2025', text: 'Professional experience as AI trainer' },
+        { year: '2026', text: 'Graduation — Computer Engineering' },
+      ],
     },
     toolbelt: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway', 'Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation', 'SQL', 'Query Optimize', 'Joins', 'CTE', 'Automation', 'Zapier', 'Airtable', 'Slack', 'Cloud & DevOps', 'AWS', 'Docker', 'CI/CD'],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'Download CV (updated Dec 2025)' },
@@ -1304,6 +1340,34 @@ const content: Record<
 }
 
 
+function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          let start = 0
+          const duration = 1200
+          const step = Math.max(1, Math.floor(duration / target))
+          const interval = setInterval(() => {
+            start++
+            setCount(start)
+            if (start >= target) clearInterval(interval)
+          }, step)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.3 },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [target])
+  return <span ref={ref}>{count}{suffix}</span>
+}
+
 function App() {
   const [activeLocale, setActiveLocale] = useState<Locale>('TR')
   const [showWelcome, setShowWelcome] = useState(true)
@@ -1323,6 +1387,10 @@ function App() {
   const moonTimerRef = useRef<number | null>(null)
   const moonVisible = moonPhase !== 'hidden'
   const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
+  const [contactSent, setContactSent] = useState(false)
+  const [diplomaLightbox, setDiplomaLightbox] = useState(false)
+  const [typewriterText, setTypewriterText] = useState('')
+  const [typewriterDone, setTypewriterDone] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [reduceMotion, setReduceMotion] = useState(false)
@@ -1392,6 +1460,41 @@ function App() {
   )
   const c = content[activeLocale]
   const hobbyNavLabel = activeLocale === 'TR' ? 'Hobim' : 'Hobby'
+
+  // Dynamic greeting based on time of day
+  const greeting = useMemo(() => {
+    const hour = new Date().getHours()
+    if (activeLocale === 'DE') {
+      if (hour < 12) return 'Guten Morgen'
+      if (hour < 18) return 'Guten Tag'
+      return 'Guten Abend'
+    }
+    if (activeLocale === 'EN') {
+      if (hour < 12) return 'Good morning'
+      if (hour < 18) return 'Good afternoon'
+      return 'Good evening'
+    }
+    if (hour < 12) return 'Günaydın'
+    if (hour < 18) return 'İyi günler'
+    return 'İyi akşamlar'
+  }, [activeLocale])
+
+  // Typewriter effect for lede text
+  useEffect(() => {
+    setTypewriterText('')
+    setTypewriterDone(false)
+    const text = c.hero.lede
+    let i = 0
+    const interval = setInterval(() => {
+      i++
+      setTypewriterText(text.slice(0, i))
+      if (i >= text.length) {
+        clearInterval(interval)
+        setTypewriterDone(true)
+      }
+    }, 22)
+    return () => clearInterval(interval)
+  }, [c.hero.lede])
 
   const learningList =
     activeLocale === 'TR'
@@ -1691,9 +1794,12 @@ function App() {
     const name = formData.get('name')?.toString() ?? ''
     const email = formData.get('email')?.toString() ?? ''
     const message = formData.get('message')?.toString() ?? ''
-    const subject = encodeURIComponent('Project inquiry')
+    const subjectVal = formData.get('subject')?.toString() ?? 'Project inquiry'
+    const subject = encodeURIComponent(subjectVal)
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
     window.location.href = `mailto:bahabuyukates@gmail.com?subject=${subject}&body=${body}`
+    setContactSent(true)
+    setTimeout(() => setContactSent(false), 3000)
   }
 
   const handleFeedbackSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -2766,12 +2872,15 @@ function App() {
       <main>
         <section className="hero" id="hero">
           <div className="hero-text">
-            <p className="eyebrow">{c.hero.eyebrow}</p>
+            <p className="eyebrow">{greeting}</p>
             <h1>
               {c.hero.titleMain}
               <span className="accent">{c.hero.titleAccent}</span>
             </h1>
-            <p className="lede">{c.hero.lede}</p>
+            <p className="lede typewriter-text">
+              {typewriterText}
+              {!typewriterDone && <span className="typewriter-cursor">|</span>}
+            </p>
             <div className="cta-row hero-cta">
               <div className="contact-cta">
                 <div className="social-badges" aria-label="Sosyal baglantilar">
@@ -2849,15 +2958,15 @@ function App() {
         {/* Impact Stats - Professional metrics showcase */}
         <div className="impact-stats" aria-label="Key statistics">
           <div className="impact-stat">
-            <div className="stat-value">{c.impactStats.experienceValue}</div>
+            <div className="stat-value"><CountUp target={4} suffix="+" /></div>
             <div className="stat-label">{c.impactStats.experienceLabel}</div>
           </div>
           <div className="impact-stat">
-            <div className="stat-value">{c.impactStats.projectsValue}</div>
+            <div className="stat-value"><CountUp target={10} suffix="+" /></div>
             <div className="stat-label">{c.impactStats.projectsLabel}</div>
           </div>
           <div className="impact-stat">
-            <div className="stat-value">{c.impactStats.languagesValue}</div>
+            <div className="stat-value"><CountUp target={3} /></div>
             <div className="stat-label">{c.impactStats.languagesLabel}</div>
           </div>
           <div className="impact-stat">
@@ -2872,6 +2981,15 @@ function App() {
             <h2>{c.about.title}</h2>
             <p className="section-text">{c.about.bio}</p>
           </div>
+
+          {/* Motto Card */}
+          <div className="motto-card">
+            <svg className="motto-quote" viewBox="0 0 24 24" width="32" height="32" fill="currentColor" opacity="0.2">
+              <path d="M6 17h3l2-4V7H5v6h3l-2 4zm8 0h3l2-4V7h-6v6h3l-2 4z" />
+            </svg>
+            <p className="motto-text">{c.about.motto}</p>
+          </div>
+
           <div className="about-grid">
             <div className="card">
               <h3>{activeLocale === 'DE' ? 'Staerken' : activeLocale === 'EN' ? 'Strengths' : 'Güç alanlarım'}</h3>
@@ -2894,19 +3012,54 @@ function App() {
                 <span className="spark" />
                 <p>{c.about.highlight}</p>
               </div>
-              <div className="cv-row">
-                <a className="btn ghost" href={c.cv.link} target="_blank" rel="noreferrer">
-                  {c.cv.label}
-                </a>
-                <span className="eyebrow">
-                  {activeLocale === 'DE'
-                    ? `Aktualisiert: ${c.cv.updated}`
-                    : activeLocale === 'EN'
-                    ? `Updated: ${c.cv.updated}`
-                    : `Güncelleme: ${c.cv.updated}`}
-                </span>
-              </div>
             </div>
+          </div>
+
+          {/* Timeline */}
+          <div className="about-timeline">
+            <h3 className="about-timeline-title">
+              {activeLocale === 'DE' ? 'Mein Weg' : activeLocale === 'EN' ? 'My Journey' : 'Yolculuğum'}
+            </h3>
+            <div className="about-timeline-track">
+              {c.about.timeline.map((item, idx) => (
+                <div className="about-timeline-item" key={idx}>
+                  <span className="about-timeline-dot" />
+                  <span className="about-timeline-year">{item.year}</span>
+                  <span className="about-timeline-text">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Enhanced CV Card */}
+          <div className="cv-card">
+            <div className="cv-card-icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+            </div>
+            <div className="cv-card-info">
+              <p className="cv-card-title">{activeLocale === 'DE' ? 'Lebenslauf' : activeLocale === 'EN' ? 'Curriculum Vitae' : 'Özgeçmiş'}</p>
+              <p className="cv-card-updated">
+                {activeLocale === 'DE'
+                  ? `Aktualisiert: ${c.cv.updated}`
+                  : activeLocale === 'EN'
+                  ? `Updated: ${c.cv.updated}`
+                  : `Güncelleme: ${c.cv.updated}`}
+              </p>
+            </div>
+            <a className="btn primary cv-card-btn" href={c.cv.link} target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              {activeLocale === 'DE' ? 'Herunterladen' : activeLocale === 'EN' ? 'Download' : 'İndir'}
+            </a>
           </div>
         </section>
 
@@ -2927,10 +3080,34 @@ function App() {
                 <p className="stack">
                   {edu.location} / {edu.period}
                 </p>
+                {edu.diploma && (
+                  <button className="diploma-thumb" onClick={() => setDiplomaLightbox(true)} type="button">
+                    <img src={edu.diploma} alt="Diploma" loading="lazy" />
+                    <span className="diploma-label">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                      </svg>
+                      {activeLocale === 'DE' ? 'Diplom anzeigen' : activeLocale === 'EN' ? 'View diploma' : 'Diplomayı görüntüle'}
+                    </span>
+                  </button>
+                )}
               </article>
             ))}
           </div>
         </section>
+
+        {diplomaLightbox && (
+          <div className="lightbox-overlay" onClick={() => setDiplomaLightbox(false)}>
+            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+              <button className="lightbox-close" onClick={() => setDiplomaLightbox(false)} type="button">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+              <img src="/diploma.jpg" alt="Diploma" />
+            </div>
+          </div>
+        )}
 
         <section className="section" id="experience">
           <div className="section-header">
@@ -3196,43 +3373,41 @@ function App() {
             <h2>{c.sections.certifications.title}</h2>
             <p className="section-text">{c.sections.certifications.text}</p>
           </div>
-          <div className="grid">
-            <article className="card">
-              <div className="card-head">
-                <h3>
-                  {activeLocale === 'DE'
-                    ? 'Zertifikate'
-                    : activeLocale === 'EN'
-                    ? 'Certifications'
-                    : 'Sertifikalar'}
-                </h3>
-                <span className="mini-dot" />
-              </div>
-              <ul className="list">
-                {c.certifications.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-            <article className="card">
-              <div className="card-head">
-                <h3>
-                  {activeLocale === 'DE'
-                    ? 'Sprachen'
-                    : activeLocale === 'EN'
-                    ? 'Languages'
-                    : 'Diller'}
-                </h3>
-                <span className="mini-dot" />
-              </div>
-              <div className="tags">
-                {c.languages.map((lang) => (
-                  <span className="pill" key={lang.name}>
-                    {lang.name} ({lang.level})
-                  </span>
-                ))}
-              </div>
-            </article>
+          <div className="cert-grid">
+            {c.certifications.map((cert) => (
+              <article className="cert-badge" key={cert.name}>
+                <span className="cert-provider">{cert.provider}</span>
+                <p className="cert-name">{cert.name}</p>
+                <svg className="cert-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M12 15l-3 3v4l3-2 3 2v-4l-3-3z" />
+                  <circle cx="12" cy="9" r="6" />
+                  <path d="M9.5 9l1.5 1.5L14.5 7" />
+                </svg>
+              </article>
+            ))}
+          </div>
+
+          <div className="languages-section">
+            <h3 className="languages-title">
+              {activeLocale === 'DE'
+                ? 'Sprachen'
+                : activeLocale === 'EN'
+                ? 'Languages'
+                : 'Diller'}
+            </h3>
+            <div className="lang-bars">
+              {c.languages.map((lang) => (
+                <div className="lang-item" key={lang.name}>
+                  <div className="lang-info">
+                    <span className="lang-name">{lang.name}</span>
+                    <span className="lang-level">{lang.level}</span>
+                  </div>
+                  <div className="lang-track">
+                    <div className="lang-fill" style={{ width: `${lang.percent}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -3245,64 +3420,71 @@ function App() {
         </section>
 
         <section className="section contact" id="contact">
-          <div>
+          <div className="contact-header">
             <p className="eyebrow">{c.sections.contact.eyebrow}</p>
-            <h2>{c.sections.contact.title}</h2>
+            <h2>{c.sections.contact.title} <span className="availability-badge">{c.sections.contact.availability}</span></h2>
             <p className="section-text">{c.sections.contact.text}</p>
           </div>
-          <div className="contact-photo">
-            <div className="photo-frame">
-              <img src="/photo.jpg" alt="Profil fotoğrafı" loading="lazy" />
-            </div>
-           
-          </div>
-          <div className="contact-actions">
-            <a className="btn primary" href="mailto:bahabuyukates@gmail.com">
-              bahabuyukates@gmail.com
-            </a>
-            <a
-              className="btn ghost"
-              href="https://www.linkedin.com/in/baha-buyukates"
-              target="_blank"
-              rel="noreferrer"
-             
-             
-            >
-              LinkedIn
-            </a>
-            <a
-              className="btn ghost"
-              href="https://github.com/JegBaha?tab=repositories"
-              target="_blank"
-              rel="noreferrer"
-             
-             
-            >
-              GitHub
-            </a>
-            <a
-              className="btn ghost"
-              href="https://www.instagram.com/jegbaa?igsh=MXQ1aHRybnByOHU5bQ=="
-              target="_blank"
-              rel="noreferrer"
-             
-             
-            >
-              Instagram
-            </a>
 
-            <a className="btn ghost" href="tel:+905421559766">
-              +90 542 155 9766
-            </a>
-          </div>
-          <form className="contact-form" onSubmit={handleContactSubmit}>
-            <div className="form-row">
-              <input type="text" name="name" placeholder="Ad / Name" required />
-              <input type="email" name="email" placeholder="E-posta / Email" required />
+          <div className="contact-grid">
+            <div className="contact-info-card">
+              <div className="photo-frame">
+                <img src="/photo.jpg" alt="Profil fotoğrafı" loading="lazy" />
+              </div>
+              <div className="contact-details">
+                <a className="contact-item" href="mailto:bahabuyukates@gmail.com">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+                  <span>bahabuyukates@gmail.com</span>
+                </a>
+                <a className="contact-item" href="tel:+905421559766">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                  <span>+90 542 155 9766</span>
+                </a>
+              </div>
+              <div className="contact-socials">
+                <a href="https://www.linkedin.com/in/baha-buyukates" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="https://github.com/JegBaha?tab=repositories" target="_blank" rel="noreferrer" aria-label="GitHub">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/jegbaa?igsh=MXQ1aHRybnByOHU5bQ==" target="_blank" rel="noreferrer" aria-label="Instagram">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+              </div>
             </div>
-            <textarea name="message" rows={3} placeholder="Kisa mesaj / Short message" required />
-            <button type="submit" className="btn primary">Gonder / Send</button>
-          </form>
+
+            <div className="contact-form-card">
+              <h3>{c.sections.contact.formTitle}</h3>
+              <form className="contact-form" onSubmit={handleContactSubmit}>
+                <div className="form-group">
+                  <input type="text" name="name" placeholder=" " required />
+                  <label>{activeLocale === 'DE' ? 'Name' : activeLocale === 'EN' ? 'Name' : 'Ad'}</label>
+                </div>
+                <div className="form-group">
+                  <input type="email" name="email" placeholder=" " required />
+                  <label>{activeLocale === 'DE' ? 'E-Mail' : activeLocale === 'EN' ? 'Email' : 'E-posta'}</label>
+                </div>
+                <div className="form-group">
+                  <select name="subject" defaultValue="">
+                    <option value="" disabled hidden>—</option>
+                    {c.sections.contact.subjects.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                  </select>
+                  <label>{activeLocale === 'DE' ? 'Betreff' : activeLocale === 'EN' ? 'Subject' : 'Konu'}</label>
+                </div>
+                <div className="form-group">
+                  <textarea name="message" rows={4} placeholder=" " required />
+                  <label>{activeLocale === 'DE' ? 'Nachricht' : activeLocale === 'EN' ? 'Message' : 'Mesaj'}</label>
+                </div>
+                <button type="submit" className="btn primary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  {contactSent ? c.sections.contact.sent : (activeLocale === 'DE' ? 'Senden' : activeLocale === 'EN' ? 'Send' : 'Gönder')}
+                </button>
+              </form>
+            </div>
+          </div>
         </section>
 
         
