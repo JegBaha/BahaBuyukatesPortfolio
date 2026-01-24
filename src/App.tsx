@@ -72,13 +72,12 @@ const content: Record<
       lede: string
       ctas: { browse: string; download: string }
     }
-    heroMeta: string[]
     heroPanel: {
       status: string
+      location: string
       focus: string
-      profileEyebrow: string
-      profileItems: string[]
-      labels: string[]
+      focusItems: { label: string; active: boolean }[]
+      availability: string
     }
     projectsNoteCta: string
     sections: {
@@ -170,18 +169,17 @@ const content: Record<
         'Veri merkezli sistemlere odaklanıyorum; verinin kendisini, onu üreten süreçleri ve etrafındaki yazılım/entegrasyon katmanlarını birlikte geliştiriyorum. Ana odağım data.',
       ctas: { browse: 'Projelerime göz at', download: 'CV indir' },
     },
-    heroMeta: ['AB vatandaşı', 'Vize sponsorluğu gerekmez', 'Hemen başlayabilirim'],
     heroPanel: {
-      status: 'Canlı durum',
-      focus: 'Odak alanları',
-      profileEyebrow: 'Profil',
-      profileItems: [
-        'Veri analizi, BI dashboardları ve KPI takibi',
-        'Yapay zeka model eğitimi ve değerlendirme',
-        'DevOps ve bulut altyapısı',
-        'Endüstriyel sistemler ve IoT entegrasyonu',
+      status: 'Çevrimiçi',
+      location: 'Türkiye / Almanya',
+      focus: 'Odak Alanları',
+      focusItems: [
+        { label: 'Data & BI', active: true },
+        { label: 'AI / ML', active: true },
+        { label: 'Endüstriyel IoT', active: false },
+        { label: 'DevOps', active: false },
       ],
-      labels: ['Data', 'Endüstriyel', 'Yazılım', 'AI'],
+      availability: 'Yeni projelere açık',
     },
     projectsNoteCta: 'Daha fazlası için',
     sections: {
@@ -631,18 +629,17 @@ const content: Record<
         'Ich fokussiere mich auf datenzentrierte Systeme; ich entwickle die Daten selbst, die Prozesse dahinter und die Software-/Integrationsschichten darum herum gemeinsam. Mein Hauptfokus ist Data.',
       ctas: { browse: 'Projekte ansehen', download: 'CV herunterladen' },
     },
-    heroMeta: ['EU-Buerger', 'Kein Visasponsoring noetig', 'Sofort startklar'],
     heroPanel: {
-      status: 'Live-Status',
+      status: 'Online',
+      location: 'Türkei / Deutschland',
       focus: 'Fokusbereiche',
-      profileEyebrow: 'Profil',
-      profileItems: [
-        'Datenanalyse, BI-Dashboards und KPI-Tracking',
-        'KI-Modelltraining und -bewertung',
-        'DevOps und Cloud-Infrastruktur',
-        'Industriesysteme und IoT-Integration',
+      focusItems: [
+        { label: 'Data & BI', active: true },
+        { label: 'AI / ML', active: true },
+        { label: 'Industrie-IoT', active: false },
+        { label: 'DevOps', active: false },
       ],
-      labels: ['Data', 'Industrie', 'Software', 'AI'],
+      availability: 'Offen für neue Projekte',
     },
     projectsNoteCta: 'Mehr auf GitHub',
     sections: {
@@ -1092,18 +1089,17 @@ const content: Record<
         'I focus on data-centric systems; I build the data itself, the processes that generate it, and the surrounding software/integration layers together. My main focus is data.',
       ctas: { browse: 'Browse projects', download: 'Download CV' },
     },
-    heroMeta: ['EU citizen', 'No visa sponsorship required', 'Immediate availability'],
     heroPanel: {
-      status: 'Live status',
-      focus: 'Focus areas',
-      profileEyebrow: 'Profile',
-      profileItems: [
-        'Data analysis, BI dashboards, and KPI tracking',
-        'AI model training and evaluation',
-        'DevOps and cloud infrastructure',
-        'Industrial systems and IoT integration',
+      status: 'Online',
+      location: 'Turkey / Germany',
+      focus: 'Focus Areas',
+      focusItems: [
+        { label: 'Data & BI', active: true },
+        { label: 'AI / ML', active: true },
+        { label: 'Industrial IoT', active: false },
+        { label: 'DevOps', active: false },
       ],
-      labels: ['Data', 'Industrial', 'Software', 'AI'],
+      availability: 'Open for new projects',
     },
     projectsNoteCta: 'More on GitHub',
     sections: {
@@ -3152,36 +3148,33 @@ function App() {
                 {c.hero.ctas.download}
               </a>
             </div>
-            <div className="hero-meta">
-              {c.heroMeta.map((pill) => (
-                <span className="pill" key={pill}>
-                  {pill}
-                </span>
-              ))}
-            </div>
           </div>
           <div className="hero-panel">
-            <div className="panel-head">
-              <p>{c.heroPanel.status}</p>
-              <span className="pulse" aria-label="online" />
+            <div className="panel-header">
+              <div className="panel-status">
+                <span className="status-dot" />
+                <span className="status-text">{c.heroPanel.status}</span>
+              </div>
+              <span className="panel-location">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                {c.heroPanel.location}
+              </span>
             </div>
-            <div className="meter">
-              <p>{c.heroPanel.focus}</p>
-              <div className="bars">
-                {c.heroPanel.labels.map((label, idx) => (
-                  <span className={`bar b${idx + 1}`} key={label}>
-                    <span className="bar-label">{label}</span>
+            <div className="panel-focus">
+              <span className="panel-focus-title">{c.heroPanel.focus}</span>
+              <div className="panel-focus-items">
+                {c.heroPanel.focusItems.map((item) => (
+                  <span className={`panel-focus-tag ${item.active ? 'active' : ''}`} key={item.label}>
+                    {item.active && <span className="focus-pulse" />}
+                    {item.label}
                   </span>
                 ))}
               </div>
             </div>
-            <div className="panel-body">
-              <p className="eyebrow">{c.heroPanel.profileEyebrow}</p>
-              <ul>
-                {c.heroPanel.profileItems.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
+            <div className="panel-footer">
+              <span className="panel-availability">{c.heroPanel.availability}</span>
             </div>
           </div>
         </section>
