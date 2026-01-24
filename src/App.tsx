@@ -116,14 +116,15 @@ const content: Record<
       period: string
       bullets: string[]
       impact?: string
+      skills?: string[]
     }[]
-    skills: { title: string; items: string[]; detail: string }[]
+    skills: { title: string; items: { name: string; level: 'beginner' | 'intermediate' | 'advanced' }[]; detail: string; percent: number; icon: string }[]
     projects: Project[]
     education: { school: string; degree: string; location: string; period: string; diploma?: string }[]
     certifications: { name: string; provider: string }[]
     languages: { name: string; level: string; percent: number }[]
     about: { eyebrow: string; title: string; bio: string; strengths: string[]; openTo: string[]; highlight: string; motto: string; timeline: { year: string; text: string }[] };
-    toolbelt: string[];
+    toolbelt: { category: string; tools: string[] }[];
     cv: { link: string; updated: string; label: string };
     impactStats: {
       experienceValue: string
@@ -143,6 +144,11 @@ const content: Record<
         subtitle: string
         progress: number
       }[]
+    }
+    hobbyShowcase: {
+      genres: string[]
+      daws: string[]
+      instruments: string[]
     }
   }
 > = {
@@ -251,6 +257,7 @@ const content: Record<
           'Veri anotasyonu, prompt mühendisliği ve QA sürecinde kaliteyi sağlama.',
         ],
         impact: 'LLM kalite puanlarında artış; hatalı cevaplar düştü.',
+        skills: ['Python', 'Prompt Engineering', 'LLM', 'Data Annotation'],
       },
       {
         company: 'Prestij Bilgi Sistemleri Arge A.Ş.',
@@ -264,6 +271,7 @@ const content: Record<
           'Operasyonel süreklilik için sorun giderme ve önleyici bakım adımlarını dokümante ettim.',
         ],
         impact: 'Rapor ve HIS sorgularında performans artışı sağlandı.',
+        skills: ['C#', '.NET', 'SQL', 'Git', 'HIS'],
       },
       {
         company: 'Sanofi',
@@ -276,6 +284,7 @@ const content: Record<
           'SAP entegrasyonlarını finans, tedarik zinciri, İK gibi süreçlere nasıl uyarlayacağımızı öğrendim; iş akışı özelleştirmeleri yaptım.',
         ],
         impact: "SLA'yi koruyup destek kapanış süresini kısalttım.",
+        skills: ['SAP S/4HANA', 'SAP Fiori', 'Network', 'Hardware'],
       },
       {
         company: 'Kırklareli State Hospital',
@@ -287,38 +296,88 @@ const content: Record<
           'IT operasyonları için temel bakım ve hata giderme prosedürlerini uyguladım.',
         ],
         impact: 'Kesinti sürelerini azalttım; çözüm hızlandı.',
+        skills: ['Hardware', 'Network', 'IT Support'],
       },
     ],
     skills: [
       {
         title: 'Data Analysis & BI',
-        items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        icon: '📊',
+        percent: 85,
+        items: [
+          { name: 'Power BI', level: 'advanced' },
+          { name: 'Excel', level: 'advanced' },
+          { name: 'SQL', level: 'advanced' },
+          { name: 'DAX', level: 'intermediate' },
+          { name: 'Star Schema', level: 'intermediate' },
+          { name: 'KPI Reporting', level: 'advanced' },
+        ],
         detail: 'Dashboard ve KPI takibini sahadan gelen veriye bağlayıp karar desteğine çeviriyorum.',
       },
       {
         title: 'Programming',
-        items: ['Python', 'C', 'C#', 'JavaScript', 'SQL'],
+        icon: '💻',
+        percent: 75,
+        items: [
+          { name: 'Python', level: 'advanced' },
+          { name: 'C', level: 'intermediate' },
+          { name: 'C#', level: 'intermediate' },
+          { name: 'JavaScript', level: 'intermediate' },
+          { name: 'SQL', level: 'advanced' },
+        ],
         detail: 'Farklı yığınlarda temiz, bakımı kolay ve test edilebilir kod yazıyorum.',
       },
       {
         title: 'AI & Machine Learning',
-        items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
+        icon: '🧠',
+        percent: 70,
+        items: [
+          { name: 'PyTorch', level: 'intermediate' },
+          { name: 'TensorFlow', level: 'intermediate' },
+          { name: 'Scikit-Learn', level: 'advanced' },
+          { name: 'OpenCV', level: 'intermediate' },
+          { name: 'CNNs', level: 'intermediate' },
+          { name: 'LLM Training', level: 'intermediate' },
+        ],
         detail: 'Model eğitimi, değerlendirme ve kullanılabilir çıktılar üretme.',
       },
       {
         title: 'Industry 4.0 & IoT',
-        items: ['PLC', 'SCADA', 'OPC UA', 'MQTT', 'Edge Devices', 'Digitalization', 'IoT Protokolleri'],
+        icon: '🏭',
+        percent: 60,
+        items: [
+          { name: 'PLC', level: 'intermediate' },
+          { name: 'SCADA', level: 'intermediate' },
+          { name: 'OPC UA', level: 'intermediate' },
+          { name: 'MQTT', level: 'intermediate' },
+          { name: 'Edge Devices', level: 'beginner' },
+          { name: 'Digitalization', level: 'intermediate' },
+          { name: 'IoT Protokolleri', level: 'intermediate' },
+        ],
         detail:
           'Saha verisini bulut ve dashboard katmanlarına güvenli şekilde taşıyorum; PLC, SCADA, OPC UA, MQTT, bus/protokol entegrasyonları ve edge cihazlarında tecrübeliyim.',
       },
       {
         title: 'DevOps & Cloud',
-        items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
-        detail: 'Saha verisini bulut ve dashboard katmanlarına taşır; PLC, SCADA, OPC UA, MQTT entegrasyonlarında pratik sahibiyim.',
+        icon: '☁️',
+        percent: 55,
+        items: [
+          { name: 'AWS', level: 'intermediate' },
+          { name: 'Docker', level: 'intermediate' },
+          { name: 'Kubernetes', level: 'beginner' },
+          { name: 'Jenkins', level: 'beginner' },
+          { name: 'CI/CD', level: 'intermediate' },
+        ],
+        detail: 'Konteyner tabanlı dağıtım, CI/CD pipeline ve bulut altyapı yönetimi.',
       },
       {
         title: 'Enterprise Solutions',
-        items: ['SAP S/4HANA', 'SAP Fiori'],
+        icon: '🏢',
+        percent: 50,
+        items: [
+          { name: 'SAP S/4HANA', level: 'intermediate' },
+          { name: 'SAP Fiori', level: 'beginner' },
+        ],
         detail: 'Kurumsal iş süreçlerine uyumlu SAP entegrasyonları ve geliştirme.',
       },
     ],
@@ -513,7 +572,13 @@ const content: Record<
         { year: '2026', text: 'Mezuniyet — Bilgisayar Mühendisliği' },
       ],
     },
-    toolbelt: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway', 'Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation', 'SQL', 'Query Optimize', 'Joins', 'CTE', 'Automation', 'Zapier', 'Airtable', 'Slack', 'Cloud & DevOps', 'AWS', 'Docker', 'CI/CD'],
+    toolbelt: [
+      { category: 'BI & Data', tools: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway'] },
+      { category: 'AI & ML', tools: ['Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation'] },
+      { category: 'Database', tools: ['SQL', 'Query Optimize', 'Joins', 'CTE'] },
+      { category: 'Automation', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { category: 'Cloud & DevOps', tools: ['AWS', 'Docker', 'CI/CD'] },
+    ],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Aralık 2025', label: 'CV indir (Aralık 2025)' },
     impactStats: {
       experienceValue: '4+',
@@ -541,6 +606,11 @@ const content: Record<
           progress: 45,
         },
       ],
+    },
+    hobbyShowcase: {
+      genres: ['Progressive Metal', 'Djent', 'Metalcore'],
+      daws: ['FL Studio', 'Ableton Live'],
+      instruments: ['Elektro Gitar', 'Drum Programming'],
     },
   },
   DE: {
@@ -648,6 +718,7 @@ const content: Record<
           'Daten-Annotation, Prompt-Engineering und QA mit Qualitaetsfokus.',
         ],
         impact: 'LLM-Qualitaet erhoeht, Fehlantworten gesunken.',
+        skills: ['Python', 'Prompt Engineering', 'LLM', 'Data Annotation'],
       },
       {
         company: 'Prestij Bilgi Sistemleri Arge A.S.',
@@ -661,6 +732,7 @@ const content: Record<
           'Troubleshooting und praeventive Wartung dokumentiert, um Betriebszeit zu sichern.',
         ],
         impact: 'Report-Queries wurden schneller und stabiler.',
+        skills: ['C#', '.NET', 'SQL', 'Git', 'HIS'],
       },
       {
         company: 'Sanofi',
@@ -673,6 +745,7 @@ const content: Record<
           'SAP-Integration in Prozesse wie Finance, Supply Chain, HR verstanden und Workflows angepasst.',
         ],
         impact: 'SLA gehalten, Ticket-Abschlusszeiten verkuerzt.',
+        skills: ['SAP S/4HANA', 'SAP Fiori', 'Network', 'Hardware'],
       },
       {
         company: 'Kirklareli State Hospital',
@@ -684,38 +757,88 @@ const content: Record<
           'Basis-Wartung und Fehlersuche fuer IT-Operations umgesetzt.',
         ],
         impact: 'Downtime reduziert; schnellere Behebung vor Ort.',
+        skills: ['Hardware', 'Network', 'IT Support'],
       },
     ],
     skills: [
       {
         title: 'Data Analysis & BI',
-        items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        icon: '📊',
+        percent: 85,
+        items: [
+          { name: 'Power BI', level: 'advanced' },
+          { name: 'Excel', level: 'advanced' },
+          { name: 'SQL', level: 'advanced' },
+          { name: 'DAX', level: 'intermediate' },
+          { name: 'Star Schema', level: 'intermediate' },
+          { name: 'KPI Reporting', level: 'advanced' },
+        ],
         detail: 'Ich uebersetze Daten in Entscheidungs-Dashboards und messbare KPIs.',
       },
       {
         title: 'Programmierung',
-        items: ['Python', 'C', 'C#', 'JavaScript', 'SQL'],
+        icon: '💻',
+        percent: 75,
+        items: [
+          { name: 'Python', level: 'advanced' },
+          { name: 'C', level: 'intermediate' },
+          { name: 'C#', level: 'intermediate' },
+          { name: 'JavaScript', level: 'intermediate' },
+          { name: 'SQL', level: 'advanced' },
+        ],
         detail: 'Schreibe sauberen, wartbaren und testbaren Code in verschiedenen Stacks.',
       },
       {
         title: 'AI & Machine Learning',
-        items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
+        icon: '🧠',
+        percent: 70,
+        items: [
+          { name: 'PyTorch', level: 'intermediate' },
+          { name: 'TensorFlow', level: 'intermediate' },
+          { name: 'Scikit-Learn', level: 'advanced' },
+          { name: 'OpenCV', level: 'intermediate' },
+          { name: 'CNNs', level: 'intermediate' },
+          { name: 'LLM Training', level: 'intermediate' },
+        ],
         detail: 'Training, Bewertung und nutzernahe Modelle mit klaren Outputs.',
       },
       {
         title: 'Industrie 4.0 & IoT',
-        items: ['PLC', 'SCADA', 'OPC UA', 'MQTT', 'Edge Devices', 'Digitalisierung', 'IoT-Protokolle'],
+        icon: '🏭',
+        percent: 60,
+        items: [
+          { name: 'PLC', level: 'intermediate' },
+          { name: 'SCADA', level: 'intermediate' },
+          { name: 'OPC UA', level: 'intermediate' },
+          { name: 'MQTT', level: 'intermediate' },
+          { name: 'Edge Devices', level: 'beginner' },
+          { name: 'Digitalisierung', level: 'intermediate' },
+          { name: 'IoT-Protokolle', level: 'intermediate' },
+        ],
         detail:
           'Fuehre Felddaten sicher in Cloud- und Dashboard-Ebenen; Erfahrung mit PLC, SCADA, OPC UA, MQTT, Bus-/Protokollintegration und Edge-Geraeten.',
       },
       {
         title: 'DevOps & Cloud',
-        items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
-        detail: 'Felddaten in Cloud- und Dashboard-Ebenen; Praxis mit PLC, SCADA, OPC UA, MQTT und Edge-Integration.',
+        icon: '☁️',
+        percent: 55,
+        items: [
+          { name: 'AWS', level: 'intermediate' },
+          { name: 'Docker', level: 'intermediate' },
+          { name: 'Kubernetes', level: 'beginner' },
+          { name: 'Jenkins', level: 'beginner' },
+          { name: 'CI/CD', level: 'intermediate' },
+        ],
+        detail: 'Container-Deployment, CI/CD-Pipelines und Cloud-Infrastrukturmanagement.',
       },
       {
         title: 'Enterprise Solutions',
-        items: ['SAP S/4HANA', 'SAP Fiori'],
+        icon: '🏢',
+        percent: 50,
+        items: [
+          { name: 'SAP S/4HANA', level: 'intermediate' },
+          { name: 'SAP Fiori', level: 'beginner' },
+        ],
         detail: 'Integrationen und Entwicklungen passend zu Unternehmensprozessen.',
       },
     ],
@@ -910,7 +1033,13 @@ const content: Record<
         { year: '2026', text: 'Abschluss — Informatikingenieur' },
       ],
     },
-    toolbelt: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway', 'Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation', 'SQL', 'Query Optimize', 'Joins', 'CTE', 'Automation', 'Zapier', 'Airtable', 'Slack', 'Cloud & DevOps', 'AWS', 'Docker', 'CI/CD'],
+    toolbelt: [
+      { category: 'BI & Data', tools: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway'] },
+      { category: 'AI & ML', tools: ['Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation'] },
+      { category: 'Database', tools: ['SQL', 'Query Optimize', 'Joins', 'CTE'] },
+      { category: 'Automation', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { category: 'Cloud & DevOps', tools: ['AWS', 'Docker', 'CI/CD'] },
+    ],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'CV herunterladen' },
     impactStats: {
       experienceValue: '4+',
@@ -938,6 +1067,11 @@ const content: Record<
           progress: 45,
         },
       ],
+    },
+    hobbyShowcase: {
+      genres: ['Progressive Metal', 'Djent', 'Metalcore'],
+      daws: ['FL Studio', 'Ableton Live'],
+      instruments: ['E-Gitarre', 'Drum Programming'],
     },
   },
   EN: {
@@ -1045,6 +1179,7 @@ const content: Record<
           'Ensure quality across data annotation, prompt engineering, and QA.',
         ],
         impact: 'Raised LLM quality scores; fewer wrong answers.',
+        skills: ['Python', 'Prompt Engineering', 'LLM', 'Data Annotation'],
       },
       {
         company: 'Prestij Bilgi Sistemleri Arge A.S.',
@@ -1058,6 +1193,7 @@ const content: Record<
           'Documented troubleshooting and preventive maintenance to keep systems reliable.',
         ],
         impact: 'Sped up HIS/report queries and kept them stable.',
+        skills: ['C#', '.NET', 'SQL', 'Git', 'HIS'],
       },
       {
         company: 'Sanofi',
@@ -1070,6 +1206,7 @@ const content: Record<
           'Learned how SAP ties into finance, supply chain, and HR processes; practiced workflow customization.',
         ],
         impact: 'Met SLA while shortening ticket closure time.',
+        skills: ['SAP S/4HANA', 'SAP Fiori', 'Network', 'Hardware'],
       },
       {
         company: 'Kirklareli State Hospital',
@@ -1081,38 +1218,88 @@ const content: Record<
           'Executed baseline maintenance and troubleshooting for IT operations.',
         ],
         impact: 'Cut downtime and sped up onsite fixes.',
+        skills: ['Hardware', 'Network', 'IT Support'],
       },
     ],
     skills: [
       {
         title: 'Data Analysis & BI',
-        items: ['Power BI', 'Excel', 'SQL', 'DAX', 'Star Schema', 'KPI Reporting'],
+        icon: '📊',
+        percent: 85,
+        items: [
+          { name: 'Power BI', level: 'advanced' },
+          { name: 'Excel', level: 'advanced' },
+          { name: 'SQL', level: 'advanced' },
+          { name: 'DAX', level: 'intermediate' },
+          { name: 'Star Schema', level: 'intermediate' },
+          { name: 'KPI Reporting', level: 'advanced' },
+        ],
         detail: 'I turn data into decision-ready dashboards and measurable KPIs.',
       },
       {
         title: 'Programming',
-        items: ['Python', 'C', 'C#', 'JavaScript', 'SQL'],
+        icon: '💻',
+        percent: 75,
+        items: [
+          { name: 'Python', level: 'advanced' },
+          { name: 'C', level: 'intermediate' },
+          { name: 'C#', level: 'intermediate' },
+          { name: 'JavaScript', level: 'intermediate' },
+          { name: 'SQL', level: 'advanced' },
+        ],
         detail: 'Writing clean, maintainable, and testable code across stacks.',
       },
       {
         title: 'AI & Machine Learning',
-        items: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'OpenCV', 'CNNs', 'LLM Training'],
+        icon: '🧠',
+        percent: 70,
+        items: [
+          { name: 'PyTorch', level: 'intermediate' },
+          { name: 'TensorFlow', level: 'intermediate' },
+          { name: 'Scikit-Learn', level: 'advanced' },
+          { name: 'OpenCV', level: 'intermediate' },
+          { name: 'CNNs', level: 'intermediate' },
+          { name: 'LLM Training', level: 'intermediate' },
+        ],
         detail: 'Training, evaluation, and user-facing AI that delivers meaningful outputs.',
       },
       {
         title: 'Industry 4.0 & IoT',
-        items: ['PLC', 'SCADA', 'OPC UA', 'MQTT', 'Edge Devices', 'Digitalization', 'IoT Protocols'],
+        icon: '🏭',
+        percent: 60,
+        items: [
+          { name: 'PLC', level: 'intermediate' },
+          { name: 'SCADA', level: 'intermediate' },
+          { name: 'OPC UA', level: 'intermediate' },
+          { name: 'MQTT', level: 'intermediate' },
+          { name: 'Edge Devices', level: 'beginner' },
+          { name: 'Digitalization', level: 'intermediate' },
+          { name: 'IoT Protocols', level: 'intermediate' },
+        ],
         detail:
           'Move field data securely into cloud and dashboard layers; experienced with PLC, SCADA, OPC UA, MQTT, bus/protocol integrations, and edge devices.',
       },
       {
         title: 'DevOps & Cloud',
-        items: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD'],
-        detail: 'Bridge shop-floor data into cloud and dashboard layers; hands-on with PLC, SCADA, OPC UA, MQTT, and edge integration.',
+        icon: '☁️',
+        percent: 55,
+        items: [
+          { name: 'AWS', level: 'intermediate' },
+          { name: 'Docker', level: 'intermediate' },
+          { name: 'Kubernetes', level: 'beginner' },
+          { name: 'Jenkins', level: 'beginner' },
+          { name: 'CI/CD', level: 'intermediate' },
+        ],
+        detail: 'Container-based deployment, CI/CD pipelines, and cloud infrastructure management.',
       },
       {
         title: 'Enterprise Solutions',
-        items: ['SAP S/4HANA', 'SAP Fiori'],
+        icon: '🏢',
+        percent: 50,
+        items: [
+          { name: 'SAP S/4HANA', level: 'intermediate' },
+          { name: 'SAP Fiori', level: 'beginner' },
+        ],
         detail: 'Integrations and developments aligned with enterprise processes.',
       },
     ],
@@ -1307,7 +1494,13 @@ const content: Record<
         { year: '2026', text: 'Graduation — Computer Engineering' },
       ],
     },
-    toolbelt: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway', 'Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation', 'SQL', 'Query Optimize', 'Joins', 'CTE', 'Automation', 'Zapier', 'Airtable', 'Slack', 'Cloud & DevOps', 'AWS', 'Docker', 'CI/CD'],
+    toolbelt: [
+      { category: 'BI & Data', tools: ['Power BI / DAX', 'Star Schema', 'KPI', 'Gateway'] },
+      { category: 'AI & ML', tools: ['Python / PyTorch', 'CNN', 'Data Pipelines', 'Evaluation'] },
+      { category: 'Database', tools: ['SQL', 'Query Optimize', 'Joins', 'CTE'] },
+      { category: 'Automation', tools: ['Zapier', 'Airtable', 'Slack'] },
+      { category: 'Cloud & DevOps', tools: ['AWS', 'Docker', 'CI/CD'] },
+    ],
     cv: { link: '/Baha_Buyukates_CV.pdf', updated: 'Dec 2025', label: 'Download CV (updated Dec 2025)' },
     impactStats: {
       experienceValue: '4+',
@@ -1335,6 +1528,11 @@ const content: Record<
           progress: 45,
         },
       ],
+    },
+    hobbyShowcase: {
+      genres: ['Progressive Metal', 'Djent', 'Metalcore'],
+      daws: ['FL Studio', 'Ableton Live'],
+      instruments: ['Electric Guitar', 'Drum Programming'],
     },
   },
 }
@@ -1374,6 +1572,7 @@ function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('hero')
   const [activeProjectDetail, setActiveProjectDetail] = useState<Project | null>(null)
+  const [projectFilter, setProjectFilter] = useState<string>('all')
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [feedbackReminder, setFeedbackReminder] = useState(false)
   const [feedbackRating, setFeedbackRating] = useState<number | null>(null)
@@ -1392,6 +1591,8 @@ function App() {
   const [typewriterText, setTypewriterText] = useState('')
   const [typewriterDone, setTypewriterDone] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [trackPlaying, setTrackPlaying] = useState(false)
+  const trackRef = useRef<HTMLAudioElement | null>(null)
   const [isMobile, setIsMobile] = useState(false)
   const [reduceMotion, setReduceMotion] = useState(false)
   const [isLowPerformance, setIsLowPerformance] = useState(false)
@@ -1521,6 +1722,36 @@ function App() {
           'If you need Industry 4.0 + Data integration, I can help.',
           'If you want a backend + automation engineer, reach out.',
         ]
+
+  const getJobDuration = (period: string): string => {
+    const now = activeLocale === 'DE' ? 'Heute' : activeLocale === 'EN' ? 'Present' : 'Güncel'
+    const months: Record<string, number> = {
+      Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
+      Oca: 0, Şub: 1, Mar: 2, Nis: 3, May: 4, Haz: 5, Tem: 6, Ağu: 7, Eyl: 8, Eki: 9, Kas: 10, Ara: 11,
+      Okt: 9,
+    }
+    const parts = period.split(' - ')
+    if (parts.length < 2) return activeLocale === 'DE' ? '1 Monat' : activeLocale === 'EN' ? '1 mo' : '1 ay'
+    const parseDate = (s: string) => {
+      const tokens = s.trim().split(' ')
+      const m = months[tokens[0]] ?? 0
+      const y = parseInt(tokens[1]) || new Date().getFullYear()
+      return new Date(y, m)
+    }
+    const start = parseDate(parts[0])
+    const end = parts[1].trim() === now ? new Date() : parseDate(parts[1])
+    const diff = Math.max(1, Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 30)))
+    if (diff >= 12) {
+      const yrs = Math.floor(diff / 12)
+      const mos = diff % 12
+      if (activeLocale === 'DE') return mos > 0 ? `${yrs} J ${mos} M` : `${yrs} Jahr${yrs > 1 ? 'e' : ''}`
+      if (activeLocale === 'EN') return mos > 0 ? `${yrs}y ${mos}mo` : `${yrs}y`
+      return mos > 0 ? `${yrs} yıl ${mos} ay` : `${yrs} yıl`
+    }
+    if (activeLocale === 'DE') return `${diff} Monat${diff > 1 ? 'e' : ''}`
+    if (activeLocale === 'EN') return `${diff} mo`
+    return `${diff} ay`
+  }
 
   const defaultExperienceImpact =
     activeLocale === 'DE'
@@ -3119,20 +3350,35 @@ function App() {
             {c.experience.map((job) => (
               <article className="card job-card timeline-item" key={job.company + job.role}>
                 <span className="timeline-dot" aria-hidden="true" />
-                <div className="card-head">
-                  <div>
-                    <h3>{job.role}</h3>
-                    <p className="stack">
-                      {job.company} / {job.location}
-                    </p>
+                <div className="job-card-header">
+                  <span className="job-avatar" aria-hidden="true">{job.company.charAt(0)}</span>
+                  <div className="job-card-header-info">
+                    <div className="card-head">
+                      <div>
+                        <h3>{job.role}</h3>
+                        <p className="stack">
+                          {job.company} / {job.location}
+                        </p>
+                      </div>
+                      <div className="job-badges">
+                        <span className="pill ghost">{job.period}</span>
+                        <span className="pill small job-duration">{getJobDuration(job.period)}</span>
+                      </div>
+                    </div>
                   </div>
-                  <span className="pill ghost">{job.period}</span>
                 </div>
                 <ul className="list">
                   {job.bullets.map((line) => (
                     <li key={line}>{line}</li>
                   ))}
                 </ul>
+                {job.skills && job.skills.length > 0 && (
+                  <div className="job-skills">
+                    {job.skills.map((skill) => (
+                      <span className="pill small job-skill-tag" key={skill}>{skill}</span>
+                    ))}
+                  </div>
+                )}
                 <p className="impact-line">
                   {job.impact ?? defaultExperienceImpact}
                 </p>
@@ -3149,16 +3395,23 @@ function App() {
           </div>
           <div className="grid">
             {c.skills.map((skill) => (
-              <div className="card" key={skill.title}>
+              <div className="card skill-card" key={skill.title}>
                 <div className="card-head">
-                  <h3>{skill.title}</h3>
-                  <span className="spark" aria-hidden="true" />
+                  <div className="skill-title-row">
+                    <span className="skill-icon-badge" aria-hidden="true">{skill.icon}</span>
+                    <h3>{skill.title}</h3>
+                  </div>
+                  <span className="skill-percent">{skill.percent}%</span>
+                </div>
+                <div className="skill-progress-track">
+                  <div className="skill-progress-fill" style={{ width: `${skill.percent}%` }} />
                 </div>
                 <p className="card-text">{skill.detail}</p>
                 <div className="tags">
                   {skill.items.map((item) => (
-                    <span className="pill" key={item}>
-                      {item}
+                    <span className={`pill skill-level-pill level-${item.level}`} key={item.name}>
+                      {item.name}
+                      <span className="skill-level-dot" aria-label={item.level} />
                     </span>
                   ))}
                 </div>
@@ -3173,16 +3426,23 @@ function App() {
                 ? 'Toolbelt & recent stack'
                 : 'Toolbelt & son kullanılanlar'}
             </p>
-            <div className="tags">
-              {c.toolbelt.map((tool) => {
-                const icon = getTechIcon(tool)
-                return (
-                  <span className={`pill ${icon ? 'pill-with-icon' : ''}`} key={tool}>
-                    {icon && <img src={icon} alt={tool} className="skill-icon" loading="lazy" />}
-                    {tool}
-                  </span>
-                )
-              })}
+            <div className="toolbelt-groups">
+              {c.toolbelt.map((group) => (
+                <div className="toolbelt-group" key={group.category}>
+                  <span className="toolbelt-category">{group.category}</span>
+                  <div className="tags">
+                    {group.tools.map((tool) => {
+                      const icon = getTechIcon(tool)
+                      return (
+                        <span className={`pill ${icon ? 'pill-with-icon' : ''}`} key={tool}>
+                          {icon && <img src={icon} alt={tool} className="skill-icon" loading="lazy" />}
+                          {tool}
+                        </span>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -3213,52 +3473,78 @@ function App() {
             <p className="section-text">{c.sections.projects.text}</p>
           </div>
 
+          <div className="project-filters">
+            {['all', 'AI/ML', 'Web', 'IoT', 'Game'].map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                className={`pill project-filter-btn${projectFilter === cat ? ' active' : ''}`}
+                onClick={() => setProjectFilter(cat)}
+              >
+                {cat === 'all' ? (activeLocale === 'TR' ? 'Tümü' : activeLocale === 'DE' ? 'Alle' : 'All') : cat}
+              </button>
+            ))}
+          </div>
+
           <div className={`grid projects${isMobile ? ' mobile' : ''}`}>
-            {c.projects.map((project) => {
+            {c.projects
+              .filter((project) => {
+                if (projectFilter === 'all') return true
+                if (projectFilter === 'AI/ML') return project.tags.some((t) => ['ML', 'AI', 'Deep Learning', 'CNN', 'NLP'].includes(t))
+                if (projectFilter === 'Web') return project.tags.some((t) => ['Web', '.NET', 'React', 'Frontend'].includes(t)) || project.stack.toLowerCase().includes('.net')
+                if (projectFilter === 'IoT') return project.tags.some((t) => ['IoT', 'Industry 4.0'].includes(t))
+                if (projectFilter === 'Game') return Boolean(project.playground)
+                return true
+              })
+              .map((project, idx) => {
               const isUnityProject = project.stack.toLowerCase().includes('unity')
               const isPlayground = Boolean(project.playground)
               const preview = getProjectPreview(project)
               const visibleTags = project.tags.slice(0, 3)
               const remainingTagCount = project.tags.length - visibleTags.length
+              const isFeatured = idx === 0 && projectFilter === 'all' && !isMobile
+              const stackItems = project.stack.split(',').map((s) => s.trim())
 
               if (isMobile) {
                 return (
                   <article
                     className={`card project-card mobile-compact${isPlayground ? ' playground' : ''}`}
                     key={project.title}
+                    style={{ animationDelay: `${idx * 60}ms` }}
                   >
                     <div className="card-head">
-                    <div>
-                      <h3>{project.title}</h3>
-                      <p className="stack">{project.stack}</p>
+                      <div>
+                        <h3>{project.title}</h3>
+                        <div className="stack-badges">
+                          {stackItems.slice(0, 3).map((s) => (
+                            <span className="stack-badge" key={s}>{s}</span>
+                          ))}
+                        </div>
+                      </div>
+                      {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
                     </div>
-                    {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
-                  </div>
-                  <p className="card-text project-brief">{preview}</p>
-                  <div className="tags">
-                    {visibleTags.map((tag) => (
-                      <span className="pill small" key={tag}>
-                        {tag}
-                      </span>
-                    ))}
-                    {remainingTagCount > 0 && <span className="pill small ghost">+{remainingTagCount}</span>}
-                  </div>
-                  <div className="card-footer project-actions">
-                    <button
-                      className="btn ghost small full-width"
-                      type="button"
-                      onClick={() => openProjectDetail(project)}
-                     
-                    >
-                      {projectUiCopy.open}
-                    </button>
-                  </div>
-                </article>
-              )
+                    <p className="card-text project-brief">{preview}</p>
+                    <div className="tags">
+                      {visibleTags.map((tag) => (
+                        <span className="pill small" key={tag}>{tag}</span>
+                      ))}
+                      {remainingTagCount > 0 && <span className="pill small ghost">+{remainingTagCount}</span>}
+                    </div>
+                    <div className="card-footer project-actions">
+                      <button className="btn ghost small full-width" type="button" onClick={() => openProjectDetail(project)}>
+                        {projectUiCopy.open}
+                      </button>
+                    </div>
+                  </article>
+                )
               }
 
               return (
-                <article className={`card project-card${isPlayground ? ' playground' : ''}`} key={project.title}>
+                <article
+                  className={`card project-card${isPlayground ? ' playground' : ''}${isFeatured ? ' featured' : ''} project-stagger`}
+                  key={project.title}
+                  style={{ animationDelay: `${idx * 80}ms` }}
+                >
                   {!isUnityProject && (
                     <div className={`project-media${!project.image ? ' no-image' : ''}`} style={getProjectMediaStyle(project.title)}>
                       {project.image && <img src={project.image} alt={project.title} loading="lazy" />}
@@ -3267,7 +3553,11 @@ function App() {
                   <div className="card-head">
                     <div>
                       <h3>{project.title}</h3>
-                      <p className="stack">{project.stack}</p>
+                      <div className="stack-badges">
+                        {stackItems.map((s) => (
+                          <span className="stack-badge" key={s}>{s}</span>
+                        ))}
+                      </div>
                     </div>
                     {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
                     <span className={getProjectAccentClass(project.title)} />
@@ -3275,9 +3565,7 @@ function App() {
                   <p className="card-text project-brief">{preview}</p>
                   <div className="tags">
                     {visibleTags.map((tag) => (
-                      <span className="pill small" key={tag}>
-                        {tag}
-                      </span>
+                      <span className="pill small" key={tag}>{tag}</span>
                     ))}
                     {remainingTagCount > 0 && <span className="pill small ghost">+{remainingTagCount}</span>}
                   </div>
@@ -3416,6 +3704,87 @@ function App() {
             <p className="eyebrow">{c.sections.hobby.eyebrow}</p>
             <h2>{c.sections.hobby.title}</h2>
             <p className="section-text">{c.sections.hobby.text}</p>
+          </div>
+          <div className="hobby-showcase-card">
+            <audio ref={trackRef} src="/track-new.mp3" preload="none" onEnded={() => setTrackPlaying(false)} />
+            <div className="hobby-showcase-visual">
+              <div className={`sound-wave ${trackPlaying ? 'playing' : ''}`} aria-hidden="true">
+                {Array.from({ length: 12 }).map((_, i) => (
+                  <span key={i} className="wave-bar" style={{ animationDelay: `${i * 0.08}s` }} />
+                ))}
+              </div>
+              <button
+                className="hobby-play-btn"
+                aria-label={trackPlaying ? 'Pause' : 'Play'}
+                onClick={() => {
+                  if (!trackRef.current) return
+                  if (trackPlaying) {
+                    trackRef.current.pause()
+                    setTrackPlaying(false)
+                  } else {
+                    trackRef.current.play()
+                    setTrackPlaying(true)
+                  }
+                }}
+              >
+                {trackPlaying ? (
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                )}
+                <span>{trackPlaying
+                  ? (activeLocale === 'DE' ? 'Pause' : activeLocale === 'EN' ? 'Pause' : 'Durdur')
+                  : (activeLocale === 'DE' ? 'Track abspielen' : activeLocale === 'EN' ? 'Play Track' : 'Track Çal')
+                }</span>
+              </button>
+              <div className="hobby-volume">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                </svg>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  defaultValue="0.7"
+                  className="hobby-volume-slider"
+                  aria-label="Volume"
+                  onChange={(e) => {
+                    if (trackRef.current) trackRef.current.volume = parseFloat(e.target.value)
+                  }}
+                />
+              </div>
+            </div>
+            <div className="hobby-showcase-details">
+              <div className="hobby-detail-group">
+                <span className="hobby-detail-label">
+                  {activeLocale === 'DE' ? 'Genres' : activeLocale === 'EN' ? 'Genres' : 'Türler'}
+                </span>
+                <div className="hobby-tags">
+                  {c.hobbyShowcase.genres.map((g) => (
+                    <span className="pill hobby-genre-pill" key={g}>{g}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="hobby-detail-group">
+                <span className="hobby-detail-label">DAW</span>
+                <div className="hobby-tags">
+                  {c.hobbyShowcase.daws.map((d) => (
+                    <span className="pill hobby-daw-pill" key={d}>{d}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="hobby-detail-group">
+                <span className="hobby-detail-label">
+                  {activeLocale === 'DE' ? 'Instrumente' : activeLocale === 'EN' ? 'Instruments' : 'Enstrümanlar'}
+                </span>
+                <div className="hobby-tags">
+                  {c.hobbyShowcase.instruments.map((inst) => (
+                    <span className="pill hobby-inst-pill" key={inst}>{inst}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

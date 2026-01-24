@@ -3696,8 +3696,261 @@ img {
   margin-top: 0.35rem;
 }
 
+/* ── Skill Card Enhancements ── */
+.skill-card .card-head {
+  align-items: center;
+}
+
+.skill-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skill-icon-badge {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.skill-percent {
+  font-size: 0.8rem;
+  color: #9bb0d4;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.skill-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgba(139, 37, 37, 0.7), rgba(200, 60, 60, 0.6));
+  transition: width 0.6s ease;
+}
+
+/* Skill Level Pills */
+.skill-level-pill {
+  position: relative;
+  padding-right: 1.4rem !important;
+}
+
+.skill-level-dot {
+  position: absolute;
+  right: 0.45rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.level-advanced .skill-level-dot {
+  background: #22c55e;
+  box-shadow: 0 0 4px rgba(34, 197, 94, 0.4);
+}
+
+.level-intermediate .skill-level-dot {
+  background: #f59e0b;
+  box-shadow: 0 0 4px rgba(245, 158, 11, 0.4);
+}
+
+.level-beginner .skill-level-dot {
+  background: #64748b;
+  box-shadow: 0 0 4px rgba(100, 116, 139, 0.3);
+}
+
+/* ── Toolbelt Groups ── */
+.toolbelt-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.toolbelt-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.toolbelt-category {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(139, 37, 37, 0.8);
+}
+
 .toolbelt .tags {
   margin-top: 0.4rem;
+}
+
+/* ── Hobby Showcase Card ── */
+.hobby-showcase-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(139, 37, 37, 0.06), rgba(12, 16, 26, 0.7));
+  border: 1px solid rgba(139, 37, 37, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-top: var(--space-md);
+}
+
+.hobby-showcase-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-width: 140px;
+}
+
+.sound-wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 48px;
+}
+
+.wave-bar {
+  width: 4px;
+  height: 14px;
+  background: linear-gradient(180deg, rgba(200, 60, 60, 0.8), rgba(139, 37, 37, 0.5));
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}
+
+.sound-wave.playing .wave-bar {
+  animation: waveAnim 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes waveAnim {
+  0% { height: 8px; }
+  50% { height: 32px; }
+  100% { height: 14px; }
+}
+
+.hobby-play-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(139, 37, 37, 0.2);
+  border: 1px solid rgba(139, 37, 37, 0.3);
+  border-radius: var(--radius-md, 8px);
+  color: #e2e8f0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.hobby-play-btn:hover {
+  background: rgba(139, 37, 37, 0.35);
+  border-color: rgba(200, 60, 60, 0.5);
+  transform: scale(1.03);
+}
+
+.hobby-play-btn:active {
+  transform: scale(0.97);
+}
+
+.hobby-play-btn svg {
+  color: rgba(200, 60, 60, 0.9);
+}
+
+.hobby-volume {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #9bb0d4;
+}
+
+.hobby-volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  cursor: pointer;
+}
+
+.hobby-volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(200, 60, 60, 0.8);
+  cursor: pointer;
+}
+
+.hobby-volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(200, 60, 60, 0.8);
+  border: none;
+  cursor: pointer;
+}
+
+.hobby-showcase-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hobby-detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hobby-detail-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9bb0d4;
+}
+
+.hobby-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.hobby-genre-pill {
+  background: rgba(139, 37, 37, 0.15) !important;
+  border-color: rgba(139, 37, 37, 0.3) !important;
+  color: #f87171 !important;
+  font-size: 0.78rem !important;
+  padding: 0.25rem 0.6rem !important;
+}
+
+.hobby-daw-pill {
+  background: rgba(99, 166, 255, 0.08) !important;
+  border-color: rgba(99, 166, 255, 0.2) !important;
+  color: #93b8f5 !important;
+  font-size: 0.78rem !important;
+  padding: 0.25rem 0.6rem !important;
+}
+
+.hobby-inst-pill {
+  background: rgba(34, 197, 94, 0.08) !important;
+  border-color: rgba(34, 197, 94, 0.2) !important;
+  color: #4ade80 !important;
+  font-size: 0.78rem !important;
+  padding: 0.25rem 0.6rem !important;
 }
 
 .projects {
@@ -4243,6 +4496,144 @@ img {
 
 .job-card .stack {
   margin-bottom: 0.35rem;
+}
+
+/* Job card enhancements */
+.job-card {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.job-card:hover {
+  border-color: rgba(139, 37, 37, 0.35);
+  box-shadow: 0 0 18px rgba(139, 37, 37, 0.12);
+}
+
+.job-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.job-avatar {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(139, 37, 37, 0.7), rgba(200, 60, 60, 0.5));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  margin-top: 2px;
+}
+
+.job-card-header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.job-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.job-duration {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+  font-size: 0.75rem;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.job-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.job-skill-tag {
+  background: rgba(99, 166, 255, 0.1);
+  color: #93b8f5;
+  border: 1px solid rgba(99, 166, 255, 0.18);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+}
+
+/* Project filters */
+.project-filters {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.project-filter-btn {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9bb0d4;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+}
+
+.project-filter-btn:hover {
+  border-color: rgba(139, 37, 37, 0.4);
+  color: #e3e9fb;
+}
+
+.project-filter-btn.active {
+  background: rgba(139, 37, 37, 0.25);
+  border-color: rgba(139, 37, 37, 0.6);
+  color: #f56565;
+}
+
+/* Featured project */
+.project-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.project-card.featured .project-media {
+  height: 220px;
+}
+
+/* Stack badges */
+.stack-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+}
+
+.stack-badge {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9bb0d4;
+}
+
+/* Staggered entrance */
+.project-stagger {
+  animation: projectFadeIn 0.4s ease both;
+}
+
+@keyframes projectFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .link {
@@ -7748,6 +8139,58 @@ body.low-motion .ambient-particle {
   .about-timeline-dot {
     left: -1.35rem;
   }
+
+  .job-card-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .job-avatar {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 0.85rem;
+  }
+
+  .project-card.featured {
+    grid-column: unset;
+    grid-template-columns: 1fr;
+  }
+
+  .project-filters {
+    gap: 0.3rem;
+  }
+
+  .project-filter-btn {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .hobby-showcase-card {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.2rem;
+  }
+
+  .hobby-showcase-visual {
+    min-width: unset;
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  .sound-wave {
+    height: 32px;
+  }
+
+  .toolbelt-groups {
+    gap: 0.6rem;
+  }
+
+  .skill-level-pill {
+    font-size: 0.78rem !important;
+    padding: 0.35rem 1.2rem 0.35rem 0.6rem !important;
+    min-width: unset !important;
+  }
 }
 
 /* Reduced motion preference */
@@ -7772,5 +8215,22 @@ body.low-motion .ambient-particle {
 
   .typewriter-cursor {
     animation: none;
+  }
+
+  .project-stagger {
+    animation: none;
+  }
+
+  .job-card {
+    transition: none;
+  }
+
+  .wave-bar {
+    animation: none;
+    height: 16px;
+  }
+
+  .skill-progress-fill {
+    transition: none;
   }
 }
