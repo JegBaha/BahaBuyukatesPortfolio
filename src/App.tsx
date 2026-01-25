@@ -121,7 +121,7 @@ const content: Record<
     skills: { title: string; items: { name: string; level: 'beginner' | 'intermediate' | 'advanced' }[]; detail: string; percent: number; icon: string }[]
     projects: Project[]
     education: { school: string; degree: string; location: string; period: string; diploma?: string }[]
-    certifications: { name: string; provider: string }[]
+    certifications: { name: string; provider: string; verifyUrl?: string }[]
     languages: { name: string; level: string; percent: number }[]
     about: { eyebrow: string; title: string; bio: string; strengths: string[]; openTo: string[]; highlight: string; motto: string; timeline: { year: string; text: string }[] };
     toolbelt: { category: string; tools: string[] }[];
@@ -166,22 +166,20 @@ const content: Record<
       eyebrow: 'Hoş geldin',
       titleMain: 'Bilgisayar Mühendisi,',
       titleAccent: ' veri, yazılım, IT ve endüstriyel sistemlere odaklı',
-      lede:
-        'Veri merkezli sistemlere odaklanıyorum; verinin kendisini, onu üreten süreçleri ve etrafındaki yazılım/entegrasyon katmanlarını birlikte geliştiriyorum. Ana odağım data.',
+      lede: 'Veri merkezli sistemlere odaklanıyorum; verinin kendisini, onu üreten süreçleri ve etrafındaki yazılım/entegrasyon katmanlarını birlikte geliştiriyorum. Ana odağım data.',
       ctas: { browse: 'Projelerime göz at', download: 'CV indir' },
       ctaNotes: { citizen: 'AB Vatandaşı (Bulgaristan)', availability: 'Hemen başlayabilir' },
     },
     heroPanel: {
-      status: 'Çevrimiçi',
+      status: 'Projelere Açık',
       location: 'Türkiye / Almanya',
-      focus: 'Odak Alanları',
+      focus: 'Uzmanlık',
       focusItems: [
-        { label: 'Data & BI', active: true },
-        { label: 'AI / ML', active: true },
-        { label: 'Endüstriyel IoT', active: false },
-        { label: 'DevOps', active: false },
+        { label: 'Data Engineering', active: true },
+        { label: 'Business Intelligence', active: true },
+        { label: 'AI / ML', active: false },
       ],
-      availability: 'Yeni projelere açık',
+      availability: 'Hemen başlayabilirim',
     },
     projectsNoteCta: 'Daha fazlası için',
     sections: {
@@ -627,22 +625,20 @@ const content: Record<
       eyebrow: 'Willkommen',
       titleMain: 'Informatikingenieur,',
       titleAccent: ' mit Fokus auf Daten, Software, IT und industrielle Systeme',
-      lede:
-        'Ich fokussiere mich auf datenzentrierte Systeme; ich entwickle die Daten selbst, die Prozesse dahinter und die Software-/Integrationsschichten darum herum gemeinsam. Mein Hauptfokus ist Data.',
+      lede: 'Ich fokussiere mich auf datenzentrierte Systeme; ich entwickle die Daten selbst, die Prozesse dahinter und die Software-/Integrationsschichten darum herum gemeinsam. Mein Hauptfokus ist Data.',
       ctas: { browse: 'Projekte ansehen', download: 'CV herunterladen' },
-      ctaNotes: { citizen: 'EU-Bürger (Bulgarien)', availability: 'Sofort startbereit' },
+      ctaNotes: { citizen: 'EU-Bürger (Bulgarien)', availability: 'Sofort verfügbar' },
     },
     heroPanel: {
-      status: 'Online',
+      status: 'Open to Work',
       location: 'Türkei / Deutschland',
-      focus: 'Fokusbereiche',
+      focus: 'Expertise',
       focusItems: [
-        { label: 'Data & BI', active: true },
-        { label: 'AI / ML', active: true },
-        { label: 'Industrie-IoT', active: false },
-        { label: 'DevOps', active: false },
+        { label: 'Data Engineering', active: true },
+        { label: 'Business Intelligence', active: true },
+        { label: 'AI / ML', active: false },
       ],
-      availability: 'Offen für neue Projekte',
+      availability: 'Sofort einsatzbereit',
     },
     projectsNoteCta: 'Mehr auf GitHub',
     sections: {
@@ -1088,22 +1084,20 @@ const content: Record<
       eyebrow: 'Welcome',
       titleMain: 'Computer Engineer,',
       titleAccent: ' focused on data, software, IT, and industrial systems',
-      lede:
-        'I focus on data-centric systems; I build the data itself, the processes that generate it, and the surrounding software/integration layers together. My main focus is data.',
+      lede: 'I focus on data-centric systems; I build the data itself, the processes that generate it, and the surrounding software/integration layers together. My main focus is data.',
       ctas: { browse: 'Browse projects', download: 'Download CV' },
-      ctaNotes: { citizen: 'EU Citizen (Bulgaria)', availability: 'Available to start immediately' },
+      ctaNotes: { citizen: 'EU Citizen (Bulgaria)', availability: 'Available immediately' },
     },
     heroPanel: {
-      status: 'Online',
+      status: 'Open to Work',
       location: 'Turkey / Germany',
-      focus: 'Focus Areas',
+      focus: 'Expertise',
       focusItems: [
-        { label: 'Data & BI', active: true },
-        { label: 'AI / ML', active: true },
-        { label: 'Industrial IoT', active: false },
-        { label: 'DevOps', active: false },
+        { label: 'Data Engineering', active: true },
+        { label: 'Business Intelligence', active: true },
+        { label: 'AI / ML', active: false },
       ],
-      availability: 'Open for new projects',
+      availability: 'Ready to start',
     },
     projectsNoteCta: 'More on GitHub',
     sections: {
@@ -1568,6 +1562,7 @@ function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
 
 function App() {
   const [activeLocale, setActiveLocale] = useState<Locale>('TR')
+  const [isLoading, setIsLoading] = useState(true)
   const [showWelcome, setShowWelcome] = useState(true)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('hero')
@@ -1591,6 +1586,7 @@ function App() {
   const [typewriterText, setTypewriterText] = useState('')
   const [typewriterDone, setTypewriterDone] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [floatingContactOpen, setFloatingContactOpen] = useState(false)
   const [trackPlaying, setTrackPlaying] = useState(false)
   const trackRef = useRef<HTMLAudioElement | null>(null)
   const [isMobile, setIsMobile] = useState(false)
@@ -1680,6 +1676,14 @@ function App() {
     return 'İyi akşamlar'
   }, [activeLocale])
 
+  // Loading screen effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [])
+
   // Typewriter effect for lede text
   useEffect(() => {
     setTypewriterText('')
@@ -1693,7 +1697,7 @@ function App() {
         clearInterval(interval)
         setTypewriterDone(true)
       }
-    }, 22)
+    }, 8)
     return () => clearInterval(interval)
   }, [c.hero.lede])
 
@@ -2786,23 +2790,20 @@ function App() {
 
   return (
     <div className="page">
-      {/* Scroll Progress Indicator - Desktop: Wormhole, Mobile: Simple Bar */}
-      {!isMobile ? (
-        <div className="wormhole-scroll-indicator" aria-hidden="true">
-          <div className="wormhole-track">
-            <div className="wormhole-rings">
-              <div className="wormhole-ring ring-1" />
-              <div className="wormhole-ring ring-2" />
-              <div className="wormhole-ring ring-3" />
-            </div>
-            <div className="wormhole-progress" style={{ width: `calc(var(--scroll-progress, 0) * 100%)` }} />
+      {/* Loading Screen */}
+      <div className={`loading-screen ${!isLoading ? 'fade-out' : ''}`}>
+        <div className="loading-content">
+          <img src="/logo.jpg" alt="Logo" className="loading-logo" />
+          <div className="loading-bar">
+            <div className="loading-bar-fill" />
           </div>
         </div>
-      ) : (
-        <div className="mobile-scroll-progress" aria-hidden="true">
-          <div className="mobile-scroll-bar" style={{ width: `calc(var(--scroll-progress, 0) * 100%)` }} />
-        </div>
-      )}
+      </div>
+
+      {/* Minimal Scroll Progress Bar */}
+      <div className="scroll-progress-bar" aria-hidden="true">
+        <div className="scroll-progress-fill" style={{ width: `calc(var(--scroll-progress, 0) * 100%)` }} />
+      </div>
       <div className="cursor-glow" aria-hidden="true" />
 
       {/* NEW: Enhanced Parallax Star Layers */}
@@ -3667,11 +3668,18 @@ function App() {
               <article className="cert-badge" key={cert.name}>
                 <span className="cert-provider">{cert.provider}</span>
                 <p className="cert-name">{cert.name}</p>
-                <svg className="cert-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 15l-3 3v4l3-2 3 2v-4l-3-3z" />
-                  <circle cx="12" cy="9" r="6" />
-                  <path d="M9.5 9l1.5 1.5L14.5 7" />
-                </svg>
+                <a
+                  href="https://www.linkedin.com/in/baha-buyukates/details/certifications/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cert-verify-link"
+                  aria-label={`${cert.name} sertifikasını doğrula`}
+                >
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                  {activeLocale === 'TR' ? 'Doğrula' : activeLocale === 'DE' ? 'Verifizieren' : 'Verify'}
+                </a>
               </article>
             ))}
           </div>
@@ -3991,6 +3999,57 @@ function App() {
           ↑
         </button>
       )}
+
+      {/* Floating Quick Contact */}
+      <div className={`floating-contact ${floatingContactOpen ? 'open' : ''}`}>
+        <div className="floating-contact-menu">
+          <a
+            href="mailto:bahabuyukates@gmail.com"
+            className="floating-contact-item"
+            aria-label="Email"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/baha-buyukates"
+            target="_blank"
+            rel="noreferrer"
+            className="floating-contact-item"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </a>
+          <a
+            href="https://github.com/Bahadir-Erdem"
+            target="_blank"
+            rel="noreferrer"
+            className="floating-contact-item"
+            aria-label="GitHub"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+            </svg>
+          </a>
+        </div>
+        <button
+          className="floating-contact-toggle"
+          onClick={() => setFloatingContactOpen(!floatingContactOpen)}
+          aria-label="İletişim menüsünü aç/kapat"
+          aria-expanded={floatingContactOpen}
+        >
+          <svg className="icon-chat" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+          </svg>
+          <svg className="icon-close" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+
       <aside
         className={`feedback-drawer ${feedbackOpen ? 'open' : ''}`}
         id="feedback-drawer"

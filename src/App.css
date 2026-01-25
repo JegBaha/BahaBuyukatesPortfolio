@@ -54,6 +54,72 @@ html {
   --fw-extrabold: 800;
 }
 
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #05070c;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.loading-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(139, 37, 37, 0.6), 0 0 80px rgba(139, 37, 37, 0.3);
+  animation: logoPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 40px rgba(139, 37, 37, 0.6), 0 0 80px rgba(139, 37, 37, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 60px rgba(139, 37, 37, 0.8), 0 0 100px rgba(139, 37, 37, 0.4);
+  }
+}
+
+.loading-bar {
+  width: 120px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, rgba(139, 37, 37, 0.8), rgba(139, 37, 37, 1));
+  border-radius: 999px;
+  animation: loadingProgress 1.3s ease-out forwards;
+}
+
+@keyframes loadingProgress {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
 /* Professional Typography Hierarchy */
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--fw-bold);
@@ -470,141 +536,26 @@ body.low-motion::before {
   will-change: transform, opacity;
 }
 
-/* Wormhole Scroll Progress Indicator - Enhanced Desktop Version */
-.wormhole-scroll-indicator {
+/* Minimal Scroll Progress Bar */
+.scroll-progress-bar {
   position: fixed;
-  left: 50%;
-  bottom: 12px;
-  transform: translateX(-50%);
-  width: min(720px, 80vw);
-  height: 64px;
-  z-index: 20;
-  pointer-events: none;
-  perspective: 1200px;
-  filter: drop-shadow(0 0 24px rgba(139, 37, 37, 0.3));
-}
-
-.wormhole-track {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.wormhole-track::before {
-  content: '';
-  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 8px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(139, 37, 37, 0.1), rgba(100, 25, 25, 0.2), rgba(139, 37, 37, 0.1));
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 100;
+  pointer-events: none;
 }
 
-/* Rotating Wormhole Rings - Enhanced Metal Effect */
-.wormhole-scroll-indicator .wormhole-rings {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90px;
-  height: 90px;
+.scroll-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(139, 37, 37, 0.8), rgba(139, 37, 37, 1));
+  box-shadow: 0 0 10px rgba(139, 37, 37, 0.5);
+  transition: width 0.1s ease-out;
 }
 
-.wormhole-scroll-indicator .wormhole-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  border: 3px solid;
-  opacity: 0.25;
-  animation: wormholeRingPulse 8s ease-in-out infinite;
-  box-shadow:
-    0 0 15px rgba(139, 37, 37, 0.4),
-    0 0 30px rgba(139, 37, 37, 0.2),
-    inset 0 0 15px rgba(139, 37, 37, 0.1);
-  filter: brightness(1.1);
-}
-
-.wormhole-scroll-indicator .wormhole-ring.ring-1 {
-  width: 28px;
-  height: 28px;
-  margin: -14px 0 0 -14px;
-  border-color: rgba(139, 37, 37, 0.9);
-  animation-duration: 5s;
-  box-shadow:
-    0 0 20px rgba(139, 37, 37, 0.6),
-    0 0 40px rgba(139, 37, 37, 0.3),
-    inset 0 0 10px rgba(139, 37, 37, 0.2),
-    inset 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-.wormhole-scroll-indicator .wormhole-ring.ring-2 {
-  width: 44px;
-  height: 44px;
-  margin: -22px 0 0 -22px;
-  border-color: rgba(100, 25, 25, 0.8);
-  animation-duration: 7s;
-  animation-delay: -1.5s;
-  box-shadow:
-    0 0 18px rgba(100, 25, 25, 0.5),
-    0 0 35px rgba(100, 25, 25, 0.25),
-    inset 0 0 12px rgba(100, 25, 25, 0.15),
-    inset 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-.wormhole-scroll-indicator .wormhole-ring.ring-3 {
-  width: 60px;
-  height: 60px;
-  margin: -30px 0 0 -30px;
-  border-color: rgba(231, 76, 60, 0.7);
-  animation-duration: 9s;
-  animation-delay: -3s;
-  box-shadow:
-    0 0 15px rgba(231, 76, 60, 0.4),
-    0 0 30px rgba(231, 76, 60, 0.2),
-    inset 0 0 10px rgba(231, 76, 60, 0.1),
-    inset 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes wormholeRingPulse {
-  0%, 100% {
-    transform: rotate3d(1, 1, 0, 0deg) scale(1);
-    opacity: 0.25;
-  }
-  50% {
-    transform: rotate3d(1, 1, 0, 180deg) scale(0.9);
-    opacity: 0.6;
-  }
-}
-
-/* Progress Fill - Enhanced Energy Flow with Metal Shadow */
-.wormhole-progress {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 8px;
-  background: linear-gradient(
-    90deg,
-    rgba(139, 37, 37, 1),
-    rgba(100, 25, 25, 0.95),
-    rgba(231, 76, 60, 0.8)
-  );
-  border-radius: 999px;
-  box-shadow:
-    0 0 15px rgba(139, 37, 37, 0.8),
-    0 0 30px rgba(139, 37, 37, 0.5),
-    0 0 45px rgba(139, 37, 37, 0.3),
-    inset 0 0 12px rgba(255, 255, 255, 0.3),
-    inset 0 2px 5px rgba(0, 0, 0, 0.6),
-    inset 0 -2px 5px rgba(139, 37, 37, 0.4);
-  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-  animation: wormholeEnergyFlow 2.5s ease-in-out infinite;
-}
+/* Wormhole CSS removed - replaced with minimal scroll progress bar */
 
 @keyframes wormholeEnergyFlow {
   0%, 100% {
@@ -613,36 +564,6 @@ body.low-motion::before {
   50% {
     filter: brightness(1.4) saturate(1.3);
   }
-}
-
-/* Mobile Scroll Progress Bar - Blackhole Orange Theme */
-.mobile-scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 20;
-  pointer-events: none;
-  backdrop-filter: blur(10px);
-}
-
-.mobile-scroll-bar {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(139, 37, 37, 1),
-    rgba(100, 25, 25, 0.9),
-    rgba(231, 76, 60, 0.8)
-  );
-  box-shadow:
-    0 0 15px rgba(139, 37, 37, 0.8),
-    0 0 30px rgba(139, 37, 37, 0.4),
-    0 2px 8px rgba(0, 0, 0, 0.5);
-  transition: width 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-  border-radius: 0 2px 2px 0;
 }
 
 .ambient-lights .orb {
@@ -1404,6 +1325,128 @@ body.drawer-open {
 
 .scroll-top:active {
   transform: translateY(0);
+}
+
+/* Floating Quick Contact */
+.floating-contact {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.floating-contact-toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(139, 37, 37, 0.4);
+  background: linear-gradient(145deg, rgba(30, 20, 20, 0.95), rgba(20, 15, 15, 0.98));
+  color: #e6eaf2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(139, 37, 37, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.floating-contact-toggle:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 6px 20px rgba(139, 37, 37, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, rgba(139, 37, 37, 0.3), rgba(30, 20, 20, 0.95));
+}
+
+.floating-contact-toggle .icon-close {
+  display: none;
+}
+
+.floating-contact.open .floating-contact-toggle .icon-chat {
+  display: none;
+}
+
+.floating-contact.open .floating-contact-toggle .icon-close {
+  display: block;
+}
+
+.floating-contact-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.floating-contact.open .floating-contact-menu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.floating-contact-item {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(139, 37, 37, 0.3);
+  background: linear-gradient(145deg, rgba(30, 20, 20, 0.92), rgba(20, 15, 15, 0.95));
+  color: #e6eaf2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(139, 37, 37, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.floating-contact-item:hover {
+  transform: scale(1.1);
+  background: linear-gradient(145deg, rgba(139, 37, 37, 0.35), rgba(30, 20, 20, 0.95));
+  color: #fff;
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.4),
+    0 4px 12px rgba(139, 37, 37, 0.2);
+}
+
+/* Floating contact stagger animation */
+.floating-contact.open .floating-contact-item:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.floating-contact.open .floating-contact-item:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.floating-contact.open .floating-contact-item:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .floating-contact {
+    right: 16px;
+    bottom: 80px;
+  }
+
+  .floating-contact-toggle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .floating-contact-item {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .nav-links a {
@@ -2436,6 +2479,31 @@ main {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.section::after {
+  content: '◆';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: rgba(139, 37, 37, 0.9);
+  text-shadow: 0 0 12px rgba(139, 37, 37, 0.8), 0 0 24px rgba(139, 37, 37, 0.4);
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  bottom: 0.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(300px, 50%);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(139, 37, 37, 0.7) 30%, rgba(139, 37, 37, 0.9) 50%, rgba(139, 37, 37, 0.7) 70%, transparent);
+  box-shadow: 0 0 10px rgba(139, 37, 37, 0.4);
 }
 
 .section.visible {
@@ -3353,6 +3421,7 @@ img {
   .wormhole-scroll-indicator,
   .mobile-scroll-progress,
   .scroll-top,
+  .floating-contact,
   footer {
     display: none !important;
   }
@@ -3363,14 +3432,16 @@ img {
    ======================================== */
 
 .card {
-  background: linear-gradient(180deg, rgba(139, 37, 37, 0.03), rgba(12, 16, 26, 0.6));
-  border: 1px solid rgba(139, 37, 37, 0.12);
+  background: linear-gradient(180deg, rgba(139, 37, 37, 0.05), rgba(12, 16, 26, 0.4));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(139, 37, 37, 0.15);
   padding: var(--space-md);
   border-radius: var(--radius-lg);
   box-shadow:
     0 18px 36px rgba(0, 0, 0, 0.45),
     0 4px 12px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(139, 37, 37, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05),
     inset 0 -1px 2px rgba(0, 0, 0, 0.3);
   display: grid;
   gap: var(--space-sm);
@@ -3379,6 +3450,7 @@ img {
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
               border-color 0.25s ease,
               box-shadow 0.25s ease,
+              backdrop-filter 0.3s ease,
               filter 0.3s ease;
   transform-style: preserve-3d;
 }
@@ -3464,6 +3536,8 @@ img {
 .card:hover {
   transform: translateY(-4px);
   border-color: rgba(139, 37, 37, 0.32);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow:
     0 22px 48px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(139, 37, 37, 0.1),
@@ -4244,11 +4318,33 @@ img {
   line-height: 1.4;
 }
 
-.cert-icon {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: rgba(245, 101, 101, 0.35);
+.cert-verify-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(139, 37, 37, 0.9);
+  background: rgba(139, 37, 37, 0.1);
+  border: 1px solid rgba(139, 37, 37, 0.2);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.cert-verify-link:hover {
+  color: #fff;
+  background: rgba(139, 37, 37, 0.3);
+  border-color: rgba(139, 37, 37, 0.4);
+}
+
+.cert-verify-link svg {
+  opacity: 0.8;
 }
 
 /* ─── Languages Section ─── */
