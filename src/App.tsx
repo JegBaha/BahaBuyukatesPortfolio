@@ -15,6 +15,24 @@ type FeedbackEntry = {
   createdAt: number
 }
 
+type ProjectDetail = {
+  backend?: string
+  frontend?: string
+  database?: string
+  orm?: string
+  auth?: string
+  layers?: string[]
+  versionControl?: string
+  projectManagement?: string
+  architecture?: string
+  dataProcessing?: string
+  mlModels?: string
+  visualization?: string
+  deployment?: string
+  hardware?: string
+  protocols?: string
+}
+
 type Project = {
   title: string
   description: string
@@ -27,6 +45,7 @@ type Project = {
   image: string
   impact?: string
   playground?: boolean
+  details?: ProjectDetail
 }
 
 const localeOptions: { code: Locale; flag: string; label: string }[] = [
@@ -393,6 +412,14 @@ const content: Record<
         tags: ['ML', 'Industry 4.0', 'Data', 'Analytics'],
         image: '/projects/smart-factory-digitalization.webp',
         impact: 'Plan vs gerceklesme KPI ve saha parametrelerini ayni modelde okuyup defekt riskini dusuren aksiyonlari gosteriyor.',
+        details: {
+          dataProcessing: 'Pandas, NumPy ile IQR outlier temizleme, StandardScaler ile normalizasyon, One-Hot Encoding',
+          mlModels: 'Logistic Regression (yorumlanabilirlik), Random Forest (non-linear ilişkiler)',
+          visualization: 'Matplotlib, Seaborn ile ROC-AUC, Confusion Matrix, Feature Importance grafikleri',
+          layers: ['Veri Üretimi (sentetik)', 'ETL Pipeline', 'Feature Engineering', 'Model Eğitimi', 'Değerlendirme'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modüler Jupyter Notebook yapısı, MES-ERP entegrasyon katmanı',
+        },
       },
       {
         title: 'Endustri 4.0 IoT Predictive Maintenance Platformu',
@@ -407,6 +434,18 @@ const content: Record<
         tags: ['IoT', 'Data', 'ML', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
         impact: 'Saha verisini AWS free-tier uzerinde toplayip ariza tahminlerini dashboardda sunar.',
+        details: {
+          backend: 'Python ETL servisleri, Node-RED akış yönetimi',
+          frontend: 'Çok dilli Web UI (React tabanlı)',
+          database: 'PostgreSQL (Yıldız Şema - Star Schema)',
+          mlModels: 'PyTorch LSTM ile zaman serisi arıza tahmini',
+          protocols: 'OPC UA simülasyonu, MQTT (TLS şifreli), REST API',
+          visualization: 'Power BI Dashboard (OEE, MTTR, MTTF KPI\'ları)',
+          deployment: 'Docker Compose, AWS Free Tier',
+          layers: ['IoT Simülasyonu', 'Mesajlaşma (MQTT)', 'ETL Pipeline', 'Veri Ambarı', 'ML Modeli', 'Dashboard'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Mikroservis mimarisi, Event-Driven tasarım',
+        },
       },
       {
         title: 'Heart Disease Prediction ML Projesi',
@@ -421,6 +460,14 @@ const content: Record<
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
         impact: 'Model karşılaştırması ile en iyi tahmin doğruluğu belirlendi.',
+        details: {
+          dataProcessing: 'Eksik veri doldurma, kategorik değişken kodlama, Min-Max normalizasyon',
+          mlModels: 'K-Nearest Neighbors (KNN), Lojistik Regresyon, Decision Tree',
+          visualization: 'Confusion Matrix, ROC Curve, Precision-Recall grafikleri',
+          layers: ['Veri Temizleme', 'Feature Engineering', 'Model Eğitimi', 'Model Karşılaştırma', 'Değerlendirme'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Jupyter Notebook tabanlı analiz pipeline\'ı',
+        },
       },
       {
         title: 'NeuraVeil - MRI Tümör Sınıflandırma',
@@ -435,6 +482,15 @@ const content: Record<
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Transfer learning ile yüksek doğrulukta tümör sınıflandırması sağlandı.',
+        details: {
+          backend: 'FastAPI REST API servisi',
+          dataProcessing: 'OpenCV ile görüntü ön işleme, veri artırma (augmentation), sınıf dengeleme',
+          mlModels: 'EfficientNet, DenseNet, ResNet (Transfer Learning), Model Ensemble',
+          visualization: 'Confusion Matrix, Grad-CAM görselleştirme, Eğitim metrikleri',
+          layers: ['Veri Toplama', 'Preprocessing', 'Model Eğitimi', 'Hiperparametre Optimizasyonu (Optuna)', 'API Servisi'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modüler CNN pipeline, L2 regülasyonu, Dropout katmanları',
+        },
       },
       {
         title: 'Drumveil Ritual - Metal Davul Transkripsiyon',
@@ -450,6 +506,15 @@ const content: Record<
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
           'Manuel transkripsiyon süreleri saatlerden dakikalara iniyor; birkaç saniyelik parçalarda doğrulandı, tam ölçek için donanım güncellemesi bekleniyor.',
+        details: {
+          dataProcessing: 'Spektrogram dönüşümü, ses segmentasyonu, Slakh dataset hazırlığı',
+          mlModels: 'Demucs (kaynak ayrıştırma), Onsets and Frames (nota çıkarma)',
+          visualization: 'Spektrogram görselleştirme, MIDI çıktı önizleme',
+          layers: ['Ses Yükleme', 'Kaynak Ayrıştırma', 'Spektrum Analizi', 'Nota Tespiti', 'MIDI Dönüşümü'],
+          hardware: 'GPU gereksinimi (eğitim için), CPU inference desteği',
+          versionControl: 'Git, GitHub',
+          architecture: 'İki aşamalı pipeline: Ayrıştırma → Transkripsiyon',
+        },
       },
       {
         title: 'Employee Management System (.NET)',
@@ -463,11 +528,21 @@ const content: Record<
         tags: ['.NET', 'C#', 'SQL'],
         image: '',
         impact: 'İzin ve takip süreçlerinde belirgin zaman kazancı.',
+        details: {
+          backend: 'ASP.NET Core MVC',
+          frontend: 'Razor Views, HTML, CSS, JavaScript',
+          database: 'MS SQL Server',
+          orm: 'Entity Framework Core (Code First)',
+          auth: 'Rol tabanlı yetkilendirme (Admin, User)',
+          layers: ['Presentation', 'Business Logic', 'Data Access', 'Database'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Katmanlı mimari (N-Tier), Repository Pattern',
+        },
       },
       {
         title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
         description:
-          'Excel VBA tabanlı modüler otomasyon toolkit’i; SAP CSV verisini Config’ten okuyup Raw → Staging akışına alıyor, dashboard/pivotlar otomatik yeniliyor. Merkezi loglama/hata yönetimi, Config’e bağlı UserForm EN/TR UI ve çoklu veri kaynakları (CSV/JSON/Excel) entegrasyonu var.',
+          "Excel VBA tabanlı modüler otomasyon toolkit'i; SAP CSV verisini Config'ten okuyup Raw → Staging akışına alıyor, dashboard/pivotlar otomatik yeniliyor. Merkezi loglama/hata yönetimi, Config'e bağlı UserForm EN/TR UI ve çoklu veri kaynakları (CSV/JSON/Excel) entegrasyonu var.",
         summary:
           'Mock SAP export ve JSON datasetleriyle konfigürasyon bazlı, yeniden kullanılabilir otomasyon Prototype / Demo; log temizleme ve dashboard refresh otomatik.',
         stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
@@ -478,10 +553,18 @@ const content: Record<
         image: '/projects/excel-vba-automation.webp',
         impact: 'Modüler VBA mimarisi, hata yakalama ve Config yönetimi pratiği.',
         playground: true,
+        details: {
+          backend: 'Excel VBA modülleri',
+          frontend: 'UserForm (EN/TR çoklu dil desteği)',
+          dataProcessing: 'SAP CSV import, JSON parsing, Excel veri manipülasyonu',
+          layers: ['Config Yönetimi', 'Veri Okuma (Raw)', 'Veri İşleme (Staging)', 'Dashboard/Pivot Güncelleme', 'Loglama'],
+          versionControl: 'Git',
+          architecture: 'Modüler VBA yapısı, merkezi hata yönetimi, Config-driven tasarım',
+        },
       },
       {
         title: '3D Runner Game',
-        description: 'Unity/C# tek kişilik 3D koşu; basit level tasarımı ve fizik odaklı, hızlı iterasyon.', 
+        description: 'Unity/C# tek kişilik 3D koşu; basit level tasarımı ve fizik odaklı, hızlı iterasyon.',
         summary: 'Pipeline ve asset yönetimi pratiği için hobi Prototype / Demo.',
         stack: 'Unity, C#',
         link: 'https://github.com/JegBaha?tab=repositories',
@@ -491,6 +574,12 @@ const content: Record<
         image: '',
         impact: 'Tek kişilik pipeline ve iterasyon hızında artış.',
         playground: true,
+        details: {
+          backend: 'Unity Engine, C# scripting',
+          layers: ['Oyun Mekaniği', 'Fizik Sistemi', 'Level Tasarımı', 'Asset Yönetimi'],
+          versionControl: 'Git',
+          architecture: 'Component-Based mimari',
+        },
       },
       {
         title: 'Galaxy Survivor 2D Game',
@@ -504,6 +593,12 @@ const content: Record<
         image: '',
         impact: 'Hızlı prototipleme ve asset entegrasyonu pratiği.',
         playground: true,
+        details: {
+          backend: 'Unity 2D Engine, C# scripting',
+          layers: ['Oyun Döngüsü', 'Düşman AI', 'Dalga Sistemi', 'Sprite Yönetimi'],
+          versionControl: 'Git',
+          architecture: '2D Component-Based mimari',
+        },
       },
       {
         title: '3D First Person Shooter Game',
@@ -518,6 +613,13 @@ const content: Record<
         image: '',
         impact: '2.5 haftada ekipçe MVP; koordinasyon deneyimi.',
         playground: true,
+        details: {
+          backend: 'Unity 3D Engine, C# scripting',
+          layers: ['FPS Mekaniği', 'Puzzle Sistemi', 'Düşman AI', 'Level Tasarımı', 'Etkileşim Sistemi'],
+          projectManagement: '3 kişilik ekip, Agile yaklaşım',
+          versionControl: 'Git',
+          architecture: '3D FPS Component-Based mimari',
+        },
       },
     ],
     education: [
@@ -853,6 +955,14 @@ const content: Record<
         image: '/projects/smart-factory-digitalization.webp',
         impact:
           'Verbindet Plan-vs-Actual KPI und Shopfloor-Parameter in einem Modell und zeigt risikosenkende Hebel.',
+        details: {
+          dataProcessing: 'Pandas, NumPy mit IQR-Outlier-Cleaning, StandardScaler, One-Hot Encoding',
+          mlModels: 'Logistic Regression (Interpretierbarkeit), Random Forest (Non-linear)',
+          visualization: 'Matplotlib, Seaborn für ROC-AUC, Confusion Matrix, Feature Importance',
+          layers: ['Datengenerierung (synthetisch)', 'ETL Pipeline', 'Feature Engineering', 'Modelltraining', 'Evaluation'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modulare Jupyter Notebook Struktur, MES-ERP Integrationsschicht',
+        },
       },
       {
         title: 'Industrie 4.0 IoT Predictive Maintenance Plattform',
@@ -867,6 +977,18 @@ const content: Record<
         tags: ['IoT', 'Data', 'ML', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
         impact: 'Sammelt Felddaten auf AWS Free Tier, liefert Prognosen und KPIs im Dashboard.',
+        details: {
+          backend: 'Python ETL Services, Node-RED Flow Management',
+          frontend: 'Mehrsprachiges Web UI (React-basiert)',
+          database: 'PostgreSQL (Star Schema)',
+          mlModels: 'PyTorch LSTM für Zeitreihen-Ausfallprognose',
+          protocols: 'OPC UA Simulation, MQTT (TLS-verschlüsselt), REST API',
+          visualization: 'Power BI Dashboard (OEE, MTTR, MTTF KPIs)',
+          deployment: 'Docker Compose, AWS Free Tier',
+          layers: ['IoT Simulation', 'Messaging (MQTT)', 'ETL Pipeline', 'Data Warehouse', 'ML Model', 'Dashboard'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Microservice-Architektur, Event-Driven Design',
+        },
       },
       {
         title: 'Heart Disease Prediction ML Projekt',
@@ -880,6 +1002,14 @@ const content: Record<
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
         impact: 'Beste Vorhersagegenauigkeit durch Modellvergleich ermittelt.',
+        details: {
+          dataProcessing: 'Missing Value Imputation, Kategorische Codierung, Min-Max Normalisierung',
+          mlModels: 'K-Nearest Neighbors (KNN), Logistische Regression, Decision Tree',
+          visualization: 'Confusion Matrix, ROC Curve, Precision-Recall Grafiken',
+          layers: ['Datenbereinigung', 'Feature Engineering', 'Modelltraining', 'Modellvergleich', 'Evaluation'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Jupyter Notebook basierte Analyse-Pipeline',
+        },
       },
       {
         title: 'NeuraVeil - MRI Tumor Klassifikation',
@@ -894,11 +1024,20 @@ const content: Record<
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Hochgenaue Tumorklassifizierung durch Transfer Learning erreicht.',
+        details: {
+          backend: 'FastAPI REST API Service',
+          dataProcessing: 'OpenCV Bildvorverarbeitung, Data Augmentation, Klassenbalancierung',
+          mlModels: 'EfficientNet, DenseNet, ResNet (Transfer Learning), Model Ensemble',
+          visualization: 'Confusion Matrix, Grad-CAM Visualisierung, Training-Metriken',
+          layers: ['Datensammlung', 'Preprocessing', 'Modelltraining', 'Hyperparameter-Optimierung (Optuna)', 'API Service'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modulare CNN Pipeline, L2 Regularisierung, Dropout-Schichten',
+        },
       },
       {
         title: 'Drumveil Ritual - Metal Drum Transkription',
         description:
-          'PyTorch + Demucs trennen Metal-Tracks, “Onsets and Frames” extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik. Hardware-Limit -> in Wartung/Iterative prototype; aktuell nur wenige Sekunden Drums erfolgreich transkribiert.',
+          'PyTorch + Demucs trennen Metal-Tracks, "Onsets and Frames" extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik. Hardware-Limit -> in Wartung/Iterative prototype; aktuell nur wenige Sekunden Drums erfolgreich transkribiert.',
         summary:
           'Quelltrennung, Noten-Extraktion und Metal-Rhythmik im Fokus; Wartung/Iterative prototype wegen Hardware-Limit, kurze Snippets verifiziert.',
         stack: 'PyTorch, Demucs, Audio DSP',
@@ -909,6 +1048,15 @@ const content: Record<
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
           'Manuelle Transkription von Stunden auf Minuten reduziert; kurze Ausschnitte bestaetigt, volle Laenge nach Hardware-Upgrade.',
+        details: {
+          dataProcessing: 'Spektrogramm-Transformation, Audio-Segmentierung, Slakh Dataset Vorbereitung',
+          mlModels: 'Demucs (Quelltrennung), Onsets and Frames (Notenextraktion)',
+          visualization: 'Spektrogramm-Visualisierung, MIDI Output Vorschau',
+          layers: ['Audio-Loading', 'Quelltrennung', 'Spektrum-Analyse', 'Notenerkennung', 'MIDI-Konvertierung'],
+          hardware: 'GPU-Anforderung (Training), CPU Inference Support',
+          versionControl: 'Git, GitHub',
+          architecture: 'Zweistufige Pipeline: Trennung → Transkription',
+        },
       },
       {
         title: 'Employee Management System (.NET)',
@@ -922,6 +1070,16 @@ const content: Record<
         tags: ['.NET', 'C#', 'SQL'],
         image: '',
         impact: 'Genehmigungs- und Tracking-Workflows spuerbar schneller.',
+        details: {
+          backend: 'ASP.NET Core MVC',
+          frontend: 'Razor Views, HTML, CSS, JavaScript',
+          database: 'MS SQL Server',
+          orm: 'Entity Framework Core (Code First)',
+          auth: 'Rollenbasierte Autorisierung (Admin, User)',
+          layers: ['Presentation', 'Business Logic', 'Data Access', 'Database'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Schichtenarchitektur (N-Tier), Repository Pattern',
+        },
       },
       {
         title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
@@ -937,6 +1095,14 @@ const content: Record<
         image: '/projects/excel-vba-automation.webp',
         impact: 'Praxis in modularer VBA-Architektur, zentralem Fehlerfang und Config-Steuerung.',
         playground: true,
+        details: {
+          backend: 'Excel VBA Module',
+          frontend: 'UserForm (EN/DE Mehrsprachigkeit)',
+          dataProcessing: 'SAP CSV Import, JSON Parsing, Excel Datenmanipulation',
+          layers: ['Config Management', 'Daten-Lesen (Raw)', 'Datenverarbeitung (Staging)', 'Dashboard/Pivot Update', 'Logging'],
+          versionControl: 'Git',
+          architecture: 'Modulare VBA Struktur, zentrales Error-Handling, Config-Driven Design',
+        },
       },
       {
         title: '3D Runner Game',
@@ -950,6 +1116,12 @@ const content: Record<
         image: '',
         impact: 'Solo-Projekt; Pipeline und Iterationstempo gesteigert.',
         playground: true,
+        details: {
+          backend: 'Unity Engine, C# Scripting',
+          layers: ['Spielmechanik', 'Physiksystem', 'Level-Design', 'Asset-Management'],
+          versionControl: 'Git',
+          architecture: 'Component-Based Architektur',
+        },
       },
       {
         title: 'Galaxy Survivor 2D Game',
@@ -963,6 +1135,12 @@ const content: Record<
         image: '',
         impact: 'Schnelles Prototyping und Asset-Integration geuebt.',
         playground: true,
+        details: {
+          backend: 'Unity 2D Engine, C# Scripting',
+          layers: ['Gameplay-Loop', 'Gegner-AI', 'Wellensystem', 'Sprite-Management'],
+          versionControl: 'Git',
+          architecture: '2D Component-Based Architektur',
+        },
       },
       {
         title: '3D First Person Shooter Game',
@@ -977,6 +1155,13 @@ const content: Record<
         image: '',
         impact: 'Team-MVP in ~2.5 Wochen; Koordination gestaerkt.',
         playground: true,
+        details: {
+          backend: 'Unity 3D Engine, C# Scripting',
+          layers: ['FPS Mechanik', 'Puzzle System', 'Gegner-AI', 'Level-Design', 'Interaktionssystem'],
+          projectManagement: '3-köpfiges Team, Agile Vorgehensweise',
+          versionControl: 'Git',
+          architecture: '3D FPS Component-Based Architektur',
+        },
       },
     ],
     education: [
@@ -1312,6 +1497,14 @@ const content: Record<
         image: '/projects/smart-factory-digitalization.webp',
         impact:
           'Combines plan-vs-actual KPIs with shop-floor parameters in one model to highlight actions that reduce defects.',
+        details: {
+          dataProcessing: 'Pandas, NumPy with IQR outlier removal, StandardScaler, One-Hot Encoding',
+          mlModels: 'Logistic Regression (interpretability), Random Forest (non-linear relationships)',
+          visualization: 'Matplotlib, Seaborn for ROC-AUC, Confusion Matrix, Feature Importance charts',
+          layers: ['Data Generation (synthetic)', 'ETL Pipeline', 'Feature Engineering', 'Model Training', 'Evaluation'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modular Jupyter Notebook structure, MES-ERP integration layer',
+        },
       },
       {
         title: 'Industry 4.0 IoT Predictive Maintenance Platform',
@@ -1326,6 +1519,18 @@ const content: Record<
         tags: ['IoT', 'Data', 'ML', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
         impact: 'Collects field data on AWS free tier and surfaces predictions + KPIs in the dashboard.',
+        details: {
+          backend: 'Python ETL services, Node-RED flow management',
+          frontend: 'Multilingual Web UI (React-based)',
+          database: 'PostgreSQL (Star Schema)',
+          mlModels: 'PyTorch LSTM for time-series failure prediction',
+          protocols: 'OPC UA simulation, MQTT (TLS encrypted), REST API',
+          visualization: 'Power BI Dashboard (OEE, MTTR, MTTF KPIs)',
+          deployment: 'Docker Compose, AWS Free Tier',
+          layers: ['IoT Simulation', 'Messaging (MQTT)', 'ETL Pipeline', 'Data Warehouse', 'ML Model', 'Dashboard'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Microservice architecture, Event-Driven design',
+        },
       },
       {
         title: 'Heart Disease Prediction with ML',
@@ -1339,6 +1544,14 @@ const content: Record<
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
         impact: 'Identified best prediction accuracy through model comparison.',
+        details: {
+          dataProcessing: 'Missing value imputation, categorical encoding, Min-Max normalization',
+          mlModels: 'K-Nearest Neighbors (KNN), Logistic Regression, Decision Tree',
+          visualization: 'Confusion Matrix, ROC Curve, Precision-Recall charts',
+          layers: ['Data Cleaning', 'Feature Engineering', 'Model Training', 'Model Comparison', 'Evaluation'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Jupyter Notebook based analysis pipeline',
+        },
       },
       {
         title: 'NeuraVeil - MRI Tumor Classification',
@@ -1353,6 +1566,15 @@ const content: Record<
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Achieved high-accuracy tumor classification via transfer learning.',
+        details: {
+          backend: 'FastAPI REST API service',
+          dataProcessing: 'OpenCV image preprocessing, data augmentation, class balancing',
+          mlModels: 'EfficientNet, DenseNet, ResNet (Transfer Learning), Model Ensemble',
+          visualization: 'Confusion Matrix, Grad-CAM visualization, Training metrics',
+          layers: ['Data Collection', 'Preprocessing', 'Model Training', 'Hyperparameter Optimization (Optuna)', 'API Service'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modular CNN pipeline, L2 regularization, Dropout layers',
+        },
       },
       {
         title: 'Drumveil Ritual - Metal Drum Transcription',
@@ -1368,6 +1590,15 @@ const content: Record<
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
           'Cuts manual transcription from hours to minutes; a few-second clips confirmed, full-length pending hardware upgrade.',
+        details: {
+          dataProcessing: 'Spectrogram transformation, audio segmentation, Slakh dataset preparation',
+          mlModels: 'Demucs (source separation), Onsets and Frames (note extraction)',
+          visualization: 'Spectrogram visualization, MIDI output preview',
+          layers: ['Audio Loading', 'Source Separation', 'Spectrum Analysis', 'Note Detection', 'MIDI Conversion'],
+          hardware: 'GPU requirement (training), CPU inference support',
+          versionControl: 'Git, GitHub',
+          architecture: 'Two-stage pipeline: Separation → Transcription',
+        },
       },
       {
         title: 'Employee Management System (.NET)',
@@ -1381,6 +1612,16 @@ const content: Record<
         tags: ['.NET', 'C#', 'SQL'],
         image: '',
         impact: 'Approvals and leave tracking noticeably faster.',
+        details: {
+          backend: 'ASP.NET Core MVC',
+          frontend: 'Razor Views, HTML, CSS, JavaScript',
+          database: 'MS SQL Server',
+          orm: 'Entity Framework Core (Code First)',
+          auth: 'Role-based authorization (Admin, User)',
+          layers: ['Presentation', 'Business Logic', 'Data Access', 'Database'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Layered architecture (N-Tier), Repository Pattern',
+        },
       },
       {
         title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
@@ -1396,6 +1637,14 @@ const content: Record<
         image: '/projects/excel-vba-automation.webp',
         impact: 'Applied project in modular VBA architecture, centralized error capture, and config management.',
         playground: true,
+        details: {
+          backend: 'Excel VBA modules',
+          frontend: 'UserForm (EN/TR multilingual support)',
+          dataProcessing: 'SAP CSV import, JSON parsing, Excel data manipulation',
+          layers: ['Config Management', 'Data Reading (Raw)', 'Data Processing (Staging)', 'Dashboard/Pivot Update', 'Logging'],
+          versionControl: 'Git',
+          architecture: 'Modular VBA structure, centralized error handling, Config-driven design',
+        },
       },
       {
         title: '3D Runner Game',
@@ -1409,6 +1658,12 @@ const content: Record<
         image: '',
         impact: 'Solo build; better pipeline and iteration speed.',
         playground: true,
+        details: {
+          backend: 'Unity Engine, C# scripting',
+          layers: ['Game Mechanics', 'Physics System', 'Level Design', 'Asset Management'],
+          versionControl: 'Git',
+          architecture: 'Component-Based architecture',
+        },
       },
       {
         title: 'Galaxy Survivor 2D Game',
@@ -1422,6 +1677,12 @@ const content: Record<
         image: '',
         impact: 'Applied project for fast prototyping and asset integration.',
         playground: true,
+        details: {
+          backend: 'Unity 2D Engine, C# scripting',
+          layers: ['Game Loop', 'Enemy AI', 'Wave System', 'Sprite Management'],
+          versionControl: 'Git',
+          architecture: '2D Component-Based architecture',
+        },
       },
       {
         title: '3D First Person Shooter Game',
@@ -1436,6 +1697,13 @@ const content: Record<
         image: '',
         impact: 'Delivered a team MVP in ~2.5 weeks; coordination boost.',
         playground: true,
+        details: {
+          backend: 'Unity 3D Engine, C# scripting',
+          layers: ['FPS Mechanics', 'Puzzle System', 'Enemy AI', 'Level Design', 'Interaction System'],
+          projectManagement: '3-person team, Agile approach',
+          versionControl: 'Git',
+          architecture: '3D FPS Component-Based architecture',
+        },
       },
     ],
     education: [
@@ -1592,6 +1860,15 @@ function App() {
   const [isMobile, setIsMobile] = useState(false)
   const [reduceMotion, setReduceMotion] = useState(false)
   const [isLowPerformance, setIsLowPerformance] = useState(false)
+  const [cvPopupOpen, setCvPopupOpen] = useState(false)
+
+  // CV links for each language
+  const cvLinks = {
+    TR: '/Baha_Buyukates_TR.pdf',
+    DE: '/Baha_Buyukates_DE.pdf',
+    EN: '/Baha_Buyukates_ENG.pdf',
+  }
+
   const sparkleField = useMemo(
     () =>
       Array.from({ length: 8 }, (_, id) => ({
@@ -3149,9 +3426,12 @@ function App() {
               <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)}>
                 {c.hero.ctas.browse}
               </a>
-                <a className="btn ghost" href={c.cv.link} target="_blank" rel="noreferrer">
+                <button
+                  className="btn ghost"
+                  onClick={() => setCvPopupOpen(true)}
+                >
                   {c.hero.ctas.download}
-                </a>
+                </button>
               </div>
               <div className="hero-cta-notes">
                 <span>{c.hero.ctaNotes.citizen}</span>
@@ -3285,14 +3565,17 @@ function App() {
                   : `Güncelleme: ${c.cv.updated}`}
               </p>
             </div>
-            <a className="btn primary cv-card-btn" href={c.cv.link} target="_blank" rel="noreferrer">
+            <button
+              className="btn primary cv-card-btn"
+              onClick={() => setCvPopupOpen(true)}
+            >
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
               {activeLocale === 'DE' ? 'Herunterladen' : activeLocale === 'EN' ? 'Download' : 'İndir'}
-            </a>
+            </button>
           </div>
         </section>
 
@@ -3615,6 +3898,60 @@ function App() {
                   )}
                   <p className="card-text">{activeProjectDetail.description}</p>
                   <p className="card-text subtle">{activeProjectDetail.summary}</p>
+                  {activeProjectDetail.details && (
+                    <div className="project-details-section">
+                      <h4 className="details-title">
+                        {activeLocale === 'TR' ? 'Kullanılan Teknolojiler' : activeLocale === 'DE' ? 'Verwendete Technologien' : 'Technologies Used'}
+                      </h4>
+                      <ul className="details-list">
+                        {activeProjectDetail.details.backend && (
+                          <li><strong>Backend:</strong> {activeProjectDetail.details.backend}</li>
+                        )}
+                        {activeProjectDetail.details.frontend && (
+                          <li><strong>Frontend:</strong> {activeProjectDetail.details.frontend}</li>
+                        )}
+                        {activeProjectDetail.details.database && (
+                          <li><strong>{activeLocale === 'TR' ? 'Veritabanı' : activeLocale === 'DE' ? 'Datenbank' : 'Database'}:</strong> {activeProjectDetail.details.database}</li>
+                        )}
+                        {activeProjectDetail.details.orm && (
+                          <li><strong>ORM:</strong> {activeProjectDetail.details.orm}</li>
+                        )}
+                        {activeProjectDetail.details.auth && (
+                          <li><strong>{activeLocale === 'TR' ? 'Kimlik Doğrulama' : activeLocale === 'DE' ? 'Authentifizierung' : 'Authentication'}:</strong> {activeProjectDetail.details.auth}</li>
+                        )}
+                        {activeProjectDetail.details.dataProcessing && (
+                          <li><strong>{activeLocale === 'TR' ? 'Veri İşleme' : activeLocale === 'DE' ? 'Datenverarbeitung' : 'Data Processing'}:</strong> {activeProjectDetail.details.dataProcessing}</li>
+                        )}
+                        {activeProjectDetail.details.mlModels && (
+                          <li><strong>{activeLocale === 'TR' ? 'ML Modelleri' : activeLocale === 'DE' ? 'ML-Modelle' : 'ML Models'}:</strong> {activeProjectDetail.details.mlModels}</li>
+                        )}
+                        {activeProjectDetail.details.protocols && (
+                          <li><strong>{activeLocale === 'TR' ? 'Protokoller' : activeLocale === 'DE' ? 'Protokolle' : 'Protocols'}:</strong> {activeProjectDetail.details.protocols}</li>
+                        )}
+                        {activeProjectDetail.details.visualization && (
+                          <li><strong>{activeLocale === 'TR' ? 'Görselleştirme' : activeLocale === 'DE' ? 'Visualisierung' : 'Visualization'}:</strong> {activeProjectDetail.details.visualization}</li>
+                        )}
+                        {activeProjectDetail.details.deployment && (
+                          <li><strong>Deployment:</strong> {activeProjectDetail.details.deployment}</li>
+                        )}
+                        {activeProjectDetail.details.hardware && (
+                          <li><strong>{activeLocale === 'TR' ? 'Donanım' : activeLocale === 'DE' ? 'Hardware' : 'Hardware'}:</strong> {activeProjectDetail.details.hardware}</li>
+                        )}
+                        {activeProjectDetail.details.layers && activeProjectDetail.details.layers.length > 0 && (
+                          <li><strong>{activeLocale === 'TR' ? 'Katmanlar' : activeLocale === 'DE' ? 'Schichten' : 'Layers'}:</strong> {activeProjectDetail.details.layers.join(', ')}</li>
+                        )}
+                        {activeProjectDetail.details.projectManagement && (
+                          <li><strong>{activeLocale === 'TR' ? 'Proje Yönetimi' : activeLocale === 'DE' ? 'Projektmanagement' : 'Project Management'}:</strong> {activeProjectDetail.details.projectManagement}</li>
+                        )}
+                        {activeProjectDetail.details.versionControl && (
+                          <li><strong>{activeLocale === 'TR' ? 'Sürüm Kontrol' : activeLocale === 'DE' ? 'Versionskontrolle' : 'Version Control'}:</strong> {activeProjectDetail.details.versionControl}</li>
+                        )}
+                        {activeProjectDetail.details.architecture && (
+                          <li><strong>{activeLocale === 'TR' ? 'Mimari' : activeLocale === 'DE' ? 'Architektur' : 'Architecture'}:</strong> {activeProjectDetail.details.architecture}</li>
+                        )}
+                      </ul>
+                    </div>
+                  )}
                   <div className="tags">
                     {activeProjectDetail.tags.map((tag) => (
                       <span className="pill small" key={tag}>
@@ -4123,6 +4460,85 @@ function App() {
           </p>
         </div>
       </aside>
+
+      {/* CV Language Selection Popup */}
+      {cvPopupOpen && (
+        <div className="cv-popup-overlay" onClick={() => setCvPopupOpen(false)}>
+          <div className="cv-popup" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="cv-popup-close"
+              onClick={() => setCvPopupOpen(false)}
+              aria-label="Kapat"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <div className="cv-popup-icon">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+            </div>
+            <h3 className="cv-popup-title">
+              {activeLocale === 'DE' ? 'CV herunterladen' : activeLocale === 'EN' ? 'Download CV' : 'CV İndir'}
+            </h3>
+            <p className="cv-popup-subtitle">
+              {activeLocale === 'DE' ? 'Sprache wählen' : activeLocale === 'EN' ? 'Select language' : 'Dil seçin'}
+            </p>
+            <div className="cv-popup-options">
+              <a
+                href={cvLinks.TR}
+                target="_blank"
+                rel="noreferrer"
+                className="cv-popup-option"
+                onClick={() => setCvPopupOpen(false)}
+              >
+                <span className="cv-popup-flag">🇹🇷</span>
+                <span className="cv-popup-lang">Türkçe</span>
+                <svg className="cv-popup-download" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+              </a>
+              <a
+                href={cvLinks.DE}
+                target="_blank"
+                rel="noreferrer"
+                className="cv-popup-option"
+                onClick={() => setCvPopupOpen(false)}
+              >
+                <span className="cv-popup-flag">🇩🇪</span>
+                <span className="cv-popup-lang">Deutsch</span>
+                <svg className="cv-popup-download" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+              </a>
+              <a
+                href={cvLinks.EN}
+                target="_blank"
+                rel="noreferrer"
+                className="cv-popup-option"
+                onClick={() => setCvPopupOpen(false)}
+              >
+                <span className="cv-popup-flag">🇬🇧</span>
+                <span className="cv-popup-lang">English</span>
+                <svg className="cv-popup-download" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     </div>
   )
