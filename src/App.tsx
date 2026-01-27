@@ -1848,7 +1848,6 @@ function App() {
   const [moonPhase, setMoonPhase] = useState<'hidden' | 'enter' | 'leave'>('hidden')
   const moonTimerRef = useRef<number | null>(null)
   const moonVisible = moonPhase !== 'hidden'
-  const [fallingStars, setFallingStars] = useState<{ id: number; left: string; duration: number }[]>([])
   const [contactSent, setContactSent] = useState(false)
   const [diplomaLightbox, setDiplomaLightbox] = useState(false)
   const [typewriterText, setTypewriterText] = useState('')
@@ -1869,69 +1868,6 @@ function App() {
     EN: '/Baha_Buyukates_ENG.pdf',
   }
 
-  const sparkleField = useMemo(
-    () =>
-      Array.from({ length: 8 }, (_, id) => ({
-        id,
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 6}s`,
-        duration: `${8 + Math.random() * 6}s`,
-        scale: 0.6 + Math.random() * 0.6,
-      })),
-    [],
-  )
-  const motionScale = reduceMotion ? 0.25 : isMobile ? 0.7 : 1
-
-  const cosmicDust = useMemo(
-    () =>
-      Array.from({ length: Math.max(8, Math.round(40 * motionScale)) }, (_, id) => ({
-        id,
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 8}s`,
-        duration: `${16 + Math.random() * 10}s`,
-        scale: 0.26 + Math.random() * 0.35,
-        driftX: `${(Math.random() * 8 - 4).toFixed(1)}px`,
-        driftY: `${(Math.random() * 10 - 5).toFixed(1)}px`,
-      })),
-    [motionScale],
-  )
-  const shootingStars = useMemo(
-    () =>
-      Array.from({ length: Math.max(1, Math.round(5 * motionScale)) }, (_, id) => ({
-        id,
-        top: `${Math.random() * 80 + 5}%`,
-        delay: `${Math.random() * 30}s`,
-        duration: `${55 + Math.random() * 10}s`,
-        skew: `${(Math.random() * 12 - 6).toFixed(1)}deg`,
-      })),
-    [motionScale],
-  )
-  const comets = useMemo(
-    () =>
-      Array.from({ length: Math.max(1, Math.round(3 * motionScale)) }, (_, id) => ({
-        id,
-        top: `${Math.random() * 70 + 10}%`,
-        delay: `${Math.random() * 18 + id * 8}s`,
-        duration: `${18 + Math.random() * 8}s`,
-        rotation: `${(Math.random() * 8 - 4).toFixed(1)}deg`,
-      })),
-    [motionScale],
-  )
-  const cosmicPlanets = useMemo(
-    () =>
-      Array.from({ length: Math.max(1, Math.round(2 * motionScale)) }, (_, id) => ({
-        id,
-        size: 120 + Math.random() * 80,
-        top: `${Math.random() * 50 + 15}%`,
-        left: `${Math.random() * 70 + 8}%`,
-        hue: `${Math.random() * 28 - 12}deg`,
-        delay: `${Math.random() * 3}s`,
-        duration: `${24 + Math.random() * 10}s`,
-      })),
-    [motionScale],
-  )
   const c = content[activeLocale]
   const hobbyNavLabel = activeLocale === 'TR' ? 'Hobim' : 'Hobby'
 
@@ -2777,256 +2713,6 @@ function App() {
     }
   }, [isMobile, reduceMotion, isLowPerformance, activeLocale])
 
-  // ============================================
-  // EPIC COSMIC ENHANCEMENTS - DESKTOP ONLY
-  // ============================================
-
-  // Scroll-based Parallax Depth Layers - OPTIMIZED with RAF and low-perf check
-  useEffect(() => {
-    if (isMobile || reduceMotion || isLowPerformance) return
-
-    let ticking = false
-    let lastScrollY = 0
-
-    // Cache DOM queries
-    const nearLayer = document.querySelector('.parallax-stars-near') as HTMLElement
-    const midLayer = document.querySelector('.parallax-stars-mid') as HTMLElement
-    const farLayer = document.querySelector('.parallax-stars-far') as HTMLElement
-
-    const updateParallax = () => {
-      // Use transform3d for GPU acceleration
-      if (nearLayer) nearLayer.style.transform = `translate3d(0, ${lastScrollY * 0.4}px, 0)`
-      if (midLayer) midLayer.style.transform = `translate3d(0, ${lastScrollY * 0.25}px, 0)`
-      if (farLayer) farLayer.style.transform = `translate3d(0, ${lastScrollY * 0.1}px, 0)`
-
-      ticking = false
-    }
-
-    const handleParallaxScroll = () => {
-      lastScrollY = window.scrollY
-
-      if (!ticking) {
-        window.requestAnimationFrame(updateParallax)
-        ticking = true
-      }
-    }
-
-    window.addEventListener('scroll', handleParallaxScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleParallaxScroll)
-  }, [isMobile, reduceMotion, isLowPerformance])
-
-  // Constellation Canvas - Neural Network Connected Stars (OPTIMIZED)
-  useEffect(() => {
-    if (isMobile || reduceMotion || isLowPerformance) return
-
-    const canvas = document.querySelector('.constellation-canvas') as HTMLCanvasElement
-    if (!canvas) return
-
-    const ctx = canvas.getContext('2d', { alpha: true })
-    if (!ctx) return
-
-    let animationId: number | null = null
-    let isRunning = true
-
-    // Set canvas size with device pixel ratio consideration
-    const dpr = Math.min(window.devicePixelRatio || 1, 2) // Cap at 2x for performance
-    const setCanvasSize = () => {
-      const width = window.innerWidth
-      const height = window.innerHeight
-      canvas.width = width * dpr
-      canvas.height = height * dpr
-      canvas.style.width = `${width}px`
-      canvas.style.height = `${height}px`
-      ctx.scale(dpr, dpr)
-    }
-    setCanvasSize()
-
-    // Star particles - REDUCED count for better performance
-    interface Star {
-      x: number
-      y: number
-      vx: number
-      vy: number
-      radius: number
-    }
-
-    const stars: Star[] = []
-    const starCount = 40 // Reduced from 80 to 40
-    const maxDistance = 120 // Reduced from 150 to 120
-
-    const width = window.innerWidth
-    const height = window.innerHeight
-
-    // Create stars
-    for (let i = 0; i < starCount; i++) {
-      stars.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.2, // Slower movement
-        vy: (Math.random() - 0.5) * 0.2,
-        radius: Math.random() * 1.2 + 0.5,
-      })
-    }
-
-    // Frame skip for performance - target 30fps instead of 60fps
-    let lastTime = 0
-    const targetInterval = 1000 / 30 // 30 FPS
-
-    // Pre-calculate squared distance to avoid sqrt
-    const maxDistanceSquared = maxDistance * maxDistance
-
-    // Animation loop with frame throttling
-    const animate = (currentTime: number) => {
-      if (!isRunning) return
-
-      const deltaTime = currentTime - lastTime
-      if (deltaTime < targetInterval) {
-        animationId = requestAnimationFrame(animate)
-        return
-      }
-      lastTime = currentTime - (deltaTime % targetInterval)
-
-      const w = window.innerWidth
-      const h = window.innerHeight
-
-      ctx.clearRect(0, 0, w, h)
-
-      // Update and draw stars
-      ctx.fillStyle = 'rgba(139, 37, 37, 0.7)'
-      stars.forEach((star) => {
-        star.x += star.vx
-        star.y += star.vy
-
-        // Bounce off edges
-        if (star.x < 0 || star.x > w) star.vx *= -1
-        if (star.y < 0 || star.y > h) star.vy *= -1
-
-        // Draw star
-        ctx.beginPath()
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2)
-        ctx.fill()
-      })
-
-      // Draw connections with spatial optimization
-      ctx.strokeStyle = 'rgba(139, 37, 37, 0.12)'
-      ctx.lineWidth = 1
-
-      // Only check nearby stars using squared distance (avoid sqrt)
-      for (let i = 0; i < stars.length; i++) {
-        for (let j = i + 1; j < stars.length; j++) {
-          const dx = stars[i].x - stars[j].x
-          const dy = stars[i].y - stars[j].y
-          const distanceSquared = dx * dx + dy * dy
-
-          if (distanceSquared < maxDistanceSquared) {
-            const distance = Math.sqrt(distanceSquared)
-            ctx.beginPath()
-            ctx.moveTo(stars[i].x, stars[i].y)
-            ctx.lineTo(stars[j].x, stars[j].y)
-            ctx.globalAlpha = (1 - distance / maxDistance) * 0.8
-            ctx.stroke()
-          }
-        }
-      }
-      ctx.globalAlpha = 1
-
-      animationId = requestAnimationFrame(animate)
-    }
-
-    animationId = requestAnimationFrame(animate)
-
-    // Handle resize with debounce
-    let resizeTimeout: number | null = null
-    const handleResize = () => {
-      if (resizeTimeout) clearTimeout(resizeTimeout)
-      resizeTimeout = window.setTimeout(() => {
-        setCanvasSize()
-        // Update star positions proportionally
-        const newWidth = window.innerWidth
-        const newHeight = window.innerHeight
-        stars.forEach(star => {
-          star.x = (star.x / width) * newWidth
-          star.y = (star.y / height) * newHeight
-        })
-      }, 150)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      isRunning = false
-      if (animationId) cancelAnimationFrame(animationId)
-      if (resizeTimeout) clearTimeout(resizeTimeout)
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [isMobile, reduceMotion, isLowPerformance])
-
-  // Bottom Planet Visibility - Show only at Contact Section (OPTIMIZED)
-  useEffect(() => {
-    if (isMobile || reduceMotion || isLowPerformance) return
-
-    // Cache DOM queries
-    const contactSection = document.querySelector('#contact') as HTMLElement
-    const planet = document.querySelector('.cosmic-planet-bottom') as HTMLElement
-    if (!contactSection || !planet) return
-
-    let ticking = false
-    let lastVisible = false
-
-    const handlePlanetVisibility = () => {
-      if (ticking) return
-      ticking = true
-
-      requestAnimationFrame(() => {
-        const rect = contactSection.getBoundingClientRect()
-        const windowHeight = window.innerHeight
-        const isVisible = rect.top < windowHeight && rect.bottom > 0
-
-        // Only update DOM if visibility changed
-        if (isVisible !== lastVisible) {
-          lastVisible = isVisible
-          planet.classList.toggle('visible', isVisible)
-        }
-        ticking = false
-      })
-    }
-
-    window.addEventListener('scroll', handlePlanetVisibility, { passive: true })
-    handlePlanetVisibility() // Check initial state
-    return () => window.removeEventListener('scroll', handlePlanetVisibility)
-  }, [isMobile, reduceMotion, isLowPerformance])
-
-  // Ambient Particle Field - OPTIMIZED (further reduced)
-  useEffect(() => {
-    if (isMobile || reduceMotion || isLowPerformance) return
-
-    const particleCount = 6 // Reduced from 12 to 6
-    const particles: HTMLElement[] = []
-    const colors = ['', 'blue']
-
-    // Create particles
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div')
-      particle.className = `ambient-particle ${colors[i % colors.length]}`
-
-      // Random starting position
-      particle.style.left = `${Math.random() * 100}vw`
-      particle.style.top = `${Math.random() * 100}vh`
-
-      // Random animation delay and duration - longer for less CPU usage
-      particle.style.animationDelay = `${Math.random() * 5}s`
-      particle.style.animationDuration = `${20 + Math.random() * 10}s`
-
-      document.body.appendChild(particle)
-      particles.push(particle)
-    }
-
-    // Cleanup
-    return () => {
-      particles.forEach((p) => p.remove())
-    }
-  }, [isMobile, reduceMotion, isLowPerformance])
-
   // Enhanced Header Scroll Effect - OPTIMIZED with RAF
   useEffect(() => {
     // Cache DOM query
@@ -3081,159 +2767,23 @@ function App() {
       <div className="scroll-progress-bar" aria-hidden="true">
         <div className="scroll-progress-fill" style={{ width: `calc(var(--scroll-progress, 0) * 100%)` }} />
       </div>
-      <div className="cursor-glow" aria-hidden="true" />
-
-      {/* NEW: Enhanced Parallax Star Layers */}
-      {!isMobile && !reduceMotion && (
-        <>
-          <div className="parallax-stars-layer parallax-stars-near" aria-hidden="true" />
-          <div className="parallax-stars-layer parallax-stars-mid" aria-hidden="true" />
-          <div className="parallax-stars-layer parallax-stars-far" aria-hidden="true" />
-        </>
-      )}
-
-      {/* Original parallax stars */}
-      <div className="parallax-stars" aria-hidden="true">
-        <span className="layer l1" />
-        <span className="layer l2" />
-        <span className="layer l3" />
-      </div>
-
-      {/* NEW: Large Bottom Planet */}
-      {!isMobile && !reduceMotion && (
-        <div className="cosmic-planet-bottom" aria-hidden="true" />
-      )}
-      <div className="nebula-clouds" aria-hidden="true">
-        <span className="cloud c1" />
-        <span className="cloud c2" />
-      </div>
-      <div className="lens-flares" aria-hidden="true">
-        <span className="flare f1" />
-        <span className="flare f2" />
-        <span className="flare f3" />
-      </div>
       <div className="grid-overlay" aria-hidden="true" />
-      <div className="background-dust" aria-hidden="true">
-        <div className="space-haze">
-          <span className="haze h1" />
-          <span className="haze h2" />
-          <span className="haze h3" />
-        </div>
-        {cosmicPlanets.map((planet) => (
-          <span
-            key={planet.id}
-            className="planet"
-            style={
-              {
-                width: `${planet.size}px`,
-                height: `${planet.size}px`,
-                top: planet.top,
-                left: planet.left,
-                '--planet-hue': planet.hue,
-                '--planet-duration': planet.duration,
-                animationDelay: planet.delay,
-                animationDuration: planet.duration,
-              } as CSSProperties
-            }
-          />
-        ))}
-        {cosmicDust.map((piece) => (
-          <span
-            key={piece.id}
-            className="dust mote"
-            style={
-              {
-                top: piece.top,
-                left: piece.left,
-                animationDelay: piece.delay,
-                animationDuration: piece.duration,
-                '--mote-duration': piece.duration,
-                '--dust-scale': piece.scale,
-                '--drift-x': piece.driftX,
-                '--drift-y': piece.driftY,
-              } as CSSProperties
-            }
-          />
-        ))}
-        {shootingStars.map((star) => (
-          <span
-            key={star.id}
-            className="shooting-star"
-            style={
-              {
-                top: star.top,
-                '--star-delay': star.delay,
-                '--star-duration': star.duration,
-                '--star-rotation': star.skew,
-              } as CSSProperties
-            }
-          />
-        ))}
-        {fallingStars.map((star) => (
-          <span
-            key={star.id}
-            className="falling-star"
-            style={
-              {
-                left: star.left,
-                '--fall-duration': `${star.duration}ms`,
-              } as CSSProperties
-            }
-          />
-        ))}
-        <div className="comet-field">
-          {comets.map((comet) => (
-            <span
-              key={comet.id}
-              className="comet"
-              style={
-                {
-                  top: comet.top,
-                  '--comet-delay': comet.delay,
-                  '--comet-duration': comet.duration,
-                  transform: `rotate(${comet.rotation})`,
-                } as CSSProperties
-              }
-            />
-          ))}
-        </div>
-        <div className="sparkle-field">
-          {sparkleField.map((spark) => (
-            <span
-              key={spark.id}
-              className="sparkle"
-              style={
-                {
-                  top: spark.top,
-                  left: spark.left,
-                  '--spark-scale': spark.scale,
-                  '--spark-duration': spark.duration,
-                  '--spark-delay': spark.delay,
-                } as CSSProperties
-              }
-            />
-          ))}
-        </div>
+
+      {/* Optimized Nebula Clouds - CSS only, no JS */}
+      <div className="nebula-clouds" aria-hidden="true">
+        <div className="nebula-layer nebula-1" />
+        <div className="nebula-layer nebula-2" />
       </div>
+
+      {/* Minimal Stars - CSS only */}
+      <div className="stars-container" aria-hidden="true">
+        <div className="stars-layer stars-small" />
+        <div className="stars-layer stars-medium" />
+      </div>
+
       {showWelcome && (
         <div className="biome-entrance" aria-live="polite" />
       )}
-      <div className="ambient-lights" aria-hidden="true">
-        <span className="orb o1" />
-        <span className="orb o2" />
-        <span className="orb o3" />
-        <span className="orb o4" />
-        <span className="orb o5" />
-        <span className="orb o6" />
-        <div className="aurora">
-          <span className="ribbon r1" />
-          <span className="ribbon r2" />
-          <span className="ribbon r3" />
-          <span className="spark s1" />
-          <span className="spark s2" />
-        </div>
-      </div>
-      <div className="edge-lights" aria-hidden="true" />
       {moonVisible && (
         <div className={`moon-overlay ${moonPhase}`}>
           <div className="moon-glow" aria-hidden="true">
@@ -3244,8 +2794,6 @@ function App() {
           </div>
         </div>
       )}
-      {/* Constellation Canvas - Neural Network Stars */}
-      {!isMobile && !reduceMotion && <canvas className="constellation-canvas" aria-hidden="true" />}
 
 
       <div className={`content-shell ${showWelcome ? 'is-blurred' : ''} ${moonVisible ? 'is-hidden' : ''}`}>
