@@ -46,6 +46,7 @@ type Project = {
   impact?: string
   playground?: boolean
   details?: ProjectDetail
+  gallery?: string[]
 }
 
 const localeOptions: { code: Locale; flag: string; label: string }[] = [
@@ -88,6 +89,7 @@ const content: Record<
       eyebrow: string
       titleMain: string
       titleAccent: string
+      impactLine: string
       lede: string
       ctas: { browse: string; download: string }
       ctaNotes: { citizen: string; availability: string }
@@ -179,13 +181,14 @@ const content: Record<
       skills: 'Yetenekler',
       contact: 'İletişim',
     },
-    brandEyebrow: 'Computer Engineer | Data/Software/IT/Endüstriyel',
+    brandEyebrow: 'Industrial AI & Data Engineer',
     welcome: '',
     hero: {
-      eyebrow: 'Hoş geldin',
-      titleMain: 'Bilgisayar Mühendisi,',
-      titleAccent: ' veri, yazılım, IT ve endüstriyel sistemlere odaklı',
-      lede: 'Veri merkezli sistemlere odaklanıyorum; verinin kendisini, onu üreten süreçleri ve etrafındaki yazılım/entegrasyon katmanlarını birlikte geliştiriyorum. Ana odağım data.',
+      eyebrow: 'Industrial AI Engineer | Hoş geldin',
+      titleMain: 'Industrial AI & Data Engineer,',
+      titleAccent: ' akıllı fabrikalar, üretim verisi ve karar destek sistemleri',
+      impactLine: '4+ yıl deneyim • 10+ proje • AB vatandaşı • Hemen başlayabilir',
+      lede: 'Veriyi sahadan alıp (MES, sensörler, ERP), ölçeklenebilir veri hatları, KPI\'lar ve makine öğrenmesi modelleriyle üretim kalitesini ve operasyonel kararları iyileştiren sistemler geliştiriyorum.',
       ctas: { browse: 'Projelerime göz at', download: 'CV indir' },
       ctaNotes: { citizen: 'AB Vatandaşı (Bulgaristan)', availability: 'Hemen başlayabilir' },
     },
@@ -194,9 +197,9 @@ const content: Record<
       location: 'Türkiye / Almanya',
       focus: 'Uzmanlık',
       focusItems: [
-        { label: 'Data Engineering', active: true },
-        { label: 'Business Intelligence', active: true },
-        { label: 'AI / ML', active: false },
+        { label: 'Industrial AI', active: true },
+        { label: 'Data Engineering (Manufacturing)', active: true },
+        { label: 'Backend & ML Integration', active: false },
       ],
       availability: 'Hemen başlayabilirim',
     },
@@ -412,6 +415,15 @@ const content: Record<
         tags: ['ML', 'Industry 4.0', 'Data', 'Analytics'],
         image: '/projects/smart-factory-digitalization.webp',
         impact: 'Plan vs gerceklesme KPI ve saha parametrelerini ayni modelde okuyup defekt riskini dusuren aksiyonlari gosteriyor.',
+        gallery: [
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-00 PM-436.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-02 PM-709.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-06 PM-220.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-08 PM-399.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-12 PM-566.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-15 PM-867.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-24 PM-466.png',
+        ],
         details: {
           dataProcessing: 'Pandas, NumPy ile IQR outlier temizleme, StandardScaler ile normalizasyon, One-Hot Encoding',
           mlModels: 'Logistic Regression (yorumlanabilirlik), Random Forest (non-linear ilişkiler)',
@@ -434,6 +446,13 @@ const content: Record<
         tags: ['IoT', 'Data', 'ML', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
         impact: 'Saha verisini AWS free-tier uzerinde toplayip ariza tahminlerini dashboardda sunar.',
+        gallery: [
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-38 PM-910.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-42 PM-970.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-51 PM-368.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-58 PM-649.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-26-03 PM-406.png',
+        ],
         details: {
           backend: 'Python ETL servisleri, Node-RED akış yönetimi',
           frontend: 'Çok dilli Web UI (React tabanlı)',
@@ -652,17 +671,17 @@ const content: Record<
     ],
     about: {
       eyebrow: 'Hakkımda',
-      title: 'Veri, yazılım, IT ve endüstriyel sistemlerde üretiyor ve öğreniyorum.',
-      bio: 'Verinin yalnızca analiz edilmesiyle değil; nasıl üretildiği, nasıl taşındığı ve nasıl anlamlı kararlara dönüştüğüyle ilgileniyorum. Yazılım, backend, otomasyon ve endüstriyel entegrasyon tarafında kendimi geliştirirken, tüm bu katmanların merkezinde veriyi konumlandırıyorum. Amacım; sahadan gelen veriyi güvenilir, ölçeklenebilir ve karar destek odaklı sistemlere dönüştürmek.',
+      title: 'Veriyi sadece analiz eden değil, nasıl üretildiğini, nasıl aktığını ve nasıl aksiyona dönüştüğünü önemseyen bir mühendisim.',
+      bio: 'Akıllı fabrika, endüstriyel IoT ve üretim analitiği projelerinde; veri altyapısı, backend servisleri ve makine öğrenmesi bileşenlerini uçtan uca geliştiriyorum. Hedefim, sahadan gelen ham veriyi ölçeklenebilir, güvenilir ve iş değeri üreten sistemlere dönüştürmek.',
       strengths: [
-        'Problem cozumleme ve sistem dusuncesi',
-        'Urun ve kullanici odakli yaklasim',
-        'Net iletisim ve paydas yonetimi',
-        'Hizli ogrenme ve adaptasyon',
-        'Uctan uca veri akisina bakis',
+        'Problem çözümleme ve sistem düşüncesi',
+        'Uçtan uca veri akışına bakış',
+        'Endüstriyel süreç anlayışı',
+        'Hızlı öğrenme ve adaptasyon',
+        'Net iletişim ve paydaş yönetimi',
       ],
-      openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
-      highlight: 'Data, otomasyon, endüstriyel dijitalizasyon ve BI alanlarında her gün kendimi geliştiriyorum.',
+      openTo: ['Industrial AI Engineer', 'Data Engineer (Streaming & Manufacturing)', 'Applied AI / Data Engineer'],
+      highlight: 'Endüstriyel sistemlere yönelmiş Applied AI / Data Engineer olarak; akıllı fabrika, üretim verisi ve karar destek sistemleri geliştiriyorum.',
       motto: '"Veriyi anlamak, sistemi anlamaktır."',
       timeline: [
         { year: '2021', text: 'Trakya Üniversitesi Bilgisayar Mühendisliği başlangıç' },
@@ -721,13 +740,14 @@ const content: Record<
       skills: 'Skills',
       contact: 'Kontakt',
     },
-    brandEyebrow: 'Computer Engineer | Data/Software/IT/Industrie',
+    brandEyebrow: 'Industrial AI & Data Engineer',
     welcome: '',
     hero: {
-      eyebrow: 'Willkommen',
-      titleMain: 'Informatikingenieur,',
-      titleAccent: ' mit Fokus auf Daten, Software, IT und industrielle Systeme',
-      lede: 'Ich fokussiere mich auf datenzentrierte Systeme; ich entwickle die Daten selbst, die Prozesse dahinter und die Software-/Integrationsschichten darum herum gemeinsam. Mein Hauptfokus ist Data.',
+      eyebrow: 'Industrial AI Engineer | Willkommen',
+      titleMain: 'Industrial AI & Data Engineer,',
+      titleAccent: ' Smart Factories, Produktionsdaten und Entscheidungsunterstützungssysteme',
+      impactLine: '4+ Jahre Erfahrung • 10+ Projekte • EU-Bürger • Sofort verfügbar',
+      lede: 'Ich nehme Daten vom Shopfloor (MES, Sensoren, ERP) und entwickle skalierbare Datenpipelines, KPIs und Machine-Learning-Modelle, um Produktionsqualität und operative Entscheidungen zu verbessern.',
       ctas: { browse: 'Projekte ansehen', download: 'CV herunterladen' },
       ctaNotes: { citizen: 'EU-Bürger (Bulgarien)', availability: 'Sofort verfügbar' },
     },
@@ -736,9 +756,9 @@ const content: Record<
       location: 'Türkei / Deutschland',
       focus: 'Expertise',
       focusItems: [
-        { label: 'Data Engineering', active: true },
-        { label: 'Business Intelligence', active: true },
-        { label: 'AI / ML', active: false },
+        { label: 'Industrial AI', active: true },
+        { label: 'Data Engineering (Manufacturing)', active: true },
+        { label: 'Backend & ML Integration', active: false },
       ],
       availability: 'Sofort einsatzbereit',
     },
@@ -955,6 +975,15 @@ const content: Record<
         image: '/projects/smart-factory-digitalization.webp',
         impact:
           'Verbindet Plan-vs-Actual KPI und Shopfloor-Parameter in einem Modell und zeigt risikosenkende Hebel.',
+        gallery: [
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-00 PM-436.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-02 PM-709.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-06 PM-220.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-08 PM-399.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-12 PM-566.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-15 PM-867.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-24 PM-466.png',
+        ],
         details: {
           dataProcessing: 'Pandas, NumPy mit IQR-Outlier-Cleaning, StandardScaler, One-Hot Encoding',
           mlModels: 'Logistic Regression (Interpretierbarkeit), Random Forest (Non-linear)',
@@ -977,6 +1006,13 @@ const content: Record<
         tags: ['IoT', 'Data', 'ML', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
         impact: 'Sammelt Felddaten auf AWS Free Tier, liefert Prognosen und KPIs im Dashboard.',
+        gallery: [
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-38 PM-910.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-42 PM-970.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-51 PM-368.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-58 PM-649.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-26-03 PM-406.png',
+        ],
         details: {
           backend: 'Python ETL Services, Node-RED Flow Management',
           frontend: 'Mehrsprachiges Web UI (React-basiert)',
@@ -1194,18 +1230,18 @@ const content: Record<
     ],
     about: {
       eyebrow: 'Über mich',
-      title: 'Ich arbeite und lerne in Daten, Software, IT und Industrie-Kontexten.',
-      bio: 'Ich interessiere mich nicht nur für Datenanalyse, sondern auch dafür, wie Daten erzeugt, transportiert und in sinnvolle Entscheidungen überführt werden. Während ich mich in Software, Backend, Automatisierung und industrieller Integration weiterentwickle, setze ich Daten ins Zentrum all dieser Schichten. Ziel: Shopfloor-Daten in verlässliche, skalierbare und entscheidungsorientierte Systeme verwandeln.',
+      title: 'Ein Ingenieur, der nicht nur Daten analysiert, sondern versteht, wie sie entstehen, fließen und in Aktionen umgewandelt werden.',
+      bio: 'In Smart-Factory-, Industrial-IoT- und Produktionsanalytik-Projekten entwickle ich Dateninfrastruktur, Backend-Services und Machine-Learning-Komponenten End-to-End. Mein Ziel: Rohdaten vom Shopfloor in skalierbare, zuverlässige und wertschöpfende Systeme zu verwandeln.',
       strengths: [
-        'Systemdenken und Problemloesung',
-        'Nutzerorientierung und Produktfokus',
-        'Klare Kommunikation & Stakeholder-Management',
+        'Problemlösung und Systemdenken',
+        'End-to-End Blick auf Datenflüsse',
+        'Verständnis industrieller Prozesse',
         'Schnelles Lernen und Anpassung',
-        'End-to-end Blick auf Datenfluesse',
+        'Klare Kommunikation & Stakeholder-Management',
       ],
-      openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrie-Ingenieur'],
-      highlight: 'Ich entwickle mich täglich in Data, Automatisierung, industrieller Digitalisierung und BI weiter.',
-      motto: '"Daten verstehen heisst das System verstehen."',
+      openTo: ['Industrial AI Engineer', 'Data Engineer (Streaming & Manufacturing)', 'Applied AI / Data Engineer'],
+      highlight: 'Applied AI / Data Engineer mit Fokus auf industrielle Systeme; ich entwickle Smart Factories, Produktionsdaten und Entscheidungsunterstützungssysteme.',
+      motto: '"Daten verstehen heißt das System verstehen."',
       timeline: [
         { year: '2021', text: 'Informatikstudium an der Trakya Universitaet' },
         { year: '2023', text: 'Erstes Praktikum — Enterprise IT & Daten' },
@@ -1263,13 +1299,14 @@ const content: Record<
       skills: 'Skills',
       contact: 'Contact',
     },
-    brandEyebrow: 'Computer Engineer | Data/Software/IT/Industrial',
+    brandEyebrow: 'Industrial AI & Data Engineer',
     welcome: '',
     hero: {
-      eyebrow: 'Welcome',
-      titleMain: 'Computer Engineer,',
-      titleAccent: ' focused on data, software, IT, and industrial systems',
-      lede: 'I focus on data-centric systems; I build the data itself, the processes that generate it, and the surrounding software/integration layers together. My main focus is data.',
+      eyebrow: 'Industrial AI Engineer | Welcome',
+      titleMain: 'Industrial AI & Data Engineer,',
+      titleAccent: ' smart factories, production data, and decision support systems',
+      impactLine: '4+ years experience • 10+ projects • EU citizen • Available now',
+      lede: 'I take data from the shop floor (MES, sensors, ERP) and build scalable data pipelines, KPIs, and machine learning models to improve production quality and operational decisions.',
       ctas: { browse: 'Browse projects', download: 'Download CV' },
       ctaNotes: { citizen: 'EU Citizen (Bulgaria)', availability: 'Available immediately' },
     },
@@ -1278,9 +1315,9 @@ const content: Record<
       location: 'Turkey / Germany',
       focus: 'Expertise',
       focusItems: [
-        { label: 'Data Engineering', active: true },
-        { label: 'Business Intelligence', active: true },
-        { label: 'AI / ML', active: false },
+        { label: 'Industrial AI', active: true },
+        { label: 'Data Engineering (Manufacturing)', active: true },
+        { label: 'Backend & ML Integration', active: false },
       ],
       availability: 'Ready to start',
     },
@@ -1497,6 +1534,15 @@ const content: Record<
         image: '/projects/smart-factory-digitalization.webp',
         impact:
           'Combines plan-vs-actual KPIs with shop-floor parameters in one model to highlight actions that reduce defects.',
+        gallery: [
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-00 PM-436.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-02 PM-709.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-06 PM-220.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-08 PM-399.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-12 PM-566.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-15 PM-867.png',
+          '/projects/AIProduction/Desktop 2026-01-28 10-55-24 PM-466.png',
+        ],
         details: {
           dataProcessing: 'Pandas, NumPy with IQR outlier removal, StandardScaler, One-Hot Encoding',
           mlModels: 'Logistic Regression (interpretability), Random Forest (non-linear relationships)',
@@ -1519,6 +1565,13 @@ const content: Record<
         tags: ['IoT', 'Data', 'ML', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
         impact: 'Collects field data on AWS free tier and surfaces predictions + KPIs in the dashboard.',
+        gallery: [
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-38 PM-910.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-42 PM-970.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-51 PM-368.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-58 PM-649.png',
+          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-26-03 PM-406.png',
+        ],
         details: {
           backend: 'Python ETL services, Node-RED flow management',
           frontend: 'Multilingual Web UI (React-based)',
@@ -1736,17 +1789,17 @@ const content: Record<
     ],
     about: {
       eyebrow: 'About',
-      title: 'Working and learning across data, software, IT, and industrial contexts.',
-      bio: "I'm interested not just in analyzing data, but in how it's produced, moved, and turned into meaningful decisions. As I grow in software, backend, automation, and industrial integration, I keep data at the center of every layer. My goal: turn shop-floor data into reliable, scalable, decision-support systems.",
+      title: 'An engineer who cares not just about analyzing data, but how it is produced, flows, and transforms into action.',
+      bio: 'In smart factory, industrial IoT, and production analytics projects, I build data infrastructure, backend services, and machine learning components end-to-end. My goal is to transform raw shop-floor data into scalable, reliable, and business-value-generating systems.',
       strengths: [
-        'Systems thinking and problem solving',
-        'Product and user focus',
-        'Clear communication with stakeholders',
-        'Fast learning and adaptation',
+        'Problem solving and systems thinking',
         'End-to-end view of data flow',
+        'Understanding of industrial processes',
+        'Fast learning and adaptation',
+        'Clear communication with stakeholders',
       ],
-      openTo: ['Data & AI', 'Software Developer', 'Backend Developer', 'IT', 'Industrial Engineer'],
-      highlight: 'I keep improving daily across data, automation, industrial digitalization, and BI.',
+      openTo: ['Industrial AI Engineer', 'Data Engineer (Streaming & Manufacturing)', 'Applied AI / Data Engineer'],
+      highlight: 'Applied AI / Data Engineer focused on industrial systems; building smart factories, production data, and decision support systems.',
       motto: '"Understanding data means understanding the system."',
       timeline: [
         { year: '2021', text: 'Started Computer Engineering at Trakya University' },
@@ -1835,6 +1888,8 @@ function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('hero')
   const [activeProjectDetail, setActiveProjectDetail] = useState<Project | null>(null)
+  const [galleryIndex, setGalleryIndex] = useState(0)
+  const [galleryLightbox, setGalleryLightbox] = useState(false)
   const [projectFilter, setProjectFilter] = useState<string>('all')
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [feedbackReminder, setFeedbackReminder] = useState(false)
@@ -2929,11 +2984,12 @@ function App() {
       <main>
         <section className="hero" id="hero">
           <div className="hero-text">
-            <p className="eyebrow">{greeting}</p>
+            <p className="eyebrow">Data Engineer | {greeting}</p>
             <h1>
               {c.hero.titleMain}
               <span className="accent">{c.hero.titleAccent}</span>
             </h1>
+            <p className="impact-line">{c.hero.impactLine}</p>
             <p className="lede typewriter-text">
               {typewriterText}
               {!typewriterDone && <span className="typewriter-cursor">|</span>}
@@ -3444,6 +3500,38 @@ function App() {
                       <img src={activeProjectDetail.image} alt={activeProjectDetail.title} loading="lazy" />
                     </div>
                   )}
+                  {activeProjectDetail.gallery && activeProjectDetail.gallery.length > 0 && (
+                    <div className="project-gallery">
+                      <h4 className="gallery-title">
+                        {activeLocale === 'TR' ? 'Proje Görselleri' : activeLocale === 'DE' ? 'Projektbilder' : 'Project Screenshots'}
+                      </h4>
+                      <div className="gallery-thumbnails">
+                        {activeProjectDetail.gallery.map((img, idx) => (
+                          <button
+                            key={img}
+                            type="button"
+                            className={`gallery-thumb${galleryIndex === idx ? ' active' : ''}`}
+                            onClick={() => { setGalleryIndex(idx); setGalleryLightbox(true); }}
+                            aria-label={`${activeLocale === 'TR' ? 'Görsel' : activeLocale === 'DE' ? 'Bild' : 'Image'} ${idx + 1}`}
+                          >
+                            <img src={img} alt={`${activeProjectDetail.title} screenshot ${idx + 1}`} loading="lazy" />
+                          </button>
+                        ))}
+                      </div>
+                      <p className="gallery-hint">
+                        {activeLocale === 'TR' ? 'Büyütmek için tıklayın' : activeLocale === 'DE' ? 'Zum Vergrößern klicken' : 'Click to enlarge'}
+                      </p>
+                    </div>
+                  )}
+                  {!activeProjectDetail.gallery && (
+                    <p className="no-gallery-note">
+                      {activeLocale === 'TR'
+                        ? 'Daha fazla görsel için GitHub sayfasını ziyaret edebilirsiniz.'
+                        : activeLocale === 'DE'
+                        ? 'Weitere Bilder finden Sie auf der GitHub-Seite.'
+                        : 'Visit GitHub page for more visuals.'}
+                    </p>
+                  )}
                   <p className="card-text">{activeProjectDetail.description}</p>
                   <p className="card-text subtle">{activeProjectDetail.summary}</p>
                   {activeProjectDetail.details && (
@@ -3527,6 +3615,49 @@ function App() {
                 <button className="btn primary full-width" type="button" onClick={() => { setActiveProjectDetail(null) }}>
                   {projectUiCopy.close}
                 </button>
+              </div>
+            </div>
+          )}
+          {galleryLightbox && activeProjectDetail?.gallery && (
+            <div
+              className="gallery-lightbox-overlay"
+              role="dialog"
+              aria-modal="true"
+              onClick={() => setGalleryLightbox(false)}
+            >
+              <div className="gallery-lightbox-content" onClick={(e) => e.stopPropagation()}>
+                <button
+                  className="gallery-lightbox-close"
+                  type="button"
+                  onClick={() => setGalleryLightbox(false)}
+                  aria-label={activeLocale === 'TR' ? 'Kapat' : activeLocale === 'DE' ? 'Schließen' : 'Close'}
+                >
+                  ×
+                </button>
+                <button
+                  className="gallery-nav gallery-prev"
+                  type="button"
+                  onClick={() => setGalleryIndex((prev) => (prev - 1 + activeProjectDetail.gallery!.length) % activeProjectDetail.gallery!.length)}
+                  aria-label={activeLocale === 'TR' ? 'Önceki' : activeLocale === 'DE' ? 'Zurück' : 'Previous'}
+                >
+                  ‹
+                </button>
+                <img
+                  src={activeProjectDetail.gallery[galleryIndex]}
+                  alt={`${activeProjectDetail.title} - ${galleryIndex + 1}`}
+                  className="gallery-lightbox-img"
+                />
+                <button
+                  className="gallery-nav gallery-next"
+                  type="button"
+                  onClick={() => setGalleryIndex((prev) => (prev + 1) % activeProjectDetail.gallery!.length)}
+                  aria-label={activeLocale === 'TR' ? 'Sonraki' : activeLocale === 'DE' ? 'Weiter' : 'Next'}
+                >
+                  ›
+                </button>
+                <div className="gallery-counter">
+                  {galleryIndex + 1} / {activeProjectDetail.gallery.length}
+                </div>
               </div>
             </div>
           )}
