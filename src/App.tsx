@@ -45,6 +45,7 @@ type Project = {
   image: string
   impact?: string
   playground?: boolean
+  hobby?: boolean
   details?: ProjectDetail
   gallery?: string[]
 }
@@ -582,6 +583,33 @@ const content: Record<
         },
       },
       {
+        title: 'KPI Automation Toolkit',
+        description:
+          'Python + VBA hibrit KPI otomasyon pipeline. SAP CSV exportlarını Config dosyasından okuyarak OEE (Availability × Performance × Quality), MTTR/MTBF hesaplamaları ve Downtime Pareto analizleri yapan modüler sistem. Her sınıf tek sorumluluk prensibine uygun: DataIngester, DataCleaner, DataValidator, KPICalculator ve Pipeline orchestrator. Exception tracking ile veri kalitesi görünürlüğü, JSON loglama ile audit trail.',
+        summary:
+          'SAP verilerinden KPI hesaplama, veri temizleme ve Excel dashboard güncelleme; Python backend + VBA orkestrasyonu ile üretim-seviyesi data pipeline.',
+        stack: 'Python, Pandas, NumPy, Excel VBA, JSON, openpyxl',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['Automation', 'Data Pipeline', 'KPI', 'Python', 'Excel VBA'],
+        image: '/projects/KPIAutomation/KapakFoto.png',
+        impact: 'SAP verilerinden otomatik KPI hesaplama ve dashboard güncelleme; manuel raporlama süresini önemli ölçüde azaltır.',
+        gallery: [
+          '/projects/KPIAutomation/KapakFoto.png',
+          '/projects/KPIAutomation/Desktop 2026-02-01 6-29-01 PM-83.png',
+        ],
+        details: {
+          backend: 'Python modülleri (Pipeline, DataCleaner, KPICalculator, DataValidator, PipelineLogger)',
+          frontend: 'Excel VBA UserForm, Named Ranges ile dinamik arayüz',
+          dataProcessing: 'Pandas ile IQR outlier temizleme, eksik veri handling, negatif değer exception tracking, NumpyEncoder ile JSON serialization',
+          visualization: 'Excel Dashboard, Pivot tablolar, Power Query entegrasyonu',
+          layers: ['SAP Data Import', 'Schema Validation', 'Data Cleaning', 'KPI Calculation (OEE/MTTR/MTBF)', 'Pareto Analysis', 'Excel Output'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modüler Python + VBA hibrit: VBA orkestrasyon → Python data processing → Excel output; Single Responsibility Principle',
+        },
+      },
+      {
         title: '3D Runner Game',
         description: 'Unity/C# tek kişilik 3D koşu; basit level tasarımı ve fizik odaklı, hızlı iterasyon.',
         summary: 'Pipeline ve asset yönetimi pratiği için hobi Prototype / Demo.',
@@ -593,6 +621,7 @@ const content: Record<
         image: '',
         impact: 'Tek kişilik pipeline ve iterasyon hızında artış.',
         playground: true,
+        hobby: true,
         details: {
           backend: 'Unity Engine, C# scripting',
           layers: ['Oyun Mekaniği', 'Fizik Sistemi', 'Level Tasarımı', 'Asset Yönetimi'],
@@ -612,6 +641,7 @@ const content: Record<
         image: '',
         impact: 'Hızlı prototipleme ve asset entegrasyonu pratiği.',
         playground: true,
+        hobby: true,
         details: {
           backend: 'Unity 2D Engine, C# scripting',
           layers: ['Oyun Döngüsü', 'Düşman AI', 'Dalga Sistemi', 'Sprite Yönetimi'],
@@ -632,6 +662,7 @@ const content: Record<
         image: '',
         impact: '2.5 haftada ekipçe MVP; koordinasyon deneyimi.',
         playground: true,
+        hobby: true,
         details: {
           backend: 'Unity 3D Engine, C# scripting',
           layers: ['FPS Mekaniği', 'Puzzle Sistemi', 'Düşman AI', 'Level Tasarımı', 'Etkileşim Sistemi'],
@@ -1191,6 +1222,33 @@ const content: Record<
         },
       },
       {
+        title: 'KPI Automation Toolkit',
+        description:
+          'Python + VBA Hybrid-KPI-Automatisierungs-Pipeline. Liest SAP-CSV-Exporte über Config-Datei und berechnet OEE (Availability × Performance × Quality), MTTR/MTBF sowie Downtime-Pareto-Analysen. Modulares System nach Single-Responsibility-Prinzip: DataIngester, DataCleaner, DataValidator, KPICalculator und Pipeline-Orchestrator. Exception-Tracking für Datenqualitäts-Sichtbarkeit, JSON-Logging für Audit-Trail.',
+        summary:
+          'KPI-Berechnung aus SAP-Daten, Datenbereinigung und Excel-Dashboard-Aktualisierung; Python-Backend + VBA-Orchestrierung für produktionsreife Data-Pipeline.',
+        stack: 'Python, Pandas, NumPy, Excel VBA, JSON, openpyxl',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['Automation', 'Data Pipeline', 'KPI', 'Python', 'Excel VBA'],
+        image: '/projects/KPIAutomation/KapakFoto.png',
+        impact: 'Automatische KPI-Berechnung und Dashboard-Aktualisierung aus SAP-Daten; reduziert manuellen Reporting-Aufwand erheblich.',
+        gallery: [
+          '/projects/KPIAutomation/KapakFoto.png',
+          '/projects/KPIAutomation/Desktop 2026-02-01 6-29-01 PM-83.png',
+        ],
+        details: {
+          backend: 'Python-Module (Pipeline, DataCleaner, KPICalculator, DataValidator, PipelineLogger)',
+          frontend: 'Excel VBA UserForm, Named Ranges für dynamische Oberfläche',
+          dataProcessing: 'Pandas mit IQR-Outlier-Bereinigung, Missing-Value-Handling, Negativ-Wert-Exception-Tracking, NumpyEncoder für JSON-Serialisierung',
+          visualization: 'Excel Dashboard, Pivot-Tabellen, Power Query Integration',
+          layers: ['SAP Data Import', 'Schema Validation', 'Data Cleaning', 'KPI Calculation (OEE/MTTR/MTBF)', 'Pareto Analysis', 'Excel Output'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modulare Python + VBA Hybrid: VBA-Orchestrierung → Python-Datenverarbeitung → Excel-Output; Single Responsibility Principle',
+        },
+      },
+      {
         title: '3D Runner Game',
         description: 'Unity/C# Einzelprojekt; 3D Runner mit schnellem Iterationsfokus auf Level und Physik.',
         summary: 'Prototype / Demo für Asset-Handling und Gameplay-Loop.',
@@ -1202,6 +1260,7 @@ const content: Record<
         image: '',
         impact: 'Solo-Projekt; Pipeline und Iterationstempo gesteigert.',
         playground: true,
+        hobby: true,
         details: {
           backend: 'Unity Engine, C# Scripting',
           layers: ['Spielmechanik', 'Physiksystem', 'Level-Design', 'Asset-Management'],
@@ -1221,6 +1280,7 @@ const content: Record<
         image: '',
         impact: 'Schnelles Prototyping und Asset-Integration geuebt.',
         playground: true,
+        hobby: true,
         details: {
           backend: 'Unity 2D Engine, C# Scripting',
           layers: ['Gameplay-Loop', 'Gegner-AI', 'Wellensystem', 'Sprite-Management'],
@@ -1241,6 +1301,7 @@ const content: Record<
         image: '',
         impact: 'Team-MVP in ~2.5 Wochen; Koordination gestaerkt.',
         playground: true,
+        hobby: true,
         details: {
           backend: 'Unity 3D Engine, C# Scripting',
           layers: ['FPS Mechanik', 'Puzzle System', 'Gegner-AI', 'Level-Design', 'Interaktionssystem'],
@@ -1800,6 +1861,33 @@ const content: Record<
         },
       },
       {
+        title: 'KPI Automation Toolkit',
+        description:
+          'Python + VBA hybrid KPI automation pipeline. Reads SAP CSV exports via Config file and calculates OEE (Availability × Performance × Quality), MTTR/MTBF, and Downtime Pareto analyses. Modular system following Single Responsibility Principle: DataIngester, DataCleaner, DataValidator, KPICalculator, and Pipeline orchestrator. Exception tracking for data quality visibility, JSON logging for audit trail.',
+        summary:
+          'KPI calculation from SAP data, data cleaning, and Excel dashboard updates; Python backend + VBA orchestration for production-grade data pipeline.',
+        stack: 'Python, Pandas, NumPy, Excel VBA, JSON, openpyxl',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['Automation', 'Data Pipeline', 'KPI', 'Python', 'Excel VBA'],
+        image: '/projects/KPIAutomation/KapakFoto.png',
+        impact: 'Automatic KPI calculation and dashboard updates from SAP data; significantly reduces manual reporting effort.',
+        gallery: [
+          '/projects/KPIAutomation/KapakFoto.png',
+          '/projects/KPIAutomation/Desktop 2026-02-01 6-29-01 PM-83.png',
+        ],
+        details: {
+          backend: 'Python modules (Pipeline, DataCleaner, KPICalculator, DataValidator, PipelineLogger)',
+          frontend: 'Excel VBA UserForm, Named Ranges for dynamic interface',
+          dataProcessing: 'Pandas with IQR outlier cleaning, missing value handling, negative value exception tracking, NumpyEncoder for JSON serialization',
+          visualization: 'Excel Dashboard, Pivot tables, Power Query integration',
+          layers: ['SAP Data Import', 'Schema Validation', 'Data Cleaning', 'KPI Calculation (OEE/MTTR/MTBF)', 'Pareto Analysis', 'Excel Output'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modular Python + VBA hybrid: VBA orchestration → Python data processing → Excel output; Single Responsibility Principle',
+        },
+      },
+      {
         title: '3D Runner Game',
         description: 'Solo Unity/C# project; 3D runner with quick iterations on levels and physics.',
         summary: 'Prototype / Demo focused on asset handling and gameplay loop.',
@@ -1811,6 +1899,7 @@ const content: Record<
         image: '',
         impact: 'Solo build; better pipeline and iteration speed.',
         playground: true,
+        hobby: true,
         details: {
           backend: 'Unity Engine, C# scripting',
           layers: ['Game Mechanics', 'Physics System', 'Level Design', 'Asset Management'],
@@ -1830,6 +1919,7 @@ const content: Record<
         image: '',
         impact: 'Applied project for fast prototyping and asset integration.',
         playground: true,
+        hobby: true,
         details: {
           backend: 'Unity 2D Engine, C# scripting',
           layers: ['Game Loop', 'Enemy AI', 'Wave System', 'Sprite Management'],
@@ -1850,6 +1940,7 @@ const content: Record<
         image: '',
         impact: 'Delivered a team MVP in ~2.5 weeks; coordination boost.',
         playground: true,
+        hobby: true,
         details: {
           backend: 'Unity 3D Engine, C# scripting',
           layers: ['FPS Mechanics', 'Puzzle System', 'Enemy AI', 'Level Design', 'Interaction System'],
@@ -2040,7 +2131,6 @@ function App() {
   const [activeProjectDetail, setActiveProjectDetail] = useState<Project | null>(null)
   const [galleryIndex, setGalleryIndex] = useState(0)
   const [galleryLightbox, setGalleryLightbox] = useState(false)
-  const [projectFilter, setProjectFilter] = useState<string>('all')
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [feedbackReminder, setFeedbackReminder] = useState(false)
   const [feedbackRating, setFeedbackRating] = useState<number | null>(null)
@@ -3512,36 +3602,26 @@ function App() {
             <p className="section-text">{c.sections.projects.text}</p>
           </div>
 
-          <div className="project-filters">
-            {['all', 'AI/ML', 'Web', 'IoT', 'Game'].map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                className={`pill project-filter-btn${projectFilter === cat ? ' active' : ''}`}
-                onClick={() => setProjectFilter(cat)}
-              >
-                {cat === 'all' ? (activeLocale === 'TR' ? 'Tümü' : activeLocale === 'DE' ? 'Alle' : 'All') : cat}
-              </button>
-            ))}
+          {/* Professional Projects Separator */}
+          <div className="hobby-separator field-separator">
+            <div className="separator-line" />
+            <span className="separator-title">
+              {activeLocale === 'TR' ? 'Alan Projelerim' : activeLocale === 'DE' ? 'Fachprojekte' : 'Field Projects'}
+            </span>
+            <div className="separator-line" />
           </div>
 
+          {/* Professional Projects */}
           <div className={`grid projects${isMobile ? ' mobile' : ''}`}>
             {c.projects
-              .filter((project) => {
-                if (projectFilter === 'all') return true
-                if (projectFilter === 'AI/ML') return project.tags.some((t) => ['ML', 'AI', 'Deep Learning', 'CNN', 'NLP'].includes(t))
-                if (projectFilter === 'Web') return project.tags.some((t) => ['Web', '.NET', 'React', 'Frontend'].includes(t)) || project.stack.toLowerCase().includes('.net')
-                if (projectFilter === 'IoT') return project.tags.some((t) => ['IoT', 'Industry 4.0'].includes(t))
-                if (projectFilter === 'Game') return Boolean(project.playground)
-                return true
-              })
+              .filter((project) => !project.hobby)
               .map((project, idx) => {
               const isUnityProject = project.stack.toLowerCase().includes('unity')
               const isPlayground = Boolean(project.playground)
               const preview = getProjectPreview(project)
               const visibleTags = project.tags.slice(0, 3)
               const remainingTagCount = project.tags.length - visibleTags.length
-              const isFeatured = idx === 0 && projectFilter === 'all' && !isMobile
+              const isFeatured = idx === 0 && !isMobile
               const stackItems = project.stack.split(',').map((s) => s.trim())
 
               if (isMobile) {
@@ -3600,6 +3680,69 @@ function App() {
                     </div>
                     {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
                     <span className={getProjectAccentClass(project.title)} />
+                  </div>
+                  <p className="card-text project-brief">{preview}</p>
+                  <div className="tags">
+                    {visibleTags.map((tag) => (
+                      <span className="pill small" key={tag}>{tag}</span>
+                    ))}
+                    {remainingTagCount > 0 && <span className="pill small ghost">+{remainingTagCount}</span>}
+                  </div>
+                  {project.impact && (
+                    <div className="project-impact">
+                      <span className="impact-icon">📈</span>
+                      <span className="impact-text">{project.impact}</span>
+                    </div>
+                  )}
+                  <div className="card-footer project-actions">
+                    <button className="btn ghost small" type="button" onClick={() => openProjectDetail(project)}>
+                      {projectUiCopy.open}
+                    </button>
+                    <a className="link" href={project.github} target="_blank" rel="noreferrer">
+                      GitHub
+                    </a>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+
+          {/* Hobby Projects Separator */}
+          <div className="hobby-separator">
+            <div className="separator-line" />
+            <span className="separator-title">
+              {activeLocale === 'TR' ? 'Hobi Projelerim' : activeLocale === 'DE' ? 'Hobby-Projekte' : 'Hobby Projects'}
+            </span>
+            <div className="separator-line" />
+          </div>
+
+          {/* Hobby Projects - Side by Side */}
+          <div className="hobby-projects-row">
+            {c.projects
+              .filter((project) => project.hobby)
+              .map((project, idx) => {
+              const isPlayground = Boolean(project.playground)
+              const preview = getProjectPreview(project)
+              const visibleTags = project.tags.slice(0, 3)
+              const remainingTagCount = project.tags.length - visibleTags.length
+              const stackItems = project.stack.split(',').map((s) => s.trim())
+
+              return (
+                <article
+                  className={`card project-card hobby-card${isPlayground ? ' playground' : ''} project-stagger`}
+                  key={project.title}
+                  style={{ animationDelay: `${idx * 80}ms` }}
+                >
+                  <div className="card-head">
+                    <div>
+                      <h3>{project.title}</h3>
+                      <div className="stack-badges">
+                        {stackItems.map((s) => (
+                          <span className="stack-badge" key={s}>{s}</span>
+                        ))}
+                      </div>
+                    </div>
+                    {isPlayground && <span className="pill small ghost">Prototype / Demo</span>}
                   </div>
                   <p className="card-text project-brief">{preview}</p>
                   <div className="tags">

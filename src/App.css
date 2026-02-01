@@ -4497,6 +4497,67 @@ img {
   color: #f56565;
 }
 
+/* Hobby Projects Separator */
+.hobby-separator {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 3rem 0 2rem;
+  padding: 0 0.5rem;
+}
+
+.separator-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 37, 37, 0.4), transparent);
+}
+
+.separator-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #9bb0d4;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+/* Hobby Projects Row - Side by Side */
+.hobby-projects-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hobby-projects-row .hobby-card {
+  flex: 1 1 280px;
+  max-width: 320px;
+  min-width: 260px;
+}
+
+.hobby-card .project-media {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hobby-separator {
+    margin: 2rem 0 1.5rem;
+    gap: 1rem;
+  }
+
+  .separator-title {
+    font-size: 0.95rem;
+  }
+
+  .hobby-projects-row {
+    flex-direction: column;
+  }
+
+  .hobby-projects-row .hobby-card {
+    max-width: 100%;
+    min-width: unset;
+  }
+}
+
 /* Featured project */
 .project-card.featured {
   grid-column: 1 / -1;
