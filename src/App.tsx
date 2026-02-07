@@ -404,182 +404,41 @@ const content: Record<
     ],
     projects: [
       {
-        title: 'Smart Factory Digitalization Platform',
+        title: 'End-to-End Smart Manufacturing & AI Proof of Concept (PoC)',
         description:
-          '8000 satir sentetik uretim (sicaklik, hat hizi, vardiya, operator deneyimi, makine yasi); IQR outlier temizleme + standartlastirma + One-Hot ile defect (0/1) tahmini. Logistic Regression (yorumlanabilir) ve Random Forest (non-linear) ile ROC-AUC, classification report, feature importance. MES-ERP entegrasyonu plan fulfillment/delay/scrap KPI\'larini feature olarak besliyor.',
+          'IoT tabanli canli uretim izleme, ERP/MES entegrasyonu ve yapay zeka destekli kestirimci bakim cozumlerini tek platformda birlestiren end-to-end Industry 4.0 uygulamasi. MQTT uzerinden gercek zamanli sensor verisi toplayip PostgreSQL star schema ile saklayan mimari; LSTM tabanli ariza tahmin modeli ve RandomForest tabanli hata tahmin modeli. OEE, MTBF, MTTR, durus Pareto ve tedarikci performansi gibi uretim KPI\'lari otomatik hesaplaniyor. ISO 10816, OEE standartlari ve bakim dokumanlarini kapsayan RAG tabanli akilli asistan. Tum sistem FastAPI tabanli self-contained embedded SPA mimarisiyle tek komutla calistiriliyor.',
         summary:
-          'Saha parametrelerinin defect riskini nasil arttirdigini metrik ve grafiklerle gosterir; script ve notebook uzerinden uca-uca Industry 4.0 veri/ML pipeline.',
-        stack: 'Python, Scikit-Learn, Pandas, Matplotlib, Seaborn, Jupyter',
-        link: 'https://github.com/JegBaha/Smart-Factory-Digitalization-Platform',
-        github: 'https://github.com/JegBaha/Smart-Factory-Digitalization-Platform',
-        live: '#',
-        tags: ['ML', 'Industry 4.0', 'Data', 'Analytics'],
-        image: '/projects/smart-factory-digitalization.webp',
-        impact: 'Plan vs gerceklesme KPI ve saha parametrelerini ayni modelde okuyup defekt riskini dusuren aksiyonlari gosteriyor.',
-        gallery: [
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-00 PM-436.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-02 PM-709.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-06 PM-220.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-08 PM-399.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-12 PM-566.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-15 PM-867.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-24 PM-466.png',
-        ],
-        details: {
-          dataProcessing: 'Pandas, NumPy ile IQR outlier temizleme, StandardScaler ile normalizasyon, One-Hot Encoding',
-          mlModels: 'Logistic Regression (yorumlanabilirlik), Random Forest (non-linear ilişkiler)',
-          visualization: 'Matplotlib, Seaborn ile ROC-AUC, Confusion Matrix, Feature Importance grafikleri',
-          layers: ['Veri Üretimi (sentetik)', 'ETL Pipeline', 'Feature Engineering', 'Model Eğitimi', 'Değerlendirme'],
-          versionControl: 'Git, GitHub',
-          architecture: 'Modüler Jupyter Notebook yapısı, MES-ERP entegrasyon katmanı',
-        },
-      },
-      {
-        title: 'Endustri 4.0 IoT Predictive Maintenance Platformu',
-        description:
-          'Node-RED OPC UA simulasyonu -> MQTT -> Python ETL ile Postgres yildiz sema; PyTorch LSTM ile ariza olasiligi; Power BI dashboard ve cok dilli web UI. Docker Compose ile konumlandirildi, TLS/MQTT ve veri dogrulama ile uca-uca prototip.',
-        summary:
-          'Simule saha verisi, veri ambari ve ariza tahmini pipeline; KPI (OEE/MTTR/MTTF) dashboardlari. Halen uretim asamasinda/Iterative prototype.',
-        stack: 'Node-RED, MQTT, Postgres, Python, PyTorch, Power BI, Docker',
+          'Sensor verisi toplama, kestirimci bakim, uretim KPI otomasyonu ve RAG tabanli akilli asistani tek platformda sunan end-to-end Industry 4.0 PoC uygulamasi.',
+        stack: 'Python, FastAPI, MQTT, PostgreSQL, PyTorch, Scikit-Learn, ChromaDB, Ollama, Pandas, NumPy, HTML5 Canvas',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['IoT', 'Data', 'ML', 'Ops'],
+        tags: ['IoT', 'ML', 'Industry 4.0', 'RAG', 'FastAPI', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
-        impact: 'Saha verisini AWS free-tier uzerinde toplayip ariza tahminlerini dashboardda sunar.',
+        impact: 'Gercek zamanli sensor verisi, kestirimci bakim, otomatik KPI hesaplama ve RAG asistanini tek komutla ayaga kalkan bir platformda birlestiriyor.',
         gallery: [
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-38 PM-910.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-42 PM-970.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-51 PM-368.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-58 PM-649.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-26-03 PM-406.png',
+          '/projects/IndustryMaintenance/1.png',
+          '/projects/IndustryMaintenance/2.png',
+          '/projects/IndustryMaintenance/3.png',
+          '/projects/IndustryMaintenance/4.png',
+          '/projects/IndustryMaintenance/5.png',
+          '/projects/IndustryMaintenance/6.png',
+          '/projects/IndustryMaintenance/7.png',
+          '/projects/IndustryMaintenance/8.png',
+          '/projects/IndustryMaintenance/9.png',
         ],
         details: {
-          backend: 'Python ETL servisleri, Node-RED akış yönetimi',
-          frontend: 'Çok dilli Web UI (React tabanlı)',
-          database: 'PostgreSQL (Yıldız Şema - Star Schema)',
-          mlModels: 'PyTorch LSTM ile zaman serisi arıza tahmini',
-          protocols: 'OPC UA simülasyonu, MQTT (TLS şifreli), REST API',
-          visualization: 'Power BI Dashboard (OEE, MTTR, MTTF KPI\'ları)',
-          deployment: 'Docker Compose, AWS Free Tier',
-          layers: ['IoT Simülasyonu', 'Mesajlaşma (MQTT)', 'ETL Pipeline', 'Veri Ambarı', 'ML Modeli', 'Dashboard'],
+          backend: 'FastAPI, Uvicorn, Pydantic, async mimari',
+          frontend: 'Embedded HTML/CSS/Vanilla JS SPA, HTML5 Canvas API (harici kutuphane yok)',
+          database: 'PostgreSQL (Star Schema, Fact & Dimension tablolari, Materialized Views)',
+          mlModels: 'PyTorch LSTM (zaman serisi ariza tahmini), Scikit-Learn RandomForest (uretim hata tahmini)',
+          dataProcessing: 'Pandas, NumPy, KPI otomasyonu (OEE, MTBF, MTTR, Pareto), feature engineering, sliding window',
+          protocols: 'MQTT (Mosquitto, paho-mqtt), gercek zamanli sensor streaming ve alarm yonetimi',
+          visualization: 'HTML5 Canvas tabanli grafikler, dark theme dashboard',
+          deployment: 'Self-contained embedded SPA, tek komut (python ui.py), cross-platform (Windows/Linux)',
+          layers: ['IoT Streaming (MQTT)', 'Veri Ambari (Star Schema)', 'KPI Otomasyonu', 'ML Pipeline', 'RAG Asistan', 'Dashboard SPA'],
           versionControl: 'Git, GitHub',
-          architecture: 'Mikroservis mimarisi, Event-Driven tasarım',
-        },
-      },
-      {
-        title: 'Heart Disease Prediction ML Projesi',
-        description:
-          'Heart Failure Prediction verisinde eksik/kategorik/numerik alanları temizleyip normalize ederek KNN, Lojistik Regresyon ve Karar Ağacı modellerini karşılaştırdım. Performansı accuracy/precision/recall/F1 ile ölçtüm.',
-        summary:
-          'Veri ön-işleme, çoklu model denemesi ve sağlık verisinde kalp hastalığı olasılığı tahmini.',
-        stack: 'Scikit-Learn, Python, ML',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
-        live: '#',
-        tags: ['ML', 'Data Analysis', 'Healthcare'],
-        image: '/projects/heart-disease-prediction-ml.webp',
-        impact: 'Model karşılaştırması ile en iyi tahmin doğruluğu belirlendi.',
-        details: {
-          dataProcessing: 'Eksik veri doldurma, kategorik değişken kodlama, Min-Max normalizasyon',
-          mlModels: 'K-Nearest Neighbors (KNN), Lojistik Regresyon, Decision Tree',
-          visualization: 'Confusion Matrix, ROC Curve, Precision-Recall grafikleri',
-          layers: ['Veri Temizleme', 'Feature Engineering', 'Model Eğitimi', 'Model Karşılaştırma', 'Değerlendirme'],
-          versionControl: 'Git, GitHub',
-          architecture: 'Jupyter Notebook tabanlı analiz pipeline\'ı',
-        },
-      },
-      {
-        title: 'NeuraVeil - MRI Tümör Sınıflandırma',
-        description:
-          'EfficientNet, DenseNet, ResNet gibi modelleri transfer learning ve Optuna ile ayarlayarak MRI üzerinde çoklu tümör tipini yüksek doğrulukla sınıflandıran sistem. OpenCV preprocessing, veri dengesi, L2 regülasyonu ve dropout ile üretim seviyesinde model.',
-        summary:
-          'Çok veri kaynaklı MRI pipeline, model ensemble ve REST API ile sağlık için uca-uca AI.',
-        stack: 'PyTorch, TensorFlow, CNN',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
-        live: '#',
-        tags: ['AI', 'Computer Vision', 'Healthcare'],
-        image: '/projects/neuraveil-mri-tumor.webp',
-        impact: 'Transfer learning ile yüksek doğrulukta tümör sınıflandırması sağlandı.',
-        details: {
-          backend: 'FastAPI REST API servisi',
-          dataProcessing: 'OpenCV ile görüntü ön işleme, veri artırma (augmentation), sınıf dengeleme',
-          mlModels: 'EfficientNet, DenseNet, ResNet (Transfer Learning), Model Ensemble',
-          visualization: 'Confusion Matrix, Grad-CAM görselleştirme, Eğitim metrikleri',
-          layers: ['Veri Toplama', 'Preprocessing', 'Model Eğitimi', 'Hiperparametre Optimizasyonu (Optuna)', 'API Servisi'],
-          versionControl: 'Git, GitHub',
-          architecture: 'Modüler CNN pipeline, L2 regülasyonu, Dropout katmanları',
-        },
-      },
-      {
-        title: 'Drumveil Ritual - Metal Davul Transkripsiyon',
-        description:
-          'PyTorch + Demucs ile metal parçalarda davulları ayırıp "Onsets and Frames" mimarisiyle notaları MIDI çıktısına çeviren pipeline. Slakh dataseti ve gerçek kayıtlarla eğitilip spektrum tabanlı yaklaşım kullanıyor. Donanım kısıtı nedeniyle bakımda/Iterative prototype; şimdilik birkaç saniyelik davul kesitlerini başarıyla çevirdi.',
-        summary:
-          'Kaynak ayrıştırma, nota çıkarma ve metal ritimlerine odaklanan derin öğrenme projesi; donanım kısıtı nedeniyle bakımda/Iterative prototype, birkaç saniyelik kesitlerde doğrulandı.',
-        stack: 'PyTorch, Demucs, Audio DSP',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
-        live: '#',
-        tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
-        image: '/projects/drumveil-ritual-metal-drums.webp',
-        impact:
-          'Manuel transkripsiyon süreleri saatlerden dakikalara iniyor; birkaç saniyelik parçalarda doğrulandı, tam ölçek için donanım güncellemesi bekleniyor.',
-        details: {
-          dataProcessing: 'Spektrogram dönüşümü, ses segmentasyonu, Slakh dataset hazırlığı',
-          mlModels: 'Demucs (kaynak ayrıştırma), Onsets and Frames (nota çıkarma)',
-          visualization: 'Spektrogram görselleştirme, MIDI çıktı önizleme',
-          layers: ['Ses Yükleme', 'Kaynak Ayrıştırma', 'Spektrum Analizi', 'Nota Tespiti', 'MIDI Dönüşümü'],
-          hardware: 'GPU gereksinimi (eğitim için), CPU inference desteği',
-          versionControl: 'Git, GitHub',
-          architecture: 'İki aşamalı pipeline: Ayrıştırma → Transkripsiyon',
-        },
-      },
-      {
-        title: 'Employee Management System (.NET)',
-        description:
-          '.NET ile geliştirilen basit çalışan yönetim sistemi; CRUD, roller, izin/rapor işlemleri ve SQL veri tabanı katmanı. Staj sürecinde gerçek senaryolarla test edildi.',
-        summary: 'C#.NET tabanlı HR/employee yönetim uygulaması; temel CRUD ve raporlama.',
-        stack: 'C#.NET, SQL, Entity Framework',
-        link: 'https://github.com/JegBaha/StajEmployeeManagement',
-        github: 'https://github.com/JegBaha/StajEmployeeManagement',
-        live: '#',
-        tags: ['.NET', 'C#', 'SQL'],
-        image: '',
-        impact: 'İzin ve takip süreçlerinde belirgin zaman kazancı.',
-        details: {
-          backend: 'ASP.NET Core MVC',
-          frontend: 'Razor Views, HTML, CSS, JavaScript',
-          database: 'MS SQL Server',
-          orm: 'Entity Framework Core (Code First)',
-          auth: 'Rol tabanlı yetkilendirme (Admin, User)',
-          layers: ['Presentation', 'Business Logic', 'Data Access', 'Database'],
-          versionControl: 'Git, GitHub',
-          architecture: 'Katmanlı mimari (N-Tier), Repository Pattern',
-        },
-      },
-      {
-        title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
-        description:
-          "Excel VBA tabanlı modüler otomasyon toolkit'i; SAP CSV verisini Config'ten okuyup Raw → Staging akışına alıyor, dashboard/pivotlar otomatik yeniliyor. Merkezi loglama/hata yönetimi, Config'e bağlı UserForm EN/TR UI ve çoklu veri kaynakları (CSV/JSON/Excel) entegrasyonu var.",
-        summary:
-          'Mock SAP export ve JSON datasetleriyle konfigürasyon bazlı, yeniden kullanılabilir otomasyon Prototype / Demo; log temizleme ve dashboard refresh otomatik.',
-        stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
-        live: '#',
-        tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
-        image: '/projects/excel-vba-automation.webp',
-        impact: 'Modüler VBA mimarisi, hata yakalama ve Config yönetimi pratiği.',
-        playground: true,
-        details: {
-          backend: 'Excel VBA modülleri',
-          frontend: 'UserForm (EN/TR çoklu dil desteği)',
-          dataProcessing: 'SAP CSV import, JSON parsing, Excel veri manipülasyonu',
-          layers: ['Config Yönetimi', 'Veri Okuma (Raw)', 'Veri İşleme (Staging)', 'Dashboard/Pivot Güncelleme', 'Loglama'],
-          versionControl: 'Git',
-          architecture: 'Modüler VBA yapısı, merkezi hata yönetimi, Config-driven tasarım',
+          architecture: 'Moduler monolit, multithreading (daemon threads), @dataclass config yonetimi, RAG (sentence-transformers, ChromaDB, Ollama/OpenAI/Anthropic LLM entegrasyonu)',
         },
       },
       {
@@ -607,6 +466,189 @@ const content: Record<
           layers: ['SAP Data Import', 'Schema Validation', 'Data Cleaning', 'KPI Calculation (OEE/MTTR/MTBF)', 'Pareto Analysis', 'Excel Output'],
           versionControl: 'Git, GitHub',
           architecture: 'Modüler Python + VBA hibrit: VBA orkestrasyon → Python data processing → Excel output; Single Responsibility Principle',
+        },
+      },
+      {
+        title: 'Drumveil Ritual - Ses Verisi Uzerinde Zaman Serisi Derin Ogrenme',
+        description:
+          'Ses sinyalleri uzerinde zaman serisi ve spektral analizlere dayali derin ogrenme uygulamasi. Muzikteki sesi Demucs ile ayirip ozellikle drum patternlarini cikaran bir pipeline. Ham ses verileri uzerinde ozellik cikarimi, zaman serisi isleme ve model egitim surecinde veri dengesizligi ile boyut uyumsuzluklari gibi pratik problemlerle calisma.',
+        summary:
+          'Ses sinyallerinden kaynak ayristirma ve drum pattern cikarimi icin zaman serisi tabanli derin ogrenme uygulamasi.',
+        stack: 'Python, PyTorch, Demucs, Librosa',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
+        image: '/projects/drumveil-ritual-metal-drums.webp',
+        impact:
+          'Ses sinyallerinden ozellik cikarimi ve zaman serisi isleme konusunda pratik deneyim; veri dengesizligi ve boyut uyumsuzluklari gibi gercek problemlerle calisma.',
+        gallery: [
+          '/projects/drumveil/Desktop 2026-02-07 9-32-34 PM-459.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-40 PM-935.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-45 PM-614.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-53 PM-766.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-55 PM-552.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-58 PM-321.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-33-01 PM-207.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-33-07 PM-275.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-33-20 PM-13.png',
+        ],
+        details: {
+          dataProcessing: 'Spektrogram dönüşümü, ses segmentasyonu, Slakh dataset hazırlığı',
+          mlModels: 'Demucs (kaynak ayrıştırma), Onsets and Frames (nota çıkarma)',
+          visualization: 'Spektrogram görselleştirme, MIDI çıktı önizleme',
+          layers: ['Ses Yükleme', 'Kaynak Ayrıştırma', 'Spektrum Analizi', 'Nota Tespiti', 'MIDI Dönüşümü'],
+          hardware: 'GPU gereksinimi (eğitim için), CPU inference desteği',
+          versionControl: 'Git, GitHub',
+          architecture: 'İki aşamalı pipeline: Ayrıştırma → Transkripsiyon',
+        },
+      },
+      {
+        title: 'NeuraVeil - MRI Tümör Sınıflandırma',
+        description:
+          'EfficientNet, DenseNet, ResNet gibi modelleri transfer learning ve Optuna ile ayarlayarak MRI üzerinde çoklu tümör tipini yüksek doğrulukla sınıflandıran sistem. OpenCV preprocessing, veri dengesi, L2 regülasyonu ve dropout ile üretim seviyesinde model.',
+        summary:
+          'Çok veri kaynaklı MRI pipeline, model ensemble ve REST API ile sağlık için uca-uca AI.',
+        stack: 'PyTorch, TensorFlow, CNN',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['AI', 'Computer Vision', 'Healthcare'],
+        image: '/projects/neuraveil-mri-tumor.webp',
+        impact: 'Transfer learning ile yüksek doğrulukta tümör sınıflandırması sağlandı.',
+        gallery: [
+          '/projects/neuraveil/442462721-7e760073-42c5-49d3-a0e6-2dd4b3ad9971.png',
+          '/projects/neuraveil/442462723-0a40c626-411d-4134-86d4-714de8f16946.png',
+          '/projects/neuraveil/442462729-2fe82a37-decb-47a6-87a0-1636b3cf7f7a.png',
+          '/projects/neuraveil/442462730-52456c0e-ae72-4945-bd60-c3650383407a.png',
+          '/projects/neuraveil/442462734-97d8505d-14a6-4d2b-9321-f3f150d1e80f.png',
+        ],
+        details: {
+          backend: 'FastAPI REST API servisi',
+          dataProcessing: 'OpenCV ile görüntü ön işleme, veri artırma (augmentation), sınıf dengeleme',
+          mlModels: 'EfficientNet, DenseNet, ResNet (Transfer Learning), Model Ensemble',
+          visualization: 'Confusion Matrix, Grad-CAM görselleştirme, Eğitim metrikleri',
+          layers: ['Veri Toplama', 'Preprocessing', 'Model Eğitimi', 'Hiperparametre Optimizasyonu (Optuna)', 'API Servisi'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modüler CNN pipeline, L2 regülasyonu, Dropout katmanları',
+        },
+      },
+      {
+        title: 'Supply Chain Analytics Dashboard – Data & ML PoC',
+        description:
+          'Tedarik zinciri performansını tek bir yerden izlemek için Streamlit ile geliştirilmiş kapsamlı web dashboard. Tedarikçi performansı, teslimat gecikmeleri, maliyet trendleri, risk analizi ve envanter yönetimini tek panelde birleştiriyor. ML modelleri ile teslimat süresi tahmini yapıyor, dış API\'lerden hava durumu ve döviz kurları çekerek risk değerlendirmesini zenginleştiriyor.',
+        summary: 'End-to-end tedarik zinciri analitiği: KPI izleme, ML tabanlı tahminleme, risk skorlama ve envanter optimizasyonu.',
+        stack: 'Python, Streamlit, Pandas, NumPy, Plotly, SQLAlchemy, SQLite, scikit-learn, Requests',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['Data Analytics', 'Machine Learning', 'Python', 'Dashboard', 'Supply Chain'],
+        image: '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
+        impact: 'Tedarikçi skorlama, teslimat tahmini ve risk yönetimini tek platformda birleştiren PoC; karar destek süreçlerini hızlandırır.',
+        details: {
+          backend: 'Python, Streamlit, SQLAlchemy',
+          database: 'SQLite (supply_chain.db)',
+          frontend: 'Streamlit UI Components',
+          mlModels: 'RandomForest, GradientBoosting (teslimat süresi tahmini)',
+          visualization: 'Plotly (bar, pie, area, radar, heatmap)',
+          dataProcessing: 'Pandas, NumPy (filtreleme, agregasyon, KPI hesaplama)',
+          layers: [
+            'Tedarikçi Analizi',
+            'Teslimat Tahmini (ML)',
+            'Maliyet Optimizasyonu',
+            'Risk Değerlendirmesi',
+            'Envanter Yönetimi',
+            'Dış Veri Entegrasyonu (Hava/Döviz/Emtia)',
+          ],
+          architecture: 'Modüler Python mimarisi: config → models → db_manager → analytics modules → UI components',
+          versionControl: 'Git, GitHub',
+        },
+        gallery: [
+          '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-01 PM-762.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-09 PM-660.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-14 PM-800.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-19 PM-361.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-21 PM-630.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-32 PM-511.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-38 PM-171.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-42 PM-160.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-52 PM-134.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-58 PM-109.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-03 PM-132.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-21 PM-548.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-29 PM-324.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-36 PM-880.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-38 PM-629.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-41 PM-254.png',
+        ],
+      },
+      {
+        title: 'Heart Disease Prediction ML Projesi',
+        description:
+          'Heart Failure Prediction verisinde eksik/kategorik/numerik alanları temizleyip normalize ederek KNN, Lojistik Regresyon ve Karar Ağacı modellerini karşılaştırdım. Performansı accuracy/precision/recall/F1 ile ölçtüm.',
+        summary:
+          'Veri ön-işleme, çoklu model denemesi ve sağlık verisinde kalp hastalığı olasılığı tahmini.',
+        stack: 'Scikit-Learn, Python, ML',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['ML', 'Data Analysis', 'Healthcare'],
+        image: '/projects/heart-disease-prediction-ml.webp',
+        impact: 'Model karşılaştırması ile en iyi tahmin doğruluğu belirlendi.',
+        details: {
+          dataProcessing: 'Eksik veri doldurma, kategorik değişken kodlama, Min-Max normalizasyon',
+          mlModels: 'K-Nearest Neighbors (KNN), Lojistik Regresyon, Decision Tree',
+          visualization: 'Confusion Matrix, ROC Curve, Precision-Recall grafikleri',
+          layers: ['Veri Temizleme', 'Feature Engineering', 'Model Eğitimi', 'Model Karşılaştırma', 'Değerlendirme'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Jupyter Notebook tabanlı analiz pipeline\'ı',
+        },
+      },
+      {
+        title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
+        description:
+          "Excel VBA tabanlı modüler otomasyon toolkit'i; SAP CSV verisini Config'ten okuyup Raw → Staging akışına alıyor, dashboard/pivotlar otomatik yeniliyor. Merkezi loglama/hata yönetimi, Config'e bağlı UserForm EN/TR UI ve çoklu veri kaynakları (CSV/JSON/Excel) entegrasyonu var.",
+        summary:
+          'Mock SAP export ve JSON datasetleriyle konfigürasyon bazlı, yeniden kullanılabilir otomasyon Prototype / Demo; log temizleme ve dashboard refresh otomatik.',
+        stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
+        image: '/projects/excel-vba-automation.webp',
+        impact: 'Modüler VBA mimarisi, hata yakalama ve Config yönetimi pratiği.',
+        playground: true,
+        details: {
+          backend: 'Excel VBA modülleri',
+          frontend: 'UserForm (EN/TR çoklu dil desteği)',
+          dataProcessing: 'SAP CSV import, JSON parsing, Excel veri manipülasyonu',
+          layers: ['Config Yönetimi', 'Veri Okuma (Raw)', 'Veri İşleme (Staging)', 'Dashboard/Pivot Güncelleme', 'Loglama'],
+          versionControl: 'Git',
+          architecture: 'Modüler VBA yapısı, merkezi hata yönetimi, Config-driven tasarım',
+        },
+      },
+      {
+        title: 'Employee Management System (.NET)',
+        description:
+          '.NET ile geliştirilen basit çalışan yönetim sistemi; CRUD, roller, izin/rapor işlemleri ve SQL veri tabanı katmanı. Staj sürecinde gerçek senaryolarla test edildi.',
+        summary: 'C#.NET tabanlı HR/employee yönetim uygulaması; temel CRUD ve raporlama.',
+        stack: 'C#.NET, SQL, Entity Framework',
+        link: 'https://github.com/JegBaha/StajEmployeeManagement',
+        github: 'https://github.com/JegBaha/StajEmployeeManagement',
+        live: '#',
+        tags: ['.NET', 'C#', 'SQL'],
+        image: '',
+        impact: 'İzin ve takip süreçlerinde belirgin zaman kazancı.',
+        details: {
+          backend: 'ASP.NET Core MVC',
+          frontend: 'Razor Views, HTML, CSS, JavaScript',
+          database: 'MS SQL Server',
+          orm: 'Entity Framework Core (Code First)',
+          auth: 'Rol tabanlı yetkilendirme (Admin, User)',
+          layers: ['Presentation', 'Business Logic', 'Data Access', 'Database'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Katmanlı mimari (N-Tier), Repository Pattern',
         },
       },
       {
@@ -670,56 +712,6 @@ const content: Record<
           versionControl: 'Git',
           architecture: '3D FPS Component-Based mimari',
         },
-      },
-      {
-        title: 'Supply Chain Analytics Dashboard – Data & ML PoC',
-        description:
-          'Tedarik zinciri performansını tek bir yerden izlemek için Streamlit ile geliştirilmiş kapsamlı web dashboard. Tedarikçi performansı, teslimat gecikmeleri, maliyet trendleri, risk analizi ve envanter yönetimini tek panelde birleştiriyor. ML modelleri ile teslimat süresi tahmini yapıyor, dış API\'lerden hava durumu ve döviz kurları çekerek risk değerlendirmesini zenginleştiriyor.',
-        summary: 'End-to-end tedarik zinciri analitiği: KPI izleme, ML tabanlı tahminleme, risk skorlama ve envanter optimizasyonu.',
-        stack: 'Python, Streamlit, Pandas, NumPy, Plotly, SQLAlchemy, SQLite, scikit-learn, Requests',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
-        live: '#',
-        tags: ['Data Analytics', 'Machine Learning', 'Python', 'Dashboard', 'Supply Chain'],
-        image: '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
-        impact: 'Tedarikçi skorlama, teslimat tahmini ve risk yönetimini tek platformda birleştiren PoC; karar destek süreçlerini hızlandırır.',
-        details: {
-          backend: 'Python, Streamlit, SQLAlchemy',
-          database: 'SQLite (supply_chain.db)',
-          frontend: 'Streamlit UI Components',
-          mlModels: 'RandomForest, GradientBoosting (teslimat süresi tahmini)',
-          visualization: 'Plotly (bar, pie, area, radar, heatmap)',
-          dataProcessing: 'Pandas, NumPy (filtreleme, agregasyon, KPI hesaplama)',
-          layers: [
-            'Tedarikçi Analizi',
-            'Teslimat Tahmini (ML)',
-            'Maliyet Optimizasyonu',
-            'Risk Değerlendirmesi',
-            'Envanter Yönetimi',
-            'Dış Veri Entegrasyonu (Hava/Döviz/Emtia)',
-          ],
-          architecture: 'Modüler Python mimarisi: config → models → db_manager → analytics modules → UI components',
-          versionControl: 'Git, GitHub',
-        },
-        gallery: [
-          '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-01 PM-762.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-09 PM-660.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-14 PM-800.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-19 PM-361.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-21 PM-630.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-32 PM-511.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-38 PM-171.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-42 PM-160.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-52 PM-134.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-58 PM-109.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-03 PM-132.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-21 PM-548.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-29 PM-324.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-36 PM-880.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-38 PM-629.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-41 PM-254.png',
-        ],
       },
     ],
     education: [
@@ -1043,68 +1035,41 @@ const content: Record<
     ],
     projects: [
       {
-        title: 'Smart Factory Digitalization Platform',
+        title: 'End-to-End Smart Manufacturing & AI Proof of Concept (PoC)',
         description:
-          '8.000 Zeilen synthetische Fertigung (Temperatur, Liniengeschwindigkeit, Schicht, Erfahrung, Maschinenalter); IQR-Outlier-Cleaning + Standardisierung + One-Hot fuer Defect (0/1). Logistic Regression (interpretierbar) und Random Forest (non-linear) liefern ROC-AUC, Classification Report, Feature-Importance. MES-ERP Integration speist Plan-Fulfillment/Delay/Scrap KPIs als Features ein.',
+          'IoT-basierte Echtzeit-Produktionsueberwachung, ERP/MES-Integration und KI-gestuetzte vorausschauende Wartung in einer End-to-End Industry 4.0 Plattform. Echtzeit-Sensordaten werden ueber MQTT erfasst und in einem PostgreSQL Star Schema gespeichert. LSTM-basiertes Ausfallvorhersagemodell fuer IoT-Zeitreihen und RandomForest-basiertes Fehlervorhersagemodell fuer Produktions- und ERP-Daten. OEE, MTBF, MTTR, Stillstands-Pareto und Lieferantenperformance werden automatisch berechnet. RAG-basierter intelligenter Assistent mit ISO 10816, OEE-Standards und Wartungsdokumentation. Das gesamte System laeuft als FastAPI-basierte self-contained embedded SPA mit einem einzigen Befehl.',
         summary:
-          'Zeigt mit Metriken und Grafiken, wie Shopfloor-Parameter Defect-Risiko treiben; End-to-End Industry 4.0 Daten/ML-Pipeline per Script und Notebook.',
-        stack: 'Python, Scikit-Learn, Pandas, Matplotlib, Seaborn, Jupyter',
-        link: 'https://github.com/JegBaha/ai-process-optimization',
-        github: 'https://github.com/JegBaha/mes-erp-integration',
-        live: '#',
-        tags: ['ML', 'Industry 4.0', 'Data', 'Analytics'],
-        image: '/projects/smart-factory-digitalization.webp',
-        impact:
-          'Verbindet Plan-vs-Actual KPI und Shopfloor-Parameter in einem Modell und zeigt risikosenkende Hebel.',
-        gallery: [
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-00 PM-436.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-02 PM-709.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-06 PM-220.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-08 PM-399.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-12 PM-566.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-15 PM-867.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-24 PM-466.png',
-        ],
-        details: {
-          dataProcessing: 'Pandas, NumPy mit IQR-Outlier-Cleaning, StandardScaler, One-Hot Encoding',
-          mlModels: 'Logistic Regression (Interpretierbarkeit), Random Forest (Non-linear)',
-          visualization: 'Matplotlib, Seaborn für ROC-AUC, Confusion Matrix, Feature Importance',
-          layers: ['Datengenerierung (synthetisch)', 'ETL Pipeline', 'Feature Engineering', 'Modelltraining', 'Evaluation'],
-          versionControl: 'Git, GitHub',
-          architecture: 'Modulare Jupyter Notebook Struktur, MES-ERP Integrationsschicht',
-        },
-      },
-      {
-        title: 'Industrie 4.0 IoT Predictive Maintenance Plattform',
-        description:
-          'Node-RED OPC UA Simulation -> MQTT -> Python ETL nach Postgres Sternschema; PyTorch LSTM fuer Ausfallwahrscheinlichkeit; Power BI Dashboards und mehrsprachiges Web-UI. Docker-Compose Deployment, TLS/MQTT moeglich, Datenvalidierung fuer End-to-End Prototyp.',
-        summary:
-          'Simulierter Shopfloor-Datenstrom, Data Warehouse und Failure Prediction Pipeline; KPI (OEE/MTTR/MTTF) Dashboards. Noch in Produktion/Iterative prototype.',
-        stack: 'Node-RED, MQTT, Postgres, Python, PyTorch, Power BI, Docker',
+          'Sensordatenerfassung, vorausschauende Wartung, Produktions-KPI-Automatisierung und RAG-basierter intelligenter Assistent in einer End-to-End Industry 4.0 PoC-Plattform.',
+        stack: 'Python, FastAPI, MQTT, PostgreSQL, PyTorch, Scikit-Learn, ChromaDB, Ollama, Pandas, NumPy, HTML5 Canvas',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['IoT', 'Data', 'ML', 'Ops'],
+        tags: ['IoT', 'ML', 'Industry 4.0', 'RAG', 'FastAPI', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
-        impact: 'Sammelt Felddaten auf AWS Free Tier, liefert Prognosen und KPIs im Dashboard.',
+        impact: 'Vereint Echtzeit-Sensordaten, vorausschauende Wartung, automatische KPI-Berechnung und RAG-Assistent in einer mit einem Befehl startbaren Plattform.',
         gallery: [
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-38 PM-910.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-42 PM-970.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-51 PM-368.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-58 PM-649.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-26-03 PM-406.png',
+          '/projects/IndustryMaintenance/1.png',
+          '/projects/IndustryMaintenance/2.png',
+          '/projects/IndustryMaintenance/3.png',
+          '/projects/IndustryMaintenance/4.png',
+          '/projects/IndustryMaintenance/5.png',
+          '/projects/IndustryMaintenance/6.png',
+          '/projects/IndustryMaintenance/7.png',
+          '/projects/IndustryMaintenance/8.png',
+          '/projects/IndustryMaintenance/9.png',
         ],
         details: {
-          backend: 'Python ETL Services, Node-RED Flow Management',
-          frontend: 'Mehrsprachiges Web UI (React-basiert)',
-          database: 'PostgreSQL (Star Schema)',
-          mlModels: 'PyTorch LSTM für Zeitreihen-Ausfallprognose',
-          protocols: 'OPC UA Simulation, MQTT (TLS-verschlüsselt), REST API',
-          visualization: 'Power BI Dashboard (OEE, MTTR, MTTF KPIs)',
-          deployment: 'Docker Compose, AWS Free Tier',
-          layers: ['IoT Simulation', 'Messaging (MQTT)', 'ETL Pipeline', 'Data Warehouse', 'ML Model', 'Dashboard'],
+          backend: 'FastAPI, Uvicorn, Pydantic, async Architektur',
+          frontend: 'Embedded HTML/CSS/Vanilla JS SPA, HTML5 Canvas API (keine externen JS-Bibliotheken)',
+          database: 'PostgreSQL (Star Schema, Fact- & Dimensionstabellen, Materialized Views)',
+          mlModels: 'PyTorch LSTM (Zeitreihen-Ausfallprognose), Scikit-Learn RandomForest (Produktionsfehlervorhersage)',
+          dataProcessing: 'Pandas, NumPy, KPI-Automatisierung (OEE, MTBF, MTTR, Pareto), Feature Engineering, Sliding Window',
+          protocols: 'MQTT (Mosquitto, paho-mqtt), Echtzeit-Sensor-Streaming und Alarmmanagement',
+          visualization: 'HTML5 Canvas basierte Diagramme, Dark Theme Dashboard',
+          deployment: 'Self-contained embedded SPA, ein Befehl (python ui.py), plattformuebergreifend (Windows/Linux)',
+          layers: ['IoT Streaming (MQTT)', 'Data Warehouse (Star Schema)', 'KPI-Automatisierung', 'ML Pipeline', 'RAG Assistent', 'Dashboard SPA'],
           versionControl: 'Git, GitHub',
-          architecture: 'Microservice-Architektur, Event-Driven Design',
+          architecture: 'Modularer Monolith, Multithreading (Daemon Threads), @dataclass Config-Management, RAG (sentence-transformers, ChromaDB, Ollama/OpenAI/Anthropic LLM-Integration)',
         },
       },
       {
@@ -1141,6 +1106,13 @@ const content: Record<
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Hochgenaue Tumorklassifizierung durch Transfer Learning erreicht.',
+        gallery: [
+          '/projects/neuraveil/442462721-7e760073-42c5-49d3-a0e6-2dd4b3ad9971.png',
+          '/projects/neuraveil/442462723-0a40c626-411d-4134-86d4-714de8f16946.png',
+          '/projects/neuraveil/442462729-2fe82a37-decb-47a6-87a0-1636b3cf7f7a.png',
+          '/projects/neuraveil/442462730-52456c0e-ae72-4945-bd60-c3650383407a.png',
+          '/projects/neuraveil/442462734-97d8505d-14a6-4d2b-9321-f3f150d1e80f.png',
+        ],
         details: {
           backend: 'FastAPI REST API Service',
           dataProcessing: 'OpenCV Bildvorverarbeitung, Data Augmentation, Klassenbalancierung',
@@ -1152,19 +1124,30 @@ const content: Record<
         },
       },
       {
-        title: 'Drumveil Ritual - Metal Drum Transkription',
+        title: 'Drumveil Ritual - Deep Learning auf Audiodaten (Zeitreihen)',
         description:
-          'PyTorch + Demucs trennen Metal-Tracks, "Onsets and Frames" extrahiert Drum-Noten und erzeugt MIDI. Nutzt Slakh-Dataset und echte Aufnahmen, spektrumbasierter Ansatz fuer komplexe Rhythmik. Hardware-Limit -> in Wartung/Iterative prototype; aktuell nur wenige Sekunden Drums erfolgreich transkribiert.',
+          'Deep-Learning-Anwendung basierend auf Zeitreihen- und Spektralanalyse von Audiosignalen. Trennt Musikquellen mit Demucs und extrahiert gezielt Drum-Patterns. Feature-Extraktion und Zeitreihenverarbeitung auf Rohaudiodaten; praktische Arbeit mit Datenungleichgewicht und Dimensionsinkompatibilitaeten im Trainingsprozess.',
         summary:
-          'Quelltrennung, Noten-Extraktion und Metal-Rhythmik im Fokus; Wartung/Iterative prototype wegen Hardware-Limit, kurze Snippets verifiziert.',
-        stack: 'PyTorch, Demucs, Audio DSP',
+          'Zeitreihenbasierte Deep-Learning-Anwendung fuer Quelltrennung und Drum-Pattern-Extraktion aus Audiosignalen.',
+        stack: 'Python, PyTorch, Demucs, Librosa',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
-          'Manuelle Transkription von Stunden auf Minuten reduziert; kurze Ausschnitte bestaetigt, volle Laenge nach Hardware-Upgrade.',
+          'Praktische Erfahrung mit Feature-Extraktion und Zeitreihenverarbeitung auf Audiosignalen; Arbeit mit realen Problemen wie Datenungleichgewicht und Dimensionsinkompatibilitaeten.',
+        gallery: [
+          '/projects/drumveil/Desktop 2026-02-07 9-32-34 PM-459.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-40 PM-935.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-45 PM-614.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-53 PM-766.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-55 PM-552.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-58 PM-321.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-33-01 PM-207.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-33-07 PM-275.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-33-20 PM-13.png',
+        ],
         details: {
           dataProcessing: 'Spektrogramm-Transformation, Audio-Segmentierung, Slakh Dataset Vorbereitung',
           mlModels: 'Demucs (Quelltrennung), Onsets and Frames (Notenextraktion)',
@@ -1682,68 +1665,41 @@ const content: Record<
     ],
     projects: [
       {
-        title: 'Smart Factory Digitalization Platform',
+        title: 'End-to-End Smart Manufacturing & AI Proof of Concept (PoC)',
         description:
-          '8k-row synthetic manufacturing data (temperature, line speed, shift, operator experience, machine age); IQR outlier removal + standardization + One-Hot for defect (0/1). Logistic Regression (interpretable) and Random Forest (non-linear) produce ROC-AUC, classification report, and feature importance. MES–ERP integration feeds plan-fulfillment/delay/scrap KPIs as features.',
+          'End-to-end Industry 4.0 application combining IoT-based live production monitoring, ERP/MES integration, and AI-powered predictive maintenance in a single platform. Real-time sensor data is collected over MQTT and stored in a PostgreSQL star schema. LSTM-based fault prediction model for IoT time-series and RandomForest-based defect prediction model for production and ERP data. Production KPIs such as OEE, MTBF, MTTR, downtime Pareto, and supplier performance are calculated automatically. RAG-based intelligent assistant covering ISO 10816, OEE standards, and maintenance documentation. The entire system runs as a FastAPI-based self-contained embedded SPA with a single command.',
         summary:
-          'Shows with metrics and charts how shop-floor parameters drive defect risk; end-to-end Industry 4.0 data/ML pipeline via scripts and notebook.',
-        stack: 'Python, Scikit-Learn, Pandas, Matplotlib, Seaborn, Jupyter',
-        link: 'https://github.com/JegBaha/ai-process-optimization',
-        github: 'https://github.com/JegBaha/mes-erp-integration',
-        live: '#',
-        tags: ['ML', 'Industry 4.0', 'Data', 'Analytics'],
-        image: '/projects/smart-factory-digitalization.webp',
-        impact:
-          'Combines plan-vs-actual KPIs with shop-floor parameters in one model to highlight actions that reduce defects.',
-        gallery: [
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-00 PM-436.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-02 PM-709.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-06 PM-220.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-08 PM-399.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-12 PM-566.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-15 PM-867.png',
-          '/projects/AIProduction/Desktop 2026-01-28 10-55-24 PM-466.png',
-        ],
-        details: {
-          dataProcessing: 'Pandas, NumPy with IQR outlier removal, StandardScaler, One-Hot Encoding',
-          mlModels: 'Logistic Regression (interpretability), Random Forest (non-linear relationships)',
-          visualization: 'Matplotlib, Seaborn for ROC-AUC, Confusion Matrix, Feature Importance charts',
-          layers: ['Data Generation (synthetic)', 'ETL Pipeline', 'Feature Engineering', 'Model Training', 'Evaluation'],
-          versionControl: 'Git, GitHub',
-          architecture: 'Modular Jupyter Notebook structure, MES-ERP integration layer',
-        },
-      },
-      {
-        title: 'Industry 4.0 IoT Predictive Maintenance Platform',
-        description:
-          'Node-RED OPC UA simulation -> MQTT -> Python ETL into Postgres star schema; PyTorch LSTM for failure likelihood; Power BI dashboards plus multilingual web UI. Docker Compose deploy, TLS/MQTT optional, data validation for an end-to-end prototype.',
-        summary:
-          'Simulated shopfloor stream, data warehouse, and failure-prediction pipeline; KPI dashboards for OEE/MTTR/MTTF. Still in production/Iterative prototype.',
-        stack: 'Node-RED, MQTT, Postgres, Python, PyTorch, Power BI, Docker',
+          'Sensor data collection, predictive maintenance, production KPI automation, and RAG-based intelligent assistant unified in a single end-to-end Industry 4.0 PoC platform.',
+        stack: 'Python, FastAPI, MQTT, PostgreSQL, PyTorch, Scikit-Learn, ChromaDB, Ollama, Pandas, NumPy, HTML5 Canvas',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['IoT', 'Data', 'ML', 'Ops'],
+        tags: ['IoT', 'ML', 'Industry 4.0', 'RAG', 'FastAPI', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
-        impact: 'Collects field data on AWS free tier and surfaces predictions + KPIs in the dashboard.',
+        impact: 'Unifies real-time sensor data, predictive maintenance, automatic KPI calculation, and RAG assistant in a single-command deployable platform.',
         gallery: [
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-38 PM-910.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-42 PM-970.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-51 PM-368.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-25-58 PM-649.png',
-          '/projects/IndustryMaintenance/Desktop 2026-01-28 11-26-03 PM-406.png',
+          '/projects/IndustryMaintenance/1.png',
+          '/projects/IndustryMaintenance/2.png',
+          '/projects/IndustryMaintenance/3.png',
+          '/projects/IndustryMaintenance/4.png',
+          '/projects/IndustryMaintenance/5.png',
+          '/projects/IndustryMaintenance/6.png',
+          '/projects/IndustryMaintenance/7.png',
+          '/projects/IndustryMaintenance/8.png',
+          '/projects/IndustryMaintenance/9.png',
         ],
         details: {
-          backend: 'Python ETL services, Node-RED flow management',
-          frontend: 'Multilingual Web UI (React-based)',
-          database: 'PostgreSQL (Star Schema)',
-          mlModels: 'PyTorch LSTM for time-series failure prediction',
-          protocols: 'OPC UA simulation, MQTT (TLS encrypted), REST API',
-          visualization: 'Power BI Dashboard (OEE, MTTR, MTTF KPIs)',
-          deployment: 'Docker Compose, AWS Free Tier',
-          layers: ['IoT Simulation', 'Messaging (MQTT)', 'ETL Pipeline', 'Data Warehouse', 'ML Model', 'Dashboard'],
+          backend: 'FastAPI, Uvicorn, Pydantic, async architecture',
+          frontend: 'Embedded HTML/CSS/Vanilla JS SPA, HTML5 Canvas API (no external JS libraries)',
+          database: 'PostgreSQL (Star Schema, Fact & Dimension tables, Materialized Views)',
+          mlModels: 'PyTorch LSTM (time-series fault prediction), Scikit-Learn RandomForest (production defect prediction)',
+          dataProcessing: 'Pandas, NumPy, KPI automation (OEE, MTBF, MTTR, Pareto), feature engineering, sliding window',
+          protocols: 'MQTT (Mosquitto, paho-mqtt), real-time sensor streaming & alarm management',
+          visualization: 'HTML5 Canvas based charts, dark theme dashboard',
+          deployment: 'Self-contained embedded SPA, single command (python ui.py), cross-platform (Windows/Linux)',
+          layers: ['IoT Streaming (MQTT)', 'Data Warehouse (Star Schema)', 'KPI Automation', 'ML Pipeline', 'RAG Assistant', 'Dashboard SPA'],
           versionControl: 'Git, GitHub',
-          architecture: 'Microservice architecture, Event-Driven design',
+          architecture: 'Modular monolith, multithreading (daemon threads), @dataclass config management, RAG (sentence-transformers, ChromaDB, Ollama/OpenAI/Anthropic LLM integration)',
         },
       },
       {
@@ -1780,6 +1736,13 @@ const content: Record<
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Achieved high-accuracy tumor classification via transfer learning.',
+        gallery: [
+          '/projects/neuraveil/442462721-7e760073-42c5-49d3-a0e6-2dd4b3ad9971.png',
+          '/projects/neuraveil/442462723-0a40c626-411d-4134-86d4-714de8f16946.png',
+          '/projects/neuraveil/442462729-2fe82a37-decb-47a6-87a0-1636b3cf7f7a.png',
+          '/projects/neuraveil/442462730-52456c0e-ae72-4945-bd60-c3650383407a.png',
+          '/projects/neuraveil/442462734-97d8505d-14a6-4d2b-9321-f3f150d1e80f.png',
+        ],
         details: {
           backend: 'FastAPI REST API service',
           dataProcessing: 'OpenCV image preprocessing, data augmentation, class balancing',
@@ -1791,19 +1754,30 @@ const content: Record<
         },
       },
       {
-        title: 'Drumveil Ritual - Metal Drum Transcription',
+        title: 'Drumveil Ritual - Time-Series Deep Learning on Audio Data',
         description:
-          "PyTorch + Demucs for source separation on metal tracks; 'Onsets and Frames' extracts drum notes to MIDI. Uses Slakh data and real recordings with a spectrogram approach for heavy rhythms. Hardware constraints keep it in maintenance/Iterative prototype; currently only a few-second drum snippets transcribed successfully.",
+          'Deep learning application based on time-series and spectral analysis of audio signals. Separates music sources using Demucs and extracts drum patterns specifically. Feature extraction and time-series processing on raw audio data; hands-on work with data imbalance and dimension mismatches during model training.',
         summary:
-          'Source separation and note extraction tailored to metal drum patterns; Iterative prototype/maintenance due to hardware limits, short snippets validated.',
-        stack: 'PyTorch, Demucs, Audio DSP',
+          'Time-series based deep learning application for source separation and drum pattern extraction from audio signals.',
+        stack: 'Python, PyTorch, Demucs, Librosa',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
         tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
-          'Cuts manual transcription from hours to minutes; a few-second clips confirmed, full-length pending hardware upgrade.',
+          'Hands-on experience with feature extraction and time-series processing on audio signals; working through real-world challenges like data imbalance and dimension mismatches.',
+        gallery: [
+          '/projects/drumveil/Desktop 2026-02-07 9-32-34 PM-459.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-40 PM-935.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-45 PM-614.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-53 PM-766.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-55 PM-552.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-32-58 PM-321.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-33-01 PM-207.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-33-07 PM-275.png',
+          '/projects/drumveil/Desktop 2026-02-07 9-33-20 PM-13.png',
+        ],
         details: {
           dataProcessing: 'Spectrogram transformation, audio segmentation, Slakh dataset preparation',
           mlModels: 'Demucs (source separation), Onsets and Frames (note extraction)',
@@ -2798,7 +2772,7 @@ function App() {
       ),
     )
 
-    if (reduceMotion || !('IntersectionObserver' in window)) {
+    if (reduceMotion || !('IntersectionObserver' in window) || isMobile) {
       targets.forEach((node) => node.classList.add('visible'))
       return undefined
     }
@@ -2818,7 +2792,7 @@ function App() {
           }
         })
       },
-      { threshold: 0.2 },
+      { threshold: 0.1 },
     )
 
     targets.forEach((node) => observer.observe(node))
@@ -3629,8 +3603,12 @@ function App() {
                   <article
                     className={`card project-card mobile-compact${isPlayground ? ' playground' : ''}`}
                     key={project.title}
-                    style={{ animationDelay: `${idx * 60}ms` }}
                   >
+                    {project.image && !isUnityProject && (
+                      <div className="project-media mobile-media">
+                        <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
+                      </div>
+                    )}
                     <div className="card-head">
                       <div>
                         <h3>{project.title}</h3>
@@ -3798,21 +3776,71 @@ function App() {
                       <h4 className="gallery-title">
                         {activeLocale === 'TR' ? 'Proje Görselleri' : activeLocale === 'DE' ? 'Projektbilder' : 'Project Screenshots'}
                       </h4>
-                      <div className="gallery-thumbnails">
-                        {activeProjectDetail.gallery.map((img, idx) => (
+                      <div
+                        className="gallery-slider"
+                        onTouchStart={(e) => {
+                          const touch = e.touches[0];
+                          (e.currentTarget as HTMLElement).dataset.touchStartX = String(touch.clientX);
+                          (e.currentTarget as HTMLElement).dataset.touchStartY = String(touch.clientY);
+                        }}
+                        onTouchEnd={(e) => {
+                          const startX = Number((e.currentTarget as HTMLElement).dataset.touchStartX);
+                          const startY = Number((e.currentTarget as HTMLElement).dataset.touchStartY);
+                          const endX = e.changedTouches[0].clientX;
+                          const endY = e.changedTouches[0].clientY;
+                          const diffX = startX - endX;
+                          const diffY = startY - endY;
+                          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                            if (diffX > 0) {
+                              setGalleryIndex((prev) => (prev + 1) % activeProjectDetail.gallery!.length);
+                            } else {
+                              setGalleryIndex((prev) => (prev - 1 + activeProjectDetail.gallery!.length) % activeProjectDetail.gallery!.length);
+                            }
+                          }
+                        }}
+                      >
+                        <button
+                          className="gallery-slider-nav gallery-slider-prev"
+                          type="button"
+                          onClick={() => setGalleryIndex((prev) => (prev - 1 + activeProjectDetail.gallery!.length) % activeProjectDetail.gallery!.length)}
+                          aria-label={activeLocale === 'TR' ? 'Önceki' : activeLocale === 'DE' ? 'Zurück' : 'Previous'}
+                        >
+                          ‹
+                        </button>
+                        <div className="gallery-slider-viewport">
+                          <img
+                            src={activeProjectDetail.gallery[galleryIndex]}
+                            alt={`${activeProjectDetail.title} screenshot ${galleryIndex + 1}`}
+                            className="gallery-slider-img"
+                            onClick={() => setGalleryLightbox(true)}
+                            loading="lazy"
+                          />
+                        </div>
+                        <button
+                          className="gallery-slider-nav gallery-slider-next"
+                          type="button"
+                          onClick={() => setGalleryIndex((prev) => (prev + 1) % activeProjectDetail.gallery!.length)}
+                          aria-label={activeLocale === 'TR' ? 'Sonraki' : activeLocale === 'DE' ? 'Weiter' : 'Next'}
+                        >
+                          ›
+                        </button>
+                      </div>
+                      <div className="gallery-slider-counter">
+                        {galleryIndex + 1} / {activeProjectDetail.gallery.length}
+                      </div>
+                      <div className="gallery-slider-dots">
+                        {activeProjectDetail.gallery.map((_, idx) => (
                           <button
-                            key={img}
+                            key={idx}
                             type="button"
-                            className={`gallery-thumb${galleryIndex === idx ? ' active' : ''}`}
-                            onClick={() => { setGalleryIndex(idx); setGalleryLightbox(true); }}
+                            className={`gallery-dot${galleryIndex === idx ? ' active' : ''}`}
+                            onClick={() => setGalleryIndex(idx)}
                             aria-label={`${activeLocale === 'TR' ? 'Görsel' : activeLocale === 'DE' ? 'Bild' : 'Image'} ${idx + 1}`}
-                          >
-                            <img src={img} alt={`${activeProjectDetail.title} screenshot ${idx + 1}`} loading="lazy" />
-                          </button>
+                          />
                         ))}
                       </div>
                       <p className="gallery-hint">
-                        {activeLocale === 'TR' ? 'Büyütmek için tıklayın' : activeLocale === 'DE' ? 'Zum Vergrößern klicken' : 'Click to enlarge'}
+                        {activeLocale === 'TR' ? 'Büyütmek için tıklayın · Kaydırarak gezin' : activeLocale === 'DE' ? 'Zum Vergrößern klicken · Wischen zum Navigieren' : 'Click to enlarge · Swipe to navigate'}
                       </p>
                     </div>
                   )}
@@ -3918,7 +3946,30 @@ function App() {
               aria-modal="true"
               onClick={() => setGalleryLightbox(false)}
             >
-              <div className="gallery-lightbox-content" onClick={(e) => e.stopPropagation()}>
+              <div
+                className="gallery-lightbox-content"
+                onClick={(e) => e.stopPropagation()}
+                onTouchStart={(e) => {
+                  const touch = e.touches[0];
+                  (e.currentTarget as HTMLElement).dataset.touchStartX = String(touch.clientX);
+                  (e.currentTarget as HTMLElement).dataset.touchStartY = String(touch.clientY);
+                }}
+                onTouchEnd={(e) => {
+                  const startX = Number((e.currentTarget as HTMLElement).dataset.touchStartX);
+                  const startY = Number((e.currentTarget as HTMLElement).dataset.touchStartY);
+                  const endX = e.changedTouches[0].clientX;
+                  const endY = e.changedTouches[0].clientY;
+                  const diffX = startX - endX;
+                  const diffY = startY - endY;
+                  if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    if (diffX > 0) {
+                      setGalleryIndex((prev) => (prev + 1) % activeProjectDetail.gallery!.length);
+                    } else {
+                      setGalleryIndex((prev) => (prev - 1 + activeProjectDetail.gallery!.length) % activeProjectDetail.gallery!.length);
+                    }
+                  }
+                }}
+              >
                 <button
                   className="gallery-lightbox-close"
                   type="button"
