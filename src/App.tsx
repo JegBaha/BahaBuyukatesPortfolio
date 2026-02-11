@@ -2410,10 +2410,6 @@ function App() {
 
   const openProjectDetail = (project: Project) => {
     setActiveProjectDetail(project)
-    const projectsSection = document.getElementById('projects')
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }
   }
 
   const feedbackCopy = c.feedback
@@ -2641,8 +2637,14 @@ function App() {
   }, [isDrawerOpen])
 
   useEffect(() => {
-    document.body.style.overflow = ''
-    return undefined
+    if (activeProjectDetail) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [activeProjectDetail])
 
   useEffect(() => {
