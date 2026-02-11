@@ -2227,6 +2227,7 @@ function App() {
   const [reduceMotion, setReduceMotion] = useState(false)
   const [isLowPerformance, setIsLowPerformance] = useState(false)
   const [cvPopupOpen, setCvPopupOpen] = useState(false)
+  const projectModalRef = useRef<HTMLDivElement | null>(null)
 
   // CV links for each language
   const cvLinks = {
@@ -2409,6 +2410,9 @@ function App() {
   }
 
   const openProjectDetail = (project: Project) => {
+    setGalleryIndex(0)
+    setGalleryLightbox(false)
+    setVideoLightbox(false)
     setActiveProjectDetail(project)
   }
 
@@ -2645,6 +2649,19 @@ function App() {
     return () => {
       document.body.style.overflow = ''
     }
+  }, [activeProjectDetail])
+
+  useEffect(() => {
+    if (!activeProjectDetail) return
+
+    const timer = window.setTimeout(() => {
+      const modalEl = projectModalRef.current
+      if (!modalEl) return
+      modalEl.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+      modalEl.focus({ preventScroll: true })
+    }, 0)
+
+    return () => window.clearTimeout(timer)
   }, [activeProjectDetail])
 
   useEffect(() => {
@@ -3753,7 +3770,13 @@ function App() {
               aria-label={activeProjectDetail.title}
               onClick={() => { setActiveProjectDetail(null); setVideoLightbox(false) }}
             >
-              <div className="project-modal" onClick={(e) => e.stopPropagation()}>
+              <div
+                ref={projectModalRef}
+                className="project-modal"
+                tabIndex={-1}
+                onClick={(e) => e.stopPropagation()}
+                onTouchMove={(e) => e.stopPropagation()}
+              >
                 <div className="modal-head">
                   <div>
                     <p className="eyebrow">{activeProjectDetail.stack}</p>
