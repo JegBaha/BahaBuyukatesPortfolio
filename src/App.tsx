@@ -48,6 +48,7 @@ type Project = {
   hobby?: boolean
   details?: ProjectDetail
   gallery?: string[]
+  video?: string
 }
 
 const localeOptions: { code: Locale; flag: string; label: string }[] = [
@@ -186,10 +187,10 @@ const content: Record<
     welcome: '',
     hero: {
       eyebrow: 'Industrial AI Engineer | Hoş geldin',
-      titleMain: 'Industrial AI & Data Engineer,',
-      titleAccent: ' akıllı fabrikalar, üretim verisi ve karar destek sistemleri',
+      titleMain: 'Industrial AI & Data Engineer',
+      titleAccent: ' | BSc Computer Engineering',
       impactLine: '4+ yıl deneyim • 10+ proje • AB vatandaşı • Hemen başlayabilir',
-      lede: 'Veriyi sahadan alıp (MES, sensörler, ERP), ölçeklenebilir veri hatları, KPI\'lar ve makine öğrenmesi modelleriyle üretim kalitesini ve operasyonel kararları iyileştiren sistemler geliştiriyorum.',
+      lede: 'Sadece veriyi analiz etmekle değil, verinin nasıl üretildiği, nasıl taşındığı ve anlamlı kararlara nasıl dönüştüğüyle ilgileniyorum. Yazılım, backend, otomasyon ve endüstriyel entegrasyon alanlarında ilerlerken veriyi her katmanın merkezinde tutuyorum. Hedefim: saha verisini güvenilir, ölçeklenebilir karar-destek sistemlerine dönüştürmek.',
       ctas: { browse: 'Projelerime göz at', download: 'CV indir' },
       ctaNotes: { citizen: 'AB Vatandaşı (Bulgaristan)', availability: 'Hemen başlayabilir' },
     },
@@ -427,6 +428,7 @@ const content: Record<
           '/projects/IndustryMaintenance/8.png',
           '/projects/IndustryMaintenance/9.png',
         ],
+        video: '/projects/IndustryMaintenance/DemoVideo.mp4',
         details: {
           backend: 'FastAPI, Uvicorn, Pydantic, async mimari',
           frontend: 'Embedded HTML/CSS/Vanilla JS SPA, HTML5 Canvas API (harici kutuphane yok)',
@@ -779,7 +781,7 @@ const content: Record<
       title: 'Veriyi sadece analiz eden değil, nasıl üretildiğini, nasıl aktığını ve nasıl aksiyona dönüştüğünü önemseyen bir mühendisim.',
       bio: 'Akıllı fabrika, endüstriyel IoT ve üretim analitiği projelerinde; veri altyapısı, backend servisleri ve makine öğrenmesi bileşenlerini uçtan uca geliştiriyorum. Hedefim, sahadan gelen ham veriyi ölçeklenebilir, güvenilir ve iş değeri üreten sistemlere dönüştürmek.',
       strengths: [
-        'Problem çözümleme ve sistem düşüncesi',
+        'Yapısal problem çözme ve kök neden analizi',
         'Uçtan uca veri akışına bakış',
         'Endüstriyel süreç anlayışı',
         'Hızlı öğrenme ve adaptasyon',
@@ -849,10 +851,10 @@ const content: Record<
     welcome: '',
     hero: {
       eyebrow: 'Industrial AI Engineer | Willkommen',
-      titleMain: 'Industrial AI & Data Engineer,',
-      titleAccent: ' Smart Factories, Produktionsdaten und Entscheidungsunterstützungssysteme',
+      titleMain: 'Industrial AI & Data Engineer',
+      titleAccent: ' | BSc Computer Engineering',
       impactLine: '4+ Jahre Erfahrung • 10+ Projekte • EU-Bürger • Sofort verfügbar',
-      lede: 'Ich nehme Daten vom Shopfloor (MES, Sensoren, ERP) und entwickle skalierbare Datenpipelines, KPIs und Machine-Learning-Modelle, um Produktionsqualität und operative Entscheidungen zu verbessern.',
+      lede: 'Mich interessiert nicht nur die Datenanalyse, sondern auch, wie Daten erzeugt, transportiert und in fundierte Entscheidungen umgewandelt werden. Während ich mich in Software, Backend, Automatisierung und industrieller Integration weiterentwickle, steht Data im Mittelpunkt jeder Ebene. Mein Ziel: Shopfloor-Daten in zuverlässige, skalierbare Entscheidungsunterstützungssysteme verwandeln.',
       ctas: { browse: 'Projekte ansehen', download: 'CV herunterladen' },
       ctaNotes: { citizen: 'EU-Bürger (Bulgarien)', availability: 'Sofort verfügbar' },
     },
@@ -1090,6 +1092,7 @@ const content: Record<
           '/projects/IndustryMaintenance/8.png',
           '/projects/IndustryMaintenance/9.png',
         ],
+        video: '/projects/IndustryMaintenance/DemoVideo.mp4',
         details: {
           backend: 'FastAPI, Uvicorn, Pydantic, async Architektur',
           frontend: 'Embedded HTML/CSS/Vanilla JS SPA, HTML5 Canvas API (keine externen JS-Bibliotheken)',
@@ -1441,9 +1444,9 @@ const content: Record<
       title: 'Ein Ingenieur, der nicht nur Daten analysiert, sondern versteht, wie sie entstehen, fließen und in Aktionen umgewandelt werden.',
       bio: 'In Smart-Factory-, Industrial-IoT- und Produktionsanalytik-Projekten entwickle ich Dateninfrastruktur, Backend-Services und Machine-Learning-Komponenten End-to-End. Mein Ziel: Rohdaten vom Shopfloor in skalierbare, zuverlässige und wertschöpfende Systeme zu verwandeln.',
       strengths: [
-        'Problemlösung und Systemdenken',
-        'End-to-End Blick auf Datenflüsse',
-        'Verständnis industrieller Prozesse',
+        'Strukturierte Problemloesung und Ursachenanalyse',
+        'End-to-End Blick auf Datenfluesse',
+        'Verstaendnis industrieller Prozesse',
         'Schnelles Lernen und Anpassung',
         'Klare Kommunikation & Stakeholder-Management',
       ],
@@ -1511,10 +1514,10 @@ const content: Record<
     welcome: '',
     hero: {
       eyebrow: 'Industrial AI Engineer | Welcome',
-      titleMain: 'Industrial AI & Data Engineer,',
-      titleAccent: ' smart factories, production data, and decision support systems',
+      titleMain: 'Industrial AI & Data Engineer',
+      titleAccent: ' | BSc Computer Engineering',
       impactLine: '4+ years experience • 10+ projects • EU citizen • Available now',
-      lede: 'I take data from the shop floor (MES, sensors, ERP) and build scalable data pipelines, KPIs, and machine learning models to improve production quality and operational decisions.',
+      lede: 'I\'m interested not just in analyzing data, but in how it\'s produced, moved, and turned into meaningful decisions. As I grow in software, backend, automation, and industrial integration, I keep data at the center of every layer. My goal: turn shop-floor data into reliable, scalable, decision-support systems.',
       ctas: { browse: 'Browse projects', download: 'Download CV' },
       ctaNotes: { citizen: 'EU Citizen (Bulgaria)', availability: 'Available immediately' },
     },
@@ -1752,6 +1755,7 @@ const content: Record<
           '/projects/IndustryMaintenance/8.png',
           '/projects/IndustryMaintenance/9.png',
         ],
+        video: '/projects/IndustryMaintenance/DemoVideo.mp4',
         details: {
           backend: 'FastAPI, Uvicorn, Pydantic, async architecture',
           frontend: 'Embedded HTML/CSS/Vanilla JS SPA, HTML5 Canvas API (no external JS libraries)',
@@ -2103,7 +2107,7 @@ const content: Record<
       title: 'An engineer who cares not just about analyzing data, but how it is produced, flows, and transforms into action.',
       bio: 'In smart factory, industrial IoT, and production analytics projects, I build data infrastructure, backend services, and machine learning components end-to-end. My goal is to transform raw shop-floor data into scalable, reliable, and business-value-generating systems.',
       strengths: [
-        'Problem solving and systems thinking',
+        'Structured problem solving and root cause analysis',
         'End-to-end view of data flow',
         'Understanding of industrial processes',
         'Fast learning and adaptation',
@@ -2193,7 +2197,7 @@ function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
 }
 
 function App() {
-  const [activeLocale, setActiveLocale] = useState<Locale>('TR')
+  const [activeLocale, setActiveLocale] = useState<Locale>('EN')
   const [isLoading, setIsLoading] = useState(true)
   const [showWelcome, setShowWelcome] = useState(true)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -2201,7 +2205,9 @@ function App() {
   const [activeProjectDetail, setActiveProjectDetail] = useState<Project | null>(null)
   const [galleryIndex, setGalleryIndex] = useState(0)
   const [galleryLightbox, setGalleryLightbox] = useState(false)
+  const [videoLightbox, setVideoLightbox] = useState(false)
   const [feedbackOpen, setFeedbackOpen] = useState(false)
+  const [visitorCount, setVisitorCount] = useState<number | null>(null)
   const [feedbackReminder, setFeedbackReminder] = useState(false)
   const [feedbackRating, setFeedbackRating] = useState<number | null>(null)
   const [feedbackMood, setFeedbackMood] = useState<FeedbackMood>(null)
@@ -2209,10 +2215,6 @@ function App() {
   const [feedbackEntries, setFeedbackEntries] = useState<FeedbackEntry[]>([])
   const [feedbackSaved, setFeedbackSaved] = useState(false)
   const [feedbackError, setFeedbackError] = useState('')
-  const [copyToast, setCopyToast] = useState(false)
-  const [moonPhase, setMoonPhase] = useState<'hidden' | 'enter' | 'leave'>('hidden')
-  const moonTimerRef = useRef<number | null>(null)
-  const moonVisible = moonPhase !== 'hidden'
   const [contactSent, setContactSent] = useState(false)
   const [diplomaLightbox, setDiplomaLightbox] = useState(false)
   const [typewriterText, setTypewriterText] = useState('')
@@ -2262,6 +2264,29 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Visitor counter
+  useEffect(() => {
+    const visited = sessionStorage.getItem('visitor_counted')
+    if (!visited) {
+      fetch('https://visitor.6developer.com/visit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ domain: window.location.hostname }),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          setVisitorCount(data.totalCount)
+          sessionStorage.setItem('visitor_counted', '1')
+        })
+        .catch(() => {})
+    } else {
+      fetch(`https://visitor.6developer.com/visit?domain=${window.location.hostname}`)
+        .then((r) => r.json())
+        .then((data) => setVisitorCount(data.totalCount))
+        .catch(() => {})
+    }
+  }, [])
+
   // Typewriter effect for lede text
   useEffect(() => {
     setTypewriterText('')
@@ -2278,32 +2303,6 @@ function App() {
     }, 8)
     return () => clearInterval(interval)
   }, [c.hero.lede])
-
-  const learningList =
-    activeLocale === 'TR'
-      ? ['Kafka & event-driven pipelines', 'MLOps (model versioning/monitoring)', 'Power BI performance tuning', 'German B1 roadmap']
-      : activeLocale === 'DE'
-      ? ['Kafka & Event-Driven', 'MLOps (Versionierung/Monitoring)', 'Power BI Performance-Tuning', 'Deutsch B1 Roadmap']
-      : ['Kafka & event-driven', 'MLOps (versioning/monitoring)', 'Power BI performance tuning', 'German B1 roadmap']
-
-  const roleCtaList =
-    activeLocale === 'TR'
-      ? [
-          'Junior Data / BI Engineer ariyorsaniz konusalim.',
-          'Industry 4.0 + Data entegrasyonu gerekiyorsa destek olabilirim.',
-          'Backend + otomasyon geliştirici ariyorsaniz ulasin.',
-        ]
-      : activeLocale === 'DE'
-      ? [
-          'Wenn Sie einen Junior Data / BI Engineer suchen, sprechen wir.',
-          'Industry 4.0 + Data Integration? Ich kann helfen.',
-          'Backend + Automatisierung Entwickler gesucht? Melde dich.',
-        ]
-      : [
-          'If you need a Junior Data / BI Engineer, let’s talk.',
-          'If you need Industry 4.0 + Data integration, I can help.',
-          'If you want a backend + automation engineer, reach out.',
-        ]
 
   const getJobDuration = (period: string): string => {
     const now = activeLocale === 'DE' ? 'Heute' : activeLocale === 'EN' ? 'Present' : 'Güncel'
@@ -2353,42 +2352,6 @@ function App() {
     () => ['hero', 'about', 'education', 'experience', 'skills', 'projects', 'certifications', 'hobby', 'contact'],
     [],
   )
-  const sectionLabels =
-    activeLocale === 'DE'
-      ? {
-          hero: 'Willkommen',
-          about: 'Über mich',
-          experience: 'Erfahrung',
-          skills: 'Skills',
-          projects: 'Projekte',
-          education: 'Ausbildung',
-          certifications: 'Zertifikate',
-          hobby: 'Hobby',
-          contact: 'Kontakt',
-        }
-      : activeLocale === 'EN'
-      ? {
-          hero: 'Welcome',
-          about: 'About',
-          experience: 'Experience',
-          skills: 'Skills',
-          projects: 'Projects',
-          education: 'Education',
-          certifications: 'Certifications',
-          hobby: 'Hobby',
-          contact: 'Contact',
-        }
-      : {
-          hero: 'Hoş geldin',
-          about: 'Hakkımda',
-          experience: 'Deneyim',
-          skills: 'Yetenekler',
-          projects: 'Projeler',
-          education: 'Eğitim',
-          certifications: 'Sertifikalar',
-          hobby: 'Hobim',
-          contact: 'İletişim',
-        }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -2410,8 +2373,6 @@ function App() {
 
     return () => observer.disconnect()
   }, [sectionIdsToTrack])
-
-  const indicatorLabel = sectionLabels[activeSection as keyof typeof sectionLabels] ?? sectionLabels.hero
 
   const projectUiCopy =
     activeLocale === 'DE'
@@ -2462,13 +2423,6 @@ function App() {
       : (
           feedbackEntries.reduce((sum, entry) => sum + entry.rating, 0) / Math.max(1, feedbackEntries.length)
         ).toFixed(1)
-  const feedbackCountLabel =
-    activeLocale === 'DE'
-      ? `${feedbackEntries.length} gespeichert`
-      : activeLocale === 'EN'
-      ? `${feedbackEntries.length} saved`
-      : `${feedbackEntries.length} kayıt`
-  const recentFeedback = feedbackEntries.slice(0, 3)
   const ratingRequiredCopy =
     activeLocale === 'DE'
       ? 'Bitte Sterne wählen.'
@@ -2491,7 +2445,7 @@ function App() {
     ]
     metaPairs.forEach(({ name, property, content }) => {
       if (!name && !property) return
-      const selector = name ? `meta[name=\"${name}\"]` : `meta[property=\"${property}\"]`
+      const selector = name ? `meta[name="${name}"]` : `meta[property="${property}"]`
       let tag = document.head.querySelector(selector) as HTMLMetaElement | null
       if (!tag) {
         tag = document.createElement('meta')
@@ -2536,7 +2490,10 @@ function App() {
   const toggleDrawer = () => setIsDrawerOpen((open) => !open)
 
   // Section navigation order
-  const navSections = ['hero', 'about', 'education', 'experience', 'skills', 'projects', 'certifications', 'hobby', 'contact']
+  const navSections = useMemo(
+    () => ['hero', 'about', 'education', 'experience', 'skills', 'projects', 'certifications', 'hobby', 'contact'],
+    [],
+  )
 
   // Keyboard navigation
   useEffect(() => {
@@ -2572,34 +2529,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [activeSection])
-
-  const triggerMoonEnter = () => {
-    if (moonTimerRef.current) {
-      window.clearTimeout(moonTimerRef.current)
-      moonTimerRef.current = null
-    }
-    setMoonPhase('enter')
-  }
-
-  const triggerMoonLeave = () => {
-    if (moonTimerRef.current) {
-      window.clearTimeout(moonTimerRef.current)
-      moonTimerRef.current = null
-    }
-    setMoonPhase('leave')
-    moonTimerRef.current = window.setTimeout(() => {
-      setMoonPhase('hidden')
-      moonTimerRef.current = null
-    }, 620)
-  }
-
-  const formatTime = (value: number) => {
-    if (!Number.isFinite(value) || value < 0) return '0:00'
-    const minutes = Math.floor(value / 60)
-    const seconds = Math.floor(value % 60)
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`
-  }
+  }, [activeSection, navSections])
 
   const handleContactSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -2640,7 +2570,8 @@ function App() {
   }
 
   const openFeedback = () => {
-        setFeedbackReminder(false)
+    setFeedbackOpen(true)
+    setFeedbackReminder(false)
     try {
       localStorage.setItem('feedback_prompt_seen', '1')
     } catch (err) {
@@ -2651,29 +2582,6 @@ function App() {
   const closeFeedback = () => {
     setFeedbackOpen(false)
     setFeedbackReminder(false)
-  }
-
-  const handleCopyFeedback = async () => {
-    const payload = JSON.stringify(feedbackEntries, null, 2)
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(payload)
-      } else {
-        const helper = document.createElement('textarea')
-        helper.value = payload
-        helper.setAttribute('readonly', 'true')
-        helper.style.position = 'absolute'
-        helper.style.left = '-9999px'
-        document.body.appendChild(helper)
-        helper.select()
-        document.execCommand('copy')
-        document.body.removeChild(helper)
-      }
-      setCopyToast(true)
-      setTimeout(() => setCopyToast(false), 1600)
-    } catch (err) {
-      console.error('Copy failed', err)
-    }
   }
 
   useEffect(() => {
@@ -2773,7 +2681,8 @@ function App() {
       const isLowCores = cores <= 4
 
       // Check device memory (if available)
-      const memory = (navigator as any).deviceMemory || 8
+      const navWithMemory = navigator as Navigator & { deviceMemory?: number }
+      const memory = navWithMemory.deviceMemory ?? 8
       const isLowMemory = memory <= 4
 
       // Check for mobile/tablet user agents that typically have lower performance
@@ -2782,7 +2691,7 @@ function App() {
       // Check screen refresh rate capability via a simple FPS test
       let lowFPS = false
       let frameCount = 0
-      let startTime = performance.now()
+      const startTime = performance.now()
       const testFrames = () => {
         frameCount++
         if (frameCount < 30) {
@@ -2894,7 +2803,7 @@ function App() {
     targets.forEach((node) => observer.observe(node))
 
     return () => observer.disconnect()
-  }, [reduceMotion, activeLocale])
+  }, [reduceMotion, activeLocale, isMobile])
 
   // ============================================
   // NEW DESKTOP-ONLY EFFECTS
@@ -2904,7 +2813,6 @@ function App() {
   useEffect(() => {
     if (isMobile || reduceMotion) return
 
-    let particleId = 0
     const maxParticles = 15 // Limit particles for performance
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -2922,8 +2830,6 @@ function App() {
       particle.style.transform = `translate(${offsetX}px, ${offsetY}px)`
 
       document.body.appendChild(particle)
-      particleId++
-
       // Remove particle after animation completes
       setTimeout(() => {
         particle.remove()
@@ -2947,10 +2853,10 @@ function App() {
     const cards = document.querySelectorAll<HTMLElement>('.card')
 
     // Throttle function for performance
-    const throttle = (fn: Function, delay: number) => {
+    const throttle = <TArgs extends unknown[]>(fn: (...args: TArgs) => void, delay: number) => {
       let lastCall = 0
       let rafId: number | null = null
-      return (...args: any[]) => {
+      return (...args: TArgs) => {
         const now = performance.now()
         if (now - lastCall >= delay) {
           lastCall = now
@@ -2983,23 +2889,26 @@ function App() {
       card.classList.remove('tilt-active')
     }
 
+    const tiltHandlers = new WeakMap<HTMLElement, { moveHandler: EventListener; leaveHandler: EventListener }>()
+
     cards.forEach((card) => {
       // Throttle mousemove to ~30fps (33ms)
       const throttledMoveHandler = throttle((e: MouseEvent) => handleMouseMove(e, card), 33)
       const leaveHandler = () => handleMouseLeave(card)
+      const moveHandler: EventListener = throttledMoveHandler as unknown as EventListener
+      const leaveHandlerEvent: EventListener = leaveHandler as EventListener
 
-      card.addEventListener('mousemove', throttledMoveHandler as EventListener)
-      card.addEventListener('mouseleave', leaveHandler)
+      card.addEventListener('mousemove', moveHandler)
+      card.addEventListener('mouseleave', leaveHandlerEvent)
 
-      // Store handlers for cleanup
-      ;(card as any)._tiltHandlers = { moveHandler: throttledMoveHandler, leaveHandler }
+      tiltHandlers.set(card, { moveHandler, leaveHandler: leaveHandlerEvent })
     })
 
     return () => {
       cards.forEach((card) => {
-        const handlers = (card as any)._tiltHandlers
+        const handlers = tiltHandlers.get(card)
         if (handlers) {
-          card.removeEventListener('mousemove', handlers.moveHandler as EventListener)
+          card.removeEventListener('mousemove', handlers.moveHandler)
           card.removeEventListener('mouseleave', handlers.leaveHandler)
         }
       })
@@ -3015,9 +2924,9 @@ function App() {
     ) // Removed .project-tag for performance
 
     // Throttle function
-    const throttle = (fn: Function, delay: number) => {
+    const throttle = <TArgs extends unknown[]>(fn: (...args: TArgs) => void, delay: number) => {
       let lastCall = 0
-      return (...args: any[]) => {
+      return (...args: TArgs) => {
         const now = performance.now()
         if (now - lastCall >= delay) {
           lastCall = now
@@ -3055,23 +2964,26 @@ function App() {
       element.classList.remove('magnetic')
     }
 
+    const magneticHandlers = new WeakMap<HTMLElement, { moveHandler: EventListener; leaveHandler: EventListener }>()
+
     magneticElements.forEach((element) => {
       // Throttle mousemove to ~20fps (50ms) for subtle effect
       const throttledMoveHandler = throttle((e: MouseEvent) => handleMouseMove(e, element), 50)
       const leaveHandler = () => handleMouseLeave(element)
+      const moveHandler: EventListener = throttledMoveHandler as unknown as EventListener
+      const leaveHandlerEvent: EventListener = leaveHandler as EventListener
 
-      element.addEventListener('mousemove', throttledMoveHandler as EventListener)
-      element.addEventListener('mouseleave', leaveHandler)
+      element.addEventListener('mousemove', moveHandler)
+      element.addEventListener('mouseleave', leaveHandlerEvent)
 
-      // Store handlers for cleanup
-      ;(element as any)._magneticHandlers = { moveHandler: throttledMoveHandler, leaveHandler }
+      magneticHandlers.set(element, { moveHandler, leaveHandler: leaveHandlerEvent })
     })
 
     return () => {
       magneticElements.forEach((element) => {
-        const handlers = (element as any)._magneticHandlers
+        const handlers = magneticHandlers.get(element)
         if (handlers) {
-          element.removeEventListener('mousemove', handlers.moveHandler as EventListener)
+          element.removeEventListener('mousemove', handlers.moveHandler)
           element.removeEventListener('mouseleave', handlers.leaveHandler)
         }
       })
@@ -3149,19 +3061,7 @@ function App() {
       {showWelcome && (
         <div className="biome-entrance" aria-live="polite" />
       )}
-      {moonVisible && (
-        <div className={`moon-overlay ${moonPhase}`}>
-          <div className="moon-glow" aria-hidden="true">
-            <span className="moon-core" />
-            <span className="moon-halo" />
-            <span className="moon-ring" />
-            <span className="moon-sparkle" />
-          </div>
-        </div>
-      )}
-
-
-      <div className={`content-shell ${showWelcome ? 'is-blurred' : ''} ${moonVisible ? 'is-hidden' : ''}`}>
+      <div className={`content-shell ${showWelcome ? 'is-blurred' : ''}`}>
       <header className="top-nav">
         <button
           className={`menu-toggle ${isDrawerOpen ? 'open' : ''}`}
@@ -3294,7 +3194,7 @@ function App() {
       <main>
         <section className="hero" id="hero">
           <div className="hero-text">
-            <p className="eyebrow">Data Engineer | {greeting}</p>
+            <p className="eyebrow">{greeting}</p>
             <h1>
               {c.hero.titleMain}
               <span className="accent">{c.hero.titleAccent}</span>
@@ -3550,7 +3450,7 @@ function App() {
               <article className="card job-card timeline-item" key={job.company + job.role}>
                 <span className="timeline-dot" aria-hidden="true" />
                 <div className="job-card-header">
-                  <span className="job-avatar" aria-hidden="true">{job.company.charAt(0)}</span>
+                  <span className="job-avatar" aria-hidden="true" style={{ background: `hsl(${job.company.charCodeAt(0) * 37 % 360}, 45%, 30%)` }}>{job.company.charAt(0)}</span>
                   <div className="job-card-header-info">
                     <div className="card-head">
                       <div>
@@ -3849,7 +3749,7 @@ function App() {
               role="dialog"
               aria-modal="true"
               aria-label={activeProjectDetail.title}
-              onClick={() => setActiveProjectDetail(null)}
+              onClick={() => { setActiveProjectDetail(null); setVideoLightbox(false) }}
             >
               <div className="project-modal" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-head">
@@ -3857,7 +3757,7 @@ function App() {
                     <p className="eyebrow">{activeProjectDetail.stack}</p>
                     <h3>{activeProjectDetail.title}</h3>
                   </div>
-                  <button className="close-btn" type="button" aria-label={projectUiCopy.close} onClick={() => { setActiveProjectDetail(null) }}>
+                  <button className="close-btn" type="button" aria-label={projectUiCopy.close} onClick={() => { setActiveProjectDetail(null); setVideoLightbox(false) }}>
                     ×
                   </button>
                 </div>
@@ -3865,6 +3765,20 @@ function App() {
                   {activeProjectDetail.image && !activeProjectDetail.stack.toLowerCase().includes('unity') && (
                     <div className="project-media modal-media" style={getProjectMediaStyle(activeProjectDetail.title)}>
                       <img src={activeProjectDetail.image} alt={activeProjectDetail.title} loading="lazy" />
+                    </div>
+                  )}
+                  {activeProjectDetail.video && (
+                    <div className="project-video-section">
+                      <button
+                        className="video-play-btn"
+                        type="button"
+                        onClick={() => setVideoLightbox(true)}
+                      >
+                        <span className="video-play-icon">&#9654;</span>
+                        <span className="video-play-label">
+                          {activeLocale === 'TR' ? 'Demo Videoyu İzle' : activeLocale === 'DE' ? 'Demo-Video ansehen' : 'Watch Demo Video'}
+                        </span>
+                      </button>
                     </div>
                   )}
                   {activeProjectDetail.gallery && activeProjectDetail.gallery.length > 0 && (
@@ -4029,9 +3943,37 @@ function App() {
                   </div>
                   <p className="impact-line">{activeProjectDetail.impact ?? defaultProjectImpact}</p>
                 </div>
-                <button className="btn primary full-width" type="button" onClick={() => { setActiveProjectDetail(null) }}>
+                <button className="btn primary full-width" type="button" onClick={() => { setActiveProjectDetail(null); setVideoLightbox(false) }}>
                   {projectUiCopy.close}
                 </button>
+              </div>
+            </div>
+          )}
+          {videoLightbox && activeProjectDetail?.video && (
+            <div
+              className="video-lightbox-overlay"
+              role="dialog"
+              aria-modal="true"
+              onClick={() => setVideoLightbox(false)}
+            >
+              <div className="video-lightbox-content" onClick={(e) => e.stopPropagation()}>
+                <button
+                  className="video-lightbox-close"
+                  type="button"
+                  onClick={() => setVideoLightbox(false)}
+                  aria-label={activeLocale === 'TR' ? 'Kapat' : activeLocale === 'DE' ? 'Schließen' : 'Close'}
+                >
+                  ×
+                </button>
+                <video
+                  className="video-lightbox-player"
+                  controls
+                  autoPlay
+                  preload="none"
+                  src={activeProjectDetail.video}
+                >
+                  {activeLocale === 'TR' ? 'Tarayıcınız video etiketini desteklemiyor.' : activeLocale === 'DE' ? 'Ihr Browser unterstützt das Video-Tag nicht.' : 'Your browser does not support the video tag.'}
+                </video>
               </div>
             </div>
           )}
@@ -4199,7 +4141,7 @@ function App() {
                 )}
                 <span>{trackPlaying
                   ? (activeLocale === 'DE' ? 'Pause' : activeLocale === 'EN' ? 'Pause' : 'Durdur')
-                  : (activeLocale === 'DE' ? 'Track abspielen' : activeLocale === 'EN' ? 'Play Track' : 'Track Çal')
+                  : (activeLocale === 'DE' ? 'Abspielen' : activeLocale === 'EN' ? 'Play' : 'Oynat')
                 }</span>
               </button>
               <div className="hobby-volume">
@@ -4312,8 +4254,12 @@ function App() {
                   <textarea name="message" rows={4} placeholder=" " required />
                   <label>{activeLocale === 'DE' ? 'Nachricht' : activeLocale === 'EN' ? 'Message' : 'Mesaj'}</label>
                 </div>
-                <button type="submit" className="btn primary">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <button type="submit" className={`btn primary${contactSent ? ' sent' : ''}`} disabled={contactSent}>
+                  {contactSent ? (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  ) : (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  )}
                   {contactSent ? c.sections.contact.sent : (activeLocale === 'DE' ? 'Senden' : activeLocale === 'EN' ? 'Send' : 'Gönder')}
                 </button>
               </form>
@@ -4323,7 +4269,33 @@ function App() {
 
         
         <footer className="footer-note">
-          <span>Created by Baha Buyukates - Portfolio 2025</span>
+          <div className="footer-nav">
+            {['about', 'projects', 'experience', 'contact'].map((s) => (
+              <button key={s} type="button" className="footer-nav-link" onClick={() => scrollToSection(s)}>
+                {s === 'about' ? (activeLocale === 'TR' ? 'Hakkımda' : activeLocale === 'DE' ? 'Über mich' : 'About')
+                  : s === 'projects' ? (activeLocale === 'TR' ? 'Projeler' : activeLocale === 'DE' ? 'Projekte' : 'Projects')
+                  : s === 'experience' ? (activeLocale === 'TR' ? 'Deneyim' : activeLocale === 'DE' ? 'Erfahrung' : 'Experience')
+                  : (activeLocale === 'TR' ? 'İletişim' : activeLocale === 'DE' ? 'Kontakt' : 'Contact')}
+              </button>
+            ))}
+          </div>
+          <div className="footer-socials">
+            <a href="https://www.linkedin.com/in/baha-buyukates" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://github.com/JegBaha?tab=repositories" target="_blank" rel="noreferrer" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+          </div>
+          <span className="footer-built">Built with React & TypeScript</span>
+          <div className="footer-bottom">
+            {visitorCount !== null && (
+              <span className="visitor-counter" title={activeLocale === 'TR' ? 'Toplam ziyaretçi' : activeLocale === 'DE' ? 'Gesamtbesucher' : 'Total visitors'}>
+                👁 {visitorCount.toLocaleString()}
+              </span>
+            )}
+            <span>© {new Date().getFullYear()} Baha Buyukates</span>
+          </div>
         </footer>
       </main>
 
@@ -4480,7 +4452,7 @@ function App() {
             </svg>
           </a>
           <a
-            href="https://github.com/Bahadir-Erdem"
+            href="https://github.com/JegBaha?tab=repositories"
             target="_blank"
             rel="noreferrer"
             className="floating-contact-item"
@@ -4572,10 +4544,10 @@ function App() {
         <div className="feedback-log">
           <p className="section-text subtle">
             {activeLocale === 'DE'
-              ? 'Veriler sadece mir zu Lernzwecken; nur Score wird gespeichert.'
+              ? 'Daten bleiben lokal in deinem Browser und enthalten Bewertung + optionalen Kommentar.'
               : activeLocale === 'EN'
-              ? 'Data stays local for my own improvement; only score is stored.'
-              : 'Veriler sadece kendimi geliştirme amaçlı; sadece puanlama tutulur.'}
+              ? 'Data stays local in your browser and includes rating + optional comment.'
+              : 'Veriler tarayıcıda lokal tutulur; puan ve isteğe bağlı yorum içerir.'}
           </p>
         </div>
       </aside>
