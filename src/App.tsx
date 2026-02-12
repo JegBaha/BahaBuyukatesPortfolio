@@ -2209,6 +2209,7 @@ function App() {
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [visitorCount, setVisitorCount] = useState<number | null>(null)
   const [feedbackReminder, setFeedbackReminder] = useState(false)
+  const [trackStarted, setTrackStarted] = useState(false)
   const [feedbackRating, setFeedbackRating] = useState<number | null>(null)
   const [feedbackMood, setFeedbackMood] = useState<FeedbackMood>(null)
   const [feedbackNote, setFeedbackNote] = useState('')
@@ -4176,6 +4177,7 @@ function App() {
                   } else {
                     trackRef.current.play()
                     setTrackPlaying(true)
+                    setTrackStarted(true)
                   }
                 }}
               >
@@ -4189,6 +4191,18 @@ function App() {
                   : (activeLocale === 'DE' ? 'Abspielen' : activeLocale === 'EN' ? 'Play' : 'Oynat')
                 }</span>
               </button>
+              {trackStarted && (
+                <div className="hobby-track-card" aria-live="polite">
+                  <img
+                    className="hobby-track-cover"
+                    src="/griefPattern.png"
+                    alt="Grief Pattern cover art"
+                    loading="lazy"
+                  />
+                  <p className="hobby-track-title">Grief Pattern</p>
+                  <p className="hobby-track-artist">JegBaa</p>
+                </div>
+              )}
               <div className="hobby-volume">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
                   <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
