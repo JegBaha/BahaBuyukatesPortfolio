@@ -2224,6 +2224,7 @@ function App() {
   const [trackPlaying, setTrackPlaying] = useState(false)
   const trackRef = useRef<HTMLAudioElement | null>(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [forceDesktopWebView, setForceDesktopWebView] = useState(true)
   const [reduceMotion, setReduceMotion] = useState(false)
   const [isLowPerformance, setIsLowPerformance] = useState(false)
   const [cvPopupOpen, setCvPopupOpen] = useState(false)
@@ -2377,10 +2378,22 @@ function App() {
 
   const projectUiCopy =
     activeLocale === 'DE'
-      ? { open: 'Details', close: 'Schließen' }
+      ? {
+          open: 'Details',
+          close: 'Schließen',
+          mobileDesktopWebView: 'Mehr Details in der Desktop-Webansicht',
+        }
       : activeLocale === 'EN'
-      ? { open: 'Details', close: 'Close' }
-      : { open: 'Detay', close: 'Kapat' }
+      ? {
+          open: 'Details',
+          close: 'Close',
+          mobileDesktopWebView: 'Desktop-Web View for more details',
+        }
+      : {
+          open: 'Detay',
+          close: 'Kapat',
+          mobileDesktopWebView: 'Daha fazla detay için Desktop-Web Görünümü',
+        }
 
   const getProjectPreview = (project: Project): string => {
     const base = project.impact || project.summary || project.description
@@ -2414,6 +2427,13 @@ function App() {
     setGalleryLightbox(false)
     setVideoLightbox(false)
     setActiveProjectDetail(project)
+  }
+
+  const enableDesktopWebView = () => {
+    setForceDesktopWebView(true)
+    setActiveProjectDetail(null)
+    setGalleryLightbox(false)
+    setVideoLightbox(false)
   }
 
   const feedbackCopy = c.feedback
@@ -2666,7 +2686,7 @@ function App() {
 
   useEffect(() => {
     const updateMobile = () => {
-      const mobile = window.matchMedia('(max-width: 720px)').matches
+      const mobile = window.matchMedia('(max-width: 720px)').matches && !forceDesktopWebView
       setIsMobile(mobile)
       if (mobile) {
         setFeedbackReminder(false)
@@ -2675,7 +2695,7 @@ function App() {
     updateMobile()
     window.addEventListener('resize', updateMobile, { passive: true })
     return () => window.removeEventListener('resize', updateMobile)
-  }, [])
+  }, [forceDesktopWebView])
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -3643,8 +3663,8 @@ function App() {
                       {remainingTagCount > 0 && <span className="pill small ghost">+{remainingTagCount}</span>}
                     </div>
                     <div className="card-footer project-actions">
-                      <button className="btn ghost small full-width" type="button" onClick={() => openProjectDetail(project)}>
-                        {projectUiCopy.open}
+                      <button className="btn ghost small full-width" type="button" onClick={enableDesktopWebView}>
+                        {projectUiCopy.mobileDesktopWebView}
                       </button>
                     </div>
                   </article>
