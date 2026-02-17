@@ -44,6 +44,7 @@ type Project = {
   tags: string[]
   image: string
   impact?: string
+  psr?: { problem: string; solution: string; result: string }
   playground?: boolean
   hobby?: boolean
   details?: ProjectDetail
@@ -93,6 +94,7 @@ const content: Record<
       titleAccent: string
       impactLine: string
       lede: string
+      pills: string[]
       ctas: { browse: string; download: string }
       ctaNotes: { citizen: string; availability: string }
     }
@@ -189,8 +191,9 @@ const content: Record<
       eyebrow: 'Industrial AI Engineer | Hoş geldin',
       titleMain: 'Industrial AI & Data Engineer',
       titleAccent: ' | BSc Computer Engineering',
-      impactLine: '4+ yıl deneyim • 10+ proje • AB vatandaşı • Hemen başlayabilir',
-      lede: 'Sadece veriyi analiz etmekle değil, verinin nasıl üretildiği, nasıl taşındığı ve anlamlı kararlara nasıl dönüştüğüyle ilgileniyorum. Yazılım, backend, otomasyon ve endüstriyel entegrasyon alanlarında ilerlerken veriyi her katmanın merkezinde tutuyorum. Hedefim: saha verisini güvenilir, ölçeklenebilir karar-destek sistemlerine dönüştürmek.',
+      impactLine: 'Yeni mezun • 10+ proje • AB vatandaşı • Hemen başlayabilir',
+      lede: 'Saha verisini ölçeklenebilir karar-destek sistemlerine dönüştürmeyi seviyorum. SAP stajından LSTM modeline, üretim sensöründen dashboard\'a.',
+      pills: ['🏭 IoT / Üretim', '🧠 ML & AI', '💻 Python · C# · SQL'],
       ctas: { browse: 'Projelerime göz at', download: 'CV indir' },
       ctaNotes: { citizen: 'AB Vatandaşı (Bulgaristan)', availability: 'Hemen başlayabilir' },
     },
@@ -278,7 +281,7 @@ const content: Record<
           'LLM eğitim ve değerlendirme ile kod üretimi/akıl yürütme kabiliyetlerini iyileştirme.',
           'Veri anotasyonu, prompt mühendisliği ve QA sürecinde kaliteyi sağlama.',
         ],
-        impact: 'LLM kalite puanlarında artış; hatalı cevaplar düştü.',
+        impact: 'Yazdığım test case\'ler birden fazla modelde kabul gördü; yanlış çıktılar belirgin azaldı.',
         skills: ['Python', 'Prompt Engineering', 'LLM', 'Data Annotation'],
       },
       {
@@ -292,7 +295,7 @@ const content: Record<
           'HIS mimarisinde veri güvenliği, performans optimizasyonu ve regülasyon uyumu hakkında derinleşmiş bilgi.',
           'Operasyonel süreklilik için sorun giderme ve önleyici bakım adımlarını dokümante ettim.',
         ],
-        impact: 'Rapor ve HIS sorgularında performans artışı sağlandı.',
+        impact: 'Birkaç kritik HIS modülünü sıfırdan geliştirdim; sorgu süreleri kayda değer kısaldı.',
         skills: ['C#', '.NET', 'SQL', 'Git', 'HIS'],
       },
       {
@@ -305,7 +308,7 @@ const content: Record<
           'ERP bağlamında SAP S/4HANA ve SAP Fiori temel modüllerini inceledim.',
           'SAP entegrasyonlarını finans, tedarik zinciri, İK gibi süreçlere nasıl uyarlayacağımızı öğrendim; iş akışı özelleştirmeleri yaptım.',
         ],
-        impact: "SLA'yi koruyup destek kapanış süresini kısalttım.",
+        impact: "Tüm staj boyunca SLA'yı bozmadım; etiket okuma sistemini sıfırdan yazıp teslim ettim.",
         skills: ['SAP S/4HANA', 'SAP Fiori', 'Network', 'Hardware'],
       },
       {
@@ -317,7 +320,7 @@ const content: Record<
           'Donanım ve ağ tarafında teknik destek sağladım; workstation/ağırlıklı sistem kesintilerini minimuma indirdim.',
           'IT operasyonları için temel bakım ve hata giderme prosedürlerini uyguladım.',
         ],
-        impact: 'Kesinti sürelerini azalttım; çözüm hızlandı.',
+        impact: 'Donanım ve ağ arızalarını yerinde çözdüm; sistem kesintileri belirgin azaldı.',
         skills: ['Hardware', 'Network', 'IT Support'],
       },
     ],
@@ -411,12 +414,17 @@ const content: Record<
         summary:
           'Sensor verisi toplama, kestirimci bakim, uretim KPI otomasyonu ve RAG tabanli akilli asistani tek platformda sunan end-to-end Industry 4.0 PoC uygulamasi.',
         stack: 'Python, FastAPI, MQTT, PostgreSQL, PyTorch, Scikit-Learn, ChromaDB, Ollama, Pandas, NumPy, HTML5 Canvas',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/Industry-4.0-IoT-Predictive-Maintenance-Platform',
+        github: 'https://github.com/JegBaha/Industry-4.0-IoT-Predictive-Maintenance-Platform',
         live: '#',
         tags: ['IoT', 'ML', 'Industry 4.0', 'RAG', 'FastAPI', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
         impact: 'Gercek zamanli sensor verisi, kestirimci bakim, otomatik KPI hesaplama ve RAG asistanini tek komutla ayaga kalkan bir platformda birlestiriyor.',
+        psr: {
+          problem: 'Fabrikada ekipman arızaları önceden tahmin edilemiyor, KPI\'lar her hafta elle hesaplanıyordu.',
+          solution: 'MQTT ile sensör verisi topladım, LSTM modeliyle arıza tahmini yaptım, OEE/MTBF/MTTR hesaplamalarını otomatikleştirdim.',
+          result: 'Sensörden karara giden eksiksiz bir PoC; tek komutla çalışıyor, her katman birbirine bağlı.',
+        },
         gallery: [
           '/projects/IndustryMaintenance/1.png',
           '/projects/IndustryMaintenance/2.png',
@@ -456,6 +464,11 @@ const content: Record<
         tags: ['Automation', 'Data Pipeline', 'KPI', 'Python', 'Excel VBA'],
         image: '/projects/KPIAutomation/KapakFoto.png',
         impact: 'SAP verilerinden otomatik KPI hesaplama ve dashboard güncelleme; manuel raporlama süresini önemli ölçüde azaltır.',
+        psr: {
+          problem: 'SAP\'tan CSV çekip Excel\'de KPI hesaplamak elle yapılıyordu; hem yavaş hem hata eğilimli.',
+          solution: 'Python modülleri (DataIngester, KPICalculator, Pareto) + VBA orkestrasyon katmanıyla pipeline kurdum.',
+          result: 'OEE, MTTR, MTBF artık otomatik hesaplanıyor; raporlama süresi belirgin azaldı.',
+        },
         gallery: [
           '/projects/KPIAutomation/KapakFoto.png',
           '/projects/KPIAutomation/Desktop 2026-02-01 6-29-01 PM-83.png',
@@ -477,13 +490,18 @@ const content: Record<
         summary:
           'Ses sinyallerinden kaynak ayristirma ve drum pattern cikarimi icin zaman serisi tabanli derin ogrenme uygulamasi.',
         stack: 'Python, PyTorch, Demucs, Librosa',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/drumveil-frontend',
+        github: 'https://github.com/JegBaha/drumveil-frontend',
         live: '#',
         tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
           'Ses sinyallerinden ozellik cikarimi ve zaman serisi isleme konusunda pratik deneyim; veri dengesizligi ve boyut uyumsuzluklari gibi gercek problemlerle calisma.',
+        psr: {
+          problem: 'Ham müzik dosyasından sadece davul sesini ayırıp analiz edecek uygun fiyatlı bir araç yoktu.',
+          solution: 'Demucs ile kaynak ayrıştırma, Librosa ile spektral analiz ve zaman serisi özellik çıkarımı pipeline\'ı kurdum.',
+          result: 'Gerçek ses verisindeki gürültü ve boyut uyumsuzluklarıyla başa çıkma konusunda sağlam pratik edindim.',
+        },
         gallery: [
           '/projects/drumveil/Desktop 2026-02-07 9-32-34 PM-459.png',
           '/projects/drumveil/Desktop 2026-02-07 9-32-40 PM-935.png',
@@ -512,12 +530,17 @@ const content: Record<
         summary:
           'Çok veri kaynaklı MRI pipeline, model ensemble ve REST API ile sağlık için uca-uca AI.',
         stack: 'PyTorch, TensorFlow, CNN',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/NeuraVeil-Brain-Tumor-Classification-System',
+        github: 'https://github.com/JegBaha/NeuraVeil-Brain-Tumor-Classification-System',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Transfer learning ile yüksek doğrulukta tümör sınıflandırması sağlandı.',
+        psr: {
+          problem: 'MRI görüntülerindeki tümörleri sadece görüntüye bakarak sınıflandırmak hem yavaş hem hata payı yüksek.',
+          solution: 'EfficientNet, DenseNet, ResNet modellerini transfer learning + Optuna ile eğittim; ensemble ile doğruluğu artırdım.',
+          result: 'Yüksek doğrulukta çok sınıflı tümör tespiti; Grad-CAM ile modelin neye baktığı görselleştirildi.',
+        },
         gallery: [
           '/projects/neuraveil/442462721-7e760073-42c5-49d3-a0e6-2dd4b3ad9971.png',
           '/projects/neuraveil/442462723-0a40c626-411d-4134-86d4-714de8f16946.png',
@@ -547,6 +570,11 @@ const content: Record<
         tags: ['Data Analytics', 'Machine Learning', 'Python', 'Dashboard', 'Supply Chain'],
         image: '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
         impact: 'Tedarikçi skorlama, teslimat tahmini ve risk yönetimini tek platformda birleştiren PoC; karar destek süreçlerini hızlandırır.',
+        psr: {
+          problem: 'Tedarikçi performansı, gecikme riski ve envanter verisi ayrı sistemlerde dağınıktı; genel tabloyu görmek zordu.',
+          solution: 'Streamlit dashboard + RandomForest teslimat tahmini + hava/döviz API entegrasyonu kurdum.',
+          result: 'Risk skorlama, ML tahmini ve KPI takibi tek panelde toplandı; karar almak hızlandı.',
+        },
         details: {
           backend: 'Python, Streamlit, SQLAlchemy',
           database: 'SQLite (supply_chain.db)',
@@ -598,6 +626,11 @@ const content: Record<
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
         impact: 'Model karşılaştırması ile en iyi tahmin doğruluğu belirlendi.',
+        psr: {
+          problem: 'Sağlık verisindeki eksik değerler ve dengesiz sınıflar, kalp hastalığı tahminini güvenilmez kılıyordu.',
+          solution: 'Veri temizleme ve normalizasyonun ardından KNN, Lojistik Regresyon ve Karar Ağacını karşılaştırdım.',
+          result: 'En iyi model Accuracy/Precision/Recall/F1 metrikleriyle belirlendi; temel ML pipeline\'ı sağlam kuruldu.',
+        },
         details: {
           dataProcessing: 'Eksik veri doldurma, kategorik değişken kodlama, Min-Max normalizasyon',
           mlModels: 'K-Nearest Neighbors (KNN), Lojistik Regresyon, Decision Tree',
@@ -620,6 +653,11 @@ const content: Record<
         tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
         image: '/projects/excel-vba-automation.webp',
         impact: 'Modüler VBA mimarisi, hata yakalama ve Config yönetimi pratiği.',
+        psr: {
+          problem: 'SAP CSV\'lerini elle Excel\'e aktarmak ve dashboard\'u güncellemek tekrarlı, hata eğilimli bir süreçti.',
+          solution: 'Config-driven VBA modülleri + merkezi loglama + çift dilli UserForm ile otomasyon toolkit yaptım.',
+          result: 'Raw→Staging akışı ve dashboard refresh tamamen otomatikleşti; modüler yapı sayesinde yeniden kullanılabilir oldu.',
+        },
         playground: true,
         details: {
           backend: 'Excel VBA modülleri',
@@ -636,12 +674,17 @@ const content: Record<
           'Masaüstü Personel Yönetim Sistemi. WinForms tabanlı uygulamada kullanıcı giriş/kayıt, personel ekleme–güncelleme–silme (soft delete), arama/filtreleme, maaş yönetimi ve dashboard istatistikleri (toplam/aktif/pasif, son eklenenler) gibi modüller tasarladım. Verileri ADO.NET ile SQL Server veritabanında yönettim ve arayüzde tema/renk bileşenlerini standartlaştırdım.',
         summary: 'WinForms tabanlı masaüstü personel yönetim uygulaması; CRUD, soft delete, maaş yönetimi, dashboard ve kullanıcı doğrulama. Prestij stajında geliştirildi.',
         stack: 'C#, WinForms, .NET Framework 4.7.2, ADO.NET, SQL Server',
-        link: 'https://github.com/JegBaha/StajEmployeeManagement',
-        github: 'https://github.com/JegBaha/StajEmployeeManagement',
+        link: 'https://github.com/JegBaha/EmployeeManagementProject-master',
+        github: 'https://github.com/JegBaha/EmployeeManagementProject-master',
         live: '#',
         tags: ['.NET', 'C#', 'SQL', 'WinForms', 'Desktop'],
         image: '/projects/Employee Management/Desktop 2026-02-10 2-11-31 AM-396.png',
         impact: 'Prestij stajında geliştirilen masaüstü personel yönetim sistemi; manuel personel takibini otomatikleştirdi.',
+        psr: {
+          problem: 'Personel verilerini Excel ile takip etmek büyüdükçe hataya açık ve sürdürülemez hale geliyordu.',
+          solution: 'WinForms + ADO.NET + SQL Server ile soft delete, arama/filtreleme ve maaş yönetimi modülleri geliştirdim.',
+          result: 'Manuel takip ortadan kalktı; CRUD işlemleri güvenilir, hızlı ve tutarlı hale geldi.',
+        },
         gallery: [
           '/projects/Employee Management/Desktop 2026-02-10 2-11-31 AM-396.png',
           '/projects/Employee Management/Desktop 2026-02-10 2-11-42 AM-363.png',
@@ -665,12 +708,17 @@ const content: Record<
           'Görselden etiket metnini OCR ile okuyan ve okunan metni ürün etiket listesiyle eşleştiren web uygulaması. Base64 olarak gelen görselleri çözüp OCR çıktısını normalize ederek ürün kodlarını tespit eden bir eşleştirme mantığı yazdım. Eşleşen etiketleri zaman damgasıyla ayrı bir CSV\'ye kaydeden kayıt mekanizması kurdum. REST API endpoint\'leriyle etiket listesi, eşleşenler ve tarama sonuçlarını JSON olarak servis ettim.',
         summary: 'OCR ile etiket okuma, ürün kodu eşleştirme ve REST API ile sonuç servisi; Sanofi stajında geliştirildi.',
         stack: 'Python, Flask, EasyOCR, Pandas, Pillow, Base64, JSON',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/EtiketOkumaStaj-main',
+        github: 'https://github.com/JegBaha/EtiketOkumaStaj-main',
         live: '#',
         tags: ['OCR', 'Python', 'Flask', 'Computer Vision'],
         image: '/projects/Label Reading/Desktop 2026-02-09 10-14-49 PM-482.png',
         impact: 'Sanofi stajında (Temmuz 2024) geliştirilen endüstriyel etiket okuma ve eşleştirme çözümü; manuel etiket kontrolünü otomatikleştirdi.',
+        psr: {
+          problem: 'Fabrika hatlarında ürün etiketlerini elle kontrol etmek yavaş ve tutarsızdı; yanlış ürün geçme riski vardı.',
+          solution: 'EasyOCR + Flask REST API ile etiket okuma, normalizasyon ve ürün kodu eşleştirme pipeline\'ı yazdım.',
+          result: 'SLA\'yı bozmadan teslim ettim; manuel etiket kontrolü tamamen otomatikleşti.',
+        },
         gallery: [
           '/projects/Label Reading/Desktop 2026-02-09 10-14-49 PM-482.png',
           '/projects/Label Reading/Desktop 2026-02-09 10-14-51 PM-488.png',
@@ -853,8 +901,9 @@ const content: Record<
       eyebrow: 'Industrial AI Engineer | Willkommen',
       titleMain: 'Industrial AI & Data Engineer',
       titleAccent: ' | BSc Computer Engineering',
-      impactLine: '4+ Jahre Erfahrung • 10+ Projekte • EU-Bürger • Sofort verfügbar',
-      lede: 'Mich interessiert nicht nur die Datenanalyse, sondern auch, wie Daten erzeugt, transportiert und in fundierte Entscheidungen umgewandelt werden. Während ich mich in Software, Backend, Automatisierung und industrieller Integration weiterentwickle, steht Data im Mittelpunkt jeder Ebene. Mein Ziel: Shopfloor-Daten in zuverlässige, skalierbare Entscheidungsunterstützungssysteme verwandeln.',
+      impactLine: 'Berufseinsteiger • 10+ Projekte • EU-Bürger • Sofort verfügbar',
+      lede: 'Felddaten in skalierbare Entscheidungssysteme übersetzen – das ist mein Fokus. Vom SAP-Praktikum bis zum LSTM-Modell, vom Sensor bis zum Dashboard.',
+      pills: ['🏭 IoT / Fertigung', '🧠 ML & AI', '💻 Python · C# · SQL'],
       ctas: { browse: 'Projekte ansehen', download: 'CV herunterladen' },
       ctaNotes: { citizen: 'EU-Bürger (Bulgarien)', availability: 'Sofort verfügbar' },
     },
@@ -942,7 +991,7 @@ const content: Record<
           'LLM-Training und Evaluation zur Verbesserung von Code-Generierung und Reasoning.',
           'Daten-Annotation, Prompt-Engineering und QA mit Qualitaetsfokus.',
         ],
-        impact: 'LLM-Qualitaet erhoeht, Fehlantworten gesunken.',
+        impact: 'Meine Testfälle wurden bei mehreren Modellen akzeptiert; Fehlerquote ist merklich gesunken.',
         skills: ['Python', 'Prompt Engineering', 'LLM', 'Data Annotation'],
       },
       {
@@ -956,7 +1005,7 @@ const content: Record<
           'Vertieftes Verstaendnis zu Datensicherheit, Performance-Optimierung und Compliance in Krankenhausinformationssystemen.',
           'Troubleshooting und praeventive Wartung dokumentiert, um Betriebszeit zu sichern.',
         ],
-        impact: 'Report-Queries wurden schneller und stabiler.',
+        impact: 'Mehrere kritische HIS-Module von Grund auf gebaut; Abfragezeiten deutlich verkürzt.',
         skills: ['C#', '.NET', 'SQL', 'Git', 'HIS'],
       },
       {
@@ -969,7 +1018,7 @@ const content: Record<
           'ERP-Kontext: Kernmodule von SAP S/4HANA und SAP Fiori kennengelernt.',
           'SAP-Integration in Prozesse wie Finance, Supply Chain, HR verstanden und Workflows angepasst.',
         ],
-        impact: 'SLA gehalten, Ticket-Abschlusszeiten verkuerzt.',
+        impact: 'SLA das gesamte Praktikum über eingehalten; Etikettenlesesystem eigenständig entwickelt und übergeben.',
         skills: ['SAP S/4HANA', 'SAP Fiori', 'Network', 'Hardware'],
       },
       {
@@ -981,7 +1030,7 @@ const content: Record<
           'Technischen Support fuer Hardware und Netzwerk geleistet; Ausfallzeiten minimiert.',
           'Basis-Wartung und Fehlersuche fuer IT-Operations umgesetzt.',
         ],
-        impact: 'Downtime reduziert; schnellere Behebung vor Ort.',
+        impact: 'Hardware- und Netzwerkprobleme direkt vor Ort gelöst; Ausfallzeiten spürbar reduziert.',
         skills: ['Hardware', 'Network', 'IT Support'],
       },
     ],
@@ -1075,12 +1124,17 @@ const content: Record<
         summary:
           'Sensordatenerfassung, vorausschauende Wartung, Produktions-KPI-Automatisierung und RAG-basierter intelligenter Assistent in einer End-to-End Industry 4.0 PoC-Plattform.',
         stack: 'Python, FastAPI, MQTT, PostgreSQL, PyTorch, Scikit-Learn, ChromaDB, Ollama, Pandas, NumPy, HTML5 Canvas',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/Industry-4.0-IoT-Predictive-Maintenance-Platform',
+        github: 'https://github.com/JegBaha/Industry-4.0-IoT-Predictive-Maintenance-Platform',
         live: '#',
         tags: ['IoT', 'ML', 'Industry 4.0', 'RAG', 'FastAPI', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
         impact: 'Vereint Echtzeit-Sensordaten, vorausschauende Wartung, automatische KPI-Berechnung und RAG-Assistent in einer mit einem Befehl startbaren Plattform.',
+        psr: {
+          problem: 'Maschinenausfälle waren nicht vorhersehbar, und KPIs wurden jede Woche manuell berechnet.',
+          solution: 'Echtzeit-Sensordaten per MQTT gesammelt, LSTM-Modell für Ausfallprognosen trainiert, OEE/MTBF/MTTR automatisiert.',
+          result: 'Vollständige End-to-End-PoC-Plattform – startet mit einem Befehl, vom Sensor bis zur Entscheidung.',
+        },
         gallery: [
           '/projects/IndustryMaintenance/1.png',
           '/projects/IndustryMaintenance/2.png',
@@ -1108,54 +1162,35 @@ const content: Record<
         },
       },
       {
-        title: 'Heart Disease Prediction ML Projekt',
+        title: 'KPI Automation Toolkit',
         description:
-          'Heart Failure Prediction Dataset bereinigt (Missing Values, Encoding, Normalisierung) und KNN, Logistische Regression, Decision Trees verglichen. Bewertet mit Accuracy/Precision/Recall/F1 fuer Outcome-Prediction.',
-        summary: 'Datenaufbereitung, Modellvergleich und Healthcare-Use-Case fuer Herzrisiko-Prognose.',
-        stack: 'Scikit-Learn, Python, ML',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
-        live: '#',
-        tags: ['ML', 'Data Analysis', 'Healthcare'],
-        image: '/projects/heart-disease-prediction-ml.webp',
-        impact: 'Beste Vorhersagegenauigkeit durch Modellvergleich ermittelt.',
-        details: {
-          dataProcessing: 'Missing Value Imputation, Kategorische Codierung, Min-Max Normalisierung',
-          mlModels: 'K-Nearest Neighbors (KNN), Logistische Regression, Decision Tree',
-          visualization: 'Confusion Matrix, ROC Curve, Precision-Recall Grafiken',
-          layers: ['Datenbereinigung', 'Feature Engineering', 'Modelltraining', 'Modellvergleich', 'Evaluation'],
-          versionControl: 'Git, GitHub',
-          architecture: 'Jupyter Notebook basierte Analyse-Pipeline',
-        },
-      },
-      {
-        title: 'NeuraVeil - MRI Tumor Klassifikation',
-        description:
-          'EfficientNet, DenseNet, ResNet u.a. per Transfer Learning + Optuna getuned; OpenCV-Preprocessing, Class-Balance, L2/Dropout. Liefert hohe Genauigkeit fuer mehrere Tumortypen und REST-API-Integration.',
+          'Python + VBA Hybrid-KPI-Automatisierungs-Pipeline. Liest SAP-CSV-Exporte über Config-Datei und berechnet OEE (Availability × Performance × Quality), MTTR/MTBF sowie Downtime-Pareto-Analysen. Modulares System nach Single-Responsibility-Prinzip: DataIngester, DataCleaner, DataValidator, KPICalculator und Pipeline-Orchestrator. Exception-Tracking für Datenqualitäts-Sichtbarkeit, JSON-Logging für Audit-Trail.',
         summary:
-          'End-to-End MRI-Pipeline mit Ensemble und generalisierbaren Modellen fuer den Klinik-Einsatz.',
-        stack: 'PyTorch, TensorFlow, CNN',
+          'KPI-Berechnung aus SAP-Daten, Datenbereinigung und Excel-Dashboard-Aktualisierung; Python-Backend + VBA-Orchestrierung für produktionsreife Data-Pipeline.',
+        stack: 'Python, Pandas, NumPy, Excel VBA, JSON, openpyxl',
         link: 'https://github.com/JegBaha?tab=repositories',
         github: 'https://github.com/JegBaha?tab=repositories',
         live: '#',
-        tags: ['AI', 'Computer Vision', 'Healthcare'],
-        image: '/projects/neuraveil-mri-tumor.webp',
-        impact: 'Hochgenaue Tumorklassifizierung durch Transfer Learning erreicht.',
+        tags: ['Automation', 'Data Pipeline', 'KPI', 'Python', 'Excel VBA'],
+        image: '/projects/KPIAutomation/KapakFoto.png',
+        impact: 'Automatische KPI-Berechnung und Dashboard-Aktualisierung aus SAP-Daten; reduziert manuellen Reporting-Aufwand erheblich.',
+        psr: {
+          problem: 'SAP-CSVs manuell nach Excel zu übertragen und KPIs zu berechnen war fehleranfällig und zeitraubend.',
+          solution: 'Python-Module (DataIngester, KPICalculator, Pareto) mit VBA-Orchestrierungsschicht kombiniert.',
+          result: 'OEE, MTTR, MTBF werden automatisch berechnet; der manuelle Reporting-Aufwand ist spürbar gesunken.',
+        },
         gallery: [
-          '/projects/neuraveil/442462721-7e760073-42c5-49d3-a0e6-2dd4b3ad9971.png',
-          '/projects/neuraveil/442462723-0a40c626-411d-4134-86d4-714de8f16946.png',
-          '/projects/neuraveil/442462729-2fe82a37-decb-47a6-87a0-1636b3cf7f7a.png',
-          '/projects/neuraveil/442462730-52456c0e-ae72-4945-bd60-c3650383407a.png',
-          '/projects/neuraveil/442462734-97d8505d-14a6-4d2b-9321-f3f150d1e80f.png',
+          '/projects/KPIAutomation/KapakFoto.png',
+          '/projects/KPIAutomation/Desktop 2026-02-01 6-29-01 PM-83.png',
         ],
         details: {
-          backend: 'FastAPI REST API Service',
-          dataProcessing: 'OpenCV Bildvorverarbeitung, Data Augmentation, Klassenbalancierung',
-          mlModels: 'EfficientNet, DenseNet, ResNet (Transfer Learning), Model Ensemble',
-          visualization: 'Confusion Matrix, Grad-CAM Visualisierung, Training-Metriken',
-          layers: ['Datensammlung', 'Preprocessing', 'Modelltraining', 'Hyperparameter-Optimierung (Optuna)', 'API Service'],
+          backend: 'Python-Module (Pipeline, DataCleaner, KPICalculator, DataValidator, PipelineLogger)',
+          frontend: 'Excel VBA UserForm, Named Ranges für dynamische Oberfläche',
+          dataProcessing: 'Pandas mit IQR-Outlier-Bereinigung, Missing-Value-Handling, Negativ-Wert-Exception-Tracking, NumpyEncoder für JSON-Serialisierung',
+          visualization: 'Excel Dashboard, Pivot-Tabellen, Power Query Integration',
+          layers: ['SAP Data Import', 'Schema Validation', 'Data Cleaning', 'KPI Calculation (OEE/MTTR/MTBF)', 'Pareto Analysis', 'Excel Output'],
           versionControl: 'Git, GitHub',
-          architecture: 'Modulare CNN Pipeline, L2 Regularisierung, Dropout-Schichten',
+          architecture: 'Modulare Python + VBA Hybrid: VBA-Orchestrierung → Python-Datenverarbeitung → Excel-Output; Single Responsibility Principle',
         },
       },
       {
@@ -1165,13 +1200,18 @@ const content: Record<
         summary:
           'Zeitreihenbasierte Deep-Learning-Anwendung fuer Quelltrennung und Drum-Pattern-Extraktion aus Audiosignalen.',
         stack: 'Python, PyTorch, Demucs, Librosa',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/drumveil-frontend',
+        github: 'https://github.com/JegBaha/drumveil-frontend',
         live: '#',
         tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
           'Praktische Erfahrung mit Feature-Extraktion und Zeitreihenverarbeitung auf Audiosignalen; Arbeit mit realen Problemen wie Datenungleichgewicht und Dimensionsinkompatibilitaeten.',
+        psr: {
+          problem: 'Drum-Spuren aus Musikdateien zu isolieren war mit verfügbaren Tools entweder zu teuer oder zu ungenau.',
+          solution: 'Pipeline mit Demucs (Quelltrennung), Librosa (Spektralanalyse) und Zeitreihen-Feature-Extraktion entwickelt.',
+          result: 'Praxiserfahrung im Umgang mit echtem Datenrauschen und Dimensionsproblemen gesammelt.',
+        },
         gallery: [
           '/projects/drumveil/Desktop 2026-02-07 9-32-34 PM-459.png',
           '/projects/drumveil/Desktop 2026-02-07 9-32-40 PM-935.png',
@@ -1194,17 +1234,166 @@ const content: Record<
         },
       },
       {
+        title: 'NeuraVeil - MRI Tumor Klassifikation',
+        description:
+          'EfficientNet, DenseNet, ResNet u.a. per Transfer Learning + Optuna getuned; OpenCV-Preprocessing, Class-Balance, L2/Dropout. Liefert hohe Genauigkeit fuer mehrere Tumortypen und REST-API-Integration.',
+        summary:
+          'End-to-End MRI-Pipeline mit Ensemble und generalisierbaren Modellen fuer den Klinik-Einsatz.',
+        stack: 'PyTorch, TensorFlow, CNN',
+        link: 'https://github.com/JegBaha/NeuraVeil-Brain-Tumor-Classification-System',
+        github: 'https://github.com/JegBaha/NeuraVeil-Brain-Tumor-Classification-System',
+        live: '#',
+        tags: ['AI', 'Computer Vision', 'Healthcare'],
+        image: '/projects/neuraveil-mri-tumor.webp',
+        impact: 'Hochgenaue Tumorklassifizierung durch Transfer Learning erreicht.',
+        psr: {
+          problem: 'MRT-Tumortypen manuell zu klassifizieren belastet Kliniker durch häufige Fehlklassifikationen.',
+          solution: 'EfficientNet, DenseNet, ResNet mit Transfer Learning und Optuna-Optimierung trainiert; Ensemble für höhere Genauigkeit.',
+          result: 'Mehrklassen-Tumorerkennung mit hoher Genauigkeit; Modellentscheidungen mit Grad-CAM visualisiert.',
+        },
+        gallery: [
+          '/projects/neuraveil/442462721-7e760073-42c5-49d3-a0e6-2dd4b3ad9971.png',
+          '/projects/neuraveil/442462723-0a40c626-411d-4134-86d4-714de8f16946.png',
+          '/projects/neuraveil/442462729-2fe82a37-decb-47a6-87a0-1636b3cf7f7a.png',
+          '/projects/neuraveil/442462730-52456c0e-ae72-4945-bd60-c3650383407a.png',
+          '/projects/neuraveil/442462734-97d8505d-14a6-4d2b-9321-f3f150d1e80f.png',
+        ],
+        details: {
+          backend: 'FastAPI REST API Service',
+          dataProcessing: 'OpenCV Bildvorverarbeitung, Data Augmentation, Klassenbalancierung',
+          mlModels: 'EfficientNet, DenseNet, ResNet (Transfer Learning), Model Ensemble',
+          visualization: 'Confusion Matrix, Grad-CAM Visualisierung, Training-Metriken',
+          layers: ['Datensammlung', 'Preprocessing', 'Modelltraining', 'Hyperparameter-Optimierung (Optuna)', 'API Service'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Modulare CNN Pipeline, L2 Regularisierung, Dropout-Schichten',
+        },
+      },
+      {
+        title: 'Supply Chain Analytics Dashboard – Data & ML PoC',
+        description:
+          'Umfassendes Web-Dashboard zur Überwachung der Lieferkettenperformance, entwickelt mit Streamlit. Vereint Lieferantenbewertung, Lieferverzögerungsanalyse, Kostentrends, Risikobewertung und Bestandsmanagement in einem Panel. ML-Modelle prognostizieren Lieferzeiten, externe APIs liefern Wetterdaten und Wechselkurse für erweiterte Risikoanalysen.',
+        summary: 'End-to-End Supply-Chain-Analytics: KPI-Tracking, ML-basierte Prognosen, Risikoscoring und Bestandsoptimierung.',
+        stack: 'Python, Streamlit, Pandas, NumPy, Plotly, SQLAlchemy, SQLite, scikit-learn, Requests',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['Data Analytics', 'Machine Learning', 'Python', 'Dashboard', 'Supply Chain'],
+        image: '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
+        impact: 'PoC, das Lieferantenbewertung, Lieferprognose und Risikomanagement auf einer Plattform vereint; beschleunigt Entscheidungsprozesse.',
+        psr: {
+          problem: 'Lieferantenperformance, Verzögerungsrisiken und Bestandsdaten lagen in verschiedenen Systemen verteilt.',
+          solution: 'Streamlit-Dashboard + RandomForest für Lieferzeitprognosen + externe API-Integration (Wetter/Wechselkurs).',
+          result: 'Risikobewertung, ML-Prognosen und KPI-Überwachung in einer Oberfläche vereint; Entscheidungsprozesse beschleunigt.',
+        },
+        details: {
+          backend: 'Python, Streamlit, SQLAlchemy',
+          database: 'SQLite (supply_chain.db)',
+          frontend: 'Streamlit UI Components',
+          mlModels: 'RandomForest, GradientBoosting (Lieferzeitprognose)',
+          visualization: 'Plotly (Bar, Pie, Area, Radar, Heatmap)',
+          dataProcessing: 'Pandas, NumPy (Filterung, Aggregation, KPI-Berechnung)',
+          layers: [
+            'Lieferantenanalyse',
+            'Lieferprognose (ML)',
+            'Kostenoptimierung',
+            'Risikobewertung',
+            'Bestandsmanagement',
+            'Externe Datenintegration (Wetter/Währung/Rohstoffe)',
+          ],
+          architecture: 'Modulare Python-Architektur: config → models → db_manager → Analytics-Module → UI-Komponenten',
+          versionControl: 'Git, GitHub',
+        },
+        gallery: [
+          '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-01 PM-762.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-09 PM-660.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-14 PM-800.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-19 PM-361.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-21 PM-630.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-32 PM-511.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-38 PM-171.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-42 PM-160.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-52 PM-134.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-50-58 PM-109.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-03 PM-132.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-21 PM-548.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-29 PM-324.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-36 PM-880.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-38 PM-629.png',
+          '/projects/SupplyChain/Desktop 2026-01-29 7-51-41 PM-254.png',
+        ],
+      },
+      {
+        title: 'Heart Disease Prediction ML Projekt',
+        description:
+          'Heart Failure Prediction Dataset bereinigt (Missing Values, Encoding, Normalisierung) und KNN, Logistische Regression, Decision Trees verglichen. Bewertet mit Accuracy/Precision/Recall/F1 fuer Outcome-Prediction.',
+        summary: 'Datenaufbereitung, Modellvergleich und Healthcare-Use-Case fuer Herzrisiko-Prognose.',
+        stack: 'Scikit-Learn, Python, ML',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['ML', 'Data Analysis', 'Healthcare'],
+        image: '/projects/heart-disease-prediction-ml.webp',
+        impact: 'Beste Vorhersagegenauigkeit durch Modellvergleich ermittelt.',
+        psr: {
+          problem: 'Fehlende Werte und unausgewogene Klassen im Datensatz machten die Herzerkrankungsprognose unzuverlässig.',
+          solution: 'Datenbereinigung und Normalisierung, anschließend KNN, Logistische Regression und Entscheidungsbaum verglichen.',
+          result: 'Bestes Modell per Accuracy/Precision/Recall/F1 identifiziert; solide ML-Pipeline-Grundlage aufgebaut.',
+        },
+        details: {
+          dataProcessing: 'Missing Value Imputation, Kategorische Codierung, Min-Max Normalisierung',
+          mlModels: 'K-Nearest Neighbors (KNN), Logistische Regression, Decision Tree',
+          visualization: 'Confusion Matrix, ROC Curve, Precision-Recall Grafiken',
+          layers: ['Datenbereinigung', 'Feature Engineering', 'Modelltraining', 'Modellvergleich', 'Evaluation'],
+          versionControl: 'Git, GitHub',
+          architecture: 'Jupyter Notebook basierte Analyse-Pipeline',
+        },
+      },
+      {
+        title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
+        description:
+          'Modulares Excel-VBA-Automation-Toolkit: SAP-CSV wird aus Config gelesen, Raw → Staging Pipeline, Dashboards/Pivots aktualisieren automatisch. Zentrales Logging/Error-Handling, EN/DE UserForm-UI aus Config und Multi-Source-Import (CSV/JSON/Excel).',
+        summary:
+          'Konfigurierbarer Prototype / Demo mit Mock-SAP-Export und JSON-Datasets; automatische Log-Cleanup und Dashboard-Refresh.',
+        stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
+        link: 'https://github.com/JegBaha?tab=repositories',
+        github: 'https://github.com/JegBaha?tab=repositories',
+        live: '#',
+        tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
+        image: '/projects/excel-vba-automation.webp',
+        impact: 'Praxis in modularer VBA-Architektur, zentralem Fehlerfang und Config-Steuerung.',
+        psr: {
+          problem: 'SAP-Dateien manuell in Excel zu übertragen und das Dashboard zu aktualisieren war repetitiv und fehleranfällig.',
+          solution: 'Config-getriebene VBA-Module + zentrales Logging + zweisprachiges UserForm als Automatisierungs-Toolkit erstellt.',
+          result: 'Raw→Staging-Ablauf und Dashboard-Aktualisierung vollständig automatisiert; modulare Struktur ermöglicht Wiederverwendung.',
+        },
+        playground: true,
+        details: {
+          backend: 'Excel VBA Module',
+          frontend: 'UserForm (EN/DE Mehrsprachigkeit)',
+          dataProcessing: 'SAP CSV Import, JSON Parsing, Excel Datenmanipulation',
+          layers: ['Config Management', 'Daten-Lesen (Raw)', 'Datenverarbeitung (Staging)', 'Dashboard/Pivot Update', 'Logging'],
+          versionControl: 'Git',
+          architecture: 'Modulare VBA Struktur, zentrales Error-Handling, Config-Driven Design',
+        },
+      },
+      {
         title: 'Employee Management System (Prestij Praktikum)',
         description:
           'Desktop-Personalverwaltungssystem. In der WinForms-Anwendung habe ich Module fuer Benutzeranmeldung/-registrierung, Mitarbeiter hinzufuegen–aktualisieren–loeschen (Soft Delete), Suche/Filterung, Gehaltsverwaltung und Dashboard-Statistiken (Gesamt/Aktiv/Inaktiv, zuletzt hinzugefuegt) entwickelt. Daten werden ueber ADO.NET in SQL Server verwaltet, die Oberflaeche nutzt ein einheitliches Theme-/Farbschema.',
         summary: 'WinForms-basierte Desktop-Personalverwaltung; CRUD, Soft Delete, Gehaltsverwaltung, Dashboard und Benutzerauthentifizierung. Entwickelt waehrend des Prestij-Praktikums.',
         stack: 'C#, WinForms, .NET Framework 4.7.2, ADO.NET, SQL Server',
-        link: 'https://github.com/JegBaha/StajEmployeeManagement',
-        github: 'https://github.com/JegBaha/StajEmployeeManagement',
+        link: 'https://github.com/JegBaha/EmployeeManagementProject-master',
+        github: 'https://github.com/JegBaha/EmployeeManagementProject-master',
         live: '#',
         tags: ['.NET', 'C#', 'SQL', 'WinForms', 'Desktop'],
         image: '/projects/Employee Management/Desktop 2026-02-10 2-11-31 AM-396.png',
         impact: 'Waehrend des Prestij-Praktikums entwickeltes Desktop-Personalverwaltungssystem; automatisierte die manuelle Personalverfolgung.',
+        psr: {
+          problem: 'Personaldaten per Excel zu verwalten wurde mit wachsender Teamgröße fehleranfällig und nicht mehr tragbar.',
+          solution: 'WinForms + ADO.NET + SQL Server mit Soft-Delete, Suche/Filter und Gehaltsmodulen entwickelt.',
+          result: 'Manuelle Erfassung abgelöst; CRUD-Operationen zuverlässig, schnell und konsistent.',
+        },
         gallery: [
           '/projects/Employee Management/Desktop 2026-02-10 2-11-31 AM-396.png',
           '/projects/Employee Management/Desktop 2026-02-10 2-11-42 AM-363.png',
@@ -1228,12 +1417,17 @@ const content: Record<
           'Webanwendung, die Etikettentext aus Bildern mittels OCR ausliest und den extrahierten Text mit einer vordefinierten Produktetikettenliste abgleicht. Eingehende Base64-Bilder werden dekodiert, die OCR-Ausgabe normalisiert und Produktcodes durch eine eigene Matching-Logik identifiziert. Uebereinstimmende Etiketten werden mit Zeitstempel in eine separate CSV-Datei protokolliert. REST-API-Endpoints liefern Etikettenlisten, Matches und Scan-Ergebnisse im JSON-Format.',
         summary: 'OCR-basiertes Etikettenlesen, Produktcode-Matching und REST-API-Ergebnisbereitstellung; entwickelt waehrend des Sanofi-Praktikums.',
         stack: 'Python, Flask, EasyOCR, Pandas, Pillow, Base64, JSON',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/EtiketOkumaStaj-main',
+        github: 'https://github.com/JegBaha/EtiketOkumaStaj-main',
         live: '#',
         tags: ['OCR', 'Python', 'Flask', 'Computer Vision'],
         image: '/projects/Label Reading/Desktop 2026-02-09 10-14-49 PM-482.png',
         impact: 'Waehrend des Sanofi-Praktikums (Juli 2024) entwickelte industrielle Etikettenlese- und Matching-Loesung; automatisierte die manuelle Etikettenkontrolle.',
+        psr: {
+          problem: 'Produktetiketten an der Fertigungslinie manuell zu prüfen war langsam, inkonsistent und fehleranfällig.',
+          solution: 'EasyOCR + Flask REST API für Etikettenerkennung, Normalisierung und Produktcode-Abgleich entwickelt.',
+          result: 'SLA während des gesamten Praktikums eingehalten; manuelle Etikettenprüfung vollständig automatisiert.',
+        },
         gallery: [
           '/projects/Label Reading/Desktop 2026-02-09 10-14-49 PM-482.png',
           '/projects/Label Reading/Desktop 2026-02-09 10-14-51 PM-488.png',
@@ -1246,56 +1440,6 @@ const content: Record<
           layers: ['Bildempfang (Base64)', 'OCR-Verarbeitung (EasyOCR)', 'Textnormalisierung', 'Produktcode-Matching', 'CSV-Protokollierung', 'REST-API-Service'],
           versionControl: 'Git, GitHub',
           architecture: 'Flask-basierte monolithische Webanwendung; OCR → Normalisieren → Matching → Logging Pipeline',
-        },
-      },
-      {
-        title: 'Excel VBA Automation Toolkit (Prototype / Demo)',
-        description:
-          'Modulares Excel-VBA-Automation-Toolkit: SAP-CSV wird aus Config gelesen, Raw → Staging Pipeline, Dashboards/Pivots aktualisieren automatisch. Zentrales Logging/Error-Handling, EN/DE UserForm-UI aus Config und Multi-Source-Import (CSV/JSON/Excel).',
-        summary:
-          'Konfigurierbarer Prototype / Demo mit Mock-SAP-Export und JSON-Datasets; automatische Log-Cleanup und Dashboard-Refresh.',
-        stack: 'Excel VBA, Office Automation, SAP CSV, JSON',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
-        live: '#',
-        tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
-        image: '/projects/excel-vba-automation.webp',
-        impact: 'Praxis in modularer VBA-Architektur, zentralem Fehlerfang und Config-Steuerung.',
-        playground: true,
-        details: {
-          backend: 'Excel VBA Module',
-          frontend: 'UserForm (EN/DE Mehrsprachigkeit)',
-          dataProcessing: 'SAP CSV Import, JSON Parsing, Excel Datenmanipulation',
-          layers: ['Config Management', 'Daten-Lesen (Raw)', 'Datenverarbeitung (Staging)', 'Dashboard/Pivot Update', 'Logging'],
-          versionControl: 'Git',
-          architecture: 'Modulare VBA Struktur, zentrales Error-Handling, Config-Driven Design',
-        },
-      },
-      {
-        title: 'KPI Automation Toolkit',
-        description:
-          'Python + VBA Hybrid-KPI-Automatisierungs-Pipeline. Liest SAP-CSV-Exporte über Config-Datei und berechnet OEE (Availability × Performance × Quality), MTTR/MTBF sowie Downtime-Pareto-Analysen. Modulares System nach Single-Responsibility-Prinzip: DataIngester, DataCleaner, DataValidator, KPICalculator und Pipeline-Orchestrator. Exception-Tracking für Datenqualitäts-Sichtbarkeit, JSON-Logging für Audit-Trail.',
-        summary:
-          'KPI-Berechnung aus SAP-Daten, Datenbereinigung und Excel-Dashboard-Aktualisierung; Python-Backend + VBA-Orchestrierung für produktionsreife Data-Pipeline.',
-        stack: 'Python, Pandas, NumPy, Excel VBA, JSON, openpyxl',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
-        live: '#',
-        tags: ['Automation', 'Data Pipeline', 'KPI', 'Python', 'Excel VBA'],
-        image: '/projects/KPIAutomation/KapakFoto.png',
-        impact: 'Automatische KPI-Berechnung und Dashboard-Aktualisierung aus SAP-Daten; reduziert manuellen Reporting-Aufwand erheblich.',
-        gallery: [
-          '/projects/KPIAutomation/KapakFoto.png',
-          '/projects/KPIAutomation/Desktop 2026-02-01 6-29-01 PM-83.png',
-        ],
-        details: {
-          backend: 'Python-Module (Pipeline, DataCleaner, KPICalculator, DataValidator, PipelineLogger)',
-          frontend: 'Excel VBA UserForm, Named Ranges für dynamische Oberfläche',
-          dataProcessing: 'Pandas mit IQR-Outlier-Bereinigung, Missing-Value-Handling, Negativ-Wert-Exception-Tracking, NumpyEncoder für JSON-Serialisierung',
-          visualization: 'Excel Dashboard, Pivot-Tabellen, Power Query Integration',
-          layers: ['SAP Data Import', 'Schema Validation', 'Data Cleaning', 'KPI Calculation (OEE/MTTR/MTBF)', 'Pareto Analysis', 'Excel Output'],
-          versionControl: 'Git, GitHub',
-          architecture: 'Modulare Python + VBA Hybrid: VBA-Orchestrierung → Python-Datenverarbeitung → Excel-Output; Single Responsibility Principle',
         },
       },
       {
@@ -1359,56 +1503,6 @@ const content: Record<
           versionControl: 'Git',
           architecture: '3D FPS Component-Based Architektur',
         },
-      },
-      {
-        title: 'Supply Chain Analytics Dashboard – Data & ML PoC',
-        description:
-          'Umfassendes Web-Dashboard zur Überwachung der Lieferkettenperformance, entwickelt mit Streamlit. Vereint Lieferantenbewertung, Lieferverzögerungsanalyse, Kostentrends, Risikobewertung und Bestandsmanagement in einem Panel. ML-Modelle prognostizieren Lieferzeiten, externe APIs liefern Wetterdaten und Wechselkurse für erweiterte Risikoanalysen.',
-        summary: 'End-to-End Supply-Chain-Analytics: KPI-Tracking, ML-basierte Prognosen, Risikoscoring und Bestandsoptimierung.',
-        stack: 'Python, Streamlit, Pandas, NumPy, Plotly, SQLAlchemy, SQLite, scikit-learn, Requests',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
-        live: '#',
-        tags: ['Data Analytics', 'Machine Learning', 'Python', 'Dashboard', 'Supply Chain'],
-        image: '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
-        impact: 'PoC, das Lieferantenbewertung, Lieferprognose und Risikomanagement auf einer Plattform vereint; beschleunigt Entscheidungsprozesse.',
-        details: {
-          backend: 'Python, Streamlit, SQLAlchemy',
-          database: 'SQLite (supply_chain.db)',
-          frontend: 'Streamlit UI Components',
-          mlModels: 'RandomForest, GradientBoosting (Lieferzeitprognose)',
-          visualization: 'Plotly (Bar, Pie, Area, Radar, Heatmap)',
-          dataProcessing: 'Pandas, NumPy (Filterung, Aggregation, KPI-Berechnung)',
-          layers: [
-            'Lieferantenanalyse',
-            'Lieferprognose (ML)',
-            'Kostenoptimierung',
-            'Risikobewertung',
-            'Bestandsmanagement',
-            'Externe Datenintegration (Wetter/Währung/Rohstoffe)',
-          ],
-          architecture: 'Modulare Python-Architektur: config → models → db_manager → Analytics-Module → UI-Komponenten',
-          versionControl: 'Git, GitHub',
-        },
-        gallery: [
-          '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-01 PM-762.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-09 PM-660.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-14 PM-800.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-19 PM-361.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-21 PM-630.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-32 PM-511.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-38 PM-171.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-42 PM-160.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-52 PM-134.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-50-58 PM-109.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-03 PM-132.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-21 PM-548.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-29 PM-324.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-36 PM-880.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-38 PM-629.png',
-          '/projects/SupplyChain/Desktop 2026-01-29 7-51-41 PM-254.png',
-        ],
       },
     ],
     education: [
@@ -1516,8 +1610,9 @@ const content: Record<
       eyebrow: 'Industrial AI Engineer | Welcome',
       titleMain: 'Industrial AI & Data Engineer',
       titleAccent: ' | BSc Computer Engineering',
-      impactLine: '4+ years experience • 10+ projects • EU citizen • Available now',
-      lede: 'I\'m interested not just in analyzing data, but in how it\'s produced, moved, and turned into meaningful decisions. As I grow in software, backend, automation, and industrial integration, I keep data at the center of every layer. My goal: turn shop-floor data into reliable, scalable, decision-support systems.',
+      impactLine: 'Recent graduate • 10+ projects • EU citizen • Available now',
+      lede: 'I like turning field data into scalable decision-support systems. From SAP internship to LSTM model, from production sensor to dashboard.',
+      pills: ['🏭 IoT / Manufacturing', '🧠 ML & AI', '💻 Python · C# · SQL'],
       ctas: { browse: 'Browse projects', download: 'Download CV' },
       ctaNotes: { citizen: 'EU Citizen (Bulgaria)', availability: 'Available immediately' },
     },
@@ -1605,7 +1700,7 @@ const content: Record<
           'Train and evaluate LLMs to improve code generation and reasoning.',
           'Ensure quality across data annotation, prompt engineering, and QA.',
         ],
-        impact: 'Raised LLM quality scores; fewer wrong answers.',
+        impact: 'My test cases got accepted across multiple models; wrong outputs dropped noticeably.',
         skills: ['Python', 'Prompt Engineering', 'LLM', 'Data Annotation'],
       },
       {
@@ -1619,7 +1714,7 @@ const content: Record<
           'Deepened understanding of data security, performance tuning, and compliance for hospital information systems.',
           'Documented troubleshooting and preventive maintenance to keep systems reliable.',
         ],
-        impact: 'Sped up HIS/report queries and kept them stable.',
+        impact: 'Built several critical HIS modules from scratch; query times dropped considerably.',
         skills: ['C#', '.NET', 'SQL', 'Git', 'HIS'],
       },
       {
@@ -1632,7 +1727,7 @@ const content: Record<
           'Explored SAP S/4HANA and SAP Fiori core modules in an ERP context.',
           'Learned how SAP ties into finance, supply chain, and HR processes; practiced workflow customization.',
         ],
-        impact: 'Met SLA while shortening ticket closure time.',
+        impact: 'Kept SLA clean throughout; built and delivered a label-reading system from the ground up.',
         skills: ['SAP S/4HANA', 'SAP Fiori', 'Network', 'Hardware'],
       },
       {
@@ -1644,7 +1739,7 @@ const content: Record<
           'Provided hardware and networking support, reducing workstation downtime.',
           'Executed baseline maintenance and troubleshooting for IT operations.',
         ],
-        impact: 'Cut downtime and sped up onsite fixes.',
+        impact: 'Fixed hardware and network issues on-site; system downtime dropped noticeably.',
         skills: ['Hardware', 'Network', 'IT Support'],
       },
     ],
@@ -1738,12 +1833,17 @@ const content: Record<
         summary:
           'Sensor data collection, predictive maintenance, production KPI automation, and RAG-based intelligent assistant unified in a single end-to-end Industry 4.0 PoC platform.',
         stack: 'Python, FastAPI, MQTT, PostgreSQL, PyTorch, Scikit-Learn, ChromaDB, Ollama, Pandas, NumPy, HTML5 Canvas',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/Industry-4.0-IoT-Predictive-Maintenance-Platform',
+        github: 'https://github.com/JegBaha/Industry-4.0-IoT-Predictive-Maintenance-Platform',
         live: '#',
         tags: ['IoT', 'ML', 'Industry 4.0', 'RAG', 'FastAPI', 'Ops'],
         image: '/projects/industry-40-iot-predictive-maintenance.webp',
         impact: 'Unifies real-time sensor data, predictive maintenance, automatic KPI calculation, and RAG assistant in a single-command deployable platform.',
+        psr: {
+          problem: 'Machine failures were unpredictable, and KPIs were calculated manually every week.',
+          solution: 'Collected real-time sensor data via MQTT, trained an LSTM model for fault prediction, automated OEE/MTBF/MTTR.',
+          result: 'A complete end-to-end PoC — spins up with one command, connected from raw sensor data to decisions.',
+        },
         gallery: [
           '/projects/IndustryMaintenance/1.png',
           '/projects/IndustryMaintenance/2.png',
@@ -1782,6 +1882,11 @@ const content: Record<
         tags: ['ML', 'Data Analysis', 'Healthcare'],
         image: '/projects/heart-disease-prediction-ml.webp',
         impact: 'Identified best prediction accuracy through model comparison.',
+        psr: {
+          problem: 'Missing values and imbalanced classes in the dataset made heart disease prediction unreliable.',
+          solution: 'Applied data cleaning and normalization, then compared KNN, Logistic Regression, and Decision Tree.',
+          result: 'Best model identified using Accuracy/Precision/Recall/F1; built a solid foundational ML pipeline.',
+        },
         details: {
           dataProcessing: 'Missing value imputation, categorical encoding, Min-Max normalization',
           mlModels: 'K-Nearest Neighbors (KNN), Logistic Regression, Decision Tree',
@@ -1798,12 +1903,17 @@ const content: Record<
         summary:
           'End-to-end MRI pipeline with ensemble models and production-ready APIs for healthcare.',
         stack: 'PyTorch, TensorFlow, CNN',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/NeuraVeil-Brain-Tumor-Classification-System',
+        github: 'https://github.com/JegBaha/NeuraVeil-Brain-Tumor-Classification-System',
         live: '#',
         tags: ['AI', 'Computer Vision', 'Healthcare'],
         image: '/projects/neuraveil-mri-tumor.webp',
         impact: 'Achieved high-accuracy tumor classification via transfer learning.',
+        psr: {
+          problem: 'Manually classifying MRI tumor types adds clinical workload through frequent misclassifications.',
+          solution: 'Trained EfficientNet, DenseNet, and ResNet with transfer learning and Optuna optimization; used ensemble for better accuracy.',
+          result: 'High-accuracy multi-class tumor detection; model decisions visualized with Grad-CAM.',
+        },
         gallery: [
           '/projects/neuraveil/442462721-7e760073-42c5-49d3-a0e6-2dd4b3ad9971.png',
           '/projects/neuraveil/442462723-0a40c626-411d-4134-86d4-714de8f16946.png',
@@ -1828,13 +1938,18 @@ const content: Record<
         summary:
           'Time-series based deep learning application for source separation and drum pattern extraction from audio signals.',
         stack: 'Python, PyTorch, Demucs, Librosa',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/drumveil-frontend',
+        github: 'https://github.com/JegBaha/drumveil-frontend',
         live: '#',
         tags: ['Audio', 'AI', 'Python', 'Iterative prototype'],
         image: '/projects/drumveil-ritual-metal-drums.webp',
         impact:
           'Hands-on experience with feature extraction and time-series processing on audio signals; working through real-world challenges like data imbalance and dimension mismatches.',
+        psr: {
+          problem: 'Isolating drum tracks from music files with affordable tools was either too expensive or too imprecise.',
+          solution: 'Built a pipeline using Demucs for source separation, Librosa for spectral analysis, and time-series feature extraction.',
+          result: 'Gained solid hands-on experience handling real-world data noise and dimension mismatches.',
+        },
         gallery: [
           '/projects/drumveil/Desktop 2026-02-07 9-32-34 PM-459.png',
           '/projects/drumveil/Desktop 2026-02-07 9-32-40 PM-935.png',
@@ -1862,12 +1977,17 @@ const content: Record<
           'Developed a desktop Employee Management System. The WinForms app includes user login/registration, employee add–update–soft delete, search/filtering, salary management, and dashboard analytics (total/active/inactive, recent hires). Data is managed in SQL Server via ADO.NET, and the UI uses a consistent theme/styling layer.',
         summary: 'WinForms-based desktop employee management app; CRUD, soft delete, salary management, dashboard, and user authentication. Developed during Prestij internship.',
         stack: 'C#, WinForms, .NET Framework 4.7.2, ADO.NET, SQL Server',
-        link: 'https://github.com/JegBaha/StajEmployeeManagement',
-        github: 'https://github.com/JegBaha/StajEmployeeManagement',
+        link: 'https://github.com/JegBaha/EmployeeManagementProject-master',
+        github: 'https://github.com/JegBaha/EmployeeManagementProject-master',
         live: '#',
         tags: ['.NET', 'C#', 'SQL', 'WinForms', 'Desktop'],
         image: '/projects/Employee Management/Desktop 2026-02-10 2-11-31 AM-396.png',
         impact: 'Desktop employee management system developed during Prestij internship; automated manual personnel tracking.',
+        psr: {
+          problem: 'Tracking personnel data in Excel became error-prone and unsustainable as the team grew.',
+          solution: 'Developed WinForms + ADO.NET + SQL Server app with soft delete, search/filter, and salary modules.',
+          result: 'Manual tracking replaced; CRUD operations became reliable, fast, and consistent.',
+        },
         gallery: [
           '/projects/Employee Management/Desktop 2026-02-10 2-11-31 AM-396.png',
           '/projects/Employee Management/Desktop 2026-02-10 2-11-42 AM-363.png',
@@ -1891,12 +2011,17 @@ const content: Record<
           'A web application that reads label text from images using OCR and matches the extracted text against a predefined product label list. The system decodes incoming images provided in Base64 format, normalizes the OCR output, and identifies product codes through a custom matching logic. Matched labels are logged into a separate CSV file along with timestamps. The application exposes REST API endpoints to serve label lists, matched records, and scan results in JSON format.',
         summary: 'OCR-based label reading, product code matching, and REST API result serving; developed during Sanofi internship.',
         stack: 'Python, Flask, EasyOCR, Pandas, Pillow, Base64, JSON',
-        link: 'https://github.com/JegBaha?tab=repositories',
-        github: 'https://github.com/JegBaha?tab=repositories',
+        link: 'https://github.com/JegBaha/EtiketOkumaStaj-main',
+        github: 'https://github.com/JegBaha/EtiketOkumaStaj-main',
         live: '#',
         tags: ['OCR', 'Python', 'Flask', 'Computer Vision'],
         image: '/projects/Label Reading/Desktop 2026-02-09 10-14-49 PM-482.png',
         impact: 'Industrial label reading and matching solution developed during Sanofi internship (July 2024); automated manual label verification process.',
+        psr: {
+          problem: 'Checking product labels manually on factory lines was slow, inconsistent, and error-prone.',
+          solution: 'Built EasyOCR + Flask REST API for label reading, normalization, and product code matching.',
+          result: 'Delivered with SLA intact throughout the internship; manual label checking fully automated.',
+        },
         gallery: [
           '/projects/Label Reading/Desktop 2026-02-09 10-14-49 PM-482.png',
           '/projects/Label Reading/Desktop 2026-02-09 10-14-51 PM-488.png',
@@ -1924,6 +2049,11 @@ const content: Record<
         tags: ['Prototype / Demo', 'Excel VBA', 'Automation'],
         image: '/projects/excel-vba-automation.webp',
         impact: 'Applied project in modular VBA architecture, centralized error capture, and config management.',
+        psr: {
+          problem: 'Manually transferring SAP files to Excel and refreshing dashboards was repetitive and error-prone.',
+          solution: 'Created config-driven VBA modules + centralized logging + bilingual UserForm as an automation toolkit.',
+          result: 'Raw→Staging flow and dashboard refresh fully automated; modular structure makes it reusable.',
+        },
         playground: true,
         details: {
           backend: 'Excel VBA modules',
@@ -1947,6 +2077,11 @@ const content: Record<
         tags: ['Automation', 'Data Pipeline', 'KPI', 'Python', 'Excel VBA'],
         image: '/projects/KPIAutomation/KapakFoto.png',
         impact: 'Automatic KPI calculation and dashboard updates from SAP data; significantly reduces manual reporting effort.',
+        psr: {
+          problem: 'Manually exporting SAP CSVs and calculating KPIs in Excel was slow and prone to errors.',
+          solution: 'Built Python modules (DataIngester, KPICalculator, Pareto) combined with a VBA orchestration layer.',
+          result: 'OEE, MTTR, and MTBF now calculate automatically; manual reporting time dropped noticeably.',
+        },
         gallery: [
           '/projects/KPIAutomation/KapakFoto.png',
           '/projects/KPIAutomation/Desktop 2026-02-01 6-29-01 PM-83.png',
@@ -2035,6 +2170,11 @@ const content: Record<
         tags: ['Data Analytics', 'Machine Learning', 'Python', 'Dashboard', 'Supply Chain'],
         image: '/projects/SupplyChain/Desktop 2026-01-29 7-49-55 PM-642.png',
         impact: 'PoC unifying supplier scoring, delivery forecasting, and risk management on one platform; accelerates decision-making processes.',
+        psr: {
+          problem: 'Supplier performance, delivery risks, and inventory data were scattered across separate systems.',
+          solution: 'Built a Streamlit dashboard + RandomForest delivery predictions + external API integration (weather/exchange rates).',
+          result: 'Risk scoring, ML forecasting, and KPI tracking unified in one interface; decision-making got faster.',
+        },
         details: {
           backend: 'Python, Streamlit, SQLAlchemy',
           database: 'SQLite (supply_chain.db)',
@@ -2352,7 +2492,7 @@ function App() {
       : 'Is etkisi: verim ve dogruluk artisi, manuel is azalmasi.'
 
   const sectionIdsToTrack = useMemo(
-    () => ['hero', 'about', 'education', 'experience', 'skills', 'projects', 'certifications', 'hobby', 'contact'],
+    () => ['hero', 'about', 'experience', 'projects', 'skills', 'education', 'certifications', 'hobby', 'contact'],
     [],
   )
 
@@ -2512,7 +2652,7 @@ function App() {
 
   // Section navigation order
   const navSections = useMemo(
-    () => ['hero', 'about', 'education', 'experience', 'skills', 'projects', 'certifications', 'hobby', 'contact'],
+    () => ['hero', 'about', 'experience', 'projects', 'skills', 'education', 'certifications', 'hobby', 'contact'],
     [],
   )
 
@@ -3232,115 +3372,95 @@ function App() {
       {isDrawerOpen && <div className="drawer-overlay" onClick={() => setIsDrawerOpen(false)} aria-hidden="true" />}
 
       <main>
-        <section className="hero" id="hero">
-          <div className="hero-text">
-            <p className="eyebrow">{greeting}</p>
-            <h1>
-              {c.hero.titleMain}
-              <span className="accent">{c.hero.titleAccent}</span>
-            </h1>
-            <p className="impact-line">{c.hero.impactLine}</p>
-            <p className="lede typewriter-text">
-              {typewriterText}
-              {!typewriterDone && <span className="typewriter-cursor">|</span>}
-            </p>
-            <div className="cta-row hero-cta">
-              <div className="contact-cta">
-                <div className="social-badges" aria-label="Sosyal baglantilar">
-                  <a
-                    className="icon-btn linkedin"
-                    href="https://www.linkedin.com/in/baha-buyukates"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="LinkedIn"
-                    title="LinkedIn"
-                   
-                   
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-4.72 17.7H4.28V9.3h3v8.4zM5.83 8.07c-.96 0-1.73-.79-1.73-1.76 0-.97.77-1.76 1.73-1.76s1.73.79 1.73 1.76c0 .97-.77 1.76-1.73 1.76zm12.87 9.63h-3v-4.58c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.65h-3V9.3h2.88v1.15h.04c.4-.75 1.38-1.54 2.85-1.54 3.05 0 3.6 2.01 3.6 4.62v5.17z" />
-                    </svg>
-                  </a>
-                  <a
-                    className="icon-btn github"
-                    href="https://github.com/JegBaha?tab=repositories"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="GitHub"
-                    title="GitHub"
-                   
-                   
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.011-1.04-.017-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.083-.73.083-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.521.117-3.172 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.018.005 2.044.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.654 1.651.243 2.869.119 3.172.77.84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.625-5.475 5.921.43.372.823 1.103.823 2.222 0 1.606-.015 2.898-.015 3.292 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
+        <section className="hero hero-v2" id="hero">
+          <div className="hero-content">
+            <p className="hero-greeting">{greeting}</p>
+
+            <div className="open-to-work-badge">
+              <span className="otw-dot" />
+              <span>
+                {activeLocale === 'TR'
+                  ? 'Frankfurt bölgesi · Hemen başlayabilirim'
+                  : activeLocale === 'DE'
+                  ? 'Raum Frankfurt · Sofort verfügbar'
+                  : 'Frankfurt area · Available now'}
+              </span>
+            </div>
+
+            <h1 className="hero-name">Baha Büyükateş</h1>
+            <p className="hero-role">{c.hero.titleMain}</p>
+
+            <div className="hero-pills">
+              {c.hero.pills.map((pill) => (
+                <span className="hero-pill" key={pill}>{pill}</span>
+              ))}
+            </div>
+
+            <p className="hero-lede">{c.hero.lede}</p>
+
+            <div className="hero-actions">
               <a className="btn primary" href="#projects" onClick={(e) => scrollToSection('projects', e)}>
                 {c.hero.ctas.browse}
               </a>
-                <button
-                  className="btn ghost"
-                  onClick={() => setCvPopupOpen(true)}
-                >
-                  {c.hero.ctas.download}
-                </button>
-              </div>
-              <div className="hero-cta-notes">
-                <span>{c.hero.ctaNotes.citizen}</span>
-                <span>{c.hero.ctaNotes.availability}</span>
-              </div>
+              <button className="btn ghost" onClick={() => setCvPopupOpen(true)}>
+                {c.hero.ctas.download}
+              </button>
             </div>
-            <div className="hero-panel">
-            <div className="panel-header">
-              <div className="panel-status">
-                <span className="status-dot" />
-                <span className="status-text">{c.heroPanel.status}</span>
-              </div>
-              <span className="panel-location">
-                <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+
+            <div className="hero-social">
+              <a
+                className="icon-btn linkedin"
+                href="https://www.linkedin.com/in/baha-buyukates"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                title="LinkedIn"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-4.72 17.7H4.28V9.3h3v8.4zM5.83 8.07c-.96 0-1.73-.79-1.73-1.76 0-.97.77-1.76 1.73-1.76s1.73.79 1.73 1.76c0 .97-.77 1.76-1.73 1.76zm12.87 9.63h-3v-4.58c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.65h-3V9.3h2.88v1.15h.04c.4-.75 1.38-1.54 2.85-1.54 3.05 0 3.6 2.01 3.6 4.62v5.17z" />
                 </svg>
-                {c.heroPanel.location}
-              </span>
+              </a>
+              <a
+                className="icon-btn github"
+                href="https://github.com/JegBaha?tab=repositories"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                title="GitHub"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.011-1.04-.017-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.083-.73.083-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.521.117-3.172 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.018.005 2.044.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.654 1.651.243 2.869.119 3.172.77.84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.625-5.475 5.921.43.372.823 1.103.823 2.222 0 1.606-.015 2.898-.015 3.292 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+              </a>
             </div>
-            <div className="panel-focus">
-              <span className="panel-focus-title">{c.heroPanel.focus}</span>
-              <div className="panel-focus-items">
-                {c.heroPanel.focusItems.map((item) => (
-                  <span className={`panel-focus-tag ${item.active ? 'active' : ''}`} key={item.label}>
-                    {item.active && <span className="focus-pulse" />}
-                    {item.label}
-                  </span>
-                ))}
+
+            <div className="hero-stats-bar">
+              <div className="hero-stat-item">
+                <span className="hsi-value">10+</span>
+                <span className="hsi-label">{c.impactStats.projectsLabel}</span>
               </div>
-            </div>
-            <div className="panel-footer">
-              <span className="panel-availability">{c.heroPanel.availability}</span>
+              <span className="hsi-sep">|</span>
+              <div className="hero-stat-item">
+                <span className="hsi-value">4</span>
+                <span className="hsi-label">
+                  {activeLocale === 'TR' ? 'Staj / İş' : activeLocale === 'DE' ? 'Praktika / Jobs' : 'Internships'}
+                </span>
+              </div>
+              <span className="hsi-sep">|</span>
+              <div className="hero-stat-item">
+                <span className="hsi-value">3</span>
+                <span className="hsi-label">{c.impactStats.languagesLabel}</span>
+              </div>
+              <span className="hsi-sep">|</span>
+              <div className="hero-stat-item">
+                <span className="hsi-value">AB</span>
+                <span className="hsi-label">
+                  {activeLocale === 'TR' ? 'Vatandaşı' : activeLocale === 'DE' ? 'EU-Bürger' : 'EU Citizen'}
+                </span>
+              </div>
             </div>
           </div>
         </section>
-
-        {/* Impact Stats - Professional metrics showcase */}
-        <div className="impact-stats" aria-label="Key statistics">
-          <div className="impact-stat">
-            <div className="stat-value"><CountUp target={4} suffix="+" /></div>
-            <div className="stat-label">{c.impactStats.experienceLabel}</div>
-          </div>
-          <div className="impact-stat">
-            <div className="stat-value"><CountUp target={10} suffix="+" /></div>
-            <div className="stat-label">{c.impactStats.projectsLabel}</div>
-          </div>
-          <div className="impact-stat">
-            <div className="stat-value"><CountUp target={3} /></div>
-            <div className="stat-label">{c.impactStats.languagesLabel}</div>
-          </div>
-          <div className="impact-stat">
-            <div className="stat-value">{c.impactStats.englishValue}</div>
-            <div className="stat-label">{c.impactStats.englishLabel}</div>
-          </div>
-        </div>
 
         <section className="section about" id="about">
           <div className="section-header">
@@ -3433,52 +3553,6 @@ function App() {
           </div>
         </section>
 
-        <section className="section" id="education">
-          <div className="section-header">
-            <p className="eyebrow">{c.sections.education.eyebrow}</p>
-            <h2>{c.sections.education.title}</h2>
-            <p className="section-text">{c.sections.education.text}</p>
-          </div>
-          <div className="grid">
-            {c.education.map((edu) => (
-              <article className="card" key={edu.school}>
-                <div className="card-head">
-                  <h3>{edu.school}</h3>
-                  <span className="spark" />
-                </div>
-                <p className="card-text">{edu.degree}</p>
-                <p className="stack">
-                  {edu.location} / {edu.period}
-                </p>
-                {edu.diploma && (
-                  <button className="diploma-thumb" onClick={() => setDiplomaLightbox(true)} type="button">
-                    <img src={edu.diploma} alt="Diploma" loading="lazy" />
-                    <span className="diploma-label">
-                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                      </svg>
-                      {activeLocale === 'DE' ? 'Diplom anzeigen' : activeLocale === 'EN' ? 'View diploma' : 'Diplomayı görüntüle'}
-                    </span>
-                  </button>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {diplomaLightbox && (
-          <div className="lightbox-overlay" onClick={() => setDiplomaLightbox(false)}>
-            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-              <button className="lightbox-close" onClick={() => setDiplomaLightbox(false)} type="button">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
-              <img src="/diploma.jpg" alt="Diploma" />
-            </div>
-          </div>
-        )}
-
         <section className="section" id="experience">
           <div className="section-header">
             <p className="eyebrow">{c.sections.experience.eyebrow}</p>
@@ -3526,84 +3600,51 @@ function App() {
           </div>
         </section>
 
-        <section className="section" id="skills">
+        <section className="section" id="education">
           <div className="section-header">
-            <p className="eyebrow">{c.sections.skills.eyebrow}</p>
-            <h2>{c.sections.skills.title}</h2>
-            <p className="section-text">{c.sections.skills.text}</p>
+            <p className="eyebrow">{c.sections.education.eyebrow}</p>
+            <h2>{c.sections.education.title}</h2>
+            <p className="section-text">{c.sections.education.text}</p>
           </div>
           <div className="grid">
-            {c.skills.map((skill) => (
-              <div className="card skill-card" key={skill.title}>
+            {c.education.map((edu) => (
+              <article className="card" key={edu.school}>
                 <div className="card-head">
-                  <div className="skill-title-row">
-                    <span className="skill-icon-badge" aria-hidden="true">{skill.icon}</span>
-                    <h3>{skill.title}</h3>
-                  </div>
-                  <span className="skill-percent">{skill.percent}%</span>
+                  <h3>{edu.school}</h3>
+                  <span className="spark" />
                 </div>
-                <div className="skill-progress-track">
-                  <div className="skill-progress-fill" style={{ width: `${skill.percent}%` }} />
-                </div>
-                <p className="card-text">{skill.detail}</p>
-                <div className="tags">
-                  {skill.items.map((item) => (
-                    <span className={`pill skill-level-pill level-${item.level}`} key={item.name}>
-                      {item.name}
-                      <span className="skill-level-dot" aria-label={item.level} />
+                <p className="card-text">{edu.degree}</p>
+                <p className="stack">
+                  {edu.location} / {edu.period}
+                </p>
+                {edu.diploma && (
+                  <button className="diploma-thumb" onClick={() => setDiplomaLightbox(true)} type="button">
+                    <img src={edu.diploma} alt="Diploma" loading="lazy" />
+                    <span className="diploma-label">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                      </svg>
+                      {activeLocale === 'DE' ? 'Diplom anzeigen' : activeLocale === 'EN' ? 'View diploma' : 'Diplomayı görüntüle'}
                     </span>
-                  ))}
-                </div>
-              </div>
+                  </button>
+                )}
+              </article>
             ))}
           </div>
-          <div className="toolbelt">
-            <p className="eyebrow">
-              {activeLocale === 'DE'
-                ? 'Toolbelt & zuletzt genutzt'
-                : activeLocale === 'EN'
-                ? 'Toolbelt & recent stack'
-                : 'Toolbelt & son kullanılanlar'}
-            </p>
-            <div className="toolbelt-groups">
-              {c.toolbelt.map((group) => (
-                <div className="toolbelt-group" key={group.category}>
-                  <span className="toolbelt-category">{group.category}</span>
-                  <div className="tags">
-                    {group.tools.map((tool) => {
-                      const icon = getTechIcon(tool)
-                      return (
-                        <span className={`pill ${icon ? 'pill-with-icon' : ''}`} key={tool}>
-                          {icon && <img src={icon} alt={tool} className="skill-icon" loading="lazy" />}
-                          {tool}
-                        </span>
-                      )
-                    })}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Currently Learning Section */}
-          <div className="currently-learning">
-            <p className="eyebrow">{c.currentlyLearning.title}</p>
-            <div className="learning-items">
-              {c.currentlyLearning.items.map((item) => (
-                <div className="learning-item" key={item.title}>
-                  <span className="learning-icon">{item.icon}</span>
-                  <div className="learning-content">
-                    <span className="learning-title">{item.title}</span>
-                    <span className="learning-subtitle">{item.subtitle}</span>
-                    <div className="learning-progress">
-                      <div className="learning-progress-bar" style={{ width: `${item.progress}%` }} />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </section>
+
+        {diplomaLightbox && (
+          <div className="lightbox-overlay" onClick={() => setDiplomaLightbox(false)}>
+            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+              <button className="lightbox-close" onClick={() => setDiplomaLightbox(false)} type="button">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+              <img src="/diploma.jpg" alt="Diploma" />
+            </div>
+          </div>
+        )}
 
         <section className="section" id="projects">
           <div className="section-header">
@@ -3909,6 +3950,28 @@ function App() {
                         : 'Visit GitHub page for more visuals.'}
                     </p>
                   )}
+                  {activeProjectDetail.psr && (
+                    <div className="psr-block">
+                      <div className="psr-item">
+                        <span className="psr-label psr-problem">
+                          {activeLocale === 'TR' ? 'Sorun' : activeLocale === 'DE' ? 'Problem' : 'Problem'}
+                        </span>
+                        <p>{activeProjectDetail.psr.problem}</p>
+                      </div>
+                      <div className="psr-item">
+                        <span className="psr-label psr-solution">
+                          {activeLocale === 'TR' ? 'Çözüm' : activeLocale === 'DE' ? 'Lösung' : 'Solution'}
+                        </span>
+                        <p>{activeProjectDetail.psr.solution}</p>
+                      </div>
+                      <div className="psr-item">
+                        <span className="psr-label psr-result">
+                          {activeLocale === 'TR' ? 'Sonuç' : activeLocale === 'DE' ? 'Ergebnis' : 'Result'}
+                        </span>
+                        <p>{activeProjectDetail.psr.result}</p>
+                      </div>
+                    </div>
+                  )}
                   <p className="card-text">{activeProjectDetail.description}</p>
                   <p className="card-text subtle">{activeProjectDetail.summary}</p>
                   {activeProjectDetail.details && (
@@ -4098,6 +4161,85 @@ function App() {
             >
               {c.projectsNoteCta}
             </a>
+          </div>
+        </section>
+
+        <section className="section" id="skills">
+          <div className="section-header">
+            <p className="eyebrow">{c.sections.skills.eyebrow}</p>
+            <h2>{c.sections.skills.title}</h2>
+            <p className="section-text">{c.sections.skills.text}</p>
+          </div>
+          <div className="grid">
+            {c.skills.map((skill) => (
+              <div className="card skill-card" key={skill.title}>
+                <div className="card-head">
+                  <div className="skill-title-row">
+                    <span className="skill-icon-badge" aria-hidden="true">{skill.icon}</span>
+                    <h3>{skill.title}</h3>
+                  </div>
+                  <span className="skill-percent">{skill.percent}%</span>
+                </div>
+                <div className="skill-progress-track">
+                  <div className="skill-progress-fill" style={{ width: `${skill.percent}%` }} />
+                </div>
+                <p className="card-text">{skill.detail}</p>
+                <div className="tags">
+                  {skill.items.map((item) => (
+                    <span className={`pill skill-level-pill level-${item.level}`} key={item.name}>
+                      {item.name}
+                      <span className="skill-level-dot" aria-label={item.level} />
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="toolbelt">
+            <p className="eyebrow">
+              {activeLocale === 'DE'
+                ? 'Toolbelt & zuletzt genutzt'
+                : activeLocale === 'EN'
+                ? 'Toolbelt & recent stack'
+                : 'Toolbelt & son kullanılanlar'}
+            </p>
+            <div className="toolbelt-groups">
+              {c.toolbelt.map((group) => (
+                <div className="toolbelt-group" key={group.category}>
+                  <span className="toolbelt-category">{group.category}</span>
+                  <div className="tags">
+                    {group.tools.map((tool) => {
+                      const icon = getTechIcon(tool)
+                      return (
+                        <span className={`pill ${icon ? 'pill-with-icon' : ''}`} key={tool}>
+                          {icon && <img src={icon} alt={tool} className="skill-icon" loading="lazy" />}
+                          {tool}
+                        </span>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Currently Learning Section */}
+          <div className="currently-learning">
+            <p className="eyebrow">{c.currentlyLearning.title}</p>
+            <div className="learning-items">
+              {c.currentlyLearning.items.map((item) => (
+                <div className="learning-item" key={item.title}>
+                  <span className="learning-icon">{item.icon}</span>
+                  <div className="learning-content">
+                    <span className="learning-title">{item.title}</span>
+                    <span className="learning-subtitle">{item.subtitle}</span>
+                    <div className="learning-progress">
+                      <div className="learning-progress-bar" style={{ width: `${item.progress}%` }} />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
